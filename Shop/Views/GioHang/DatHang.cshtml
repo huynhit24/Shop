@@ -1,0 +1,178 @@
+﻿@model IEnumerable<Shop.Models.GioHang>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Đơn đặt hàng</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">Cám ơn quý khách đã lựa chọn sản phẩm từ iLaptop! 🧡🧡🧡</p>
+        </div>
+    </div>
+</header>
+<div class="row" style="margin-top: 10px;margin-bottom:10px;">
+    <div class="col-12">
+        <p>
+            @*@Html.ActionLink("Create New", "Create")*@
+            <a class="btn text-white" style="background-color: orangered" href="@Url.Action("Index", "Home")"> <i class="fa fa-shopping-basket"></i> Mua thêm?</a>
+        </p>
+    </div>
+</div>
+<table @*id="tblStocks"*@ id="tbl_exporttable_to_xls" class="table table-bordered tab">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.malaptop)
+            </th>*@
+        <th class="text-center" style="vertical-align:middle">
+            @Html.DisplayNameFor(model => model.tenlaptop) <i class="fa fa-laptop"></i>
+        </th>
+        <th class="text-center" style="vertical-align:middle">
+            @Html.DisplayNameFor(model => model.hinh) <i class="fa fa-image"></i>
+        </th>
+        <th class="text-center" style="vertical-align:middle">
+            @Html.DisplayNameFor(model => model.giaban) <i class="fa fa-money-bill"></i>
+        </th>
+        <th class="text-center" style="vertical-align:middle">
+            @Html.DisplayNameFor(model => model.iSoluong) <i class="fa fa-sort-numeric-up"></i>
+        </th>
+        <th class="text-center" style="vertical-align:middle">
+            @Html.DisplayNameFor(model => model.dThanhTien) <i class="fa fa-money-bill-wave-alt"></i>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.malaptop)
+                </td>*@
+            <td class="text-center" style="vertical-align:middle">
+                @Html.DisplayFor(modelItem => item.tenlaptop)
+            </td>
+            <td class="text-center" style="vertical-align:middle">
+                <img src="~/Content/images/@item.hinh" width="100" height="250" />
+            </td>
+            @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @id = item.malaptop }))
+            {
+                <td class="text-center" style="vertical-align:middle">
+                    @*@Html.DisplayFor(modelItem => item.giaban) VNĐ*@
+                    @String.Format("{0:0,0}", item.giaban) VNĐ
+                </td>
+                <td class="text-center" style="vertical-align:middle">
+                    @Html.DisplayFor(modelItem => item.iSoluong)
+                </td>
+                <td class="text-center" style="vertical-align:middle">
+                    @*@Html.DisplayFor(modelItem => item.dThanhTien)*@
+                    @String.Format("{0:0,0}", item.dThanhTien) VNĐ
+                </td>
+            }
+
+        </tr>
+    }
+    <tr style="font-weight: bold; text-align:right; color:red">
+        <td colspan="7">
+            <div>
+                <p>Số lượng sách: @ViewBag.Tongsoluong</p>
+                <p>Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</p>
+            </div>
+        </td>
+    </tr>
+    <tr style="font-weight: bold; text-align:right">
+        <td colspan="6">
+            @*@Html.ActionLink("Trở về giỏ hàng", "Giohang", "GioHang")*@
+            <a class="btn text-white" style="background-color: #0fcdef" href="@Url.Action("GioHang", "GioHang")"> <i class="fa fa-backward"></i> Trỏ về giỏ hàng</a>
+            @*<a class="btn text-white" style="background-color: #0fcdef" href="@Url.Action("Index", "Home")"> <i class="fa fa-cart-arrow-down"></i> In hóa đơn</a>*@
+            <button class="btn text-white" style="background-color: #0fa573" onclick="ExportToExcel('xlsx')"> <i class="fa fa-file-excel"></i> In đơn đặt hàng</button>
+        </td>
+    </tr>
+
+</table>
+
+@using Shop.Models
+<h2 style="text-align:center"> Thông tin đặt hàng</h2>
+@{
+    AspNetUser kh = (AspNetUser)Session["TaiKhoan"];
+}
+<table align="center">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height: 40px">
+            <td> Họ tên khách hàng: </td>
+            <td style="font-weight: bold">@kh.hoten </td>
+        </tr>
+        <tr style="height: 40px">
+            <td>
+                Email:
+            </td>
+            <td style="font-weight: bold">@kh.Email </td>
+        </tr>
+        <tr style="height: 40px">
+            <td>
+                Điện thoại:
+            </td>
+            <td style="font-weight: bold">@kh.PhoneNumber </td>
+        </tr>
+        <tr style="height: 40px">
+            <td>
+                Ngày đặt:
+            </td>
+            <td style="font-weight: bold">@DateTime.Now.ToLongDateString() </td>
+        </tr>
+        <tr style="height: 40px">
+            <td>
+                Ngày giao:
+            </td>
+            <td style="font-weight: bold">
+                <input type="date" name="NgayGiao" />
+            </td>
+        </tr>
+        <tr style="height: 40px">
+            <td>
+            </td>
+            <td style="font-weight: bold">
+                <input type="submit" value=" Xác nhận" class="btn btn-success" />
+                <a href="@Url.Action("Momo","GioHang")" class="btn btn-default"> <img src="~/Content/images/logo-momo.png" alt="Alternate Text" width="50" height="50" />Momo</a>
+            </td>
+        </tr>
+
+    }
+</table>
+<script src="https://www.paypal.com/sdk/js?client-id=AQp0bP9doGYjWqSNND7itP0-UuuvqfLI8djlLy2QCnVllxwVNusgrhGcpipc4d7F7z_xWsM6ksFp34YI">
+</script>
+<div id="paypal-button-container" class="text-center"></div>
+<script>
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: @ViewBag.Tongtien
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+
+                alert('Thanh toán Paypal thành công bởi ' + details.payer.name.given_name);
+            });
+        }
+    }).render('#paypal-button-container');
+//This function displays Smart Payment Buttons on your web page.
+</script>
+<script>
+    function ExportToExcel(type, fn, dl) {
+        var elt = document.getElementById('tbl_exporttable_to_xls');
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        return dl ?
+            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+            XLSX.writeFile(wb, fn || ('DonDatHang.' + (type || 'xlsx')));
+    }
+</script>
