@@ -58,11 +58,11 @@ namespace Shop
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "659348285678-au6236mvl6oadfmuk440rrgn5arolefs.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }
