@@ -81,36 +81,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            @Html.Partial("_LoginPartial")
-                            @*@{
-                                    AspNetUser kh = (AspNetUser)Session["TaiKhoan"];
-                                    if (Session["TaiKhoan"] == null)
-                                    {
-                                        <div class="col-auto">
-                                            <ul class="top-nav">
-                                                <li>
-                                                    <a href="@Url.Action("DangKy","NguoiDung")"><i class="fas fa-user-edit me-2"></i>Đăng ký</a>
-                                                </li>
-                                                <li>
-                                                    <a href="@Url.Action("DangNhap","NguoiDung")"><i class="fas fa-sign-in-alt me-2"></i>Đăng nhập</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="col-auto">
-                                            <ul class="top-nav">
-                                                <li>
-                                                    <a href="@Url.Action("DonHangDaMua","Home")"><i class="fas fa-user-edit me-2"></i> @kh.hoten</a>
-                                                </li>
-                                                <li>
-                                                    <a href="@Url.Action("DangXuat","NguoiDung")"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    }
-                                }*@
+                            <div class="col-auto">
+                                @Html.Partial("_LoginPartial")
+                            </div>
                             @*<div class="col-auto">
                                     <ul class="top-nav">
                                         <li>
@@ -399,6 +372,7 @@
     <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/js/script.js"></script>
     <script type="text/javascript" src="~/Content/js/scripts.js"></script>
+
     @RenderSection("scripts", required: false)
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 </body>
