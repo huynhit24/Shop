@@ -376,6 +376,16 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\XacnhanDonhang.cshtml" />
     <Content Include="Views\GioHang\DatHang.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\DonHangDaMua.cshtml" />
+    <Content Include="Views\Home\ListLaptopTheoHangId.cshtml" />
+    <Content Include="Views\Home\ListLaptopTheoNhuCauById.cshtml" />
+    <Content Include="Views\Home\ListLaptopTheoSearch.cshtml" />
+    <Content Include="Views\Home\QuangCao.cshtml" />
+    <Content Include="Views\Home\NhanXet.cshtml" />
+    <Content Include="Views\Home\Comment.cshtml" />
+    <Content Include="Views\Home\ListBaiVietTheoChuDeId.cshtml" />
+    <Content Include="Views\Home\PostDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

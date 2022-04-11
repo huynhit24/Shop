@@ -1,7 +1,82 @@
 ﻿@{
     ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Giới thiệu iLaptop</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">iLaptop - website bán Laptop úy tín giả tốt chuyên nghiệp! 😍😍😍</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nhóm trưởng</div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="~/Content/images/Florentino.jpg" alt="iLaptop" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Nguyễn Văn Huỳnh</h5>
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <small>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                </small>
+                            </div>
+                            <!-- Product price-->
+                            Gánh team
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center social-icon"><a class="btn btn-outline-danger mt-auto" href="https://github.com/huynhit24" target="_blank"><img src="~/Content/images/github.png" alt="Github" width="30" height="30" /> Github</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Bot</div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="~/Content/images/dependabot.png" alt="iLaptop" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Nguyễn Bùi Hoàng phước</h5>
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <small>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                </small>
+                            </div>
+                            <!-- Product price-->
+                            Thành viên
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-success mt-auto" href="https://github.com/dependabot" target="_blank">Xem chi tiết</a></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>

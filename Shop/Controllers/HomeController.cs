@@ -88,7 +88,7 @@ namespace Shop.Controllers
             dg.vote = Convert.ToInt32(vote);
             dg.ngaydanhgia = DateTime.Now;
             dg.malaptop = malaptop;
-
+            dg.trangthai = true;
             data.DanhGias.InsertOnSubmit(dg);
             data.SubmitChanges();
             /*return RedirectToAction("Details");*/
