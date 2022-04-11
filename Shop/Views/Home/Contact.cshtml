@@ -1,17 +1,91 @@
-﻿@{
+﻿@model Shop.Models.LienHe
+
+@{
     ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Liên hệ tư vấn</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">Khách hàng vui lòng điền thông tin biểu mẫu dưới đây! 💌💌💌</p>
+        </div>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row card-body">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+                <div class="panel panel-default" style="border:1px">
+                    <div class="form-group">
+                        <h4>Vui lòng điền thông tin liên hệ để được tư vấn!</h4>
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Họ tên", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.hoten, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.hoten, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                    <div class="form-group">
+                        @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("SĐT", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Website", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.website, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.website, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.noidung, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.trangthai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <div class="col-md-offset-2 col-md-10 text-center">
+                            <input type="submit" value="✅ Xác nhận" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
+            @Html.ActionLink("Về trang chủ", "Index", "", new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
+
+
