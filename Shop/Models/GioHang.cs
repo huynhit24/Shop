@@ -22,12 +22,12 @@ namespace Shop.Models
         [Display(Name = "Số lượng")]
         public int iSoluong { get; set; }
         [Display(Name = "Thành tiền")]
-        public Double dThanhTien
+        public Double dThanhTien// trả về thành viên của 1 món hàng theo số lượng, giá
         {
             get { return iSoluong * giaban; }
         }
 
-        public GioHang(int id)
+        public GioHang(int id)// hàm khởi tạo giỏ hàng
         {
             malaptop = id;
             Laptop laptop = data.Laptops.Single(n => n.malaptop == malaptop);

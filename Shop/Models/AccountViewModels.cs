@@ -64,12 +64,12 @@ namespace Shop.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Email không được để trống!")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Mật khẩu không được để trống!")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -77,8 +77,15 @@ namespace Shop.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu xác thực không khớp!")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Họ tên không được để trống!")]
+        [StringLength(50, ErrorMessage = "Họ tên không được quá 50 ký tự!")]
+        public string hoten { get; set; }
+
+        [StringLength(200, ErrorMessage = "Địa chỉ không được quá 200 ký tự!")]
+        public string diachi { get; set; }
     }
 
     public class ResetPasswordViewModel

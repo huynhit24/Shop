@@ -186,6 +186,10 @@
     <Compile Include="Migrations\202204101524436_InitialModel.Designer.cs">
       <DependentUpon>202204101524436_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204211640321_hotendiachi.cs" />
+    <Compile Include="Migrations\202204211640321_hotendiachi.Designer.cs">
+      <DependentUpon>202204211640321_hotendiachi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GioHang.cs" />
@@ -406,6 +410,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204101524436_InitialModel.resx">
       <DependentUpon>202204101524436_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204211640321_hotendiachi.resx">
+      <DependentUpon>202204211640321_hotendiachi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
