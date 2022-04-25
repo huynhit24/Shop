@@ -118,7 +118,7 @@ namespace Shop.Controllers
         {
             if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
-                return RedirectToAction("DangNhap", "NguoiDung");
+                return RedirectToAction("Login", "Account");
             }
             if (Session["GioHang"] == null)
             {
@@ -134,7 +134,7 @@ namespace Shop.Controllers
         public ActionResult DatHang(FormCollection collection)
         {
             DonHang dh = new DonHang();
-            AspNetUser kh = (AspNetUser)Session["TaiKhoan"];
+            AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
             List<GioHang> gh = Laygiohang();
             var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);
