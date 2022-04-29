@@ -4,6 +4,7 @@ using Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -137,9 +138,12 @@ namespace Shop.Controllers
             return View(laptop);
         }
 
-        public ActionResult PostDetails(int id)
+        public ActionResult PostDetails(int? id, string postName)
         {
-            MyDataDataContext data = new MyDataDataContext();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var baiviet = data.TinTucs.Where(n => n.matin == id).FirstOrDefault();
             return View(baiviet);
         }

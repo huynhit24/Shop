@@ -14,11 +14,28 @@ namespace Shop
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Laptop Details",
-                url: "laptop/{id}",
-                defaults: new { controller = "Home", action = "Details", id = UrlParameter.Optional }
+                name: "Home Page",
+                url: "trang-chu",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "About Page",
+                url: "trang-chu/gioi-thieu",
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Contact Page",
+                url: "trang-chu/lien-he",
+                defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Laptop Details",
+                url: "{controller}/{action}/{id}/{postName}",
+                defaults: new { controller = "Home", action = "Details", id = UrlParameter.Optional, postName = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "Default",
