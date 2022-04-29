@@ -25,6 +25,12 @@ namespace Shop.Controllers
             return View();
         }
 
+        public ActionResult GetChiTietDonHang(int? id)
+        {
+            List<ChiTietDonHang> list = data.ChiTietDonHangs.Where(n => n.madon == id).ToList();
+            return View(list);
+        }
+
         public ActionResult DonHangDaMua()
         {
             if (Session["TaiKhoan"] != null)

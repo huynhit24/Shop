@@ -390,6 +390,7 @@
     <Content Include="Views\Home\Comment.cshtml" />
     <Content Include="Views\Home\ListBaiVietTheoChuDeId.cshtml" />
     <Content Include="Views\Home\PostDetails.cshtml" />
+    <Content Include="Views\Home\GetChiTietDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

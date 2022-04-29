@@ -51,6 +51,12 @@ namespace Shop.Models
             return list;
         }
 
+        public List<ChiTietDonHang> GetListChiTietDonHangTheoDonDatHang(int? id)// lấy ra danh sách meta theo Laptop
+        {
+            List<ChiTietDonHang> list = data.ChiTietDonHangs.Where(n => n.madon == id).ToList();
+            return list;
+        }
+
         public List<Hang> GetListHang()// lấy ra ds tất cả các hãng
         {
             return data.Hangs.ToList();

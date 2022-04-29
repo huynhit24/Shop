@@ -1,101 +1,11 @@
-﻿@model  List<Shop.Models.DonHang>
+﻿@model  List<Shop.Models.ChiTietDonHang>
+
 @using Shop.Models;
 @{
-    ViewBag.Title = "DonHangDaMua";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "GetChiTietDonHang";
     HomeModel home = new HomeModel();
-    int idDDH = 0;
 }
 
-
-
-
-<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
-    <div class="container px-1 px-lg-1 my-1">
-        <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Đơn hàng đã mua của quý khách</h1>
-            <p class="lead fw-normal mb-0" style="color: #4cff00;">Qúy khách có muốn mua thêm Laptop không! 💌💌💌</p>
-            <a style="background-color: red; margin: 10px;" class="btn text-white" href="@Url.Action("Index","Home")"><i class="fa fa-laptop-house"></i> Mua Laptop</a>
-        </div>
-    </div>
-</header>
-
-<table class="table table-bordered table-striped" style="margin-top: 20px;">
-    <thead>
-        <tr>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Mã đơn hàng")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Họ tên")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Thanh toán")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Tình trạng giao hàng")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Ngày đặt")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Ngày giao")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Xem chi tiết")
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            idDDH += 1;
-            <tr>
-                <td class="text-center" style="vertical-align:middle">
-                    ĐH-@Html.DisplayFor(modelItem => item.madon)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @Html.DisplayFor(modelItem => item.AspNetUser.hoten)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @if (item.thanhtoan == true)
-                    {
-                        <p class="btn btn-success"><i class="fa fa-check"></i> Đã thanh toán</p>
-                    }
-                    else
-                    {
-                        <p class="btn btn-warning"><i class="fa fa-money-bill"></i> Chưa thanh toán</p>
-                    }
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @if (item.giaohang == true)
-                    {
-                        <p style="background-color: rgb(11 211 239 / 0.85);" class="btn"><i class="fa fa-check-circle-o"></i> Đã giao</p>
-                    }
-                    else
-                    {
-                        <p class="btn btn-danger"><i class="fa fa-truck"></i> Đang giao hàng</p>
-                    }
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @Html.DisplayFor(modelItem => item.ngaydat)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @Html.DisplayFor(modelItem => item.ngaygiao)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-
-                    <!-- Button trigger modal -->
-                    <a data-id="@item.madon" id="lienket" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
-                        <i class="fa fa-laptop-house"></i> Xem
-                    </a>
-                    
-                    
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
 <div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -126,9 +36,8 @@
                             @Html.DisplayName("Thành tiền") <i class="fa fa-money-bill"></i>
                         </th>
                     </tr>
-
                     @{ decimal? tongtien = 0; int? tongsoluong = 0; }
-                    @foreach (var ctdh in home.GetListChiTietDonHangTheoDonDatHang(idDDH).ToList())
+                    @foreach (var ctdh in Model)
                     {
                         <tr>
                             @*<td>
@@ -178,11 +87,6 @@
             </div>
         </div>
     </div>
-</div>
-<div style="margin-bottom: 20px;">
-
-    @Html.ActionLink("Về trang chủ", "Index", "Home", new { @class = "btn btn-primary" })
-
 </div>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <script>
