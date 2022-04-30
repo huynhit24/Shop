@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <main class="row">
 
@@ -91,7 +92,7 @@
                                     </div>
                                     <div class="col-12 mb-3 align-self-end">
                                         <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-success"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-warning"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-warning mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                                     </div>
                                     <div class="col-12 mb-3 align-self-end">
                                         <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-primary"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-dark"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-dark mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
                                     </div>
 
                                 </div>
@@ -211,7 +212,7 @@
                                     </div>
                                     <div class="col-12 mb-3 align-self-end">
                                         <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-warning"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-danger"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-danger mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
                                     </div>
                                 </div>
                             </div>
@@ -259,3 +260,8 @@
         </div>
     </div>
 </main>
+
+
+
+
+
