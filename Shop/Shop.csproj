@@ -277,6 +277,7 @@
     <Content Include="Content\images\log-out.png" />
     <Content Include="Content\images\logo-momo.png" />
     <Content Include="Content\images\master-card-payment.jpg" />
+    <Content Include="Content\images\mental-health.png" />
     <Content Include="Content\images\msi.png" />
     <Content Include="Content\images\no-cart.png" />
     <Content Include="Content\images\payoo-payment.jpg" />
