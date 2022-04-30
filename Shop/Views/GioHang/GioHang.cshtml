@@ -4,6 +4,9 @@
     ViewBag.Title = "GioHang";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div id="root-cart">
 
 </div>
@@ -88,10 +91,10 @@
                         </td>
                         <td class="text-center" style="vertical-align:middle">
                             <a class="btn btn-warning" href="@Url.Action("Details", "Home", new { id = item.malaptop })"> <i class="fa fa-eye"></i> Chi tiết</a>  @*@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.malaptop })*@
-                            <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })"> <i class="fa fa-trash"></i> Xóa</a>
+                            <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Xóa thành công!', showConfirmButton: false });"> <i class="fa fa-trash"></i> Xóa</a>
                         </td>
                         <td class="text-center" style="vertical-align:middle">
-                            <input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success" />
+                            <input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success"/>
                         </td>
                     }
                 </tr>

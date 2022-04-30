@@ -18,6 +18,8 @@ namespace Shop.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+
+        MyDataDataContext context = new MyDataDataContext(); //
         public AccountController()
         {
         }
@@ -79,7 +81,16 @@ namespace Shop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
+                        if (kh.LockoutEnabled == false)
+                        {
+                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                            return View("Lockout");
+                        }
+                        Session["TaiKhoan"] = kh;// gán kh vào session
+                        return RedirectToLocal(returnUrl); 
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -151,7 +162,7 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, hoten = model.hoten, diachi = model.diachi };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -333,7 +344,17 @@ namespace Shop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        var kh = context.AspNetUsers.Where(p => p.Email == loginInfo.Email).FirstOrDefault();
+                        if (kh.LockoutEnabled == false)
+                        {
+                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                            return View("Lockout");
+                        }
+                        Session["TaiKhoan"] = kh;// gán kh vào session
+                        return RedirectToLocal(returnUrl);
+                    }
+                //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

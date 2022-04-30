@@ -10,20 +10,20 @@ namespace Shop.Controllers
     public class GioHangController : Controller
     {
         MyDataDataContext data = new MyDataDataContext();
-        public List<GioHang> Laygiohang()
+        public List<GioHang> Laygiohang()// lấy ra danh sách sản phẩm trong giỏ hàng
         {
             List<GioHang> lstGiohang = Session["Giohang"] as List<GioHang>;
-            if (lstGiohang == null)
+            if (lstGiohang == null) // nếu giỏ hàng bằng null thì khởi tạo giỏ hàng rồi gắn giỏ hàng cho Session["Giohang"]
             {
                 lstGiohang = new List<GioHang>();
                 Session["Giohang"] = lstGiohang;
             }
             return lstGiohang;
         }
-        public ActionResult ThemGioHang(int id, string strURL)
+        public ActionResult ThemGioHang(int id, string strURL)// thêm 1 sản phẩm vào giỏ hàng
         {
             List<GioHang> lstGioHang = Laygiohang();
-            GioHang sanpham = lstGioHang.Find(n => n.malaptop == id);
+            GioHang sanpham = lstGioHang.Find(n => n.malaptop == id); // tìm sản phẩm đã chọn theo id
             if (sanpham == null)
             {
                 sanpham = new GioHang(id);
@@ -36,7 +36,7 @@ namespace Shop.Controllers
                 return Redirect(strURL);
             }
         }
-        private int TongSoLuong()
+        private int TongSoLuong()// tính tổng số lượng đã mua trong giỏ hàng
         {
             int tsl = 0;
             List<GioHang> lstGiohang = Session["GioHang"] as List<GioHang>;
@@ -47,7 +47,7 @@ namespace Shop.Controllers
             return tsl;
 
         }
-        private int TongSoLuongSanPham()
+        private int TongSoLuongSanPham()// tính tổng số loại đã chọn mua
         {
             int tsl = 0;
             List<GioHang> lstGiohang = Session["GioHang"] as List<GioHang>;
@@ -57,7 +57,7 @@ namespace Shop.Controllers
             }
             return tsl;
         }
-        private double TongTien()
+        private double TongTien()// tính tổng tiền giỏ hàng
         {
             double tt = 0;
             List<GioHang> lstGiohang = Session["GioHang"] as List<GioHang>;
@@ -68,7 +68,7 @@ namespace Shop.Controllers
             return tt;
 
         }
-        public ActionResult GioHang()
+        public ActionResult GioHang()// request trả về View giỏ hàng
         {
             List<GioHang> lstGiohang = Laygiohang();
             ViewBag.Tongsoluong = TongSoLuong();
@@ -76,14 +76,14 @@ namespace Shop.Controllers
             ViewBag.Tongsoluongsanpham = TongSoLuongSanPham();
             return View(lstGiohang);
         }
-        public ActionResult GioHangPartial()
+        public ActionResult GioHangPartial()// request trả về partialview giỏ hàng
         {
             ViewBag.Tongsoluong = TongSoLuong();
             ViewBag.TongTien = TongTien();
             ViewBag.Tongsoluongsanpham = TongSoLuongSanPham();
             return PartialView();
         }
-        public ActionResult XoaGiohang(int id)
+        public ActionResult XoaGiohang(int id)// xóa sản phẩm theo id
         {
             List<GioHang> lstGiohang = Laygiohang();
             GioHang sanpham = lstGiohang.SingleOrDefault(n => n.malaptop == id);
@@ -94,7 +94,7 @@ namespace Shop.Controllers
             }
             return RedirectToAction("GioHang");
         }
-        public ActionResult CapnhatGiohang(int id, FormCollection collection)
+        public ActionResult CapnhatGiohang(int id, FormCollection collection)// cập nhật giỏ hàng theo id và form có số lượng
         {
             List<GioHang> lstGiohang = Laygiohang();
             GioHang sanpham = lstGiohang.SingleOrDefault(n => n.malaptop == id);
@@ -105,7 +105,7 @@ namespace Shop.Controllers
             }
             return RedirectToAction("GioHang");
         }
-        public ActionResult XoaTatCaGioHang()
+        public ActionResult XoaTatCaGioHang()// xóa tất cả các mặt hàng trong giỏ hàng
         {
             List<GioHang> lstGioHang = Laygiohang();
             List<GioHang> lstGiohang = Laygiohang();
@@ -114,11 +114,11 @@ namespace Shop.Controllers
         }
 
         [HttpGet]
-        public ActionResult DatHang()
+        public ActionResult DatHang()// đặt hàng
         {
             if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
-                return RedirectToAction("DangNhap", "NguoiDung");
+                return RedirectToAction("Login", "Account");
             }
             if (Session["GioHang"] == null)
             {
@@ -134,7 +134,7 @@ namespace Shop.Controllers
         public ActionResult DatHang(FormCollection collection)
         {
             DonHang dh = new DonHang();
-            AspNetUser kh = (AspNetUser)Session["TaiKhoan"];
+            AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
             List<GioHang> gh = Laygiohang();
             var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);

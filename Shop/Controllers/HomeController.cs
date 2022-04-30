@@ -4,6 +4,7 @@ using Shop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -23,6 +24,12 @@ namespace Shop.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+
+        public ActionResult GetChiTietDonHang(int? id)
+        {
+            List<ChiTietDonHang> list = data.ChiTietDonHangs.Where(n => n.madon == id).ToList();
+            return View(list);
         }
 
         public ActionResult DonHangDaMua()
@@ -131,9 +138,12 @@ namespace Shop.Controllers
             return View(laptop);
         }
 
-        public ActionResult PostDetails(int id)
+        public ActionResult PostDetails(int? id, string postName)
         {
-            MyDataDataContext data = new MyDataDataContext();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var baiviet = data.TinTucs.Where(n => n.matin == id).FirstOrDefault();
             return View(baiviet);
         }
