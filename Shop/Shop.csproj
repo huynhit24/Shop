@@ -58,6 +58,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,6 +185,24 @@
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="EF\AspNetRole.cs" />
+    <Compile Include="EF\AspNetUser.cs" />
+    <Compile Include="EF\AspNetUserClaim.cs" />
+    <Compile Include="EF\AspNetUserLogin.cs" />
+    <Compile Include="EF\BinhLuan.cs" />
+    <Compile Include="EF\ChiTietDonHang.cs" />
+    <Compile Include="EF\ChuDe.cs" />
+    <Compile Include="EF\C__MigrationHistory.cs" />
+    <Compile Include="EF\DanhGia.cs" />
+    <Compile Include="EF\DataModel.cs" />
+    <Compile Include="EF\DonHang.cs" />
+    <Compile Include="EF\Hang.cs" />
+    <Compile Include="EF\Laptop.cs" />
+    <Compile Include="EF\LienHe.cs" />
+    <Compile Include="EF\MetaLaptop.cs" />
+    <Compile Include="EF\NhuCau.cs" />
+    <Compile Include="EF\QuangCao.cs" />
+    <Compile Include="EF\TinTuc.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
