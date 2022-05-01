@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Shop.EF.Hang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenhang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenhang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mahang }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mahang }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mahang })
+        </td>
+    </tr>
+}
+
+</table>

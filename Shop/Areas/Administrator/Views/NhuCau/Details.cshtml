@@ -1,0 +1,27 @@
+﻿@model Shop.EF.NhuCau
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NhuCau</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tennhucau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tennhucau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.manhucau }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

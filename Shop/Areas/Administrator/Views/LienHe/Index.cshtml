@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Shop.EF.LienHe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hoten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.website)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noidung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hoten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dienthoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.website)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noidung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangthai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.malienhe }) |
+            @Html.ActionLink("Details", "Details", new { id=item.malienhe }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.malienhe })
+        </td>
+    </tr>
+}
+
+</table>

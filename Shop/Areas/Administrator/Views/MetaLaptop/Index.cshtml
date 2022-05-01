@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Shop.EF.MetaLaptop>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.keymeta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valuemeta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Laptop.tenlaptop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.keymeta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valuemeta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.mameta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.mameta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.mameta })
+        </td>
+    </tr>
+}
+
+</table>

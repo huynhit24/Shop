@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Shop.EF.Laptop>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Hang.tenhang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhuCau.tennhucau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tenlaptop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cpu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gpu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hardware)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.manhinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaycapnhat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soluongton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hang.tenhang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhuCau.tennhucau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenlaptop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cpu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gpu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hardware)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.manhinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaycapnhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soluongton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangthai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.malaptop }) |
+            @Html.ActionLink("Details", "Details", new { id=item.malaptop }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.malaptop })
+        </td>
+    </tr>
+}
+
+</table>

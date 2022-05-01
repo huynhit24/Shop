@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Shop.EF.QuangCao>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tenqc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tencongty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinhnen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaybatdau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngayhethan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenqc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tencongty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinhnen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.link)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaybatdau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngayhethan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trangthai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.maqc }) |
+            @Html.ActionLink("Details", "Details", new { id=item.maqc }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.maqc })
+        </td>
+    </tr>
+}
+
+</table>

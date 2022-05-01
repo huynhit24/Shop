@@ -1,0 +1,43 @@
+﻿@model Shop.EF.ChuDe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChuDe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenchude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenchude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slug)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slug)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.machude }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

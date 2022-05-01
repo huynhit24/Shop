@@ -1,0 +1,75 @@
+﻿@model Shop.EF.QuangCao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuangCao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenqc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenqc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tencongty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tencongty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhnen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhnen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaybatdau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaybatdau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayhethan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayhethan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangthai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maqc }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -123,12 +129,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -179,6 +179,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administrator\AdministratorAreaRegistration.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AspNetRolesController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AspNetUserClaimsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AspNetUserLoginsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AspNetUsersController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\BinhLuanController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ChiTietDonHangController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ChuDeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\DanhGiaController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\DonHangController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\HangController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\LaptopController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\LienHeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\MetaLaptopController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\NhuCauController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\QuangCaoController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\TinTucController.cs" />
     <Compile Include="Common\CommonFields.cs" />
     <Compile Include="Common\StringHelpers.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -3230,6 +3246,86 @@
     <Content Include="Areas\Administrator\Data\plugins\summernote\summernote.min.js.map" />
     <Content Include="Areas\Administrator\Data\plugins\toastr\toastr.js.map" />
     <Content Include="Areas\Administrator\Views\Shared\_LayoutAdministrator.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetRoles\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetRoles\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetRoles\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetRoles\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetRoles\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserClaims\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserClaims\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserClaims\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserClaims\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserClaims\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserLogins\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserLogins\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserLogins\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserLogins\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserLogins\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUsers\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUsers\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUsers\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUsers\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\BinhLuan\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\BinhLuan\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\BinhLuan\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\BinhLuan\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\BinhLuan\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChiTietDonHang\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChiTietDonHang\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChiTietDonHang\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChiTietDonHang\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChiTietDonHang\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChuDe\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChuDe\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChuDe\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChuDe\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\ChuDe\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhGia\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhGia\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhGia\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhGia\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\DanhGia\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\DonHang\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\DonHang\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\DonHang\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\DonHang\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\DonHang\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Hang\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\Hang\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\Hang\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\Hang\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\Hang\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Laptop\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\Laptop\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\Laptop\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\Laptop\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\Laptop\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\LienHe\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\LienHe\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\LienHe\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\LienHe\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\LienHe\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\MetaLaptop\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\MetaLaptop\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\MetaLaptop\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\MetaLaptop\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\MetaLaptop\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\NhuCau\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\NhuCau\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\NhuCau\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\NhuCau\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\NhuCau\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuangCao\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuangCao\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuangCao\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuangCao\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\QuangCao\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\TinTuc\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\TinTuc\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\TinTuc\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\TinTuc\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\TinTuc\Index.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -3296,7 +3392,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administrator\Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
