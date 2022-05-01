@@ -21,19 +21,19 @@ namespace Shop
 
             routes.MapRoute(
                 name: "About Page",
-                url: "trang-chu/gioi-thieu",
+                url: "gioi-thieu",
                 defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Contact Page",
-                url: "trang-chu/lien-he",
+                url: "lien-he",
                 defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Advertisement Page",
-                url: "trang-chu/quang-cao",
+                url: "quang-cao",
                 defaults: new { controller = "Home", action = "QuangCao", id = UrlParameter.Optional }
             );
 

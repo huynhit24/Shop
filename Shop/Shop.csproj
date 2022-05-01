@@ -191,6 +191,7 @@
     <Compile Include="Areas\Administrator\Controllers\HangController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LaptopController.cs" />
     <Compile Include="Areas\Administrator\Controllers\LienHeController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Administrator\Controllers\MetaLaptopController.cs" />
     <Compile Include="Areas\Administrator\Controllers\NhuCauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\QuangCaoController.cs" />
@@ -229,6 +230,10 @@
     <Compile Include="Migrations\202204211640321_hotendiachi.cs" />
     <Compile Include="Migrations\202204211640321_hotendiachi.Designer.cs">
       <DependentUpon>202204211640321_hotendiachi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205011420482_Update.cs" />
+    <Compile Include="Migrations\202205011420482_Update.Designer.cs">
+      <DependentUpon>202205011420482_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3326,6 +3331,9 @@
     <Content Include="Areas\Administrator\Views\TinTuc\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\TinTuc\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\TinTuc\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\MainPage\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\MainPage\Login.cshtml" />
+    <Content Include="Areas\Administrator\Views\MainPage\Error401.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -3340,6 +3348,71 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="vendor\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="vendor\fonts\material-icon\css\material-design-iconic-font.css" />
+    <Content Include="vendor\fonts\material-icon\css\material-design-iconic-font.min.css" />
+    <Content Include="vendor\fonts\material-icon\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700.svg" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700italic.svg" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-italic.svg" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.svg" />
+    <Content Include="vendor\jquery.cookie\jquery.cookie.js" />
+    <Content Include="vendor\jquery.cookie\MIT-LICENSE.txt" />
+    <Content Include="vendor\jquery\core.js" />
+    <Content Include="vendor\jquery\jquery-ui.min.js" />
+    <Content Include="vendor\jquery\jquery.js" />
+    <Content Include="vendor\jquery\jquery.min.js" />
+    <Content Include="vendor\jquery\jquery.slim.js" />
+    <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.js" />
+    <Content Include="vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.min.js" />
+    <Content Include="vendor\owl.carousel\assets\ajax-loader.gif" />
+    <Content Include="vendor\owl.carousel\assets\owl.carousel.css" />
+    <Content Include="vendor\owl.carousel\assets\owl.carousel.min.css" />
+    <Content Include="vendor\owl.carousel\assets\owl.theme.default.css" />
+    <Content Include="vendor\owl.carousel\assets\owl.theme.default.min.css" />
+    <Content Include="vendor\owl.carousel\assets\owl.theme.green.css" />
+    <Content Include="vendor\owl.carousel\assets\owl.theme.green.min.css" />
+    <Content Include="vendor\owl.carousel\assets\owl.video.play.png" />
+    <Content Include="vendor\owl.carousel\owl.carousel.js" />
+    <Content Include="vendor\owl.carousel\owl.carousel.min.js" />
+    <Content Include="vendor\popper.js\esm\popper-utils.js" />
+    <Content Include="vendor\popper.js\esm\popper-utils.min.js" />
+    <Content Include="vendor\popper.js\esm\popper.js" />
+    <Content Include="vendor\popper.js\esm\popper.min.js" />
+    <Content Include="vendor\popper.js\popper-utils.js" />
+    <Content Include="vendor\popper.js\popper-utils.min.js" />
+    <Content Include="vendor\popper.js\popper.js" />
+    <Content Include="vendor\popper.js\popper.min.js" />
+    <Content Include="vendor\popper.js\umd\popper-utils.js" />
+    <Content Include="vendor\popper.js\umd\popper-utils.min.js" />
+    <Content Include="vendor\popper.js\umd\popper.js" />
+    <Content Include="vendor\popper.js\umd\popper.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3389,6 +3462,82 @@
     <Content Include="Views\Home\ListBaiVietTheoChuDeId.cshtml" />
     <Content Include="Views\Home\PostDetails.cshtml" />
     <Content Include="Views\Home\GetChiTietDonHang.cshtml" />
+    <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="vendor\fonts\material-icon\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="vendor\fonts\material-icon\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="vendor\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="vendor\fonts\material-icon\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="vendor\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700.eot" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700.ttf" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700.woff" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700.woff2" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700italic.eot" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700italic.ttf" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700italic.woff" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-700italic.woff2" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-italic.eot" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-italic.ttf" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-italic.woff" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-italic.woff2" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.eot" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.ttf" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.woff" />
+    <Content Include="vendor\fonts\poppins\roboto-condensed-v16-latin-regular.woff2" />
+    <Content Include="vendor\jquery.cookie\component.json" />
+    <Content Include="vendor\jquery.cookie\cookie.jquery.json" />
+    <Content Include="vendor\popper.js\umd\popper.js.flow" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3412,6 +3561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204211640321_hotendiachi.resx">
       <DependentUpon>202204211640321_hotendiachi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205011420482_Update.resx">
+      <DependentUpon>202205011420482_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

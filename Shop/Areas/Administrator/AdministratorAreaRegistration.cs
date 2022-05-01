@@ -15,9 +15,24 @@ namespace Shop.Areas.Administrator
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
+             name: "admin",
+             url: "Admin",
+             defaults: new { controller = "MainPage", action = "Index", AreaName = "Administrator" }
+            );
+            context.MapRoute(
+             name: "login",
+             url: "Admin/Login",
+             defaults: new { controller = "MainPage", action = "Login", AreaName = "Administrator" }
+            );
+            context.MapRoute(
+             name: "adlogin",
+             url: "MainPage/Login",
+             defaults: new { controller = "MainPage", action = "Login", AreaName = "Administrator" }
+            );
+            context.MapRoute(
                 "Administrator_default",
                 "Administrator/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", Controller = "MainPage", id = UrlParameter.Optional }
             );
         }
     }
