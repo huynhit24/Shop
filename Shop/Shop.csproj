@@ -3209,6 +3209,7 @@
     <Content Include="Areas\Administrator\Data\plugins\summernote\summernote.js.map" />
     <Content Include="Areas\Administrator\Data\plugins\summernote\summernote.min.js.map" />
     <Content Include="Areas\Administrator\Data\plugins\toastr\toastr.js.map" />
+    <Content Include="Areas\Administrator\Views\Shared\_LayoutAdministrator.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -3276,7 +3277,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administrator\Controllers\" />
-    <Folder Include="Areas\Administrator\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
