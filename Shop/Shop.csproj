@@ -862,6 +862,7 @@
     <Content Include="Areas\Administrator\Data\images\dashboard.png" />
     <Content Include="Areas\Administrator\Data\images\delete.png" />
     <Content Include="Areas\Administrator\Data\images\eye.png" />
+    <Content Include="Areas\Administrator\Data\images\halalnode-401.jpg" />
     <Content Include="Areas\Administrator\Data\images\hang.png" />
     <Content Include="Areas\Administrator\Data\images\laptop.png" />
     <Content Include="Areas\Administrator\Data\images\meta.png" />
@@ -3332,7 +3333,7 @@
     <Content Include="Areas\Administrator\Views\TinTuc\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\TinTuc\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\Index.cshtml" />
-    <Content Include="Areas\Administrator\Views\MainPage\Login.cshtml" />
+    <Content Include="Areas\Administrator\Views\MainPage\LoginAdmin.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\Error401.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>

@@ -22,12 +22,12 @@ namespace Shop.Areas.Administrator
             context.MapRoute(
              name: "login",
              url: "Admin/Login",
-             defaults: new { controller = "MainPage", action = "Login", AreaName = "Administrator" }
+             defaults: new { controller = "MainPage", action = "LoginAdmin", AreaName = "Administrator" }
             );
             context.MapRoute(
              name: "adlogin",
              url: "MainPage/Login",
-             defaults: new { controller = "MainPage", action = "Login", AreaName = "Administrator" }
+             defaults: new { controller = "MainPage", action = "LoginAdmin", AreaName = "Administrator" }
             );
             context.MapRoute(
                 "Administrator_default",

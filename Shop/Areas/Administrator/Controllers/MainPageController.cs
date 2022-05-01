@@ -16,7 +16,7 @@ using System.Security.Claims;
 
 namespace Shop.Areas.Administrator.Controllers
 {
-    public class MainPageController : AccountController
+    public class MainPageController : Controller
     {
         // GET: Administrator/MainPage
         //DataModel db = new DataModel();
@@ -24,12 +24,26 @@ namespace Shop.Areas.Administrator.Controllers
 
         private ApplicationDbContext db2 = new ApplicationDbContext();
 
+        private ApplicationSignInManager _signInManager;
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
         // GET: Admin/adm_MainPage
         public ActionResult Index()
         {
             if (Session["taikhoanadmin"] == null)
             {
-                return RedirectToAction("Login", "MainPage");
+                return RedirectToAction("LoginAdmin", "MainPage");
             }
             else
             {
@@ -45,10 +59,10 @@ namespace Shop.Areas.Administrator.Controllers
         //----------------------------Login Admin-----------------------------
         public bool AuthAdmin()
         {
-            var user = db2.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var user = db.AspNetUsers.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
                 return false;
-            var userExist = user.Roles.FirstOrDefault(r => r.UserId == user.Id);
+            var userExist = user.AspNetUserRoles.FirstOrDefault(r => r.UserId == user.Id);
             if (userExist == null)
                 return false;
             if (userExist.RoleId != "1")
@@ -125,6 +139,7 @@ namespace Shop.Areas.Administrator.Controllers
 
         //
         // GET: /Account/Login
+        [AllowAnonymous]
         public ActionResult LoginAdmin()
         {
             return View();
@@ -133,11 +148,13 @@ namespace Shop.Areas.Administrator.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> LoginAdmin(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ThongBao = "Vui lòng điền đầy đủ và đúng Account!";
                 return View(model);
             }
 
@@ -151,7 +168,7 @@ namespace Shop.Areas.Administrator.Controllers
                         if (!AuthAdmin())
                             return RedirectToAction("Error401", "MainPage");
                         var kh = db.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
-                        Session["taikhoanadmin"] = kh;// gán kh vào session
+                        Session["taikhoanadmin"] = kh;// gán kh vào session admin
                         return RedirectToAction("Index","MainPage");
                     }
                 case SignInStatus.Failure:
@@ -165,7 +182,7 @@ namespace Shop.Areas.Administrator.Controllers
         public ActionResult Logout()
         {
             Session["taikhoanadmin"] = null;
-            return RedirectToAction("Login", "MainPage");
+            return RedirectToAction("LoginAdmin", "MainPage");
         }
     }
 }
