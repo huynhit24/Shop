@@ -64,16 +64,16 @@
 
                             <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                             <input type="text" name="Email" id="your_name" placeholder="Tên đăng nhập" />
-                            @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+                            @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group">
 
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" name="Password" id="your_pass" placeholder="Mật khẩu" />
-                            @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "your_pass" })
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
+                            @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "your_pass" })*@
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
 
                         </div>
                         <h4 style="color:red;text-align:center">@ViewBag.ThongBao</h4>

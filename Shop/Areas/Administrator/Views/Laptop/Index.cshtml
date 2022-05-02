@@ -4,115 +4,167 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Hang.tenhang)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NhuCau.tennhucau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tenlaptop)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.giaban)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mota)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cpu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gpu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ram)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hardware)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.manhinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngaycapnhat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.soluongton)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trangthai)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hang.tenhang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NhuCau.tennhucau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenlaptop)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.giaban)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mota)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cpu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gpu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ram)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hardware)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.manhinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngaycapnhat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.soluongton)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trangthai)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.malaptop }) |
-            @Html.ActionLink("Details", "Details", new { id=item.malaptop }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.malaptop })
-        </td>
-    </tr>
-}
-
-</table>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Laptop</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","Laptop")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.Hang.tenhang)*@
+                                            @Html.DisplayName("Tên hãng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.NhuCau.tennhucau)*@
+                                            @Html.DisplayName("Tên nhu cầu")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.tenlaptop)*@
+                                            @Html.DisplayName("Tên Laptop")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.giaban)*@
+                                            @Html.DisplayName("Giá bán")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.mota)*@
+                                            @Html.DisplayName("Mô tả")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.hinh)*@
+                                            @Html.DisplayName("Hình")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.cpu)*@
+                                            @Html.DisplayName("CPU")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.gpu)*@
+                                            @Html.DisplayName("GPU")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.ram)*@
+                                            @Html.DisplayName("RAM")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.hardware)*@
+                                            @Html.DisplayName("Hardware")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.manhinh)*@
+                                            @Html.DisplayName("Màn hình")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.ngaycapnhat)*@
+                                            @Html.DisplayName("Ngày cập nhật")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.soluongton)*@
+                                            @Html.DisplayName("Số lượng tồn")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.pin)*@
+                                            @Html.DisplayName("Pin Laptop")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.trangthai)*@
+                                            @Html.DisplayName("Trạng thái")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.Hang.tenhang)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.NhuCau.tennhucau)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tenlaptop)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.giaban)*@
+                                                <p> @item.giaban.GetValueOrDefault().ToString("#,##") đ</p>
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.mota)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.hinh)*@
+                                                <img src="~/Content/images/@Html.DisplayFor(modelItem => item.hinh)" alt="No image" width="100" height="100" />
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.cpu)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.gpu)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ram)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.hardware)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.manhinh)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ngaycapnhat)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.soluongton)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.pin)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.trangthai)*@
+                                                @if (item.trangthai == true)
+                                                {
+                                                    <p style="background-color: rgb(7 83 239 / 0.85);" class="btn text-white"><i class="fa fa-laptop"></i> Đang bán</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="btn btn-danger"><i class="fa fa-laptop-code"></i> Hết bán</p>
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.malaptop }) |
+        @Html.ActionLink("Details", "Details", new { id = item.malaptop }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.malaptop })*@
+                                                <a href="@Url.Action("Edit","Laptop", new { id = item.malaptop })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a href="@Url.Action("Details","Laptop", new { id = item.malaptop })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a href="@Url.Action("Delete","Laptop", new { id = item.malaptop })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
