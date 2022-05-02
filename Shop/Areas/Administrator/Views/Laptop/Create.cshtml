@@ -5,6 +5,17 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
+<script src="~/Plugins/ckeditor/ckeditor.js"></script>
+
+@section jsFooter{
+    <script>
+
+        var editor = CKEDITOR.replace('mota', {
+            customConfig: '/Plugin/ckeditor/config.js',
+        });
+    </script>
+}
+
 <div class="container container-fluid">
     <h2>Tạo</h2>
 
@@ -35,7 +46,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.mota, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.mota, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,10 +54,49 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.hinh, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+                    @*@Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })*@
+                    <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                           style="display:none;" />
+                    <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
                 </div>
             </div>
+
+            @section upload
+            {
+                <script>
+                    $(function () {
+                        $('#btnUpload').click(function () {
+                            $('#fileUpload').trigger('click');
+                        });
+                    });
+                    $('#fileUpload').change(function () {
+                        if (window.FormData !== undefined) {
+                            var fileUpload = $('#fileUpload').get(0);
+                            var files = fileUpload.files;
+                            var formData = new FormData();
+                            formData.append('file', files[0]);
+
+                            $.ajax(
+                                {
+                                    type: 'POST',
+                                    url: '/Laptop/ProcessUpload',
+                                    contentType: false,
+                                    processData: false,
+                                    data: formData,
+                                    success: function (urlImage) {
+
+                                        $('#pictureUpload').attr('src', urlImage);
+                                        $('#hinh').val(urlImage);
+                                    },
+                                    error: function (err) {
+                                        alert('Error ', err.statusText);
+                                    }
+                                });
+                        }
+                    });
+                </script>
+            }
 
             <div class="form-group">
                 @Html.LabelFor(model => model.mahang, "mahang", htmlAttributes: new { @class = "control-label col-md-2" })
