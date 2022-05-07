@@ -223,6 +223,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mail\MailHelper.cs" />
     <Compile Include="Migrations\202204101524436_InitialModel.cs" />
     <Compile Include="Migrations\202204101524436_InitialModel.Designer.cs">
       <DependentUpon>202204101524436_InitialModel.cs</DependentUpon>
@@ -2803,6 +2804,7 @@
     <Content Include="Content\js\script.js" />
     <Content Include="Content\js\scripts.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\template\neworder.html" />
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
     <Content Include="Content\webfonts\fa-solid-900.svg" />
