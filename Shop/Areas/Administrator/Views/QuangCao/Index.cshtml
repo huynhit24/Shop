@@ -5,66 +5,94 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Index</h2>
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tenqc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tencongty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hinhnen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngaybatdau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ngayhethan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.trangthai)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tenqc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tencongty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hinhnen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngaybatdau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ngayhethan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trangthai)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.maqc }) |
-            @Html.ActionLink("Details", "Details", new { id=item.maqc }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.maqc })
-        </td>
-    </tr>
-}
-
-</table>
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Quảng cáo bên thứ ba</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","QuangCao")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tên quảng cáo")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tên công ty")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Hình nền")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Link")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Ngày bắt đầu")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Ngày hết hạn")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Trạng thái")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tenqc)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tencongty)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.hinhnen)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.link)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ngaybatdau)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ngayhethan)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.trangthai)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @* @Html.ActionLink("Edit", "Edit", new { id = item.maqc }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.maqc }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.maqc })*@
+                                                <a href="@Url.Action("Edit","QuangCao", new { id = item.maqc })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a href="@Url.Action("Details","QuangCao", new { id = item.maqc })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a href="@Url.Action("Delete","QuangCao", new { id = item.maqc })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

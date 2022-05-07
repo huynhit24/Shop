@@ -861,6 +861,7 @@
     <Content Include="Areas\Administrator\Data\images\communicate.png" />
     <Content Include="Areas\Administrator\Data\images\dashboard.png" />
     <Content Include="Areas\Administrator\Data\images\delete.png" />
+    <Content Include="Areas\Administrator\Data\images\dialogue.png" />
     <Content Include="Areas\Administrator\Data\images\eye.png" />
     <Content Include="Areas\Administrator\Data\images\halalnode-401.jpg" />
     <Content Include="Areas\Administrator\Data\images\hang.png" />
