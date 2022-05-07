@@ -1,0 +1,71 @@
+﻿.button {
+    width: 50px;
+    height: 30px;
+    padding: 7px 17px;
+    border-radius:10px;
+}
+.btn-edit{
+    background-color: #71EFA3;
+    margin:5px 0;
+}
+.btn-delete {
+    background-color: #FFBCBC;
+}
+.btn-detail {
+    background-color: #FCCF5B;
+    margin:5px 0;
+}
+.card-header {
+    background-color: #4fbfa8;
+    display:flex;
+    justify-content:space-between;
+}
+.glass-button {
+    padding: 12px 20px;
+    border: 0;
+    text-decoration: none;
+    border-radius: 15px;
+    background-color: rgba(150,255,230,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(255,255,255,1);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-left:auto;
+}
+
+    .glass-button:hover {
+        background-color: rgba(255,255,255,0.2);
+        color:#fff;
+    }
+.label_text{
+    font-weight:700;
+}
+#edit_page {
+    display: flex;
+    justify-content: center;
+}
+#root {
+    pointer-events: none;
+}
+#button-save-cancel{
+    display:flex;
+    justify-content:center;
+    width:100%;
+    margin:0 0 30px 0;
+}
+.bcancel{
+    text-decoration:none;
+    color:#444;
+}
+.btn-optional{
+    margin:10px 0 ;
+}
+.canvasjs-chart-credit{
+    width:0;
+}
+.content-wrapper {
+    background-color: #fff;
+}

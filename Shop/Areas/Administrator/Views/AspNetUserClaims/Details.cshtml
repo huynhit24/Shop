@@ -1,0 +1,43 @@
+﻿@model Shop.EF.AspNetUserClaim
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AspNetUserClaim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClaimType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClaimType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClaimValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClaimValue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
