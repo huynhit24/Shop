@@ -208,17 +208,36 @@ namespace Shop.Controllers
 
         //Thực hiện thanh toán Momo
 
-        public ActionResult PaymentMoMo(FormCollection collection)
+        /*[HttpGet]
+        public ActionResult PaymentMoMo()// đặt hàng
+        {
+            if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            if (Session["GioHang"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<GioHang> lstGiohang = Laygiohang();
+            ViewBag.Tongsoluong = TongSoLuong();
+            ViewBag.Tongtien = TongTien();
+            ViewBag.Tongsoluongsanpham = TongSoLuongSanPham();
+            return RedirectToAction("DatHang","GioHang");
+        }
+
+        [HttpPost]*/
+        public ActionResult PaymentMoMo()
         {
             DonHang dh = new DonHang();
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
             List<GioHang> gh = Laygiohang();// lấy giỏ hàng
-            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
+           // var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
-            dh.ngaygiao = DateTime.Parse(ngaygiao);
+            //dh.ngaygiao = DateTime.Parse(ngaygiao);
             dh.giaohang = false;
             dh.thanhtoan = false;
             /*if ((bool)Session["thanhtoan"] == true)
@@ -281,7 +300,7 @@ namespace Shop.Controllers
             string accessKey = "imYC24phv0gYMFgA";
             string serectkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
             string orderInfo = "Thanh toán mua Laptop";
-            string returnUrl = "https://localhost:44355/Home/ConfirmPaymentClient";
+            string returnUrl = "https://localhost:44381/GioHang/ConfirmPaymentClient";
             string notifyurl = "http://ba1adf48beba.ngrok.io/Home/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = gh.Sum(p => p.giaban).ToString();
