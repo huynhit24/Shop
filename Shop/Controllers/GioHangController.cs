@@ -1,5 +1,7 @@
-﻿using Shop.Mail;
+﻿using Newtonsoft.Json.Linq;
+using Shop.Mail;
 using Shop.Models;
+using Shop.MoMo;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -138,8 +140,8 @@ namespace Shop.Controllers
             DonHang dh = new DonHang();
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
-            List<GioHang> gh = Laygiohang();
-            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);
+            List<GioHang> gh = Laygiohang();// lấy giỏ hàng
+            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
@@ -199,9 +201,172 @@ namespace Shop.Controllers
             Session["GioHang"] = null;
             return RedirectToAction("XacnhanDonhang", "GioHang");
         }
-        public ActionResult XacnhanDonhang()
+        public ActionResult XacnhanDonhang()//xác nhận đơn mạng
         {
             return View();
+        }
+
+        //Thực hiện thanh toán Momo
+
+        public ActionResult PaymentMoMo(FormCollection collection)
+        {
+            DonHang dh = new DonHang();
+            AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
+            Laptop s = new Laptop();
+            List<GioHang> gh = Laygiohang();// lấy giỏ hàng
+            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
+
+            dh.makh = kh.Id;
+            dh.ngaydat = DateTime.Now;
+            dh.ngaygiao = DateTime.Parse(ngaygiao);
+            dh.giaohang = false;
+            dh.thanhtoan = false;
+            /*if ((bool)Session["thanhtoan"] == true)
+            {
+                dh.thanhtoan = true;
+            }
+            else
+            {
+                dh.thanhtoan = false;
+            }*/
+
+
+            data.DonHangs.InsertOnSubmit(dh);
+            data.SubmitChanges();
+            foreach (var item in gh)
+            {
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.madon = dh.madon;
+                ctdh.malaptop = item.malaptop;
+                ctdh.soluong = item.iSoluong;
+                ctdh.dongia = (decimal)item.giaban;
+                s = data.Laptops.Single(n => n.malaptop == item.malaptop);
+                data.SubmitChanges();
+                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+            }
+
+            //Gửi mail tới khác dùng
+
+            /*string detail = "";
+
+            foreach (var item in gh)
+            {
+                detail += "Tài khoản:  " + kh.Email.ToString() + "------" + "Mật khẩu:  " + kh.PasswordHash + "=======================";
+            }*/
+
+            string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
+
+            var total = gh.Sum(n => n.giaban);
+            content = content.Replace("{CustomerName}", kh.hoten);
+            content = content.Replace("{Phone}", kh.PhoneNumber);
+            content = content.Replace("{Email}", kh.Email);
+            content = content.Replace("{Total}", total.ToString());
+
+            //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+
+            new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
+            //new MailHelper().SendEmail(toEmail, "Xác nhận đặt mua laptop tại iLaptop", content);
+
+            //End
+
+            data.SubmitChanges();
+            Session["GioHang"] = null;
+            //return RedirectToAction("XacnhanDonhang", "GioHang");
+
+
+            //request params need to request to MoMo system
+            string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+            string partnerCode = "MOMO5PB020220322";
+            string accessKey = "imYC24phv0gYMFgA";
+            string serectkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
+            string orderInfo = "Thanh toán mua Laptop";
+            string returnUrl = "https://localhost:44355/Home/ConfirmPaymentClient";
+            string notifyurl = "http://ba1adf48beba.ngrok.io/Home/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+
+            string amount = gh.Sum(p => p.giaban).ToString();
+            string orderid = DateTime.Now.Ticks.ToString();
+            string requestId = DateTime.Now.Ticks.ToString();
+            string extraData = "";
+
+            //Before sign HMAC SHA256 signature
+            string rawHash = "partnerCode=" +
+                partnerCode + "&accessKey=" +
+                accessKey + "&requestId=" +
+                requestId + "&amount=" +
+                amount + "&orderId=" +
+                orderid + "&orderInfo=" +
+                orderInfo + "&returnUrl=" +
+                returnUrl + "&notifyUrl=" +
+                notifyurl + "&extraData=" +
+                extraData;
+
+            MoMoSecurity crypto = new MoMoSecurity();
+            //sign signature SHA256
+            string signature = crypto.signSHA256(rawHash, serectkey);
+
+            //build body json request
+            JObject message = new JObject
+            {
+                { "partnerCode", partnerCode },
+                { "accessKey", accessKey },
+                { "requestId", requestId },
+                { "amount", amount },
+                { "orderId", orderid },
+                { "orderInfo", orderInfo },
+                { "returnUrl", returnUrl },
+                { "notifyUrl", notifyurl },
+                { "extraData", extraData },
+                { "requestType", "captureMoMoWallet" },
+                { "signature", signature }
+
+            };
+
+            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+            JObject jmessage = JObject.Parse(responseFromMomo);
+
+            return Redirect(jmessage.GetValue("payUrl").ToString());
+        }
+
+        //Khi thanh toán xong ở cổng thanh toán Momo, Momo sẽ trả về một số thông tin, trong đó có errorCode để check thông tin thanh toán
+        //errorCode = 0 : thanh toán thành công (Request.QueryString["errorCode"])
+        //Tham khảo bảng mã lỗi tại: https://developers.momo.vn/#/docs/aio/?id=b%e1%ba%a3ng-m%c3%a3-l%e1%bb%97i
+
+        public ActionResult ReturnUrl()
+        {
+            string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
+            param = Server.UrlDecode(param);
+            MoMoSecurity crypto = new MoMoSecurity();
+            string secretkey = ConfigurationManager.AppSettings["serectkey"].ToString();
+            string signature = crypto.signSHA256(param, secretkey);
+            if (signature != Request["signature"].ToString())
+            {
+                ViewBag.message = "Thông tin request không hợp lệ";
+            }
+            if (!Request.QueryString["errorCode"].Equals("0"))
+            {
+                ViewBag.message = "Thanh toán thành công";
+
+            }
+            else
+            {
+                ViewBag.message = "Thanh toán thành công";
+
+            }
+            return View();
+        }
+
+        public ActionResult ConfirmPaymentClient()
+        {
+            //hiển thị thông báo cho người dùng
+            return View();
+        }
+
+        [HttpPost]
+        public void SavePayment()
+        {
+            //cập nhật dữ liệu vào db
         }
     }
 }
