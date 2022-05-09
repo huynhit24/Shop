@@ -69,7 +69,15 @@
                                                 @Html.DisplayFor(modelItem => item.ngaydanhgia)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                @Html.DisplayFor(modelItem => item.trangthai)
+                                                @*@Html.DisplayFor(modelItem => item.trangthai)*@
+                                                @if (item.trangthai == true)
+                                                {
+                                                    <p style="background-color: orangered" class="btn text-white"><i class="fa fa-check"></i> Đã duyệt</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="btn btn-danger"><i class="fa fa-square"></i> Chưa duyệt</p>
+                                                }
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.madanhgia }) |

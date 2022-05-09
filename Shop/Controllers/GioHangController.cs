@@ -235,11 +235,11 @@ namespace Shop.Controllers
             List<GioHang> gh = Laygiohang();// lấy giỏ hàng
            // var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
-            dh.makh = kh.Id;
-            dh.ngaydat = DateTime.Now;
-            //dh.ngaygiao = DateTime.Parse(ngaygiao);
-            dh.giaohang = false;
-            dh.thanhtoan = false;
+            //dh.makh = kh.Id;
+            //dh.ngaydat = DateTime.Now;
+            ////dh.ngaygiao = DateTime.Parse(ngaygiao);
+            //dh.giaohang = false;
+            //dh.thanhtoan = false;
             /*if ((bool)Session["thanhtoan"] == true)
             {
                 dh.thanhtoan = true;
@@ -250,19 +250,19 @@ namespace Shop.Controllers
             }*/
 
 
-            data.DonHangs.InsertOnSubmit(dh);
-            data.SubmitChanges();
-            foreach (var item in gh)
-            {
-                ChiTietDonHang ctdh = new ChiTietDonHang();
-                ctdh.madon = dh.madon;
-                ctdh.malaptop = item.malaptop;
-                ctdh.soluong = item.iSoluong;
-                ctdh.dongia = (decimal)item.giaban;
-                s = data.Laptops.Single(n => n.malaptop == item.malaptop);
-                data.SubmitChanges();
-                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
-            }
+            //data.DonHangs.InsertOnSubmit(dh);
+            //data.SubmitChanges();
+            //foreach (var item in gh)
+            //{
+            //    ChiTietDonHang ctdh = new ChiTietDonHang();
+            //    ctdh.madon = dh.madon;
+            //    ctdh.malaptop = item.malaptop;
+            //    ctdh.soluong = item.iSoluong;
+            //    ctdh.dongia = (decimal)item.giaban;
+            //    s = data.Laptops.Single(n => n.malaptop == item.malaptop);
+            //    data.SubmitChanges();
+            //    data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+            //}
 
             //Gửi mail tới khác dùng
 
@@ -273,23 +273,23 @@ namespace Shop.Controllers
                 detail += "Tài khoản:  " + kh.Email.ToString() + "------" + "Mật khẩu:  " + kh.PasswordHash + "=======================";
             }*/
 
-            string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
+            //string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
 
-            var total = gh.Sum(n => n.giaban);
-            content = content.Replace("{CustomerName}", kh.hoten);
-            content = content.Replace("{Phone}", kh.PhoneNumber);
-            content = content.Replace("{Email}", kh.Email);
-            content = content.Replace("{Total}", total.ToString());
+            //var total = gh.Sum(n => n.giaban);
+            //content = content.Replace("{CustomerName}", kh.hoten);
+            //content = content.Replace("{Phone}", kh.PhoneNumber);
+            //content = content.Replace("{Email}", kh.Email);
+            //content = content.Replace("{Total}", total.ToString());
 
             //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
 
-            new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
+            //new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
             //new MailHelper().SendEmail(toEmail, "Xác nhận đặt mua laptop tại iLaptop", content);
 
             //End
 
-            data.SubmitChanges();
+            //data.SubmitChanges();
             Session["GioHang"] = null;
             //return RedirectToAction("XacnhanDonhang", "GioHang");
 
