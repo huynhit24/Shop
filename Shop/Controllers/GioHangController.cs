@@ -206,6 +206,11 @@ namespace Shop.Controllers
             return View();
         }
 
+        public ActionResult XacnhanThanhToan_MoMo()//xác nhận đơn mạng
+        {
+            return View();
+        }
+
         //Thực hiện thanh toán Momo
 
         /*[HttpGet]
@@ -233,13 +238,13 @@ namespace Shop.Controllers
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
             List<GioHang> gh = Laygiohang();// lấy giỏ hàng
-           // var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
+                                            // var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
-            //dh.makh = kh.Id;
-            //dh.ngaydat = DateTime.Now;
-            ////dh.ngaygiao = DateTime.Parse(ngaygiao);
-            //dh.giaohang = false;
-            //dh.thanhtoan = false;
+            dh.makh = kh.Id;
+            dh.ngaydat = DateTime.Now;
+            dh.ngaygiao = DateTime.Now;
+            dh.giaohang = false;
+            dh.thanhtoan = true;
             /*if ((bool)Session["thanhtoan"] == true)
             {
                 dh.thanhtoan = true;
@@ -250,19 +255,19 @@ namespace Shop.Controllers
             }*/
 
 
-            //data.DonHangs.InsertOnSubmit(dh);
-            //data.SubmitChanges();
-            //foreach (var item in gh)
-            //{
-            //    ChiTietDonHang ctdh = new ChiTietDonHang();
-            //    ctdh.madon = dh.madon;
-            //    ctdh.malaptop = item.malaptop;
-            //    ctdh.soluong = item.iSoluong;
-            //    ctdh.dongia = (decimal)item.giaban;
-            //    s = data.Laptops.Single(n => n.malaptop == item.malaptop);
-            //    data.SubmitChanges();
-            //    data.ChiTietDonHangs.InsertOnSubmit(ctdh);
-            //}
+            data.DonHangs.InsertOnSubmit(dh);
+            data.SubmitChanges();
+            foreach (var item in gh)
+            {
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.madon = dh.madon;
+                ctdh.malaptop = item.malaptop;
+                ctdh.soluong = item.iSoluong;
+                ctdh.dongia = (decimal)item.giaban;
+                s = data.Laptops.Single(n => n.malaptop == item.malaptop);
+                data.SubmitChanges();
+                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+            }
 
             //Gửi mail tới khác dùng
 
@@ -301,9 +306,9 @@ namespace Shop.Controllers
             string serectkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
             string orderInfo = "Thanh toán mua Laptop";
             string returnUrl = "https://localhost:44381/GioHang/ConfirmPaymentClient";
-            string notifyurl = "http://ba1adf48beba.ngrok.io/Home/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string notifyurl = "https://localhost:44381/GioHang/XacnhanThanhToan_MoMo"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
-            string amount = gh.Sum(p => p.giaban).ToString();
+            string amount = gh.Sum(p => p.dThanhTien).ToString();
             string orderid = DateTime.Now.Ticks.ToString();
             string requestId = DateTime.Now.Ticks.ToString();
             string extraData = "";

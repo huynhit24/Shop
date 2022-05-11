@@ -3949,6 +3949,7 @@
     <Content Include="vendor\jquery.cookie\cookie.jquery.json" />
     <Content Include="vendor\popper.js\umd\popper.js.flow" />
     <Content Include="Views\GioHang\ConfirmPaymentClient.cshtml" />
+    <Content Include="Views\GioHang\XacnhanThanhToan_MoMo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
