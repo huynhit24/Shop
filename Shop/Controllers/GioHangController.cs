@@ -240,11 +240,11 @@ namespace Shop.Controllers
             List<GioHang> gh = Laygiohang();// lấy giỏ hàng
                                             // var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
-            dh.makh = kh.Id;
-            dh.ngaydat = DateTime.Now;
-            dh.ngaygiao = DateTime.Now;
-            dh.giaohang = false;
-            dh.thanhtoan = true;
+            //dh.makh = kh.Id;
+            //dh.ngaydat = DateTime.Now;
+            //dh.ngaygiao = DateTime.Now;
+            //dh.giaohang = false;
+            //dh.thanhtoan = true;
             /*if ((bool)Session["thanhtoan"] == true)
             {
                 dh.thanhtoan = true;
@@ -255,19 +255,19 @@ namespace Shop.Controllers
             }*/
 
 
-            data.DonHangs.InsertOnSubmit(dh);
-            data.SubmitChanges();
-            foreach (var item in gh)
-            {
-                ChiTietDonHang ctdh = new ChiTietDonHang();
-                ctdh.madon = dh.madon;
-                ctdh.malaptop = item.malaptop;
-                ctdh.soluong = item.iSoluong;
-                ctdh.dongia = (decimal)item.giaban;
-                s = data.Laptops.Single(n => n.malaptop == item.malaptop);
-                data.SubmitChanges();
-                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
-            }
+            //data.DonHangs.InsertOnSubmit(dh);
+            //data.SubmitChanges();
+            //foreach (var item in gh)
+            //{
+            //    ChiTietDonHang ctdh = new ChiTietDonHang();
+            //    ctdh.madon = dh.madon;
+            //    ctdh.malaptop = item.malaptop;
+            //    ctdh.soluong = item.iSoluong;
+            //    ctdh.dongia = (decimal)item.giaban;
+            //    s = data.Laptops.Single(n => n.malaptop == item.malaptop);
+            //    data.SubmitChanges();
+            //    data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+            //}
 
             //Gửi mail tới khác dùng
 

@@ -20,82 +20,84 @@
     </div>
 </header>
 
-<table class="table table-bordered table-striped" style="margin-top: 20px;">
-    <thead>
-        <tr>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Mã đơn hàng")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Họ tên")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Thanh toán")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Tình trạng giao hàng")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Ngày đặt")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Ngày giao")
-            </th>
-            <th class="text-center" style="vertical-align:middle">
-                @Html.DisplayName("Xem chi tiết")
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            idDDH += 1;
+<div class="container-sm" style="margin-top: 50px;margin-bottom:50px;">
+    <table class="table table-bordered table-striped" style="margin-top: 20px;">
+        <thead>
             <tr>
-                <td class="text-center" style="vertical-align:middle">
-                    ĐH-@Html.DisplayFor(modelItem => item.madon)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @Html.DisplayFor(modelItem => item.AspNetUser.hoten)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @if (item.thanhtoan == true)
-                    {
-                        <p class="btn btn-success"><i class="fa fa-check"></i> Đã thanh toán</p>
-                    }
-                    else
-                    {
-                        <p class="btn btn-warning"><i class="fa fa-money-bill"></i> Chưa thanh toán</p>
-                    }
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @if (item.giaohang == true)
-                    {
-                        <p style="background-color: rgb(11 211 239 / 0.85);" class="btn"><i class="fa fa-check-circle-o"></i> Đã giao</p>
-                    }
-                    else
-                    {
-                        <p class="btn btn-danger"><i class="fa fa-truck"></i> Đang giao hàng</p>
-                    }
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @Html.DisplayFor(modelItem => item.ngaydat)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-                    @Html.DisplayFor(modelItem => item.ngaygiao)
-                </td>
-                <td class="text-center" style="vertical-align:middle">
-
-                    <!-- Button trigger modal -->
-                    <a data-id="@item.madon" id="lienket" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
-                        <i class="fa fa-laptop-house"></i> Xem
-                    </a>
-                    
-                    
-                </td>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Mã đơn hàng")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Họ tên")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Thanh toán")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Tình trạng giao hàng")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Ngày đặt")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Ngày giao")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Xem chi tiết")
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                idDDH += 1;
+                <tr>
+                    <td class="text-center" style="vertical-align:middle">
+                        ĐH-@Html.DisplayFor(modelItem => item.madon)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.AspNetUser.hoten)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @if (item.thanhtoan == true)
+                        {
+                            <p class="btn btn-success"><i class="fa fa-check"></i> Đã thanh toán</p>
+                        }
+                        else
+                        {
+                            <p class="btn btn-warning"><i class="fa fa-money-bill"></i> Chưa thanh toán</p>
+                        }
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @if (item.giaohang == true)
+                        {
+                            <p style="background-color: rgb(11 211 239 / 0.85);" class="btn"><i class="fa fa-check-circle-o"></i> Đã giao</p>
+                        }
+                        else
+                        {
+                            <p class="btn btn-danger"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                        }
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.ngaydat)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.ngaygiao)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+
+                        <!-- Button trigger modal -->
+                        <a data-id="@item.madon" id="lienket" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
+                            <i class="fa fa-laptop-house"></i> Xem
+                        </a>
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -179,11 +181,7 @@
         </div>
     </div>
 </div>
-<div style="margin-bottom: 20px;">
 
-    @Html.ActionLink("Về trang chủ", "Index", "Home", new { @class = "btn btn-primary" })
-
-</div>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <script>
     function ExportToExcel(type, fn, dl) {
