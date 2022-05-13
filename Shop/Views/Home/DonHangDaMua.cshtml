@@ -7,8 +7,12 @@
     int idDDH = 0;
 }
 
-
-
+<link translate="yes" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<style>
+    .dataTable-dropdown {
+        @*display: none;*@
+    }
+</style>
 
 <header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
     <div class="container px-1 px-lg-1 my-1">
@@ -21,7 +25,7 @@
 </header>
 
 <div class="container-sm" style="margin-top: 50px;margin-bottom:50px;">
-    <table class="table table-bordered table-striped" style="margin-top: 20px;">
+    <table id="datatablesSimple" class="table table-bordered table-striped" style="margin-top: 20px;">
         <thead>
             <tr>
                 <th class="text-center" style="vertical-align:middle">
@@ -183,6 +187,8 @@
 </div>
 
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="~/Content/js/datatables-simple-demo.js"></script>
 <script>
     function ExportToExcel(type, fn, dl) {
         var elt = document.getElementById('tbl_exporttable_to_xls');

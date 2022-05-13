@@ -2802,6 +2802,7 @@
     <Content Include="Content\images\visa-payment.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\datatables-simple-demo.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\script.js" />
