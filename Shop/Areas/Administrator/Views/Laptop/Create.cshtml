@@ -6,6 +6,7 @@
 }
 
 <script src="~/Plugins/ckeditor/ckeditor.js"></script>
+<script src="~/Plugins/ckfinder/ckfinder.js"></script>
 
 @section jsFooter{
     <script>
@@ -13,10 +14,19 @@
         var editor = CKEDITOR.replace('mota', {
             customConfig: '/Plugin/ckeditor/config.js',
         });
+
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+            };
+            finder.popup();
+        })
     </script>
 }
 
-<div class="container container-fluid">
+<div class="container-sm container-fluid">
     <h2>Tạo</h2>
 
     @using (Html.BeginForm())
@@ -54,15 +64,22 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.hinh, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })*@
+                    @Html.TextBoxFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control", @id = "txtImage" } })
+                    <a id="btnSelectImage" href="#">Chọn ảnh</a>
+                    @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.hinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
                     <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
                            style="display:none;" />
                     <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
                 </div>
-            </div>
+            </div>*@
 
-            @section upload
+            @*@section upload
             {
                 <script>
                     $(function () {
@@ -96,7 +113,7 @@
                         }
                     });
                 </script>
-            }
+            }*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.mahang, "mahang", htmlAttributes: new { @class = "control-label col-md-2" })
