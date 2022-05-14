@@ -39,97 +39,99 @@
                 </p>
             </div>
         </div>
-        <table class="table table-bordered tab">
-            <tr>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.malaptop)
-                    </th>*@
-                <th class="text-center" style="vertical-align:middle">
-                    @Html.DisplayNameFor(model => model.tenlaptop) <i class="fa fa-laptop"></i>
-                </th>
-                <th class="text-center" style="vertical-align:middle">
-                    @Html.DisplayNameFor(model => model.hinh) <i class="fa fa-image"></i>
-                </th>
-                <th class="text-center" style="vertical-align:middle">
-                    @Html.DisplayNameFor(model => model.giaban) <i class="fa fa-money-bill"></i>
-                </th>
-                <th class="text-center" style="vertical-align:middle">
-                    @Html.DisplayNameFor(model => model.iSoluong) <i class="fa fa-sort-numeric-up"></i>
-                </th>
-                <th class="text-center" style="vertical-align:middle">
-                    @Html.DisplayNameFor(model => model.dThanhTien) <i class="fa fa-money-bill-wave-alt"></i>
-                </th>
-                <th class="text-center" style="vertical-align:middle">
-                    Thao tác <i class="fa fa-ticket-alt"></i>
-                </th>
-                <th class="text-center" style="vertical-align:middle">
-                    Giỏ hàng <i class="fa fa-shopping-bag"></i>
-                </th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+        <div class="container-sm container-fluid" style="margin-top: 50px;margin-bottom:50px;">
+            <table class="table table-bordered tab">
                 <tr>
-                    <td class="text-center" style="vertical-align:middle">
-                        @Html.DisplayFor(modelItem => item.tenlaptop)
-                    </td>
-                    <td class="text-center" style="vertical-align:middle">
-                        <img src="~/Content/images/@item.hinh" width="100" height="250" />
-                    </td>
-                    @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.malaptop }))
-                    {
-                        <td class="text-center" style="vertical-align:middle">
-                            @String.Format("{0:0,0}", item.giaban) VNĐ
-                        </td>
-                        <td class="text-center" style="vertical-align:middle">
-                            <input type="number" min="1" name="txtSolg" value="@item.iSoluong" />
-                        </td>
-
-                        <td class="text-center" style="vertical-align:middle">
-                            @*@Html.DisplayFor(modelItem => item.dThanhTien)*@
-                            @String.Format("{0:0,0}", item.dThanhTien) VNĐ
-                        </td>
-                        <td class="text-center" style="vertical-align:middle">
-                            <a class="btn btn-warning" href="@Url.Action("Details", "Home", new { id = item.malaptop })"> <i class="fa fa-eye"></i> Chi tiết</a>  @*@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.malaptop })*@
-                            <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Xóa thành công!', showConfirmButton: false });"> <i class="fa fa-trash"></i> Xóa</a>
-                        </td>
-                        <td class="text-center" style="vertical-align:middle">
-                            <input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success"/>
-                        </td>
-                    }
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.malaptop)
+                        </th>*@
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.tenlaptop) <i class="fa fa-laptop"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.hinh) <i class="fa fa-image"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.giaban) <i class="fa fa-money-bill"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.iSoluong) <i class="fa fa-sort-numeric-up"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.dThanhTien) <i class="fa fa-money-bill-wave-alt"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        Thao tác <i class="fa fa-ticket-alt"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        Giỏ hàng <i class="fa fa-shopping-bag"></i>
+                    </th>
                 </tr>
-            }
-            <tr style="font-weight:bold; text-align:right; color:red">
-                @*<td colspan="2"> Số loại Laptop: @ViewBag.Tomgsoluongsanpham</td>
-                    <td colspan="2"> Số lượng Laptop: @ViewBag.Tongsoluong</td>
-                    <td colspan="4"> Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</td>*@
-                <td colspan="7">
-                    <div>
-                        @*<p>Số loại Laptop: @ViewBag.Tomgsoluongsanpham</p>*@
-                        <p>Số lượng Laptop: @ViewBag.Tongsoluong</p>
-                        <p>Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</p>
-                    </div>
-                </td>
-            </tr>
 
-            <tr style="font-weight: bold; color:blue; text-align:right">
-                <td colspan="7">
-                    @*@Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")*@
-                    <a class="btn btn-secondary text-white" href="@Url.Action("XoaTatCaGioHang", "GioHang")"> <i class="fa fa-trash-alt"></i> Xóa giỏ hàng </a>
-                </td>
-            </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center" style="vertical-align:middle">
+                            @Html.DisplayFor(modelItem => item.tenlaptop)
+                        </td>
+                        <td class="text-center" style="vertical-align:middle">
+                            <img src="~/Content/images/@item.hinh" width="100"  height="250" />
+                        </td>
+                        @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.malaptop }))
+                        {
+                            <td class="text-center" style="vertical-align:middle">
+                                @String.Format("{0:0,0}", item.giaban) VNĐ
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <input type="number" min="1" name="txtSolg" value="@item.iSoluong" />
+                            </td>
 
-            <tr style="font-weight: bold; color:blue; text-align:right">
-                <td colspan="7">
-                    <div>
-                        @*@Html.ActionLink("Tieps tục mua hàng", "Index", "Home")
-                            @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")*@
-                        <a class="btn btn-outline-dark" href="@Url.Action("Index", "Home")"> <i class="fa fa-arrow-left"></i> Tiếp tục mua hàng</a>
-                        <a class="btn btn-dark" href="@Url.Action("Dathang", "GioHang")">Thanh toán đặt hàng <i class="fa fa-arrow-right"></i></a>
-                    </div>
-                </td>
-            </tr>
+                            <td class="text-center" style="vertical-align:middle">
+                                @*@Html.DisplayFor(modelItem => item.dThanhTien)*@
+                                @String.Format("{0:0,0}", item.dThanhTien) VNĐ
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <a class="btn btn-warning" href="@Url.Action("Details", "Home", new { id = item.malaptop })"> <i class="fa fa-eye"></i> Chi tiết</a>  @*@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.malaptop })*@
+                                <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Xóa thành công!', showConfirmButton: false });"> <i class="fa fa-trash"></i> Xóa bỏ</a>
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success" />
+                            </td>
+                        }
+                    </tr>
+                }
+                <tr style="font-weight:bold; text-align:right; color:red">
+                    @*<td colspan="2"> Số loại Laptop: @ViewBag.Tomgsoluongsanpham</td>
+                        <td colspan="2"> Số lượng Laptop: @ViewBag.Tongsoluong</td>
+                        <td colspan="4"> Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</td>*@
+                    <td colspan="7">
+                        <div>
+                            @*<p>Số loại Laptop: @ViewBag.Tomgsoluongsanpham</p>*@
+                            <p>Số lượng Laptop: @ViewBag.Tongsoluong</p>
+                            <p>Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</p>
+                        </div>
+                    </td>
+                </tr>
 
-        </table>
+                <tr style="font-weight: bold; color:blue; text-align:right">
+                    <td colspan="7">
+                        @*@Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")*@
+                        <a class="btn btn-secondary text-white" href="@Url.Action("XoaTatCaGioHang", "GioHang")"> <i class="fa fa-trash-alt"></i> Xóa giỏ hàng </a>
+                    </td>
+                </tr>
+
+                <tr style="font-weight: bold; color:blue; text-align:right">
+                    <td colspan="7">
+                        <div>
+                            @*@Html.ActionLink("Tieps tục mua hàng", "Index", "Home")
+                                @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")*@
+                            <a class="btn btn-outline-dark" href="@Url.Action("Index", "Home")"> <i class="fa fa-arrow-left"></i> Tiếp tục mua hàng</a>
+                            <a class="btn btn-dark" href="@Url.Action("Dathang", "GioHang")">Thanh toán đặt hàng <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
     }
 }
