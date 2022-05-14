@@ -151,8 +151,8 @@
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.malaptop }) |
-        @Html.ActionLink("Details", "Details", new { id = item.malaptop }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.malaptop })*@
+                                                    @Html.ActionLink("Details", "Details", new { id = item.malaptop }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.malaptop })*@
                                                 <a href="@Url.Action("Edit","Laptop", new { id = item.malaptop })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
                                                 <a href="@Url.Action("Details","Laptop", new { id = item.malaptop })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
                                                 <a href="@Url.Action("Delete","Laptop", new { id = item.malaptop })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
