@@ -2746,6 +2746,7 @@
     <Content Include="Content\images\dang-ky-bo-cong-thuong.png" />
     <Content Include="Content\images\dat-hang-thanh-cong.png" />
     <Content Include="Content\images\dathangthanhcong.png" />
+    <Content Include="Content\images\dell-insprion.jpg" />
     <Content Include="Content\images\dell.png" />
     <Content Include="Content\images\dependabot.png" />
     <Content Include="Content\images\ducdat.png" />
@@ -2784,6 +2785,24 @@
     <Content Include="Content\images\laptop %287%29.jpg" />
     <Content Include="Content\images\laptop %288%29.jpg" />
     <Content Include="Content\images\laptop %289%29.jpg" />
+    <Content Include="Content\images\laptop-%281%29.jpg" />
+    <Content Include="Content\images\laptop-%281%29.png" />
+    <Content Include="Content\images\laptop-%2810%29.jpg" />
+    <Content Include="Content\images\laptop-%2811%29.jpg" />
+    <Content Include="Content\images\laptop-%2812%29.jpg" />
+    <Content Include="Content\images\laptop-%2813%29.jpg" />
+    <Content Include="Content\images\laptop-%2814%29.jpg" />
+    <Content Include="Content\images\laptop-%2815%29.jpg" />
+    <Content Include="Content\images\laptop-%2816%29.jpg" />
+    <Content Include="Content\images\laptop-%2817%29.jpg" />
+    <Content Include="Content\images\laptop-%282%29.jpg" />
+    <Content Include="Content\images\laptop-%283%29.jpg" />
+    <Content Include="Content\images\laptop-%284%29.jpg" />
+    <Content Include="Content\images\laptop-%285%29.jpg" />
+    <Content Include="Content\images\laptop-%286%29.jpg" />
+    <Content Include="Content\images\laptop-%287%29.jpg" />
+    <Content Include="Content\images\laptop-%288%29.jpg" />
+    <Content Include="Content\images\laptop-%289%29.jpg" />
     <Content Include="Content\images\laptop-asus-vivibook.jpg" />
     <Content Include="Content\images\lenovo.png" />
     <Content Include="Content\images\log-out.png" />
@@ -4401,6 +4420,7 @@
     <Content Include="Areas\Administrator\Views\MainPage\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\LoginAdmin.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\Error401.cshtml" />
+    <Content Include="Content\images\Lap trinh Tren Moi Truong Windows - Danh gia hoc phan.docx" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
