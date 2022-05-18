@@ -19,7 +19,7 @@
             <div id="socialLoginList">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-outline-success social-icon" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-sign-in-alt"  aria-hidden="true"></i> @p.AuthenticationType</button>
+                        <button type="submit" class="btn btn-outline-success border-3" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"> @p.AuthenticationType</button>
                     }
                 </p>
             </div>

@@ -46,27 +46,25 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-offset-2 col-md-10 text-center">
+                        <div class="col-md-2 col-md-10 text-center pull-left">
                             <input type="submit" value="Đăng nhập" class="btn btn-danger" />
                         </div>
-                        <div class="col-md-offset-2 col-md-10 text-center" style="margin-top:8px;">
+                        <div class="col-md-2 col-md-10 text-center pull-right" style="margin-top:8px;">
                             <p>
                                 @*@Html.ActionLink("Đăng ký tài khoản mới", "Register", "Account", new { @class = "btn btn-outline-warning" })*@
-                                <a class="btn btn-outline-warning" href="@Url.Action("Register", "Account")"><i class="fa fa-sign-in-alt"></i> Đăng ký tài khoản mới</a>
+                                <a class="btn btn-outline-primary" href="@Url.Action("Register", "Account")"><i class="fa fa-sign-in-alt"></i> Đăng ký tài khoản mới</a>
                             </p>
                         </div>
                     </div>
-                   @* <p>
-                        @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
-                    </p>*@
+                    @* <p>
+                            @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
+                        </p>*@
                     @* Enable this once you have account confirmation enabled for password reset functionality
                         <p>
                             @Html.ActionLink("Forgot your password?", "ForgotPassword")
                         </p>*@
                 }
             </section>
-        </div>
-        <div class="col-lg-4 col-md-6 col-md-4 mx-auto bg-white py-4 mb-4">
             <section id="socialLoginForm">
                 @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
             </section>
