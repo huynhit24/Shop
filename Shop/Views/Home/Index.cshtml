@@ -159,7 +159,7 @@
                                 <div class="col-6" style="text-align: right;">
                                     @foreach (var nhucauItem in home.GetListNhuCau_Num(2))
                                     {
-                                        <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = nhucauItem.manhucau})"> @nhucauItem.tennhucau</a>
+                                        <a class="btn btn-sm btn-outline-primary border-3" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = nhucauItem.manhucau})"> @nhucauItem.tennhucau</a>
                                     }
                                     <a class="btn btn-sm btn-danger border-3" href=""><i class="fa fa-arrow-alt-circle-right"></i>  Xem tất cả</a>
                                 </div>
@@ -245,11 +245,11 @@
                                     <div class="col-6" style="text-align: right;">
                                         @foreach (var hangItem in home.GetListHang_Num(2))
                                         {
-                                            <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = hangItem.mahang})"> @hangItem.tenhang</a>
+                                            <a class="btn btn-sm btn-outline-warning border-3" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = hangItem.mahang})"> @hangItem.tenhang</a>
                                         }
                                         @foreach (var nhucauItem in home.GetListNhuCau_Num(2))
                                         {
-                                            <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = nhucauItem.manhucau})"> @nhucauItem.tennhucau</a>
+                                            <a class="btn btn-sm btn-outline-warning border-3" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = nhucauItem.manhucau})"> @nhucauItem.tennhucau</a>
                                         }
                                         <a class="btn btn-sm btn-danger border-3" href=""><i class="fa fa-arrow-alt-circle-right"></i>  Xem tất cả</a>
                                     </div>
