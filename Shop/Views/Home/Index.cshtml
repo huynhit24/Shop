@@ -3,227 +3,322 @@
 
 @{
     ViewBag.Title = "Home Page";
+    HomeModel home = new HomeModel();
 }
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<style>
+    .row .h-100:hover {
+        box-shadow: 0 0 11px rgba(33,33,33,.2);
+    }
+</style>
+
 <main class="row">
 
-    <!-- Slider -->
-    <div class="col-12 px-0">
-        <div id="slider" class="carousel slide w-100" data-bs-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-bs-target="#slider" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#slider" data-bs-slide-to="1"></li>
-                <li data-bs-target="#slider" data-bs-slide-to="2"></li>
-                <li data-bs-target="#slider" data-bs-slide-to="3"></li>
-                <li data-bs-target="#slider" data-bs-slide-to="4"></li>
-                <li data-bs-target="#slider" data-bs-slide-to="5"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                    <img src="~/Content/images/banner-vang.png" class="slider-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/banner-msi-1.png" class="slider-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/banner-laptop-800x300.png" class="slider-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/banner-levono.png" class="slider-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/banner-levono-2.png" class="slider-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Content/images/banner-la-gi.jpg" class="slider-img">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Slider -->
-    <!-- Featured Products -->
-    <div class="col-12">
-        <div class="row">
-            <div class="col-12 py-3">
-                <div class="row">
-                    <div class="col-12 text-center text-uppercase">
-                        <h2>LAPTOP NỔI BẬT</h2>
+    <div class="container-fluid" style="max-width:1200px;margin-left:auto;margin-right:auto;">
+        <!-- Slider -->
+        <div class="col-12 px-0">
+            <div id="slider" class="carousel slide w-100" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#slider" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#slider" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#slider" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#slider" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#slider" data-bs-slide-to="4"></li>
+                    <li data-bs-target="#slider" data-bs-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <img src="~/Content/images/banner-vang.png" class="slider-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/images/banner-msi-1.png" class="slider-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/images/banner-laptop-800x300.png" class="slider-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/images/banner-levono.png" class="slider-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/images/banner-levono-2.png" class="slider-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/Content/images/banner-la-gi.jpg" class="slider-img">
                     </div>
                 </div>
-                <div class="row">
-                    @foreach (var item in Model.GetListLaptop_FEATURED())
-                    {
-                        <!-- Product -->
-                        <div class="col-lg-3 col-sm-6 my-3">
-                            <div class="col-12 bg-white text-center h-100 product-item">
-                                <div class="row h-100">
-                                    <div class="col-12 p-0 mb-3">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})">
-                                            <img src="/Data/images/@item.hinh" class="img-fluid" style="width:250px;height:250px;">
-                                        </a>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="product-name">@item.tenlaptop</a>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <small>
-                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                        </small>
-                                        <span class="product-price-old">
+                <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!-- Slider -->
+        <!-- Featured Products -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 py-3">
+                    <div class="row">
+                        <div class="col-12 text-center text-uppercase">
+                            <div class="row">
+                                <div class="col-6" style="text-align: left;">
+                                    <h2>LAPTOP NỔI BẬT</h2>
+                                </div>
+                                <div class="col-6" style="text-align: right;">
+                                    @foreach (var hangItem in home.GetListHang_Num(5))
+                                    {
+                                        <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = hangItem.mahang})"> @hangItem.tenhang</a>
+                                    }
+                                    <a class="btn btn-sm btn-danger border-3" href=""><i class="fa fa-arrow-alt-circle-right"></i>  Xem tất cả</a>
+                                </div>
+                            </div>
 
-                                        </span>
-                                        <br>
-                                        <span class="product-price">
-                                            @String.Format("{0:0,0}", item.giaban) đ
-                                        </span>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.GetListLaptop_FEATURED())
+                        {
+                            <!-- Product -->
+                            <div class="col-lg-3 col-sm-6 my-3">
+                                <div class="col-12 bg-white text-center h-100 product-item">
+                                    <div class="row h-100">
+                                        <div class="col-12 p-0 mb-3">
+                                            <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})">
+                                                <img src="/Data/images/@item.hinh" class="img-fluid" style="width:200px;height:200px;">
+                                            </a>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <a style="font-size:1rem;margin: 1rem;" href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="product-name">@item.tenlaptop</a>
+                                        </div>
+                                        <div class="col-12 mb-3">
+
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <small>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            <i class="far fa-star" style="color: #ed0fef"></i>
+                                                        </small>
+                                                    </div>
+                                                    <div class="product-description">
+                                                        3 đánh giá
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="product-price-old">
+
+                                                    </span>
+                                                    <br>
+                                                    <span class="product-price" style="font-size:1rem;margin: 1rem;color: red;">
+                                                        @String.Format("{0:0,0}", item.giaban) đ
+                                                    </span>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-12 mb-3 align-self-end">
+                                            <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        </div>
                                     </div>
-                                    <div class="col-12 mb-3 align-self-end">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-success"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-warning mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                            <!-- Product -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Featured Products -->
+
+        <div class="col-12">
+            <hr>
+        </div>
+
+        <!-- Latest Product -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 py-3">
+                    <div class="row">
+                        <div class="col-12 text-center text-uppercase">
+                            <div class="row pull-left">
+                                <div class="col-6" style="text-align: left;">
+                                    <h2>LAPTOP MỚI NHẤT</h2>
+                                </div>
+                                <div class="col-6" style="text-align: right;">
+                                    @foreach (var nhucauItem in home.GetListNhuCau_Num(2))
+                                    {
+                                        <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = nhucauItem.manhucau})"> @nhucauItem.tennhucau</a>
+                                    }
+                                    <a class="btn btn-sm btn-danger border-3" href=""><i class="fa fa-arrow-alt-circle-right"></i>  Xem tất cả</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        @foreach (var item in Model.GetListLaptop_LASTEST())
+                        {
+                            <!-- Product -->
+                            <div class="col-lg-3 col-sm-6 my-3">
+                                <div class="col-12 bg-white text-center h-100 product-item">
+                                    <div class="row h-100">
+                                        <div class="col-12 p-0 mb-3">
+                                            <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})">
+                                                <img src="/Data/images/@item.hinh" class="img-fluid" style="width:200px;height:200px;" />
+                                            </a>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <a style="font-size:1rem;margin: 1rem;" href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="product-name">@item.tenlaptop</a>
+                                        </div>
+                                        <div class="col-12 mb-3">
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <small>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            <i class="far fa-star" style="color: #ed0fef"></i>
+                                                        </small>
+                                                    </div>
+                                                    <div class="product-description">
+                                                        3 đánh giá
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="product-price-old">
+
+                                                    </span>
+                                                    <br>
+                                                    <span class="product-price" style="font-size:1rem;margin: 1rem;color: red;">
+                                                        @String.Format("{0:0,0}", item.giaban) đ
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 mb-3 align-self-end">
+                                            <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-sm btn-primary"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-dark mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Latest Products -->
+
+        <div class="col-12">
+            <hr>
+        </div>
+
+        <!-- Top Selling Products -->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 py-3">
+                    <div class="row">
+                        <div class="col-12 text-center text-uppercase">
+                            <div class="row pull-left">
+                                <div class="row pull-left">
+                                    <div class="col-6" style="text-align: left;">
+                                        <h2>LAPTOP GIÁ RẺ (<= 15Tr VNĐ)</h2>
+                                    </div>
+                                    <div class="col-6" style="text-align: right;">
+                                        @foreach (var hangItem in home.GetListHang_Num(2))
+                                        {
+                                            <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = hangItem.mahang})"> @hangItem.tenhang</a>
+                                        }
+                                        @foreach (var nhucauItem in home.GetListNhuCau_Num(2))
+                                        {
+                                            <a class="btn btn-sm btn-outline-success border-3" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = nhucauItem.manhucau})"> @nhucauItem.tennhucau</a>
+                                        }
+                                        <a class="btn btn-sm btn-danger border-3" href=""><i class="fa fa-arrow-alt-circle-right"></i>  Xem tất cả</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Product -->
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Featured Products -->
-
-    <div class="col-12">
-        <hr>
-    </div>
-
-    <!-- Latest Product -->
-    <div class="col-12">
-        <div class="row">
-            <div class="col-12 py-3">
-                <div class="row">
-                    <div class="col-12 text-center text-uppercase">
-                        <h2>LAPTOP MỚI NHẤT</h2>
                     </div>
-                </div>
-                <div class="row">
+                    <div class="row">
+                        @foreach (var item in Model.GetListLaptop_TOPSELLING())
+                        {
+                            <!-- Product -->
+                            <div class="col-lg-3 col-sm-6 my-3">
+                                <div class="col-12 bg-white text-center h-100 product-item">
+                                    <div class="row h-100">
+                                        <div class="col-12 p-0 mb-3">
+                                            <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})">
+                                                <img src="/Data/images/@item.hinh" class="img-fluid" style="width:200px;height:200px;" />
+                                            </a>
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <a style="font-size:1rem;margin: 1rem;" href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="product-name">@item.tenlaptop</a>
+                                        </div>
+                                        <div class="col-12 mb-3">
 
-                    @foreach (var item in Model.GetListLaptop_LASTEST())
-                    {
-                        <!-- Product -->
-                        <div class="col-lg-3 col-sm-6 my-3">
-                            <div class="col-12 bg-white text-center h-100 product-item">
-                                <div class="row h-100">
-                                    <div class="col-12 p-0 mb-3">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})">
-                                            <img src="/Data/images/@item.hinh" class="img-fluid" style="width:250px;height:250px;" />
-                                        </a>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="product-name">@item.tenlaptop</a>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <small>
-                                            <i class="fas fa-star" style="color: #f20909"></i>
-                                            <i class="fas fa-star" style="color: #f20909"></i>
-                                            <i class="fas fa-star" style="color: #f20909"></i>
-                                            <i class="far fa-star" style="color: #f20909"></i>
-                                            <i class="far fa-star" style="color: #f20909"></i>
-                                        </small>
-                                        <span class="product-price-old">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div>
+                                                        <small>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            <i class="far fa-star" style="color: #ed0fef"></i>
+                                                        </small>
+                                                    </div>
+                                                    <div class="product-description">
+                                                        3 đánh giá
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span class="product-price-old">
 
-                                        </span>
-                                        <br>
-                                        <span class="product-price">
-                                            @String.Format("{0:0,0}", item.giaban) đ
-                                        </span>
-                                    </div>
-                                    <div class="col-12 mb-3 align-self-end">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-primary"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-dark mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
-                                    </div>
+                                                    </span>
+                                                    <br>
+                                                    <span class="product-price" style="font-size:1rem;margin: 1rem;color: red;">
+                                                        @String.Format("{0:0,0}", item.giaban) đ
+                                                    </span>
+                                                </div>
+                                            </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product -->
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Latest Products -->
-
-    <div class="col-12">
-        <hr>
-    </div>
-
-    <!-- Top Selling Products -->
-    <div class="col-12">
-        <div class="row">
-            <div class="col-12 py-3">
-                <div class="row">
-                    <div class="col-12 text-center text-uppercase">
-                        <h2>LAPTOP GIÁ RẺ (<= 15Tr VNĐ)</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach (var item in Model.GetListLaptop_TOPSELLING())
-                    {
-                        <!-- Product -->
-                        <div class="col-lg-3 col-sm-6 my-3">
-                            <div class="col-12 bg-white text-center h-100 product-item">
-                                <div class="row h-100">
-                                    <div class="col-12 p-0 mb-3">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})">
-                                            <img src="/Data/images/@item.hinh" class="img-fluid" style="width:250px;height:250px;" />
-                                        </a>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="product-name">@item.tenlaptop</a>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <small>
-                                            <i class="fas fa-star" style="color: #62ee0d"></i>
-                                            <i class="fas fa-star" style="color: #62ee0d"></i>
-                                            <i class="fas fa-star" style="color: #62ee0d"></i>
-                                            <i class="far fa-star" style="color: #62ee0d"></i>
-                                            <i class="far fa-star" style="color: #62ee0d"></i>
-                                        </small>
-                                        <span class="product-price-old">
-
-                                        </span>
-                                        <br>
-                                        <span class="product-price">
-                                            @String.Format("{0:0,0}", item.giaban) đ
-                                        </span>
-                                    </div>
-                                    <div class="col-12 mb-3 align-self-end">
-                                        <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-warning"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-outline-danger mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        </div>
+                                        <div class="col-12 mb-3 align-self-end">
+                                            <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-sm btn-warning"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-danger mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Product -->
-                    }
+                            <!-- Product -->
+                        }
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Top Selling Products -->
+
+
+
     </div>
-    <!-- Top Selling Products -->
 
     <div class="col-12 py-3 d-sm-block d-none" style="background-color:#f5e31a;">
         <div class="row">
