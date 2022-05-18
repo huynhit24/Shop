@@ -2739,6 +2739,10 @@
     <Content Include="Content\images\banner-levono-2.png" />
     <Content Include="Content\images\banner-levono.png" />
     <Content Include="Content\images\banner-msi-1.png" />
+    <Content Include="Content\images\banner-sis-apple-homepage.png" />
+    <Content Include="Content\images\banner-sis-asus-homepage.png" />
+    <Content Include="Content\images\banner-sis-samsung-homepage.png" />
+    <Content Include="Content\images\banner-sis-xiaomi-homepage.png" />
     <Content Include="Content\images\banner-vang.png" />
     <Content Include="Content\images\bot.png" />
     <Content Include="Content\images\cod-payment.jpg" />
@@ -2752,6 +2756,7 @@
     <Content Include="Content\images\ducdat.png" />
     <Content Include="Content\images\Florentino.jpg" />
     <Content Include="Content\images\forward.png" />
+    <Content Include="Content\images\giam-gia-background.svg" />
     <Content Include="Content\images\github.png" />
     <Content Include="Content\images\hacker.png" />
     <Content Include="Content\images\hp.png" />
