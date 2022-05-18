@@ -8,6 +8,11 @@ namespace Shop.Models
     public class HomeModel
     {
         MyDataDataContext data = new MyDataDataContext();
+        public List<Laptop> GetListLaptop()
+        {
+            List<Laptop> list = data.Laptops.Where(n => n.trangthai == true).ToList();
+            return list;
+        }
         public List<Laptop> GetListLaptop_OTHER()
         {
             List<Laptop> list = data.Laptops.Where(n => n.trangthai == true).Take(4).ToList();

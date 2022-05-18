@@ -4681,6 +4681,7 @@
     <Content Include="vendor\popper.js\umd\popper.js.flow" />
     <Content Include="Views\GioHang\ConfirmPaymentClient.cshtml" />
     <Content Include="Views\GioHang\XacnhanThanhToan_MoMo.cshtml" />
+    <Content Include="Views\Home\GetListAllLaptop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
