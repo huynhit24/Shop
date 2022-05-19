@@ -14,6 +14,14 @@ namespace Shop.Controllers
     public class GioHangController : Controller
     {
         MyDataDataContext data = new MyDataDataContext();
+
+        public JsonResult GetbyID(int ID)
+        {
+            HomeModel home = new HomeModel();
+            var Laptop = home.GetListChiTietDonHangTheoDonDatHang(ID).Find(x => x.madon.Equals(ID));
+            return Json(Laptop, JsonRequestBehavior.AllowGet);
+        }
+
         public List<GioHang> Laygiohang()// lấy ra danh sách sản phẩm trong giỏ hàng
         {
             List<GioHang> lstGiohang = Session["Giohang"] as List<GioHang>;
