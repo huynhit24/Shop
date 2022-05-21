@@ -219,7 +219,10 @@ namespace Shop.Controllers
             return View();
         }
 
-
+        public ActionResult ThanhToanThatBai()
+        {
+            return View();
+        }
         //Thực hiện thanh toán Momo
 
         /*[HttpGet]
@@ -314,7 +317,11 @@ namespace Shop.Controllers
             string accessKey = "imYC24phv0gYMFgA";
             string serectkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
             string orderInfo = "Thanh toán mua Laptop";
+
+            //HTTPGET chỉ hiện thông báo người dùng
             string returnUrl = "https://localhost:44381/GioHang/ConfirmPaymentClient";
+
+            //HTTPPOST cập nhật database
             string notifyurl = "https://localhost:44381/GioHang/ConfirmPaymentClient"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = gh.Sum(p => p.dThanhTien).ToString();

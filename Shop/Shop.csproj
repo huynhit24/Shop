@@ -2799,6 +2799,7 @@
     <Content Include="Content\images\msi.png" />
     <Content Include="Content\images\no-cart.png" />
     <Content Include="Content\images\Payment_MoMo.png" />
+    <Content Include="Content\images\Payment_MoMo_Failed.png" />
     <Content Include="Content\images\payoo-payment.jpg" />
     <Content Include="Content\images\quang-cao-shope.png" />
     <Content Include="Content\images\quang-cao-side-tiki.png" />
@@ -2808,6 +2809,7 @@
     <Content Include="Content\images\slider-2.jpg" />
     <Content Include="Content\images\slider-3.jpg" />
     <Content Include="Content\images\thanhtoanthanhcong.png" />
+    <Content Include="Content\images\ThanhToanThatBai.png" />
     <Content Include="Content\images\them-shortcut-trang-web-vao-menu-ngu-canh-windows-size-696x364-znd.jpg" />
     <Content Include="Content\images\visa-payment.jpg" />
     <Content Include="Content\js\bootstrap.js" />
@@ -4688,6 +4690,7 @@
     <Content Include="Views\GioHang\ConfirmPaymentClient.cshtml" />
     <Content Include="Views\GioHang\XacnhanThanhToan_MoMo.cshtml" />
     <Content Include="Views\Home\GetListAllLaptop.cshtml" />
+    <Content Include="Views\GioHang\ThanhToanThatBai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
