@@ -2732,6 +2732,7 @@
     <Content Include="Content\images\asus.png" />
     <Content Include="Content\images\atm-payment.jpg" />
     <Content Include="Content\images\back-to-top.png" />
+    <Content Include="Content\images\bad-request-momo.jpeg" />
     <Content Include="Content\images\banner-cellphone.jpg" />
     <Content Include="Content\images\banner-dell.jpg" />
     <Content Include="Content\images\banner-la-gi.jpg" />
@@ -4691,6 +4692,7 @@
     <Content Include="Views\GioHang\XacnhanThanhToan_MoMo.cshtml" />
     <Content Include="Views\Home\GetListAllLaptop.cshtml" />
     <Content Include="Views\GioHang\ThanhToanThatBai.cshtml" />
+    <Content Include="Views\GioHang\BadRequestMoMo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -223,6 +223,11 @@ namespace Shop.Controllers
         {
             return View();
         }
+
+        public ActionResult BadRequestMoMo()
+        {
+            return View();
+        }
         //Thực hiện thanh toán Momo
 
         /*[HttpGet]
@@ -319,10 +324,10 @@ namespace Shop.Controllers
             string orderInfo = "Thanh toán mua Laptop";
 
             //HTTPGET chỉ hiện thông báo người dùng
-            string returnUrl = "https://localhost:44381/GioHang/ConfirmPaymentClient";
+            string returnUrl = "https://localhost:44381/GioHang/ReturnUrl";
 
             //HTTPPOST cập nhật database
-            string notifyurl = "https://localhost:44381/GioHang/ConfirmPaymentClient"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string notifyurl = "https://localhost:44381/GioHang/ReturnMoMo"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = gh.Sum(p => p.dThanhTien).ToString();
             string orderid = DateTime.Now.Ticks.ToString();
@@ -378,24 +383,45 @@ namespace Shop.Controllers
             string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
             param = Server.UrlDecode(param);
             MoMoSecurity crypto = new MoMoSecurity();
-            string secretkey = ConfigurationManager.AppSettings["serectkey"].ToString();
+            //string secretkey = ConfigurationManager.AppSettings["serectkey"].ToString();
+            string secretkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
             string signature = crypto.signSHA256(param, secretkey);
             if (signature != Request["signature"].ToString())
             {
                 ViewBag.message = "Thông tin request không hợp lệ";
-                return View("Error");
+                return View("BadRequestMoMo");
             }
             if (Request.QueryString["errorCode"].Equals("0"))
             {
                 ViewBag.message = "Thanh toán thành công";
-                SavePayment();
                 return View("ComfirmPaymentClient");
             }
             else
             {
                 ViewBag.message = "Thanh toán không thành công";
                 return View("ThanhToanThatBai");
+            }
+        }
 
+        public ActionResult ReturnMoMo()
+        {
+            string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
+            param = Server.UrlDecode(param);
+            MoMoSecurity crypto = new MoMoSecurity();
+            string secretkey = ConfigurationManager.AppSettings["serectkey"].ToString();
+            string signature = crypto.signSHA256(param, secretkey);
+            if (signature != Request["signature"].ToString())
+            {
+                return View("BadRequestMoMo");
+            }
+            if (Request.QueryString["errorCode"].Equals("0"))
+            {
+                SavePayment();
+                return View("ComfirmPaymentClient");
+            }
+            else
+            {
+                return View("ThanhToanThatBai");
             }
         }
 
