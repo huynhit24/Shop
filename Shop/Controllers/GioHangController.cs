@@ -219,6 +219,7 @@ namespace Shop.Controllers
             return View();
         }
 
+
         //Thực hiện thanh toán Momo
 
         /*[HttpGet]
@@ -303,7 +304,7 @@ namespace Shop.Controllers
             //End
 
             //data.SubmitChanges();
-            Session["GioHang"] = null;
+            //Session["GioHang"] = null;
             //return RedirectToAction("XacnhanDonhang", "GioHang");
 
 
@@ -314,7 +315,7 @@ namespace Shop.Controllers
             string serectkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
             string orderInfo = "Thanh toán mua Laptop";
             string returnUrl = "https://localhost:44381/GioHang/ConfirmPaymentClient";
-            string notifyurl = "https://localhost:44381/GioHang/XacnhanThanhToan_MoMo"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            string notifyurl = "https://localhost:44381/GioHang/ConfirmPaymentClient"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = gh.Sum(p => p.dThanhTien).ToString();
             string orderid = DateTime.Now.Ticks.ToString();
@@ -376,14 +377,14 @@ namespace Shop.Controllers
             {
                 ViewBag.message = "Thông tin request không hợp lệ";
             }
-            if (!Request.QueryString["errorCode"].Equals("0"))
+            if (Request.QueryString["errorCode"].Equals("0"))
             {
                 ViewBag.message = "Thanh toán thành công";
 
             }
             else
             {
-                ViewBag.message = "Thanh toán thành công";
+                ViewBag.message = "Thanh toán không thành công";
 
             }
             return View();
