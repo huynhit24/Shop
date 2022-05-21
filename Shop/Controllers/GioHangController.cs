@@ -383,18 +383,20 @@ namespace Shop.Controllers
             if (signature != Request["signature"].ToString())
             {
                 ViewBag.message = "Thông tin request không hợp lệ";
+                return View("Error");
             }
             if (Request.QueryString["errorCode"].Equals("0"))
             {
                 ViewBag.message = "Thanh toán thành công";
-
+                SavePayment();
+                return View("ComfirmPaymentClient");
             }
             else
             {
                 ViewBag.message = "Thanh toán không thành công";
+                return View("ThanhToanThatBai");
 
             }
-            return View();
         }
 
         public ActionResult ConfirmPaymentClient()
@@ -407,6 +409,44 @@ namespace Shop.Controllers
         public void SavePayment()
         {
             //cập nhật dữ liệu vào db
+
+            DonHang dh = new DonHang();
+            AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
+            Laptop s = new Laptop();
+            List<GioHang> gh = Laygiohang();// lấy giỏ hàng
+
+            dh.makh = kh.Id;
+            dh.ngaydat = DateTime.Now;
+            dh.ngaygiao = DateTime.Now;
+            dh.giaohang = false;
+            dh.thanhtoan = true;
+
+            data.DonHangs.InsertOnSubmit(dh);
+            data.SubmitChanges();
+            foreach (var item in gh)
+            {
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.madon = dh.madon;
+                ctdh.malaptop = item.malaptop;
+                ctdh.soluong = item.iSoluong;
+                ctdh.dongia = (decimal)item.giaban;
+                s = data.Laptops.Single(n => n.malaptop == item.malaptop);
+                data.SubmitChanges();
+                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+            }
+
+            string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
+
+            var total = gh.Sum(n => n.giaban);
+            content = content.Replace("{CustomerName}", kh.hoten);
+            content = content.Replace("{Phone}", kh.PhoneNumber);
+            content = content.Replace("{Email}", kh.Email);
+            content = content.Replace("{Total}", total.ToString());
+
+            new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
+            new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
+
+            data.SubmitChanges();
         }
     }
 }
