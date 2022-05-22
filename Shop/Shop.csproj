@@ -255,6 +255,9 @@
     <Compile Include="MoMo\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="VnPay\Others\PayCompare.cs" />
+    <Compile Include="VnPay\Others\PayLib.cs" />
+    <Compile Include="VnPay\Others\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administrator\Data\assets\css\app.min.css" />
@@ -2813,6 +2816,7 @@
     <Content Include="Content\images\ThanhToanThatBai.png" />
     <Content Include="Content\images\them-shortcut-trang-web-vao-menu-ngu-canh-windows-size-696x364-znd.jpg" />
     <Content Include="Content\images\visa-payment.jpg" />
+    <Content Include="Content\images\VnPay.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\datatables-simple-demo.js" />
@@ -4696,6 +4700,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ZaloPay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
