@@ -5,53 +5,58 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Delete</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ChiTietDonHang</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DonHang.makh)
-        </dt>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>ChiTietDonHang</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DonHang.makh)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonHang.makh)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.DonHang.makh)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Laptop.tenlaptop)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.soluong)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.soluong)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.soluong)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.soluong)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dongia)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.dongia)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dongia)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.dongia)
+                </dd>
 
-    </dl>
+            </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>

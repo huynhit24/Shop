@@ -5,63 +5,67 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Details</h2>
 
-<div>
-    <h4>DanhGia</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
-        </dt>
+        <div>
+            <h4>DanhGia</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Laptop.tenlaptop)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ten)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ten)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ten)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ten)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.noidung)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.noidung)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.noidung)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.noidung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vote)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.vote)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.vote)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.vote)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngaydanhgia)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ngaydanhgia)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngaydanhgia)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ngaydanhgia)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.trangthai)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.trangthai)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.madanhgia }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.madanhgia }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

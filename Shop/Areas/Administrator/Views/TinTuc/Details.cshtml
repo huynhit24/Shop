@@ -5,87 +5,91 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Details</h2>
 
-<div>
-    <h4>TinTuc</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ChuDe.tenchude)
-        </dt>
+        <div>
+            <h4>TinTuc</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ChuDe.tenchude)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ChuDe.tenchude)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ChuDe.tenchude)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tieude)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tieude)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tieude)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tieude)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hinhnen)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hinhnen)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hinhnen)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hinhnen)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tomtat)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tomtat)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tomtat)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tomtat)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.slug)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.slug)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.slug)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.slug)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.noidung)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.noidung)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.noidung)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.noidung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.luotxem)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.luotxem)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.luotxem)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.luotxem)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ngaycapnhat)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ngaycapnhat)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ngaycapnhat)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ngaycapnhat)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.xuatban)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.xuatban)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.xuatban)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.xuatban)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.matin }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.matin }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -5,23 +5,27 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Details</h2>
 
-<div>
-    <h4>NhuCau</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tennhucau)
-        </dt>
+        <div>
+            <h4>NhuCau</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.tennhucau)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tennhucau)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tennhucau)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.manhucau }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.manhucau }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -5,63 +5,67 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Details</h2>
 
-<div>
-    <h4>LienHe</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.hoten)
-        </dt>
+        <div>
+            <h4>LienHe</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.hoten)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.hoten)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hoten)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dienthoai)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.dienthoai)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dienthoai)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.dienthoai)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.website)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.website)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.website)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.website)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.noidung)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.noidung)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.noidung)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.noidung)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.trangthai)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.trangthai)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.malienhe }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.malienhe }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

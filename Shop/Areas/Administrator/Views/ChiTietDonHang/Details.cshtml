@@ -5,47 +5,51 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Details</h2>
 
-<div>
-    <h4>ChiTietDonHang</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DonHang.makh)
-        </dt>
+        <div>
+            <h4>ChiTietDonHang</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.DonHang.makh)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DonHang.makh)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.DonHang.makh)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Laptop.tenlaptop)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.soluong)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.soluong)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.soluong)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.soluong)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dongia)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.dongia)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dongia)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.dongia)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

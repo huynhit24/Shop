@@ -6,136 +6,137 @@
 }
 
 <div class="container container-fluid">
-    <h2>Edit</h2>
+    <div class="p-5" style="background-color: white">
+        <h2>Chi tiết thông tin Laptop</h2>
 
-    <div>
-        <h4>Laptop</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Hang.tenhang)
-            </dt>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Hang.tenhang)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Hang.tenhang)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Hang.tenhang)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.NhuCau.tennhucau)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NhuCau.tennhucau)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.NhuCau.tennhucau)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.NhuCau.tennhucau)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.tenlaptop)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.tenlaptop)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.tenlaptop)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.tenlaptop)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.giaban)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.giaban)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.giaban)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.giaban)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.mota)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.mota)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.mota)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.mota)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.hinh)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hinh)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.hinh)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hinh)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.cpu)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.cpu)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.cpu)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.cpu)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.gpu)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.gpu)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.gpu)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.gpu)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ram)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ram)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.ram)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ram)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.hardware)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.hardware)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.hardware)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.hardware)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.manhinh)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.manhinh)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.manhinh)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.manhinh)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.ngaycapnhat)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ngaycapnhat)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.ngaycapnhat)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ngaycapnhat)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.soluongton)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.soluongton)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.soluongton)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.soluongton)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.pin)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.pin)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.pin)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.pin)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.trangthai)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.trangthai)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
 
-        </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.malaptop }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.malaptop }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 </div>
