@@ -327,8 +327,8 @@ namespace Shop.Controllers
             //HTTPGET chỉ hiện thông báo người dùng
             string returnUrl = "https://localhost:44381/GioHang/ReturnUrl";
 
-            //HTTPPOST cập nhật database
-            string notifyurl = "https://localhost:44381/GioHang/ReturnMoMo"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
+            //HTTPPOST cập nhật database https://localhost:44381/GioHang/NotifyUrl
+            string notifyurl = "https://localhost:44381/GioHang/NotifyUrl"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
 
             string amount = gh.Sum(p => p.dThanhTien).ToString();
             string orderid = DateTime.Now.Ticks.ToString();
@@ -365,7 +365,6 @@ namespace Shop.Controllers
                 { "extraData", extraData },
                 { "requestType", "captureMoMoWallet" },
                 { "signature", signature }
-
             };
 
             string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
@@ -379,30 +378,70 @@ namespace Shop.Controllers
         //errorCode = 0 : thanh toán thành công (Request.QueryString["errorCode"])
         //Tham khảo bảng mã lỗi tại: https://developers.momo.vn/#/docs/aio/?id=b%e1%ba%a3ng-m%c3%a3-l%e1%bb%97i
 
-        public ActionResult ReturnUrl()
+        public ActionResult ReturnUrl() //trả về URL GET thông báo thanh toán thành công hoặc thất bại hoặc lỗi
         {
             string param = Request.QueryString.ToString().Substring(0, Request.QueryString.ToString().IndexOf("signature") - 1);
             param = Server.UrlDecode(param);
             MoMoSecurity crypto = new MoMoSecurity();
-            string secretkey = ConfigurationManager.AppSettings["serectkey"].ToString();
-            //string secretkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
+            //string secretkey = ConfigurationManager.AppSettings["serectkey"].ToString();
+            string secretkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
             string signature = crypto.signSHA256(param, secretkey);
             if (signature != Request["signature"].ToString())
             {
                 ViewBag.message = "Thông tin request không hợp lệ";
-                return View("BadRequestMoMo");
+                return RedirectToAction("BadRequestMoMo", "GioHang");
             }
             if (Request.QueryString["errorCode"].Equals("0"))
             {
-                ViewBag.message = "Thanh toán thành công";
-                return View("ComfirmPaymentClient");
+                ViewBag.message = "Thanh toán thành công!";
+                /*List<GioHang> lstGiohang = Laygiohang();
+                Session["GioHang"] = lstGiohang;*/
+                SavePayment();
+                return RedirectToAction("ConfirmPaymentClient","GioHang");
             }
             else
             {
-                ViewBag.message = "Thanh toán không thành công";
-                return View("ThanhToanThatBai");
+                ViewBag.message = "Thanh toán thất bại!";
+                return RedirectToAction("ThanhToanThatBai","GioHang");
             }
         }
+
+        //POST trả về JSON trạng thái thanh toán MoMo
+        public JsonResult NotifyUrl()
+        {
+            string param = "";
+            param = "partner_code=" + Request["partner_code"] +
+                "&access_key=" + Request["access_key"] +
+                "&amount=" + Request["amount"] +
+                "&order_id=" + Request["order_id"] +
+                "&order_info=" + Request["order_info"] +
+                "&order_type=" + Request["order_type"] +
+                "&transaction_id=" + Request["transaction_id"] +
+                "&message=" + Request["message"] +
+                "&response_time=" + Request["response_time"] +
+                "&status_code=" + Request["status_code"];
+
+            param = Server.UrlDecode(param);
+            MoMoSecurity crypto = new MoMoSecurity();
+            string secretkey = "gZ2H5gyDOrVLQ0mnVJjPCWQ4a2lenHLN";
+            string signature = crypto.signSHA256(param, secretkey);
+            //Không được phép cập nhật trạng thái đơn hàng vào Database khi đang chờ thanh toán
+            //Trạng thái đơn kích nút thanh toán - Đang chờ thanh toán
+            //Trang thái giao dịch thành công
+            //Trạng thái giao dịch thất bại
+            if (signature != Request["signature"].ToString())
+            {
+               
+            }
+            string status_code = Request["status_code"].ToString();
+            if (status_code == "0")
+            {
+                SavePayment();
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public ActionResult ReturnMoMo()
         {
@@ -414,16 +453,16 @@ namespace Shop.Controllers
             string signature = crypto.signSHA256(param, secretkey);
             if (signature != Request["signature"].ToString())
             {
-                return View("BadRequestMoMo");
+                return RedirectToAction("BadRequestMoMo","GioHang");
             }
             if (Request.QueryString["errorCode"].Equals("0"))
             {
                 SavePayment();
-                return View("ComfirmPaymentClient");
+                return RedirectToAction("ConfirmPaymentClient","GioHang");
             }
             else
             {
-                return View("ThanhToanThatBai");
+                return RedirectToAction("ThanhToanThatBai","GioHang");
             }
         }
 
@@ -433,7 +472,7 @@ namespace Shop.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public void SavePayment()
         {
             //cập nhật dữ liệu vào db
@@ -441,7 +480,8 @@ namespace Shop.Controllers
             DonHang dh = new DonHang();
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
-            List<GioHang> gh = Laygiohang();// lấy giỏ hàng
+            List<GioHang> gh = Laygiohang();
+            //List<GioHang> gh = (List<GioHang>) Session["GioHang"];// lấy giỏ hàng
 
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
@@ -475,12 +515,13 @@ namespace Shop.Controllers
             new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
 
             data.SubmitChanges();
+            Session["GioHang"] = null;
         }
 
         /*Thanh toán VNPAY && ZaloPay*/
 
         //Thanh toán VNPAY
-        public ActionResult Payment()
+        /*public ActionResult Payment()
         {
             DonHang dh = new DonHang();
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
@@ -516,7 +557,7 @@ namespace Shop.Controllers
             string paymentUrl = pay.CreateRequestUrl(url, hashSecret);
 
             return Redirect(paymentUrl);
-        }
+        }*/
 
         //Xác thực thanh toán VNPAY
         /*public ActionResult PaymentConfirm()
