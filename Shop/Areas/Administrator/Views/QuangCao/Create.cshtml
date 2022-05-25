@@ -51,16 +51,16 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ngaybatdau, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ngaybatdau, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ngaybatdau, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.ngaybatdau, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ngayhethan, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ngayhethan, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ngayhethan, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.ngayhethan, "", new { @class = "text-danger" })
                     </div>
                 </div>

@@ -91,8 +91,8 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ngaycapnhat, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
                     </div>
                 </div>

@@ -150,7 +150,7 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua" onclick="event.preventDefault(); Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
                                         </div>
                                     </div>
                                 </div>
@@ -167,16 +167,16 @@
                 <div class="col-12 py-3">
                     <div class="row">
                         <div class="col-3">
-                            <img src="~/Content/images/banner-sis-apple-homepage.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;"/>
+                            <img src="~/Content/images/banner-sis-apple-homepage.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;" />
                         </div>
                         <div class="col-3">
-                            <img src="~/Content/images/banner-sis-asus-homepage.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; "/>
+                            <img src="~/Content/images/banner-sis-asus-homepage.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; " />
                         </div>
                         <div class="col-3">
-                            <img src="~/Content/images/banner-sis-samsung-homepage.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;"/>
+                            <img src="~/Content/images/banner-sis-samsung-homepage.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
                         </div>
                         <div class="col-3">
-                            <img src="~/Content/images/banner-sis-xiaomi-homepage.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;"/>
+                            <img src="~/Content/images/banner-sis-xiaomi-homepage.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
                         </div>
                     </div>
                 </div>
@@ -349,7 +349,8 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop})" class="btn btn-sm btn-warning"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-danger mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <a id="add-cart" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-danger mua add-cart" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -401,8 +402,6 @@
         </div>
     </div>
 </main>
-
-
 
 
 
