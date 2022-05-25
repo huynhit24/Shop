@@ -27,7 +27,7 @@
 <div class="container-sm" style="margin-top: 50px;margin-bottom:50px;">
     <table id="datatablesSimple" class="table table-bordered table-striped" style="margin-top: 20px;">
         <thead>
-            <tr>
+            <tr style="background-color: #189f09; color: white;">
                 <th class="text-center" style="vertical-align:middle">
                     @Html.DisplayName("Mã đơn hàng")
                 </th>
@@ -65,21 +65,21 @@
                     <td class="text-center" style="vertical-align:middle">
                         @if (item.thanhtoan == true)
                         {
-                            <p class="btn btn-success"><i class="fa fa-check"></i> Đã thanh toán</p>
+                            <p style="color: green;font-weight: bold;"><i class="fa fa-check-circle"></i> Đã thanh toán</p>
                         }
                         else
                         {
-                            <p class="btn btn-warning"><i class="fa fa-money-bill"></i> Chưa thanh toán</p>
+                            <p style="color: blue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa thanh toán</p>
                         }
                     </td>
                     <td class="text-center" style="vertical-align:middle">
                         @if (item.giaohang == true)
                         {
-                            <p style="background-color: rgb(11 211 239 / 0.85);" class="btn"><i class="fa fa-check-circle-o"></i> Đã giao</p>
+                            <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
                         }
                         else
                         {
-                            <p class="btn btn-danger"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                            <p style="color: red;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
                         }
                     </td>
                     <td class="text-center" style="vertical-align:middle">
@@ -91,13 +91,13 @@
                     <td class="text-center" style="vertical-align:middle">
 
                         <!-- Button trigger modal -->
-                        <a data-id="@item.madon" id="lienket" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
-                            <i class="fa fa-laptop-house"></i> Xem
+                        <a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
+                            <i class="fa fa-eye"></i> Xem
                         </a>
 
-                        <a data-id="@item.madon" id="lienket" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="" onclick="">
-                            <i class="fa fa-laptop-house"></i> Xem
-                        </a>
+                        @*<a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="" onclick="">
+                            <i class="fa fa-flag-checkered"></i> Xem
+                        </a>*@
 
                         @*<a class="btn btn-sm btn-danger" href="#" onclick="return getbyID(' + @item.madon + ')">Xem</a>*@
 
