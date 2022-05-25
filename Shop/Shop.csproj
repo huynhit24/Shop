@@ -206,6 +206,7 @@
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="EF\AspNetRole.cs" />
     <Compile Include="EF\AspNetUser.cs" />
     <Compile Include="EF\AspNetUserClaim.cs" />
@@ -4700,6 +4701,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Report\" />
     <Folder Include="ZaloPay\" />
   </ItemGroup>
   <ItemGroup>
