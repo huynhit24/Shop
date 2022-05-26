@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
+                                    <tr style="background-color: #ff6a00; color: white;">
                                         <th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Tên chủ đề")
                                         </th>
@@ -69,7 +69,7 @@
                                                 @Html.DisplayFor(modelItem => item.tieude)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                @Html.DisplayFor(modelItem => item.hinhnen)
+                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinhnen)" alt="Alternate Text" height="100" width="100"/>
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.tomtat)
@@ -90,11 +90,11 @@
                                                 @*@Html.DisplayFor(modelItem => item.xuatban)*@
                                                 @if (item.xuatban == true)
                                                 {
-                                                    <p style="background-color: green" class="btn text-white"><i class="fa fa-book"></i> Đã xuất bản</p>
+                                                    <p style="color: green;font-weight: bold;"><i class="fa fa-book"></i> Đã xuất bản</p>
                                                 }
                                                 else
                                                 {
-                                                    <p class="btn btn-danger"><i class="fa fa-draft2digital"></i> Lưu nháp</p>
+                                                    <p style="color: blue;font-weight: bold;"><i class="fa fa-draft2digital"></i> Lưu nháp</p>
                                                 }
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">

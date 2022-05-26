@@ -102,7 +102,16 @@
         chart.render();
                 }
             </script>*@
+    <style>
+        .laptopzoom {
+            transition: transform .2s;
+        }
 
+            .laptopzoom:hover {
+                transform: scale(1.2);
+                z-index: 100;
+            }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -170,98 +179,98 @@
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
                         <!-- My Project ------------------------------------------------------ Start-->
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","MainPage")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/dashboard.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","Laptop")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/laptop.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Laptop</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","Hang")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/hang.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Hãng</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","NhuCau")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/nhucau.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Nhu cầu</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","DonHang")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/order.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Đơn hàng</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","ChiTietDonHang")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/chitietdonhang.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Chi tiết đơn hàng</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","ChuDe")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/trending-topic.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Chủ đề</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","DanhGia")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/rating.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Đánh giá sản phẩm</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","BinhLuan")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/dialogue.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Bình luận Blog</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","LienHe")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/communicate.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Liên hệ</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","MetaLaptop")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/meta.png" alt="Alternate Text" width="40" height="40" />
                                 <p>META Laptop</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","QuangCao")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/adwords.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Quảng cáo</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","TinTuc")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/share-post.png" alt="Alternate Text" width="40" height="40" />
                                 <p>Tin tức</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item laptopzoom">
                             <a href="@Url.Action("Index","AspNetUsers")" class="nav-link">
                                 @*<i class="fas fa-circle nav-icon"></i>*@
                                 <img src="~/Areas/Administrator/Data/images/boy.png" alt="Alternate Text" width="40" height="40" />
