@@ -43,6 +43,25 @@
             #myBtn:hover {
                 background-color: #f1f1f1;
             }
+
+        .neonText {
+            color: #fff;
+            text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+        }
+
+        .neonBack {
+            color: #fff;
+            box-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+        }
+
+        .laptopzoom {
+            transition: transform .2s;
+        }
+
+            .laptopzoom:hover {
+                transform: scale(1.2);
+                z-index: 100;
+            }
     </style>
 </head>
 <body>
@@ -143,29 +162,29 @@
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="electronics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-arrow-circle-right"></i> Hãng Laptop</a>
-                                            <div class="dropdown-menu" aria-labelledby="electronics">
+                                            <div class="dropdown-menu neonBack" aria-labelledby="electronics">
                                                 @foreach (var item in home.GetListHang())
                                                 {
-                                                    <a class="dropdown-item" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = item.mahang})">@item.tenhang</a>
+                                                    <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = item.mahang})">@item.tenhang</a>
                                                 }
 
                                             </div>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="fashion" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-address-book"></i> Nhu cầu sử dụng</a>
-                                            <div class="dropdown-menu" aria-labelledby="fashion">
+                                            <div class="dropdown-menu neonBack" aria-labelledby="fashion">
                                                 @foreach (var item in home.GetListNhuCau())
                                                 {
-                                                    <a class="dropdown-item" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = item.manhucau})">@item.tennhucau</a>
+                                                    <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = item.manhucau})">@item.tennhucau</a>
                                                 }
                                             </div>
                                         </li>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="books" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-blog"></i> Blog</a>
-                                            <div class="dropdown-menu" aria-labelledby="books">
+                                            <div class="dropdown-menu neonBack" aria-labelledby="books">
                                                 @foreach (var item in home.GetListChuDe())
                                                 {
-                                                    <a class="dropdown-item" href="@Url.Action("ListBaiVietTheoChuDeId","Home", new { id = item.machude})">@item.tenchude</a>
+                                                    <a class="dropdown-item laptopzoom" href="@Url.Action("ListBaiVietTheoChuDeId","Home", new { id = item.machude})">@item.tenchude</a>
                                                 }
                                             </div>
                                         </li>
