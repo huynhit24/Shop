@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Plugins\CKFinder.dll</HintPath>
@@ -63,6 +66,11 @@
     </Reference>
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -131,6 +139,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.Identity.Core">
@@ -206,6 +215,8 @@
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ZaloController.cs" />
     <Compile Include="EF\AspNetRole.cs" />
     <Compile Include="EF\AspNetUser.cs" />
     <Compile Include="EF\AspNetUserClaim.cs" />
@@ -255,6 +266,34 @@
     <Compile Include="MoMo\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="VnPay\Controllers\CallbackController.cs" />
+    <Compile Include="VnPay\Controllers\GatewayController.cs" />
+    <Compile Include="VnPay\Controllers\HistoryController.cs" />
+    <Compile Include="VnPay\Controllers\QuickPayController.cs" />
+    <Compile Include="VnPay\Controllers\RedirectController.cs" />
+    <Compile Include="VnPay\Controllers\RefundController.cs" />
+    <Compile Include="VnPay\Controllers\SiteController.cs" />
+    <Compile Include="VnPay\Controllers\SubscribeController.cs" />
+    <Compile Include="VnPay\Others\PayCompare.cs" />
+    <Compile Include="VnPay\Others\PayLib.cs" />
+    <Compile Include="VnPay\Others\Util.cs" />
+    <Compile Include="ZaloPay\Crypto\HmacHelper.cs" />
+    <Compile Include="ZaloPay\Crypto\RSAHelper.cs" />
+    <Compile Include="ZaloPay\DAL\ZaloPayDemoContext.cs" />
+    <Compile Include="ZaloPay\Extension\Extension.cs" />
+    <Compile Include="ZaloPay\HttpHelper.cs" />
+    <Compile Include="ZaloPay\Models\BankDTO.cs" />
+    <Compile Include="ZaloPay\Models\CallbackRequest.cs" />
+    <Compile Include="ZaloPay\Models\Order.cs" />
+    <Compile Include="ZaloPay\Models\OrderData.cs" />
+    <Compile Include="ZaloPay\Models\Refund.cs" />
+    <Compile Include="ZaloPay\Models\RefundData.cs" />
+    <Compile Include="ZaloPay\NgrokHelper.cs" />
+    <Compile Include="ZaloPay\QRCodeHelper.cs" />
+    <Compile Include="ZaloPay\Util.cs" />
+    <Compile Include="ZaloPay\Utils\Storage.cs" />
+    <Compile Include="ZaloPay\ZaloPayHelper.cs" />
+    <Compile Include="ZaloPay\ZaloPayMacGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administrator\Data\assets\css\app.min.css" />
@@ -2732,6 +2771,7 @@
     <Content Include="Content\images\asus.png" />
     <Content Include="Content\images\atm-payment.jpg" />
     <Content Include="Content\images\back-to-top.png" />
+    <Content Include="Content\images\bad-request-momo.jpeg" />
     <Content Include="Content\images\banner-cellphone.jpg" />
     <Content Include="Content\images\banner-dell.jpg" />
     <Content Include="Content\images\banner-la-gi.jpg" />
@@ -2739,6 +2779,10 @@
     <Content Include="Content\images\banner-levono-2.png" />
     <Content Include="Content\images\banner-levono.png" />
     <Content Include="Content\images\banner-msi-1.png" />
+    <Content Include="Content\images\banner-sis-apple-homepage.png" />
+    <Content Include="Content\images\banner-sis-asus-homepage.png" />
+    <Content Include="Content\images\banner-sis-samsung-homepage.png" />
+    <Content Include="Content\images\banner-sis-xiaomi-homepage.png" />
     <Content Include="Content\images\banner-vang.png" />
     <Content Include="Content\images\bot.png" />
     <Content Include="Content\images\cod-payment.jpg" />
@@ -2746,11 +2790,13 @@
     <Content Include="Content\images\dang-ky-bo-cong-thuong.png" />
     <Content Include="Content\images\dat-hang-thanh-cong.png" />
     <Content Include="Content\images\dathangthanhcong.png" />
+    <Content Include="Content\images\dell-insprion.jpg" />
     <Content Include="Content\images\dell.png" />
     <Content Include="Content\images\dependabot.png" />
     <Content Include="Content\images\ducdat.png" />
     <Content Include="Content\images\Florentino.jpg" />
     <Content Include="Content\images\forward.png" />
+    <Content Include="Content\images\giam-gia-background.svg" />
     <Content Include="Content\images\github.png" />
     <Content Include="Content\images\hacker.png" />
     <Content Include="Content\images\hp.png" />
@@ -2766,24 +2812,24 @@
     <Content Include="Content\images\image-4.jpg" />
     <Content Include="Content\images\jcb-payment.jpg" />
     <Content Include="Content\images\khoaruoi.png" />
-    <Content Include="Content\images\laptop %281%29.jpg" />
-    <Content Include="Content\images\laptop %281%29.png" />
-    <Content Include="Content\images\laptop %2810%29.jpg" />
-    <Content Include="Content\images\laptop %2811%29.jpg" />
-    <Content Include="Content\images\laptop %2812%29.jpg" />
-    <Content Include="Content\images\laptop %2813%29.jpg" />
-    <Content Include="Content\images\laptop %2814%29.jpg" />
-    <Content Include="Content\images\laptop %2815%29.jpg" />
-    <Content Include="Content\images\laptop %2816%29.jpg" />
-    <Content Include="Content\images\laptop %2817%29.jpg" />
-    <Content Include="Content\images\laptop %282%29.jpg" />
-    <Content Include="Content\images\laptop %283%29.jpg" />
-    <Content Include="Content\images\laptop %284%29.jpg" />
-    <Content Include="Content\images\laptop %285%29.jpg" />
-    <Content Include="Content\images\laptop %286%29.jpg" />
-    <Content Include="Content\images\laptop %287%29.jpg" />
-    <Content Include="Content\images\laptop %288%29.jpg" />
-    <Content Include="Content\images\laptop %289%29.jpg" />
+    <Content Include="Content\images\laptop-%281%29.jpg" />
+    <Content Include="Content\images\laptop-%281%29.png" />
+    <Content Include="Content\images\laptop-%2810%29.jpg" />
+    <Content Include="Content\images\laptop-%2811%29.jpg" />
+    <Content Include="Content\images\laptop-%2812%29.jpg" />
+    <Content Include="Content\images\laptop-%2813%29.jpg" />
+    <Content Include="Content\images\laptop-%2814%29.jpg" />
+    <Content Include="Content\images\laptop-%2815%29.jpg" />
+    <Content Include="Content\images\laptop-%2816%29.jpg" />
+    <Content Include="Content\images\laptop-%2817%29.jpg" />
+    <Content Include="Content\images\laptop-%282%29.jpg" />
+    <Content Include="Content\images\laptop-%283%29.jpg" />
+    <Content Include="Content\images\laptop-%284%29.jpg" />
+    <Content Include="Content\images\laptop-%285%29.jpg" />
+    <Content Include="Content\images\laptop-%286%29.jpg" />
+    <Content Include="Content\images\laptop-%287%29.jpg" />
+    <Content Include="Content\images\laptop-%288%29.jpg" />
+    <Content Include="Content\images\laptop-%289%29.jpg" />
     <Content Include="Content\images\laptop-asus-vivibook.jpg" />
     <Content Include="Content\images\lenovo.png" />
     <Content Include="Content\images\log-out.png" />
@@ -2793,6 +2839,7 @@
     <Content Include="Content\images\msi.png" />
     <Content Include="Content\images\no-cart.png" />
     <Content Include="Content\images\Payment_MoMo.png" />
+    <Content Include="Content\images\Payment_MoMo_Failed.png" />
     <Content Include="Content\images\payoo-payment.jpg" />
     <Content Include="Content\images\quang-cao-shope.png" />
     <Content Include="Content\images\quang-cao-side-tiki.png" />
@@ -2802,8 +2849,10 @@
     <Content Include="Content\images\slider-2.jpg" />
     <Content Include="Content\images\slider-3.jpg" />
     <Content Include="Content\images\thanhtoanthanhcong.png" />
+    <Content Include="Content\images\ThanhToanThatBai.png" />
     <Content Include="Content\images\them-shortcut-trang-web-vao-menu-ngu-canh-windows-size-696x364-znd.jpg" />
     <Content Include="Content\images\visa-payment.jpg" />
+    <Content Include="Content\images\VnPay.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\datatables-simple-demo.js" />
@@ -4401,6 +4450,7 @@
     <Content Include="Areas\Administrator\Views\MainPage\Index.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\LoginAdmin.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\Error401.cshtml" />
+    <Content Include="Content\images\Lap trinh Tren Moi Truong Windows - Danh gia hoc phan.docx" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -4477,6 +4527,7 @@
     <Content Include="Plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Plugins\ckfinder\userfiles\.htaccess" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\detailview.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -4679,9 +4730,22 @@
     <Content Include="vendor\popper.js\umd\popper.js.flow" />
     <Content Include="Views\GioHang\ConfirmPaymentClient.cshtml" />
     <Content Include="Views\GioHang\XacnhanThanhToan_MoMo.cshtml" />
+    <Content Include="Views\Home\GetListAllLaptop.cshtml" />
+    <Content Include="Views\GioHang\ThanhToanThatBai.cshtml" />
+    <Content Include="Views\GioHang\BadRequestMoMo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Callback\" />
+    <Folder Include="Views\Gateway\" />
+    <Folder Include="Views\History\" />
+    <Folder Include="Views\QuickPay\" />
+    <Folder Include="Views\Redirect\" />
+    <Folder Include="Views\Refund\" />
+    <Folder Include="Views\Report\" />
+    <Folder Include="Views\Site\" />
+    <Folder Include="Views\Subscribe\" />
+    <Folder Include="Views\Zalo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

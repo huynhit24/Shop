@@ -5,39 +5,43 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Details</h2>
 
-<div>
-    <h4>MetaLaptop</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
-        </dt>
+        <div>
+            <h4>MetaLaptop</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Laptop.tenlaptop)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.keymeta)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.keymeta)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.keymeta)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.keymeta)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.valuemeta)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.valuemeta)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.valuemeta)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.valuemeta)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.mameta }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.mameta }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

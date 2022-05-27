@@ -157,6 +157,15 @@ namespace Shop.Controllers
             return View(all_blog.ToPagedList(pageNum, pageSize));
         }
 
+        public ActionResult GetListAllLaptop(int? page)
+        {
+            if (page == null) page = 1;
+            var all_laptop = (from s in data.Laptops select s).OrderBy(m => m.malaptop).Where(n => n.trangthai == true);
+            int pageSize = 12;
+            int pageNum = page ?? 1;
+            return View(all_laptop.ToPagedList(pageNum, pageSize));
+        }
+
         public ActionResult ListLaptopTheoSearch(int? page, string SearchString)
         {
             CommonFields.seek = SearchString;

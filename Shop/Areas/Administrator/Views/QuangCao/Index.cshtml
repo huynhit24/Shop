@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
+                                    <tr style="background-color: #07f3ab; color: white;">
                                         <th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Tên quảng cáo")
                                         </th>
@@ -63,7 +63,7 @@
                                                 @Html.DisplayFor(modelItem => item.tencongty)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                @Html.DisplayFor(modelItem => item.hinhnen)
+                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinhnen)" alt="Alternate Text" height="100" width="100"/>
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.link)

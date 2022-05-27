@@ -8,6 +8,11 @@ namespace Shop.Models
     public class HomeModel
     {
         MyDataDataContext data = new MyDataDataContext();
+        public List<Laptop> GetListLaptop()
+        {
+            List<Laptop> list = data.Laptops.Where(n => n.trangthai == true).ToList();
+            return list;
+        }
         public List<Laptop> GetListLaptop_OTHER()
         {
             List<Laptop> list = data.Laptops.Where(n => n.trangthai == true).Take(4).ToList();
@@ -61,14 +66,25 @@ namespace Shop.Models
         {
             return data.Hangs.ToList();
         }
+        public List<Hang> GetListHang_Num(int number)// lấy ra ds tất cả các hãng
+        {
+            return data.Hangs.Take(number).ToList();
+        }
         public List<NhuCau> GetListNhuCau()// lấy ra ds tất cả các nhu cầu
         {
             return data.NhuCaus.ToList();
         }
-
+        public List<NhuCau> GetListNhuCau_Num(int number)// lấy ra ds tất cả các nhu cầu
+        {
+            return data.NhuCaus.Take(number).ToList();
+        }
         public List<ChuDe> GetListChuDe()// lấy ra ds tất cả các chủ đề
         {
             return data.ChuDes.ToList();
+        }
+        public List<ChuDe> GetListChuDe_Num(int number)// lấy ra ds tất cả các chủ đề
+        {
+            return data.ChuDes.Take(number).ToList();
         }
 
         public List<QuangCao> GetListQuangCao()// lấy ra ds các qc được kích hoạt sử dụng

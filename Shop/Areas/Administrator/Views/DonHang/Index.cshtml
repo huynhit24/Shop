@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
+                                    <tr style="background-color: #189f09; color: white;">
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.AspNetUser.Email)*@
                                             @Html.DisplayName("Email mua hàng")
@@ -62,22 +62,22 @@
                                                 @*@Html.DisplayFor(modelItem => item.thanhtoan)*@
                                                 @if (item.thanhtoan == true)
                                                 {
-                                                    <p class="btn btn-success"><i class="fa fa-check"></i> Đã thanh toán</p>
+                                                    <p style="color: green;font-weight: bold;"><i class="fa fa-check-circle"></i> Đã thanh toán</p>
                                                 }
                                                 else
                                                 {
-                                                    <p class="btn btn-warning"><i class="fa fa-money-bill"></i> Chưa thanh toán</p>
+                                                    <p style="color: blue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa thanh toán</p>
                                                 }
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @*@Html.DisplayFor(modelItem => item.giaohang)*@
                                                 @if (item.giaohang == true)
                                                 {
-                                                    <p style="background-color: rgb(11 211 239 / 0.85);" class="btn text-black"><i class="fa fa-check-circle"></i> Đã giao</p>
+                                                    <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
                                                 }
                                                 else
                                                 {
-                                                    <p class="btn btn-danger"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                                                    <p style="color: red;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
                                                 }
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
@@ -88,8 +88,8 @@
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.madon }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.madon }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.madon })*@
+                                                    @Html.ActionLink("Details", "Details", new { id = item.madon }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.madon })*@
                                                 <a href="@Url.Action("Edit","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
                                                 <a href="@Url.Action("Details","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
                                                 <a href="@Url.Action("Delete","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>

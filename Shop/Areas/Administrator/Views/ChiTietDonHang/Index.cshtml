@@ -25,39 +25,41 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.DonHang.makh)
+                                    <tr style="background-color: red; color: white;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Mã khách hàng")
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tên Laptop")
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.soluong)
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Số lượng")
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.dongia)
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Đơn giá")
                                         </th>
-                                        <th></th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            Thao tác
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>
+                                            <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.DonHang.makh)
                                             </td>
-                                            <td>
+                                            <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.Laptop.tenlaptop)
                                             </td>
-                                            <td>
+                                            <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.soluong)
                                             </td>
-                                            <td>
+                                            <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.dongia)
                                             </td>
-                                            <td>
+                                            <td class="text-center" style="vertical-align:middle">
                                                 @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                                                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
