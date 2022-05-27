@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Plugins\CKFinder.dll</HintPath>
@@ -63,6 +66,11 @@
     </Reference>
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.4.3\lib\net40\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -131,6 +139,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.Identity.Core">
@@ -207,6 +216,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\ZaloController.cs" />
     <Compile Include="EF\AspNetRole.cs" />
     <Compile Include="EF\AspNetUser.cs" />
     <Compile Include="EF\AspNetUserClaim.cs" />
@@ -256,9 +266,34 @@
     <Compile Include="MoMo\PaymentRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="VnPay\Controllers\CallbackController.cs" />
+    <Compile Include="VnPay\Controllers\GatewayController.cs" />
+    <Compile Include="VnPay\Controllers\HistoryController.cs" />
+    <Compile Include="VnPay\Controllers\QuickPayController.cs" />
+    <Compile Include="VnPay\Controllers\RedirectController.cs" />
+    <Compile Include="VnPay\Controllers\RefundController.cs" />
+    <Compile Include="VnPay\Controllers\SiteController.cs" />
+    <Compile Include="VnPay\Controllers\SubscribeController.cs" />
     <Compile Include="VnPay\Others\PayCompare.cs" />
     <Compile Include="VnPay\Others\PayLib.cs" />
     <Compile Include="VnPay\Others\Util.cs" />
+    <Compile Include="ZaloPay\Crypto\HmacHelper.cs" />
+    <Compile Include="ZaloPay\Crypto\RSAHelper.cs" />
+    <Compile Include="ZaloPay\DAL\ZaloPayDemoContext.cs" />
+    <Compile Include="ZaloPay\Extension\Extension.cs" />
+    <Compile Include="ZaloPay\HttpHelper.cs" />
+    <Compile Include="ZaloPay\Models\BankDTO.cs" />
+    <Compile Include="ZaloPay\Models\CallbackRequest.cs" />
+    <Compile Include="ZaloPay\Models\Order.cs" />
+    <Compile Include="ZaloPay\Models\OrderData.cs" />
+    <Compile Include="ZaloPay\Models\Refund.cs" />
+    <Compile Include="ZaloPay\Models\RefundData.cs" />
+    <Compile Include="ZaloPay\NgrokHelper.cs" />
+    <Compile Include="ZaloPay\QRCodeHelper.cs" />
+    <Compile Include="ZaloPay\Util.cs" />
+    <Compile Include="ZaloPay\Utils\Storage.cs" />
+    <Compile Include="ZaloPay\ZaloPayHelper.cs" />
+    <Compile Include="ZaloPay\ZaloPayMacGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Administrator\Data\assets\css\app.min.css" />
@@ -4701,8 +4736,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Callback\" />
+    <Folder Include="Views\Gateway\" />
+    <Folder Include="Views\History\" />
+    <Folder Include="Views\QuickPay\" />
+    <Folder Include="Views\Redirect\" />
+    <Folder Include="Views\Refund\" />
     <Folder Include="Views\Report\" />
-    <Folder Include="ZaloPay\" />
+    <Folder Include="Views\Site\" />
+    <Folder Include="Views\Subscribe\" />
+    <Folder Include="Views\Zalo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

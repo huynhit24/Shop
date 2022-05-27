@@ -518,6 +518,11 @@ namespace Shop.Controllers
             Session["GioHang"] = null;
         }
 
+        /* ZaloPay Test*/
+
+
+
+
         /*Thanh toán VNPAY && ZaloPay*/
 
         //Thanh toán VNPAY

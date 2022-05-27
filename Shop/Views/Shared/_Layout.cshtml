@@ -81,6 +81,73 @@
                 transform: scale(1.2);
                 z-index: 100;
             }
+
+
+        .header__search {
+            /* margin-top: 8px; */
+            flex: 1;
+            height: 40px;
+            border-radius: 2px;
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .header__search-input-wrap {
+            height: 100%;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Search history */
+        .header__search-history {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            width: calc(100% - 16px);
+            background-color: var(--white-color);
+            border-radius: 3px;
+            box-shadow: 0 1px 3px #666;
+            display: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .header__search-history-heading {
+            margin: 6px 12px;
+            font-size: 1.4rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .header__search-history-list {
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 6px 0 0;
+        }
+
+        .header__search-history-item {
+            height: 38px;
+            padding: 0 12px;
+        }
+
+            .header__search-history-item:last-child {
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+
+            .header__search-history-item:hover {
+                background-color: #fafafa;
+            }
+
+            .header__search-history-item a {
+                text-decoration: none;
+                font-size: 1.4rem;
+                color: var(--text-color);
+                line-height: 38px;
+                display: block;
+            }
     </style>
 </head>
 <body>
@@ -151,7 +218,6 @@
 
                                             <input name="SearchString" type="search" class="form-control border-dark" placeholder="Tìm kiếm sản phẩm..." required>
                                             <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
-
                                         </div>
                                     </div>
                                 }
