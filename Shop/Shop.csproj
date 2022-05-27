@@ -67,6 +67,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
@@ -4734,17 +4737,17 @@
     <Content Include="Views\Home\GetListAllLaptop.cshtml" />
     <Content Include="Views\GioHang\ThanhToanThatBai.cshtml" />
     <Content Include="Views\GioHang\BadRequestMoMo.cshtml" />
+    <Content Include="Views\Site\Index.cshtml" />
+    <Content Include="Views\QuickPay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Callback\" />
     <Folder Include="Views\Gateway\" />
     <Folder Include="Views\History\" />
-    <Folder Include="Views\QuickPay\" />
     <Folder Include="Views\Redirect\" />
     <Folder Include="Views\Refund\" />
     <Folder Include="Views\Report\" />
-    <Folder Include="Views\Site\" />
     <Folder Include="Views\Subscribe\" />
     <Folder Include="Views\Zalo\" />
   </ItemGroup>

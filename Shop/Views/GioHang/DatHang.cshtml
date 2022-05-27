@@ -170,11 +170,11 @@
                                 <a href="@Url.Action("PaymentMoMo")" class="btn btn-outline-danger border-3"> <img src="~/Content/images/logo-momo.png" alt="MoMo" width="30" height="30" /> Thanh toán Momo</a>
                             </td>
                         </tr>
-                        <tr style="height: 40px; margin-bottom: 12px;">
-                            <td style="font-weight: bold">
-                                <a href="/" class="btn btn-outline-primary border-3 text-center" style="margin-top: 10px;"> <img src="~/Content/images/zalopay.png" alt="VnPay" width="146" height="50" /> </a>
-                            </td>
-                        </tr>
+                        @*<tr style="height: 40px; margin-bottom: 12px;">
+                                <td style="font-weight: bold">
+                                    <a href="/" class="btn btn-outline-primary border-3 text-center" style="margin-top: 10px;"> <img src="~/Content/images/zalopay.png" alt="VnPay" width="146" height="50" /> </a>
+                                </td>
+                            </tr>*@
                         @*<tr style="height: 40px;">
                                 <td style="font-weight: bold">
                                     <a href="/" class="btn btn-outline-primary border-3"> <img src="~/Content/images/zalopay.png" alt="VnPay" width="146" height="50" /> </a>
@@ -194,27 +194,27 @@
                 </script>
                 <div id="paypal-button-container" class="text-center" style="margin-top: 10px;"></div>
                 <script>
-    paypal.Buttons({
-        createOrder: function (data, actions) {
-            // This function sets up the details of the transaction, including the amount and line item details.
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: @ViewBag.Tongtien
-                    }
-                }]
-            });
-        },
-        onApprove: function (data, actions) {
-            // This function captures the funds from the transaction.
-            return actions.order.capture().then(function (details) {
-                // This function shows a transaction success message to your buyer.
-
-                alert('Thanh toán Paypal thành công bởi ' + details.payer.name.given_name);
-            });
-        }
-    }).render('#paypal-button-container');
-//This function displays Smart Payment Buttons on your web page.
+                    paypal.Buttons({
+                        createOrder: function (data, actions) {
+                            var temp = @ViewBag.tongtien.ToString();
+                            // This function sets up the details of the transaction, including the amount and line item details.
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: temp
+                                    }
+                                }]
+                            });
+                        },
+                        onApprove: function (data, actions) {
+                            // This function captures the funds from the transaction.
+                            return actions.order.capture().then(function (details) {
+                                // This function shows a transaction success message to your buyer.
+                                alert('Transaction completed by ' + details.payer.name.given_name);
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                    //This function displays payment buttons on your web page.
                 </script>
                 <script>
                     function ExportToExcel(type, fn, dl) {
