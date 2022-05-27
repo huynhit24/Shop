@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Shop.VnPay.Controllers
+namespace Shop.ZaloPay.Controllers
 {
     public class RefundController : Controller
     {
