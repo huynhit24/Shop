@@ -7,7 +7,7 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Xóa</h2>
+        <h2>Xóa bài viết</h2>
 
         <h3>Bạn có muốn xóa bài viết này?</h3>
         <div>
@@ -54,14 +54,6 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayName("Nội dung")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.noidung)
-                </dd>
-
-                <dt>
                     @Html.DisplayName("Lượt xem")
                 </dt>
 
@@ -85,6 +77,14 @@
                     @Html.DisplayFor(model => model.xuatban)
                 </dd>
 
+                <dt>
+                    @Html.DisplayName("Nội dung")
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.noidung.ToString())
+                </dd>
+
             </dl>
 
             @using (Html.BeginForm())
@@ -92,7 +92,7 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
                     @Html.ActionLink("Quay lại", "Index", "TinTuc")
                 </div>
             }

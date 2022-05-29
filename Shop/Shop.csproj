@@ -2767,6 +2767,7 @@
     <Content Include="Content\css\all.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\custom_scrollbar.css" />
     <Content Include="Content\css\phonerang.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\styles.css" />

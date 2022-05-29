@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
-
+<link href="~/Content/css/custom_scrollbar.css" rel="stylesheet" />
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
         <h2>Xem thông tin bài viết</h2>
@@ -53,14 +53,6 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayName("Nội dung")
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.noidung)
-                </dd>
-
-                <dt>
                     @Html.DisplayName("Lượt xem")
                 </dt>
 
@@ -84,10 +76,25 @@
                     @Html.DisplayFor(model => model.xuatban)
                 </dd>
 
+                <dt>
+                    @Html.DisplayName("Nội dung")
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.noidung.ToString())
+                    @*<div class="scrollbar scrollbar-danger">
+                            <div class="force-overflow">
+                                @Html.Raw(Model.noidung.ToString())
+                            </div>
+                        </div>*@
+                </dd>
+
+
+
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.matin }) |
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.matin }) |
             @Html.ActionLink("Quay lại", "Index", "TinTuc")
         </p>
     </div>
