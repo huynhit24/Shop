@@ -7,15 +7,14 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa chi tiết đơn hàng</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có chắc chắc muốn xóa?</h3>
         <div>
-            <h4>ChiTietDonHang</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.DonHang.makh)
+                    @Html.DisplayName("Mã khách hàng")
                 </dt>
 
                 <dd>
@@ -23,7 +22,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                    @Html.DisplayName("Tên Laptop")
                 </dt>
 
                 <dd>
@@ -31,7 +30,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.soluong)
+                    @Html.DisplayName("Số lượng mua")
                 </dt>
 
                 <dd>
@@ -39,7 +38,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.dongia)
+                    @Html.DisplayName("Đơn giá bán")
                 </dt>
 
                 <dd>
@@ -54,7 +53,7 @@
 
                 <div class="form-actions no-color">
                     <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    @Html.ActionLink("Quay lại", "Index", "ChiTietDonHang")
                 </div>
             }
         </div>

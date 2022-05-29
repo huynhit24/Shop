@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Chi tiết Chủ đề bài viết</h2>
 
         <div>
-            <h4>ChuDe</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.tenchude)
+                    @Html.DisplayName("Tên chủ đề")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.slug)
+                    @Html.DisplayName("Slug")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinh)
+                    @Html.DisplayName("Hình")
                 </dt>
 
                 <dd>
@@ -41,7 +40,7 @@
         </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.machude }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "ChuDe")
         </p>
     </div>
 </div>

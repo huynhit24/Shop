@@ -7,15 +7,14 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa đơn hàng</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có chắc chắn muốn xóa đơn hàng này?</h3>
         <div>
-            <h4>DonHang</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    @Html.DisplayName("Email khách hàng")
                 </dt>
 
                 <dd>
@@ -23,7 +22,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.thanhtoan)
+                    @Html.DisplayName("Thanh toán")
                 </dt>
 
                 <dd>
@@ -31,7 +30,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.giaohang)
+                    @Html.DisplayName("Giao hàng")
                 </dt>
 
                 <dd>
@@ -39,7 +38,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaydat)
+                    @Html.DisplayName("Ngày đặt hàng")
                 </dt>
 
                 <dd>
@@ -47,7 +46,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaygiao)
+                    @Html.DisplayName("Ngày giao hàng")
                 </dt>
 
                 <dd>
@@ -62,7 +61,7 @@
 
                 <div class="form-actions no-color">
                     <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    @Html.ActionLink("Quay lại", "Index", "DonHang")
                 </div>
             }
         </div>

@@ -6,14 +6,13 @@
 }
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Thông tin hãng (thương hiệu)</h2>
 
         <div>
-            <h4>Hang</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.tenhang)
+                    @Html.DisplayName("Tên hãng")
                 </dt>
 
                 <dd>
@@ -21,7 +20,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinh)
+                    @Html.DisplayName("Banner hãng")
                 </dt>
 
                 <dd>
@@ -32,7 +31,7 @@
         </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.mahang }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "Hang")
         </p>
     </div>
 </div>
