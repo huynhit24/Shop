@@ -25,7 +25,7 @@
 </header>
 
 <div class="container-sm" style="margin-top: 50px;margin-bottom:50px;">
-    @using (Html.BeginForm("Export", "Report", FormMethod.Post, new { @id = "Export_Form" }))
+    @*@using (Html.BeginForm("Export", "Report", FormMethod.Post, new { @id = "Export_Form" }))
     {
         <input type="hidden" name="GridHtml">
         <input type="submit" id="btnSubmit" value="Export">
@@ -36,7 +36,7 @@
             <p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p>
             <p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p>
         </div>
-    </div>
+    </div>*@
     <table id="datatablesSimple" class="table table-bordered table-striped" style="margin-top: 20px;">
         <thead>
             <tr style="background-color: #189f09; color: white;">
@@ -221,10 +221,10 @@
     }
 </script>
 <script src="~/Scripts/detailview.js"></script>
-<script>
+@*<script>
     $(function () {
         $("#btnSubmit").click(function () {
             $("input[name='GridHtml']").val($("#Grid").html("<div class="text-center">< img src = "~/Content/images/iLaptop.png" alt = "Alternate Text" /><p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p><p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p></div >"));
         });
     });
-</script>
+</script>*@

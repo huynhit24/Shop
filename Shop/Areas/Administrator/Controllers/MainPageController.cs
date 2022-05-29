@@ -16,11 +16,11 @@ using System.Security.Claims;
 
 namespace Shop.Areas.Administrator.Controllers
 {
-    public class MainPageController : Controller
+    public class MainPageController : AccountController
     {
         // GET: Administrator/MainPage
         //DataModel db = new DataModel();
-        MyDataDataContext db = new MyDataDataContext();
+       /* MyDataDataContext db = new MyDataDataContext();
 
         private ApplicationDbContext db2 = new ApplicationDbContext();
 
@@ -36,14 +36,14 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 _signInManager = value;
             }
-        }
+        }*/
 
         // GET: Admin/adm_MainPage
-        public ActionResult Index()
+        public ActionResult Index() // đang dùng
         {
             if (Session["taikhoanadmin"] == null)
             {
-                return RedirectToAction("LoginAdmin", "MainPage");
+                return RedirectToAction("Login", "Account");
             }
             else
             {
@@ -51,13 +51,13 @@ namespace Shop.Areas.Administrator.Controllers
             }
         }
 
-        public ActionResult Error401()
+        public ActionResult Error401() // đang dùng
         {
             return View();
         }
 
         //----------------------------Login Admin-----------------------------
-        public bool AuthAdmin()
+        /*public bool AuthAdmin()
         {
             var user = db.AspNetUsers.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
@@ -68,7 +68,7 @@ namespace Shop.Areas.Administrator.Controllers
             if (userExist.RoleId != "1")
                 return false;
             return true;
-        }
+        }*/
 
         //---------------------------------------------------------------------
 
@@ -137,17 +137,18 @@ namespace Shop.Areas.Administrator.Controllers
             return View();
         }*/
 
+        #region LoginAdmin tạm thời không dùng nữa
         //
         // GET: /Account/Login
-        [AllowAnonymous]
+        /*[AllowAnonymous]
         public ActionResult LoginAdmin()
         {
             return View();
-        }
+        }*/
 
         //
         // POST: /Account/Login
-        [HttpPost]
+        /*[HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> LoginAdmin(LoginViewModel model)
@@ -177,12 +178,14 @@ namespace Shop.Areas.Administrator.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
-        }
+        }*/
+        #endregion
 
-        public ActionResult Logout()
+        public ActionResult Logout()// không dùng đến
         {
+            Session["TaiKhoan"] = null;
             Session["taikhoanadmin"] = null;
-            return RedirectToAction("LoginAdmin", "MainPage");
+            return RedirectToAction("Login", "Account", new { area = "" });
         }
     }
 }
