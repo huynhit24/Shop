@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem chi tiết Đánh giá</h2>
 
         <div>
-            <h4>DanhGia</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                    @Html.DisplayName("Tên Laptop")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ten)
+                    @Html.DisplayName("Tên người đánh giá")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.noidung)
+                    @Html.DisplayName("Nội dung đánh giá")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.vote)
+                    @Html.DisplayName("Vote")
                 </dt>
 
                 <dd>
@@ -46,7 +45,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaydanhgia)
+                    @Html.DisplayName("Ngày đanh giá")
                 </dt>
 
                 <dd>
@@ -54,7 +53,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.trangthai)
+                    @Html.DisplayName("Trạng thái")
                 </dt>
 
                 <dd>
@@ -65,7 +64,7 @@
         </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.madanhgia }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "DanhGia")
         </p>
     </div>
 </div>

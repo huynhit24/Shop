@@ -7,20 +7,19 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Edit</h2>
+        <h2>Cập nhật bình luận bài viết</h2>
 
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>BinhLuan</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.mabinhluan)
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Tên người bình luận", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
@@ -28,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.noidung, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.noidung, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
@@ -36,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.vote, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Vote", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.vote, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.vote, "", new { @class = "text-danger" })
@@ -44,7 +43,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ngaybinhluan, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Ngày bình luận", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ngaybinhluan, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ngaybinhluan, "", new { @class = "text-danger" })
@@ -52,7 +51,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.matin, "matin", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Mã bài viết", "matin", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("matin", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.matin, "", new { @class = "text-danger" })
@@ -60,7 +59,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.trangthai, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
                             @Html.EditorFor(model => model.trangthai)
@@ -78,7 +77,7 @@
         }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "BinhLuan")
         </div>
     </div>
 </div>

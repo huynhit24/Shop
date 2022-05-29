@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem thông tin bài viết</h2>
 
         <div>
-            <h4>TinTuc</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.ChuDe.tenchude)
+                    @Html.DisplayName("Tên chủ đề")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.tieude)
+                    @Html.DisplayName("Tiêu đề bài viết")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinhnen)
+                    @Html.DisplayName("Hình nền")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.tomtat)
+                    @Html.DisplayName("Tóm tắt")
                 </dt>
 
                 <dd>
@@ -46,7 +45,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.slug)
+                    @Html.DisplayName("Slug")
                 </dt>
 
                 <dd>
@@ -54,7 +53,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.noidung)
+                    @Html.DisplayName("Nội dung")
                 </dt>
 
                 <dd>
@@ -62,7 +61,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.luotxem)
+                    @Html.DisplayName("Lượt xem")
                 </dt>
 
                 <dd>
@@ -70,7 +69,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaycapnhat)
+                    @Html.DisplayName("Ngày cập nhật")
                 </dt>
 
                 <dd>
@@ -78,7 +77,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.xuatban)
+                    @Html.DisplayName("Xuât bản")
                 </dt>
 
                 <dd>
@@ -89,7 +88,7 @@
         </div>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.matin }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "TinTuc")
         </p>
     </div>
 </div>

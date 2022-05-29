@@ -7,15 +7,14 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có muốn xóa bài viết này?</h3>
         <div>
-            <h4>TinTuc</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.ChuDe.tenchude)
+                    @Html.DisplayName("Tên chủ đề")
                 </dt>
 
                 <dd>
@@ -23,7 +22,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.tieude)
+                    @Html.DisplayName("Tiêu đề bài viết")
                 </dt>
 
                 <dd>
@@ -31,7 +30,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinhnen)
+                    @Html.DisplayName("Hình nền")
                 </dt>
 
                 <dd>
@@ -39,7 +38,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.tomtat)
+                    @Html.DisplayName("Tóm tắt")
                 </dt>
 
                 <dd>
@@ -47,7 +46,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.slug)
+                    @Html.DisplayName("Slug")
                 </dt>
 
                 <dd>
@@ -55,7 +54,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.noidung)
+                    @Html.DisplayName("Nội dung")
                 </dt>
 
                 <dd>
@@ -63,7 +62,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.luotxem)
+                    @Html.DisplayName("Lượt xem")
                 </dt>
 
                 <dd>
@@ -71,7 +70,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaycapnhat)
+                    @Html.DisplayName("Ngày cập nhật")
                 </dt>
 
                 <dd>
@@ -79,7 +78,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.xuatban)
+                    @Html.DisplayName("Xuât bản")
                 </dt>
 
                 <dd>
@@ -94,7 +93,7 @@
 
                 <div class="form-actions no-color">
                     <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    @Html.ActionLink("Quay lại", "Index", "TinTuc")
                 </div>
             }
         </div>
