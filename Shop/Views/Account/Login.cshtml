@@ -20,6 +20,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <h4>Đăng nhập bằng email đã có</h4>
+                    <h1 class="display-4 fw-bolder">@ViewBag.thongbao</h1>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
@@ -57,12 +58,12 @@
                         </div>
                     </div>
                     @* <p>
-                            @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
-                        </p>*@
+                @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
+            </p>*@
                     @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>*@
                 }
             </section>
             <section id="socialLoginForm">

@@ -37,9 +37,27 @@ namespace Shop.Controllers
             if (Session["TaiKhoan"] != null)
             {
                 AspNetUser kh = (AspNetUser)Session["TaiKhoan"];
+                //AspNetUser ad = (AspNetUser)Session["taikhoanadmin"];
                 /*List<DonHang> list = kh.DonHangs.ToList();*/
                 List<DonHang> list = data.DonHangs.Where(n => n.makh == kh.Id).ToList();
+                if (list == null)
+                {
+                    return RedirectToAction("GioHang", "GioHang");
+                }
                 return View(list);
+                /*try
+                {
+                    List<DonHang> list = data.DonHangs.Where(n => n.makh == kh.Id || n.makh == ad.Id).ToList();
+                    if (list == null)
+                    {
+                        return RedirectToAction("GioHang", "GioHang");
+                    }
+                    return View(list);
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("GioHang", "GioHang");
+                }*/
             }
             else
             {
