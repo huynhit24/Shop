@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using BotDetect.Web.Mvc;
+using PagedList;
 using Shop.Common;
 using Shop.Models;
 using System;
@@ -100,6 +101,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidationActionFilter("CaptchaCode", "commentCaptcha", "Mã Captcha không đúng!")]
         public ActionResult NhanXet(FormCollection collection, DanhGia dg)
         {
             var ten = collection["ten"];
