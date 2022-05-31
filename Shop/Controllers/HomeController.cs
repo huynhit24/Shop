@@ -173,6 +173,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidation("CaptchaCodeAD", "quangcaoCaptcha", "Mã Captcha không đúng!")]
         public ActionResult QuangCao(FormCollection collection, QuangCao qc)
         {
             var tenqc = collection["tenqc"];
@@ -181,19 +182,41 @@ namespace Shop.Controllers
             var link = collection["link"];
             var ngaybatdau = String.Format("{0:MM/dd/yyyy}", collection["ngaybatdau"]);
             var ngayhethan = String.Format("{0:MM/dd/yyyy}", collection["ngayhethan"]);
+            var captchaCode = collection["CaptchaCodeAD"];
 
-            qc.tenqc = tenqc;
-            qc.tencongty = tencongty;
-            qc.hinhnen = hinhnen;
-            qc.link = link;
+            bool validationQuangcao = tenqc == null || tencongty == null || link == null || ngaybatdau == null || ngayhethan == null || tenqc.Equals("") || tencongty.Equals("") || link.Equals("") || ngaybatdau.Equals("") || ngayhethan.Equals("");
+            if (!ModelState.IsValid)
+            {
+                // TODO: Captcha validation failed, show error message
+                if (validationQuangcao)
+                {
+                    ViewBag.quangcaoContentError = "Bạn chưa điền đủ thông tin liên hệ quảng cáo! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền đủ thông tin liên hệ quảng cáo! 🆘🆘🆘!");
+                    return RedirectToAction("QuangCao", "Home");
+                }
+                if (captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.quangcaoContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền Captcha! 🆘🆘🆘");
+                    return RedirectToAction("QuangCao", "Home");
+                }
+            }
+            else
+            {
+                qc.tenqc = tenqc;
+                qc.tencongty = tencongty;
+                qc.hinhnen = hinhnen;
+                qc.link = link;
 
-            qc.ngaybatdau = DateTime.Parse(ngaybatdau);
-            qc.ngayhethan = DateTime.Parse(ngayhethan);
-            qc.trangthai = false;
+                qc.ngaybatdau = DateTime.Parse(ngaybatdau);
+                qc.ngayhethan = DateTime.Parse(ngayhethan);
+                qc.trangthai = false;
 
-            data.QuangCaos.InsertOnSubmit(qc);
-            data.SubmitChanges();
-            return RedirectToAction("Index");
+                data.QuangCaos.InsertOnSubmit(qc);
+                data.SubmitChanges();
+            }
+            
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Details(int id)
