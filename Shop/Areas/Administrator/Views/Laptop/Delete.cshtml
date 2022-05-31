@@ -7,11 +7,10 @@
 
 <div class="container container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa Laptop</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có muốn xóa Laptop này khỏi danh sách?</h3>
         <div>
-            <h4>Laptop</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
@@ -52,7 +51,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.mota)
+                    @Html.Raw(Model.mota.ToString())
                 </dd>
 
                 <dt>
@@ -142,8 +141,8 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "Laptop")
                 </div>
             }
         </div>

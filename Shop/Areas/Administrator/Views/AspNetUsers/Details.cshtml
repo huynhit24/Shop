@@ -7,10 +7,9 @@
 
 <divk class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem thông tin tài khoản</h2>
 
         <div>
-            <h4>AspNetUser</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
@@ -102,7 +101,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaysinh)
+                    @Html.DisplayName("Ngày sinh")
                 </dt>
 
                 <dd>
@@ -110,7 +109,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.profile)
+                    @Html.DisplayName("Profile cá nhân (nếu có)")
                 </dt>
 
                 <dd>
@@ -118,7 +117,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.avatar)
+                    @Html.DisplayName("Avatar")
                 </dt>
 
                 <dd>
@@ -126,7 +125,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hoten)
+                    @Html.DisplayName("Họ tên")
                 </dt>
 
                 <dd>
@@ -134,7 +133,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.diachi)
+                    @Html.DisplayName("Địa chỉ")
                 </dt>
 
                 <dd>
@@ -144,8 +143,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit" , new { id = Model.Id }) |
+            @Html.ActionLink("Quay lại", "Index", "AspNetUsers")
         </p>
     </div>
 </divk>

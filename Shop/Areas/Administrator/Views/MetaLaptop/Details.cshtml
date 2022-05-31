@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem nội dung Meta Laptop</h2>
 
         <div>
-            <h4>MetaLaptop</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                    @Html.DisplayName("Tên Laptop")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.keymeta)
+                    @Html.DisplayName("Mã Key")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.valuemeta)
+                    @Html.DisplayName("Giá trị")
                 </dt>
 
                 <dd>
@@ -40,8 +39,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.mameta }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.mameta }) |
+            @Html.ActionLink("Quay lại", "Index", "MetaLaptop")
         </p>
     </div>
 </div>

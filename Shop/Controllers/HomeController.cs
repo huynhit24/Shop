@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using BotDetect.Web.Mvc;
+using PagedList;
 using Shop.Common;
 using Shop.Models;
 using System;
@@ -37,9 +38,27 @@ namespace Shop.Controllers
             if (Session["TaiKhoan"] != null)
             {
                 AspNetUser kh = (AspNetUser)Session["TaiKhoan"];
+                //AspNetUser ad = (AspNetUser)Session["taikhoanadmin"];
                 /*List<DonHang> list = kh.DonHangs.ToList();*/
                 List<DonHang> list = data.DonHangs.Where(n => n.makh == kh.Id).ToList();
+                if (list == null)
+                {
+                    return RedirectToAction("GioHang", "GioHang");
+                }
                 return View(list);
+                /*try
+                {
+                    List<DonHang> list = data.DonHangs.Where(n => n.makh == kh.Id || n.makh == ad.Id).ToList();
+                    if (list == null)
+                    {
+                        return RedirectToAction("GioHang", "GioHang");
+                    }
+                    return View(list);
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("GioHang", "GioHang");
+                }*/
             }
             else
             {
@@ -54,6 +73,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidationActionFilter("CaptchaCodeID", "contactCaptcha", "Mã Captcha không đúng!")]
         public ActionResult Contact(FormCollection collection, LienHe lh)
         {
             var hoten = collection["hoten"];
@@ -61,18 +81,38 @@ namespace Shop.Controllers
             var dienthoai = collection["dienthoai"];
             var website = collection["website"];
             var noidung = collection["noidung"];
+            var captchaCode = collection["CaptchaCodeID"];
             /*var trangthai = collection["trangthai"];*/
+            bool validationContact = hoten == null || noidung == null || hoten.Equals("") || noidung.Equals("");
+            if (!ModelState.IsValid)
+            {
+                if (validationContact)
+                {
+                    ViewBag.contactContentError = "Bạn chưa điền đủ họ tên và nội dung! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCodeID", "Bạn chưa điền đủ thông tin liên hệ (bắt buộc 'Họ tên' && 'Nội dung')!");
+                    return RedirectToAction("Contact", "Home");
+                }
+                if (captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCodeID", "Bạn chưa điền Captcha! 🆘🆘🆘");
+                    return RedirectToAction("Contact", "Home");
+                }
+            }
+            else
+            {
+                lh.hoten = hoten;
+                lh.email = email;
+                lh.dienthoai = dienthoai;
+                lh.website = website;
+                lh.noidung = noidung;
+                lh.trangthai = true;
 
-            lh.hoten = hoten;
-            lh.email = email;
-            lh.dienthoai = dienthoai;
-            lh.website = website;
-            lh.noidung = noidung;
-            lh.trangthai = true;
-
-            data.LienHes.InsertOnSubmit(lh);
-            data.SubmitChanges();
-            return RedirectToAction("Index");
+                data.LienHes.InsertOnSubmit(lh);
+                data.SubmitChanges();
+                MvcCaptcha.ResetCaptcha("contactCaptcha");
+            }
+            return RedirectToAction("Index","Home");
         }
 
         [HttpGet]
@@ -82,22 +122,46 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidation("CaptchaCode", "commentCaptcha", "Mã Captcha không đúng!")]
         public ActionResult NhanXet(FormCollection collection, DanhGia dg)
         {
             var ten = collection["ten"];
             var noidung = collection["noidung"];
             var vote = collection["vote"];
             var malaptop = CommonFields.id;
+            var captchaCode = collection["CaptchaCode"];
             /*var trangthai = collection["trangthai"];*/
-            dg.ten = ten;
-            dg.noidung = noidung;
-            /*dg.vote = Convert.ToInt32(vote);*/
-            dg.vote = Convert.ToInt32(vote);
-            dg.ngaydanhgia = DateTime.Now;
-            dg.malaptop = malaptop;
-            dg.trangthai = true;
-            data.DanhGias.InsertOnSubmit(dg);
-            data.SubmitChanges();
+            bool validationComment = ten == null || noidung == null || vote == null || ten.Equals("") || noidung.Equals("") || vote.Equals("");
+            if (!ModelState.IsValid)
+            {
+                // TODO: Captcha validation failed, show error message
+                if (validationComment)
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền đủ thông tin hoặc chưa vote! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền đủ thông tin hoặc chưa vote! 🆘🆘🆘!");
+                    return PartialView();
+                }
+                if (captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền Captcha! 🆘🆘🆘");
+                    return PartialView();
+                }
+            }
+            else
+            {
+                dg.ten = ten;
+                dg.noidung = noidung;
+                /*dg.vote = Convert.ToInt32(vote);*/
+                dg.vote = Convert.ToInt32(vote);
+                dg.ngaydanhgia = DateTime.Now;
+                dg.malaptop = malaptop;
+                dg.trangthai = true;
+                data.DanhGias.InsertOnSubmit(dg);
+                data.SubmitChanges();
+                MvcCaptcha.ResetCaptcha("commentCaptcha");
+            }
+
             /*return RedirectToAction("Details");*/
             return PartialView();
         }
@@ -109,6 +173,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidation("CaptchaCodeAD", "quangcaoCaptcha", "Mã Captcha không đúng!")]
         public ActionResult QuangCao(FormCollection collection, QuangCao qc)
         {
             var tenqc = collection["tenqc"];
@@ -117,19 +182,41 @@ namespace Shop.Controllers
             var link = collection["link"];
             var ngaybatdau = String.Format("{0:MM/dd/yyyy}", collection["ngaybatdau"]);
             var ngayhethan = String.Format("{0:MM/dd/yyyy}", collection["ngayhethan"]);
+            var captchaCode = collection["CaptchaCodeAD"];
 
-            qc.tenqc = tenqc;
-            qc.tencongty = tencongty;
-            qc.hinhnen = hinhnen;
-            qc.link = link;
+            bool validationQuangcao = tenqc == null || tencongty == null || link == null || ngaybatdau == null || ngayhethan == null || tenqc.Equals("") || tencongty.Equals("") || link.Equals("") || ngaybatdau.Equals("") || ngayhethan.Equals("");
+            if (!ModelState.IsValid)
+            {
+                // TODO: Captcha validation failed, show error message
+                if (validationQuangcao)
+                {
+                    ViewBag.quangcaoContentError = "Bạn chưa điền đủ thông tin liên hệ quảng cáo! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền đủ thông tin liên hệ quảng cáo! 🆘🆘🆘!");
+                    return RedirectToAction("QuangCao", "Home");
+                }
+                if (captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.quangcaoContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền Captcha! 🆘🆘🆘");
+                    return RedirectToAction("QuangCao", "Home");
+                }
+            }
+            else
+            {
+                qc.tenqc = tenqc;
+                qc.tencongty = tencongty;
+                qc.hinhnen = hinhnen;
+                qc.link = link;
 
-            qc.ngaybatdau = DateTime.Parse(ngaybatdau);
-            qc.ngayhethan = DateTime.Parse(ngayhethan);
-            qc.trangthai = false;
+                qc.ngaybatdau = DateTime.Parse(ngaybatdau);
+                qc.ngayhethan = DateTime.Parse(ngayhethan);
+                qc.trangthai = false;
 
-            data.QuangCaos.InsertOnSubmit(qc);
-            data.SubmitChanges();
-            return RedirectToAction("Index");
+                data.QuangCaos.InsertOnSubmit(qc);
+                data.SubmitChanges();
+            }
+            
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Details(int id)

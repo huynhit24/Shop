@@ -13,6 +13,10 @@ namespace Shop
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // BotDetect requests must not be routed
+            routes.IgnoreRoute("{*botdetect}",
+              new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
+
             routes.MapRoute(
                 name: "Home Page",
                 url: "trang-chu",
@@ -47,6 +51,7 @@ namespace Shop
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                //,namespaces: new[] { "Shop.Controllers" } //thêm namespace phân biệt Area Admin với trang User
             );
         }
     }

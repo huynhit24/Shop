@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem chi tiết đơn hàng</h2>
 
         <div>
-            <h4>ChiTietDonHang</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.DonHang.makh)
+                    @Html.DisplayName("Mã khách hàng")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Laptop.tenlaptop)
+                    @Html.DisplayName("Tên Laptop")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.soluong)
+                    @Html.DisplayName("Số lượng mua")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.dongia)
+                    @Html.DisplayName("Đơn giá bán")
                 </dt>
 
                 <dd>
@@ -48,8 +47,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Quay lại", "Index", "ChiTietDonHang")
         </p>
     </div>
 </div>

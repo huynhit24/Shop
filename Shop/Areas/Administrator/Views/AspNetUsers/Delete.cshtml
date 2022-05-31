@@ -7,11 +7,10 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa tài khoản đăng nhập</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có chắc chắn muốn xóa tài khoản này?</h3>
         <div>
-            <h4>AspNetUser</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
@@ -103,7 +102,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaysinh)
+                    @Html.DisplayName("Ngày sinh")
                 </dt>
 
                 <dd>
@@ -111,7 +110,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.profile)
+                    @Html.DisplayName("Profile cá nhân (nếu có)")
                 </dt>
 
                 <dd>
@@ -119,7 +118,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.avatar)
+                    @Html.DisplayName("Avatar")
                 </dt>
 
                 <dd>
@@ -127,7 +126,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hoten)
+                    @Html.DisplayName("Họ tên")
                 </dt>
 
                 <dd>
@@ -135,7 +134,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.diachi)
+                    @Html.DisplayName("Địa chỉ")
                 </dt>
 
                 <dd>
@@ -149,8 +148,8 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "AspNetUsers")
                 </div>
             }
         </div>

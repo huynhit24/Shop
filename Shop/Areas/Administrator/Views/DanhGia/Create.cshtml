@@ -7,18 +7,17 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Create</h2>
+        <h2>Tạo mới Đánh giá</h2>
 
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>DanhGia</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ten, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Tên người đánh giá", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ten, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
@@ -26,7 +25,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.noidung, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.noidung, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
@@ -34,7 +33,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.vote, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Vote", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.vote, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.vote, "", new { @class = "text-danger" })
@@ -42,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ngaydanhgia, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Ngày đánh giá", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.ngaydanhgia, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.ngaydanhgia, "", new { @class = "text-danger" })
@@ -50,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.malaptop, "malaptop", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Mã Laptop", "malaptop", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("malaptop", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.malaptop, "", new { @class = "text-danger" })
@@ -58,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.trangthai, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
                             @Html.EditorFor(model => model.trangthai)
@@ -76,7 +75,7 @@
         }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "DanhGia")
         </div>
     </div>
 </div>

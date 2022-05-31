@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem thông tin Liên hệ</h2>
 
         <div>
-            <h4>LienHe</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.hoten)
+                    @Html.DisplayName("Tên người liên hệ")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.email)
+                    @Html.DisplayName("Email")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.dienthoai)
+                    @Html.DisplayName("Điện thoại")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.website)
+                    @Html.DisplayName("Website")
                 </dt>
 
                 <dd>
@@ -46,15 +45,15 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.noidung)
+                    @Html.DisplayName("Nội dung")
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.noidung)
+                    @Html.Raw(Model.noidung.ToString())
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.trangthai)
+                    @Html.DisplayName("Trạng thái")
                 </dt>
 
                 <dd>
@@ -64,8 +63,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.malienhe }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.malienhe }) |
+            @Html.ActionLink("Quay lại", "Index", "LienHe")
         </p>
     </div>
 </div>

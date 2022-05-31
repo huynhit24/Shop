@@ -7,15 +7,14 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa bình luận bài viết</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có chắc chắn muốn xóa nó hay không?</h3>
         <div>
-            <h4>BinhLuan</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.TinTuc.tieude)
+                    @Html.DisplayName("Tiêu đề")
                 </dt>
 
                 <dd>
@@ -23,7 +22,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ten)
+                    @Html.DisplayName("Tên người bình luận")
                 </dt>
 
                 <dd>
@@ -31,7 +30,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.noidung)
+                    @Html.DisplayName("Nội dung")
                 </dt>
 
                 <dd>
@@ -39,7 +38,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.vote)
+                    @Html.DisplayName("Vote")
                 </dt>
 
                 <dd>
@@ -47,7 +46,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaybinhluan)
+                    @Html.DisplayName("Ngày bình luận")
                 </dt>
 
                 <dd>
@@ -55,7 +54,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.trangthai)
+                    @Html.DisplayName("Trạng thái")
                 </dt>
 
                 <dd>
@@ -69,8 +68,8 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "BinhLuan")
                 </div>
             }
         </div>

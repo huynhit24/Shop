@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem chi tiết bình luận</h2>
 
         <div>
-            <h4>BinhLuan</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.TinTuc.tieude)
+                    @Html.DisplayName("Tiêu đề")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ten)
+                    @Html.DisplayName("Tên người bình luận")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.noidung)
+                    @Html.DisplayName("Nội dung")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.vote)
+                    @Html.DisplayName("Vote")
                 </dt>
 
                 <dd>
@@ -46,7 +45,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaybinhluan)
+                    @Html.DisplayName("Ngày bình luận")
                 </dt>
 
                 <dd>
@@ -54,7 +53,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.trangthai)
+                    @Html.DisplayName("Trạng thái")
                 </dt>
 
                 <dd>
@@ -64,8 +63,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.mabinhluan }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.mabinhluan }) |
+            @Html.ActionLink("Quay lại", "Index", "BinhLuan")
         </p>
     </div>
 </div>

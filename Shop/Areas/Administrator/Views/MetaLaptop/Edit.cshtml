@@ -7,20 +7,19 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Edit</h2>
+        <h2>Cập nhật Meta Laptop</h2>
 
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>MetaLaptop</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.mameta)
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.keymeta, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Mã Key", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.keymeta, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.keymeta, "", new { @class = "text-danger" })
@@ -28,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.valuemeta, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Giá trị", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.valuemeta, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.valuemeta, "", new { @class = "text-danger" })
@@ -36,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.malaptop, "malaptop", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Mã Laptop", "malaptop", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("malaptop", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.malaptop, "", new { @class = "text-danger" })
@@ -45,14 +44,14 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
                     </div>
                 </div>
             </div>
         }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "MetaLaptop")
         </div>
     </div>
 </div>

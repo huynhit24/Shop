@@ -7,18 +7,17 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Create</h2>
+        <h2>Tạo quảng cáo mới</h2>
 
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>QuangCao</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.tenqc, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Tên quảng cáo", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.tenqc, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.tenqc, "", new { @class = "text-danger" })
@@ -26,7 +25,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.tencongty, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Tên công ty", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.tencongty, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.tencongty, "", new { @class = "text-danger" })
@@ -34,7 +33,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.hinhnen, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Banner quảng cáo", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.hinhnen, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.hinhnen, "", new { @class = "text-danger" })
@@ -42,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Link", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
@@ -50,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ngaybatdau, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Ngày bắt đầu", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.ngaybatdau, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.ngaybatdau, "", new { @class = "text-danger" })
@@ -58,7 +57,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ngayhethan, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Ngày hết hạn", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.ngayhethan, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                         @Html.ValidationMessageFor(model => model.ngayhethan, "", new { @class = "text-danger" })
@@ -66,7 +65,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.trangthai, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
                             @Html.EditorFor(model => model.trangthai)
@@ -77,14 +76,14 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <input type="submit" value="Tạo mới" class="btn btn-success" />
                     </div>
                 </div>
             </div>
         }
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Quay lại", "Index", "QuangCao")
         </div>
     </div>
 </div>

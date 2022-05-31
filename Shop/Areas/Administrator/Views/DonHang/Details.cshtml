@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem thông tin đơn hàng</h2>
 
         <div>
-            <h4>DonHang</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    @Html.DisplayName("Email khách hàng")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.thanhtoan)
+                    @Html.DisplayName("Thanh toán")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.giaohang)
+                    @Html.DisplayName("Giao hàng")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaydat)
+                    @Html.DisplayName("Ngày đặt hàng")
                 </dt>
 
                 <dd>
@@ -46,7 +45,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaygiao)
+                    @Html.DisplayName("Ngày giao hàng")
                 </dt>
 
                 <dd>
@@ -56,8 +55,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.madon }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |
+            @Html.ActionLink("Quay lại", "Index", "DonHang")
         </p>
     </div>
 </div>

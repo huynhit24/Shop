@@ -7,14 +7,13 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Details</h2>
+        <h2>Xem chi tiết quảng cáo</h2>
 
         <div>
-            <h4>QuangCao</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.tenqc)
+                    @Html.DisplayName("Tên quảng cáo")
                 </dt>
 
                 <dd>
@@ -22,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.tencongty)
+                    @Html.DisplayName("Tên công ty")
                 </dt>
 
                 <dd>
@@ -30,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinhnen)
+                    @Html.DisplayName("Hình nền")
                 </dt>
 
                 <dd>
@@ -38,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.link)
+                    @Html.DisplayName("Link")
                 </dt>
 
                 <dd>
@@ -46,7 +45,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaybatdau)
+                    @Html.DisplayName("Ngày bắt đầu")
                 </dt>
 
                 <dd>
@@ -54,7 +53,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngayhethan)
+                    @Html.DisplayName("Ngày hết hạn")
                 </dt>
 
                 <dd>
@@ -62,7 +61,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.trangthai)
+                    @Html.DisplayName("Trạng thái")
                 </dt>
 
                 <dd>
@@ -72,8 +71,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.maqc }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.maqc }) |
+            @Html.ActionLink("Quay lại", "Index", "QuangCao")
         </p>
     </div>
 </div>

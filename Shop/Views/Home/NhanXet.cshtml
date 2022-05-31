@@ -1,11 +1,21 @@
 ﻿@model Shop.Models.DanhGia
 
+<!-- Captcha -->
+@using BotDetect.Web.Mvc
+@using BotDetect.Web.UI
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+@{
+    MvcCaptcha commentCaptcha = new MvcCaptcha("commentCaptcha");
+    commentCaptcha.UserInputID = "CaptchaCode";
+}
+
 @using Shop.Common
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!-- ValidationSummary từ true thành false, ban đầu nó là true-->
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
     <div class="mb-3">
         <textarea name="ten" class="form-control" placeholder="Họ tên..."></textarea>
@@ -51,6 +61,12 @@
             <input type="radio" value="1" name="vote" id="rating-1" checked><label for="rating-1"></label>
         </div>
     </div>
+
+    <div class="mb-3">
+        @Html.Captcha(commentCaptcha)
+        @Html.TextBox("CaptchaCode")
+    </div>
+
     <div class="mb-3">
         <button type="submit" class="btn btn-outline-dark">Gửi</button>
     </div>

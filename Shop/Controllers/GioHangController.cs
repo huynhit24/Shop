@@ -131,6 +131,7 @@ namespace Shop.Controllers
         {
             if (Session["TaiKhoan"] == null || Session["TaiKhoan"].ToString() == "")
             {
+                ViewBag.thongbao = "Bạn phải đăng nhập tài khoản khách mua hàng!";
                 return RedirectToAction("Login", "Account");
             }
             if (Session["GioHang"] == null)
@@ -202,7 +203,7 @@ namespace Shop.Controllers
 
 
             new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
-            //new MailHelper().SendEmail(toEmail, "Xác nhận đặt mua laptop tại iLaptop", content);
+            new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
 
             //End
 
@@ -610,5 +611,9 @@ namespace Shop.Controllers
 
             return View();
         }*/
+
+        /* PayPal Test*/
+
+
     }
 }

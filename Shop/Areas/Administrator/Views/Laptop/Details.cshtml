@@ -13,7 +13,7 @@
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Hang.tenhang)
+                    @Html.DisplayName("Thương hiệu")
                 </dt>
 
                 <dd>
@@ -21,7 +21,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.NhuCau.tennhucau)
+                    @Html.DisplayName("Nhu cầu sử dụng")
                 </dt>
 
                 <dd>
@@ -29,7 +29,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.tenlaptop)
+                    @Html.DisplayName("Tên Laptop")
                 </dt>
 
                 <dd>
@@ -37,7 +37,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.giaban)
+                    @Html.DisplayName("Giá bán")
                 </dt>
 
                 <dd>
@@ -45,15 +45,15 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.mota)
+                    @Html.DisplayName("Mô tả")
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.mota)
+                    @Html.Raw(Model.mota.ToString())
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinh)
+                    @Html.DisplayName("Ảnh minh họa")
                 </dt>
 
                 <dd>
@@ -61,7 +61,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.cpu)
+                    @Html.DisplayName("CPU")
                 </dt>
 
                 <dd>
@@ -69,7 +69,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.gpu)
+                    @Html.DisplayName("GPU")
                 </dt>
 
                 <dd>
@@ -77,7 +77,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ram)
+                    @Html.DisplayName("RAM")
                 </dt>
 
                 <dd>
@@ -85,7 +85,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hardware)
+                    @Html.DisplayName("Hardware")
                 </dt>
 
                 <dd>
@@ -93,7 +93,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.manhinh)
+                    @Html.DisplayName("Màn hình")
                 </dt>
 
                 <dd>
@@ -101,7 +101,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.ngaycapnhat)
+                    @Html.DisplayName("Ngày cập nhật")
                 </dt>
 
                 <dd>
@@ -109,7 +109,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.soluongton)
+                    @Html.DisplayName("Số lượng tồn")
                 </dt>
 
                 <dd>
@@ -117,7 +117,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.pin)
+                    @Html.DisplayName("PIN Laptop")
                 </dt>
 
                 <dd>
@@ -125,7 +125,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.trangthai)
+                    @Html.DisplayName("Trạng thái")
                 </dt>
 
                 <dd>
@@ -135,8 +135,8 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.malaptop }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.malaptop }) |
+            @Html.ActionLink("Quay lại", "Index", "Laptop")
         </p>
     </div>
 </div>

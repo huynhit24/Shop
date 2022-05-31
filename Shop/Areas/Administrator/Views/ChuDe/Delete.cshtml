@@ -7,15 +7,14 @@
 
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Delete</h2>
+        <h2>Xóa Chủ đề bài viết</h2>
 
-        <h3>Are you sure you want to delete this?</h3>
+        <h3>Bạn có chắc chắn muốn xóa?</h3>
         <div>
-            <h4>ChuDe</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.tenchude)
+                    @Html.DisplayName("Ten chủ đề")
                 </dt>
 
                 <dd>
@@ -23,7 +22,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.slug)
+                   @Html.DisplayName("Slug")
                 </dt>
 
                 <dd>
@@ -31,7 +30,7 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.hinh)
+                    @Html.DisplayName("Hình")
                 </dt>
 
                 <dd>
@@ -45,8 +44,8 @@
                 @Html.AntiForgeryToken()
 
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    @Html.ActionLink("Back to List", "Index")
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "ChuDe")
                 </div>
             }
         </div>

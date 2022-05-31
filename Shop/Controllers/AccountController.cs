@@ -23,7 +23,7 @@ namespace Shop.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +35,9 @@ namespace Shop.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -52,6 +52,21 @@ namespace Shop.Controllers
                 _userManager = value;
             }
         }
+
+        //----------------------------Login Admin-----------------------------
+        public bool AuthAdmin(AspNetUser checkUser)
+        {
+            var user = context.AspNetUsers.FirstOrDefault(u => u.UserName == checkUser.UserName);
+            if (user == null)
+                return false;
+            var userExist = user.AspNetUserRoles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
+        }
+
 
         //
         // GET: /Account/Login
@@ -81,14 +96,22 @@ namespace Shop.Controllers
             {
                 case SignInStatus.Success:
                     {
-                        var kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
-                        if (kh.LockoutEnabled == false)
+                        AspNetUser kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
+                        if (AuthAdmin(kh) == true)
                         {
-                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                            return View("Lockout");
+                            Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            return RedirectToAction("Index", "Administrator/MainPage");
                         }
-                        Session["TaiKhoan"] = kh;// gán kh vào session
-                        return RedirectToLocal(returnUrl); 
+                        else
+                        {
+                            if (kh.LockoutEnabled == false)
+                            {
+                                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                return View("Lockout");
+                            }
+                            Session["TaiKhoan"] = kh;// gán kh vào session
+                            return RedirectToLocal(returnUrl);
+                        }
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -130,7 +153,7 @@ namespace Shop.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -165,8 +188,8 @@ namespace Shop.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -345,13 +368,21 @@ namespace Shop.Controllers
                 case SignInStatus.Success:
                     {
                         var kh = context.AspNetUsers.Where(p => p.Email == loginInfo.Email).FirstOrDefault();
-                        if (kh.LockoutEnabled == false)
+                        if (AuthAdmin(kh) == true)
                         {
-                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                            return View("Lockout");
+                            Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            return RedirectToAction("Index", "Administrator/MainPage");
                         }
-                        Session["TaiKhoan"] = kh;// gán kh vào session
-                        return RedirectToLocal(returnUrl);
+                        else
+                        {
+                            if (kh.LockoutEnabled == false)
+                            {
+                                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                return View("Lockout");
+                            }
+                            Session["TaiKhoan"] = kh;// gán kh vào session
+                            return RedirectToLocal(returnUrl);
+                        }                   
                     }
                 //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -412,6 +443,8 @@ namespace Shop.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session["taikhoanadmin"] = null;
+            Session["TaiKhoan"] = null;
             return RedirectToAction("Index", "Home");
         }
 

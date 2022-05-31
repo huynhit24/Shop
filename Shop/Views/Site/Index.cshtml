@@ -1,0 +1,64 @@
+﻿<div class="container mt-5">
+    <h3 class="text-center text-primary my-4 font-weight-bold">QRCode / Mobile Web to App</h3>
+    <form action="/Site/Post" method="post">
+        @if (Session["orderurl"] != null)
+        {
+            <div id="qrcode" class="d-flex align-items-center justify-content-center">
+                <div id="qrcontainer" class="text-center">
+                    <img id="qrcode" class="border rounded" src="@Session["QRCodeBase64Image"]" />
+                    <p class="mt-3">
+                        <a id="web2app-link" href="@Session["orderurl"]">
+                            <small>Mở link này trên mobile để test Mobile Web To App</small>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            Session.Remove("QRCodeBase64Images");
+            Session.Remove("orderurl");
+        }
+        <div class="form-group">
+            <label for="description">Mô tả</label>
+            <textarea type="text" class="form-control" name="description" placeholder="Nhập mô tả"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Số tiền <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" name="amount" placeholder="Nhập số tiền" value="1000">
+            <small class="form-text text-muted">Số tiền tối thiểu là 1000 VNĐ</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Thanh toán</button>
+    </form>
+</div>
+
+@section scripts
+{
+    @if (Session["apptransid"] != null)
+    {
+        <script>
+        // long polling
+        $.ajax({
+          dataType: 'json',
+          url: '/Subscribe?apptransid=@Session["apptransid"]',
+          timeout: 1200000, // 20 minutes
+          success: function (data) {
+            console.log(data);
+            if (data != null) {
+              alert('Thanh toán thành công!');
+            }
+            else {
+              alert('Thanh toán thất bại!');
+            }
+            $('#qrcode').remove();
+          },
+          error: function (e, textStatus) {
+            console.log(textStatus);
+            if (textStatus === 'timeout') {
+              alert('Hết thời gian giao dịch!');
+              $('#qrcode').remove();
+            }
+          }
+        });
+        </script>
+
+        Session.Remove("apptransid");
+    }
+}
