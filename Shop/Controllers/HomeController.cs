@@ -111,33 +111,35 @@ namespace Shop.Controllers
             var captchaCode = collection["CaptchaCode"];
             /*var trangthai = collection["trangthai"];*/
             bool validationComment = ten == null || noidung == null || vote == null || ten.Equals("") || noidung.Equals("") || vote.Equals("");
-            if (validationComment)
+            if (!ModelState.IsValid)
             {
-                ViewBag.commentContentError = "Bạn chưa điền đủ thông tin hoặc chưa vote! 🆘🆘🆘";
-                MvcCaptcha.ResetCaptcha("commentCaptcha");
+                // TODO: Captcha validation failed, show error message
+                if (validationComment)
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền đủ thông tin hoặc chưa vote! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền đủ thông tin hoặc chưa vote! 🆘🆘🆘!");
+                    return PartialView();
+                }
+                if (captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCode", "Bạn chưa điền Captcha! 🆘🆘🆘");
+                    return PartialView();
+                }
             }
             else
             {
-                if(captchaCode == null || captchaCode.Equals(""))
-                {
-                    ViewBag.commentContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
-                    MvcCaptcha.ResetCaptcha("commentCaptcha");
-                }
-                else
-                {
-                    dg.ten = ten;
-                    dg.noidung = noidung;
-                    /*dg.vote = Convert.ToInt32(vote);*/
-                    dg.vote = Convert.ToInt32(vote);
-                    dg.ngaydanhgia = DateTime.Now;
-                    dg.malaptop = malaptop;
-                    dg.trangthai = true;
-                    data.DanhGias.InsertOnSubmit(dg);
-                    data.SubmitChanges();
-                    MvcCaptcha.ResetCaptcha("commentCaptcha");
-                }
+                dg.ten = ten;
+                dg.noidung = noidung;
+                /*dg.vote = Convert.ToInt32(vote);*/
+                dg.vote = Convert.ToInt32(vote);
+                dg.ngaydanhgia = DateTime.Now;
+                dg.malaptop = malaptop;
+                dg.trangthai = true;
+                data.DanhGias.InsertOnSubmit(dg);
+                data.SubmitChanges();
+                MvcCaptcha.ResetCaptcha("commentCaptcha");
             }
-           
 
             /*return RedirectToAction("Details");*/
             return PartialView();
