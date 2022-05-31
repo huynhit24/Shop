@@ -101,23 +101,44 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        [CaptchaValidationActionFilter("CaptchaCode", "commentCaptcha", "Mã Captcha không đúng!")]
+        [CaptchaValidation("CaptchaCode", "commentCaptcha", "Mã Captcha không đúng!")]
         public ActionResult NhanXet(FormCollection collection, DanhGia dg)
         {
             var ten = collection["ten"];
             var noidung = collection["noidung"];
             var vote = collection["vote"];
             var malaptop = CommonFields.id;
+            var captchaCode = collection["CaptchaCode"];
             /*var trangthai = collection["trangthai"];*/
-            dg.ten = ten;
-            dg.noidung = noidung;
-            /*dg.vote = Convert.ToInt32(vote);*/
-            dg.vote = Convert.ToInt32(vote);
-            dg.ngaydanhgia = DateTime.Now;
-            dg.malaptop = malaptop;
-            dg.trangthai = true;
-            data.DanhGias.InsertOnSubmit(dg);
-            data.SubmitChanges();
+            bool validationComment = ten == null || noidung == null || vote == null || ten.Equals("") || noidung.Equals("") || vote.Equals("");
+            if (validationComment)
+            {
+                ViewBag.commentContentError = "Bạn chưa điền đủ thông tin hoặc chưa vote! 🆘🆘🆘";
+                MvcCaptcha.ResetCaptcha("commentCaptcha");
+            }
+            else
+            {
+                if(captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    MvcCaptcha.ResetCaptcha("commentCaptcha");
+                }
+                else
+                {
+                    dg.ten = ten;
+                    dg.noidung = noidung;
+                    /*dg.vote = Convert.ToInt32(vote);*/
+                    dg.vote = Convert.ToInt32(vote);
+                    dg.ngaydanhgia = DateTime.Now;
+                    dg.malaptop = malaptop;
+                    dg.trangthai = true;
+                    data.DanhGias.InsertOnSubmit(dg);
+                    data.SubmitChanges();
+                    MvcCaptcha.ResetCaptcha("commentCaptcha");
+                }
+            }
+           
+
             /*return RedirectToAction("Details");*/
             return PartialView();
         }

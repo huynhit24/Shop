@@ -15,7 +15,7 @@
 {
     @Html.AntiForgeryToken()
     <!-- ValidationSummary từ true thành false, ban đầu nó là true-->
-    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="mb-3">
         <textarea name="ten" class="form-control" placeholder="Họ tên..."></textarea>
