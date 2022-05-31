@@ -1,5 +1,15 @@
 ﻿@model Shop.Models.LienHe
 
+<!-- Captcha -->
+@using BotDetect.Web.Mvc
+@using BotDetect.Web.UI
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+@{
+    MvcCaptcha contactCaptcha = new MvcCaptcha("contactCaptcha");
+    contactCaptcha.UserInputID = "CaptchaCodeID";
+}
+
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,19 +24,23 @@
 </header>
 <div class="container-fluid">
     <div class="row card-body">
-        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
+        @*<h1 class="red">@ViewBag.contactContentError</h1>*@
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4 formDiv-green" style="margin-top: 20px;">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
                 <div class="panel panel-default" style="border:1px">
                     <div class="form-group">
-                        <h4>Vui lòng điền thông tin liên hệ để được tư vấn!</h4>
+                        <h4 class="text-center">Vui lòng điền thông tin liên hệ để được tư vấn!</h4>
+                        <h4 class="text-center red">@ViewBag.contactContentError</h4>
                     </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <!--Tắt ValidationSummary -->
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
                     <div class="form-group">
                         @Html.Label("Họ tên", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             @Html.EditorFor(model => model.hoten, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.hoten, "", new { @class = "text-danger" })
                         </div>
@@ -34,7 +48,7 @@
 
                     <div class="form-group">
                         @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                         </div>
@@ -42,7 +56,7 @@
 
                     <div class="form-group">
                         @Html.Label("SĐT", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             @Html.EditorFor(model => model.dienthoai, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })
                         </div>
@@ -50,7 +64,7 @@
 
                     <div class="form-group">
                         @Html.Label("Website", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             @Html.EditorFor(model => model.website, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.website, "", new { @class = "text-danger" })
                         </div>
@@ -58,7 +72,7 @@
 
                     <div class="form-group">
                         @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             @Html.EditorFor(model => model.noidung, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
                         </div>
@@ -71,9 +85,17 @@
                                 @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })
                             </div>
                         </div>*@
+                    <div class="form-group" style="margin-top: 10px;">
+                        @Html.Label("Captcha", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-offset-2 col-md-12">
+                            @Html.Captcha(contactCaptcha)
+                            @Html.TextBox("CaptchaCodeID")
+                        </div>
+                    </div>
+
 
                     <div class="form-group" style="margin-top: 10px;">
-                        <div class="col-md-offset-2 col-md-10 text-center">
+                        <div class="col-md-offset-2 col-md-12 text-center">
                             <input type="submit" value="✅ Xác nhận" class="btn btn-warning" />
                         </div>
                     </div>
@@ -83,7 +105,7 @@
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
-            @Html.ActionLink("Về trang chủ", "Index", "", new { @class = "btn btn-success" })
+            @Html.ActionLink("Về trang chủ", "Index", "Home", new { @class = "btn btn-success" })
         </div>
     </div>
 </div>

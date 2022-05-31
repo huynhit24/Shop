@@ -73,6 +73,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
+        [CaptchaValidationActionFilter("CaptchaCodeID", "contactCaptcha", "Mã Captcha không đúng!")]
         public ActionResult Contact(FormCollection collection, LienHe lh)
         {
             var hoten = collection["hoten"];
@@ -80,18 +81,38 @@ namespace Shop.Controllers
             var dienthoai = collection["dienthoai"];
             var website = collection["website"];
             var noidung = collection["noidung"];
+            var captchaCode = collection["CaptchaCodeID"];
             /*var trangthai = collection["trangthai"];*/
+            bool validationContact = hoten == null || noidung == null || hoten.Equals("") || noidung.Equals("");
+            if (!ModelState.IsValid)
+            {
+                if (validationContact)
+                {
+                    ViewBag.contactContentError = "Bạn chưa điền đủ họ tên và nội dung! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCodeID", "Bạn chưa điền đủ thông tin liên hệ (bắt buộc 'Họ tên' && 'Nội dung')!");
+                    return RedirectToAction("Contact", "Home");
+                }
+                if (captchaCode == null || captchaCode.Equals(""))
+                {
+                    ViewBag.commentContentError = "Bạn chưa điền Captcha! 🆘🆘🆘";
+                    ModelState.AddModelError("CaptchaCodeID", "Bạn chưa điền Captcha! 🆘🆘🆘");
+                    return RedirectToAction("Contact", "Home");
+                }
+            }
+            else
+            {
+                lh.hoten = hoten;
+                lh.email = email;
+                lh.dienthoai = dienthoai;
+                lh.website = website;
+                lh.noidung = noidung;
+                lh.trangthai = true;
 
-            lh.hoten = hoten;
-            lh.email = email;
-            lh.dienthoai = dienthoai;
-            lh.website = website;
-            lh.noidung = noidung;
-            lh.trangthai = true;
-
-            data.LienHes.InsertOnSubmit(lh);
-            data.SubmitChanges();
-            return RedirectToAction("Index");
+                data.LienHes.InsertOnSubmit(lh);
+                data.SubmitChanges();
+                MvcCaptcha.ResetCaptcha("contactCaptcha");
+            }
+            return RedirectToAction("Index","Home");
         }
 
         [HttpGet]
