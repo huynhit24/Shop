@@ -50,7 +50,7 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-success mt-auto" href="@Url.Action( "Details", "Home", new { id = item.malaptop})"><i class="fa fa-eye"></i> Xem chi tiết</a></div>
+                            <div class="text-center"><a class="btn btn-outline-success mt-auto" href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })"><i class="fa fa-eye"></i> Xem chi tiết</a></div>
                         </div>
                     </div>
                 </div>

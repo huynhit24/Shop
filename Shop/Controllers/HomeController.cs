@@ -218,8 +218,14 @@ namespace Shop.Controllers
             
             return RedirectToAction("Index", "Home");
         }
-
-        public ActionResult Details(int id)
+        
+        /*public ActionResult Details(int id)
+        {
+            var laptop = data.Laptops.Where(n => n.malaptop == id).FirstOrDefault();
+            return View(laptop);
+        }*/
+        //dùng cho SEO
+        public ActionResult Details(int id, string postName)
         {
             var laptop = data.Laptops.Where(n => n.malaptop == id).FirstOrDefault();
             return View(laptop);
