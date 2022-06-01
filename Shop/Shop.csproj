@@ -2809,6 +2809,7 @@
     <Content Include="Content\images\ducdat.png" />
     <Content Include="Content\images\Florentino.jpg" />
     <Content Include="Content\images\forward.png" />
+    <Content Include="Content\images\Galaxy_A23.png" />
     <Content Include="Content\images\giam-gia-background.svg" />
     <Content Include="Content\images\github.png" />
     <Content Include="Content\images\hacker.png" />
@@ -2818,11 +2819,13 @@
     <Content Include="Content\images\icon-gift.png" />
     <Content Include="Content\images\icon-return.png" />
     <Content Include="Content\images\icon-ship.png" />
+    <Content Include="Content\images\idepad_3.png" />
     <Content Include="Content\images\iLaptop.png" />
     <Content Include="Content\images\image-1.jpg" />
     <Content Include="Content\images\image-2.jpg" />
     <Content Include="Content\images\image-3.jpg" />
     <Content Include="Content\images\image-4.jpg" />
+    <Content Include="Content\images\iPhone-11-Right.jpg" />
     <Content Include="Content\images\jcb-payment.jpg" />
     <Content Include="Content\images\khoaruoi.png" />
     <Content Include="Content\images\laptop-%281%29.jpg" />
@@ -2867,6 +2870,7 @@
     <Content Include="Content\images\visa-payment.jpg" />
     <Content Include="Content\images\VnPay.png" />
     <Content Include="Content\images\zalopay.png" />
+    <Content Include="Content\images\Zenbook_Oled.png" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\datatables-simple-demo.js" />

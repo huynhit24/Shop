@@ -126,14 +126,29 @@
 
 
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
+    <div class="container pt-lg-5 px-lg-5 my-5">
         <div class="row">
             <div class="col-md-7">
                 <div class="col-12 text-uppercase">
                     <h2><u>Mô tả sản phẩm</u></h2>
                 </div>
                 <div class="col-12" id="details">
-                    @Html.Raw(Model.mota)
+
+                    <div class="container pt-5 px-lg-5 my-5 accordion" id="accordionExample2">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button style="background-color: orange; color: white" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                    Xem nội dung
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                                <div class="accordion-body">
+                                    @Html.Raw(Model.mota)
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    
                 </div>
             </div>
             <div class="col-md-5">
