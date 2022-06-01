@@ -172,6 +172,31 @@
                 line-height: 38px;
                 display: block;
             }
+
+        .sticky-sidebar.active {
+            display: block;
+        }
+
+        .sticky-sidebar div {
+            position: fixed;
+            top: 195px;
+            width: 89px;
+            z-index: 999;
+        }
+
+        /*Căn chỉnh sidebar banner*/
+        @@media screen and (max-width: 1200px) .sticky-sidebar .banner-left {
+            
+            left: calc( ( (100vw - 1200px)/2) - 80px);
+        }
+
+        @@media screen and (max-width: 1366px) .sticky-sidebar .banner-right {
+            right: calc( ( (100vw - 1200px)/2) - 80px);
+        }
+
+        @@media screen and (max-width: 1366px) {
+            .sticky-sidebar div width: 69px;
+        }
     </style>
 </head>
 <body>
@@ -319,6 +344,16 @@
             </div>
 
             <div class="col-12">
+                <!--Banner dọc 2 bên-->
+                <div class="sticky-sidebar active">
+                    <div class="banner-left">
+                        <img src="~/Content/images/trai-79x271-9.png" alt="Alternate Text" width="79" height="271" />
+                    </div>
+                    <div class="banner-right">
+                        <img src="~/Content/images/Phai-79x271.png" alt="Alternate Text" width="79" height="271" />
+                    </div>
+                </div>
+                <!--End-->
                 <!-- Main Content -->
                 @RenderBody()
                 <!-- Main Content -->

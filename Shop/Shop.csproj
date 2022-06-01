@@ -2780,6 +2780,7 @@
     <Content Include="Content\css\phonerang.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\styles.css" />
+    <Content Include="Content\images\720-220-720x220-257.png" />
     <Content Include="Content\images\acer.png" />
     <Content Include="Content\images\asus.png" />
     <Content Include="Content\images\atm-payment.jpg" />
@@ -2857,6 +2858,7 @@
     <Content Include="Content\images\Payment_MoMo.png" />
     <Content Include="Content\images\Payment_MoMo_Failed.png" />
     <Content Include="Content\images\payoo-payment.jpg" />
+    <Content Include="Content\images\Phai-79x271.png" />
     <Content Include="Content\images\quang-cao-shope.png" />
     <Content Include="Content\images\quang-cao-side-tiki.png" />
     <Content Include="Content\images\quang-cao-tiki.png" />
@@ -2867,6 +2869,7 @@
     <Content Include="Content\images\thanhtoanthanhcong.png" />
     <Content Include="Content\images\ThanhToanThatBai.png" />
     <Content Include="Content\images\them-shortcut-trang-web-vao-menu-ngu-canh-windows-size-696x364-znd.jpg" />
+    <Content Include="Content\images\trai-79x271-9.png" />
     <Content Include="Content\images\visa-payment.jpg" />
     <Content Include="Content\images\VnPay.png" />
     <Content Include="Content\images\zalopay.png" />
