@@ -17,28 +17,49 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/ChuDe
         public ActionResult Index()
         {
-            return View(db.ChuDes.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View(db.ChuDes.ToList());
+            }
         }
 
         // GET: Administrator/ChuDe/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            ChuDe chuDe = db.ChuDes.Find(id);
-            if (chuDe == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ChuDe chuDe = db.ChuDes.Find(id);
+                if (chuDe == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(chuDe);
             }
-            return View(chuDe);
         }
 
         // GET: Administrator/ChuDe/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Administrator/ChuDe/Create
@@ -48,29 +69,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "machude,tenchude,slug,hinh")] ChuDe chuDe)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.ChuDes.Add(chuDe);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.ChuDes.Add(chuDe);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(chuDe);
+                return View(chuDe);
+            }
         }
 
         // GET: Administrator/ChuDe/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            ChuDe chuDe = db.ChuDes.Find(id);
-            if (chuDe == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ChuDe chuDe = db.ChuDes.Find(id);
+                if (chuDe == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(chuDe);
             }
-            return View(chuDe);
         }
 
         // POST: Administrator/ChuDe/Edit/5
@@ -80,28 +115,42 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "machude,tenchude,slug,hinh")] ChuDe chuDe)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(chuDe).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            return View(chuDe);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(chuDe).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(chuDe);
+            }
         }
 
         // GET: Administrator/ChuDe/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            ChuDe chuDe = db.ChuDes.Find(id);
-            if (chuDe == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                ChuDe chuDe = db.ChuDes.Find(id);
+                if (chuDe == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(chuDe);
             }
-            return View(chuDe);
         }
 
         // POST: Administrator/ChuDe/Delete/5
@@ -109,10 +158,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ChuDe chuDe = db.ChuDes.Find(id);
-            db.ChuDes.Remove(chuDe);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ChuDe chuDe = db.ChuDes.Find(id);
+                db.ChuDes.Remove(chuDe);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

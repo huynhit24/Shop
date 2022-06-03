@@ -17,30 +17,51 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/MetaLaptop
         public ActionResult Index()
         {
-            var metaLaptops = db.MetaLaptops.Include(m => m.Laptop);
-            return View(metaLaptops.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var metaLaptops = db.MetaLaptops.Include(m => m.Laptop);
+                return View(metaLaptops.ToList());
+            }
         }
 
         // GET: Administrator/MetaLaptop/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
-            if (metaLaptop == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
+                if (metaLaptop == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(metaLaptop);
             }
-            return View(metaLaptop);
         }
 
         // GET: Administrator/MetaLaptop/Create
         public ActionResult Create()
         {
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop");
+                return View();
+            }
         }
 
         // POST: Administrator/MetaLaptop/Create
@@ -50,31 +71,45 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "mameta,keymeta,valuemeta,malaptop")] MetaLaptop metaLaptop)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.MetaLaptops.Add(metaLaptop);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.MetaLaptops.Add(metaLaptop);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
-            return View(metaLaptop);
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
+                return View(metaLaptop);
+            }
         }
 
         // GET: Administrator/MetaLaptop/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
-            if (metaLaptop == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
+                if (metaLaptop == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
+                return View(metaLaptop);
             }
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
-            return View(metaLaptop);
         }
 
         // POST: Administrator/MetaLaptop/Edit/5
@@ -84,29 +119,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "mameta,keymeta,valuemeta,malaptop")] MetaLaptop metaLaptop)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(metaLaptop).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
-            return View(metaLaptop);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(metaLaptop).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
+                return View(metaLaptop);
+            }
         }
 
         // GET: Administrator/MetaLaptop/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
-            if (metaLaptop == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
+                if (metaLaptop == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(metaLaptop);
             }
-            return View(metaLaptop);
         }
 
         // POST: Administrator/MetaLaptop/Delete/5
@@ -114,10 +163,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
-            db.MetaLaptops.Remove(metaLaptop);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
+                db.MetaLaptops.Remove(metaLaptop);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

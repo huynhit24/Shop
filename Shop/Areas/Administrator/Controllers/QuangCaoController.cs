@@ -17,28 +17,49 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/QuangCao
         public ActionResult Index()
         {
-            return View(db.QuangCaos.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View(db.QuangCaos.ToList());
+            }
         }
 
         // GET: Administrator/QuangCao/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            QuangCao quangCao = db.QuangCaos.Find(id);
-            if (quangCao == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                QuangCao quangCao = db.QuangCaos.Find(id);
+                if (quangCao == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(quangCao);
             }
-            return View(quangCao);
         }
 
         // GET: Administrator/QuangCao/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Administrator/QuangCao/Create
@@ -48,29 +69,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "maqc,tenqc,tencongty,hinhnen,link,ngaybatdau,ngayhethan,trangthai")] QuangCao quangCao)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.QuangCaos.Add(quangCao);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.QuangCaos.Add(quangCao);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(quangCao);
+                return View(quangCao);
+            }
         }
 
         // GET: Administrator/QuangCao/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            QuangCao quangCao = db.QuangCaos.Find(id);
-            if (quangCao == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                QuangCao quangCao = db.QuangCaos.Find(id);
+                if (quangCao == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(quangCao);
             }
-            return View(quangCao);
         }
 
         // POST: Administrator/QuangCao/Edit/5
@@ -80,28 +115,42 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "maqc,tenqc,tencongty,hinhnen,link,ngaybatdau,ngayhethan,trangthai")] QuangCao quangCao)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(quangCao).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            return View(quangCao);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(quangCao).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(quangCao);
+            }
         }
 
         // GET: Administrator/QuangCao/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            QuangCao quangCao = db.QuangCaos.Find(id);
-            if (quangCao == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                QuangCao quangCao = db.QuangCaos.Find(id);
+                if (quangCao == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(quangCao);
             }
-            return View(quangCao);
         }
 
         // POST: Administrator/QuangCao/Delete/5
@@ -109,10 +158,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            QuangCao quangCao = db.QuangCaos.Find(id);
-            db.QuangCaos.Remove(quangCao);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                QuangCao quangCao = db.QuangCaos.Find(id);
+                db.QuangCaos.Remove(quangCao);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

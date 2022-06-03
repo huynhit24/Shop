@@ -17,30 +17,51 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/DonHang
         public ActionResult Index()
         {
-            var donHangs = db.DonHangs.Include(d => d.AspNetUser);
-            return View(donHangs.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var donHangs = db.DonHangs.Include(d => d.AspNetUser);
+                return View(donHangs.ToList());
+            }
         }
 
         // GET: Administrator/DonHang/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DonHang donHang = db.DonHangs.Find(id);
-            if (donHang == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(donHang);
             }
-            return View(donHang);
         }
 
         // GET: Administrator/DonHang/Create
         public ActionResult Create()
         {
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email");
+                return View();
+            }
         }
 
         // POST: Administrator/DonHang/Create
@@ -50,31 +71,45 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "madon,thanhtoan,giaohang,ngaydat,ngaygiao,makh")] DonHang donHang)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.DonHangs.Add(donHang);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DonHangs.Add(donHang);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
-            return View(donHang);
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
+                return View(donHang);
+            }
         }
 
         // GET: Administrator/DonHang/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DonHang donHang = db.DonHangs.Find(id);
-            if (donHang == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
+                return View(donHang);
             }
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
-            return View(donHang);
         }
 
         // POST: Administrator/DonHang/Edit/5
@@ -84,29 +119,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "madon,thanhtoan,giaohang,ngaydat,ngaygiao,makh")] DonHang donHang)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(donHang).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
-            return View(donHang);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(donHang).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
+                return View(donHang);
+            }
         }
 
         // GET: Administrator/DonHang/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DonHang donHang = db.DonHangs.Find(id);
-            if (donHang == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(donHang);
             }
-            return View(donHang);
         }
 
         // POST: Administrator/DonHang/Delete/5
@@ -114,10 +163,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DonHang donHang = db.DonHangs.Find(id);
-            db.DonHangs.Remove(donHang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                DonHang donHang = db.DonHangs.Find(id);
+                db.DonHangs.Remove(donHang);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

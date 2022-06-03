@@ -17,28 +17,49 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/AspNetUsers
         public ActionResult Index()
         {
-            return View(db.AspNetUsers.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View(db.AspNetUsers.ToList());
+            }
         }
 
         // GET: Administrator/AspNetUsers/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
-            if (aspNetUser == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+                if (aspNetUser == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUser);
             }
-            return View(aspNetUser);
         }
 
         // GET: Administrator/AspNetUsers/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Administrator/AspNetUsers/Create
@@ -49,29 +70,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,ngaysinh,profile,avatar,hoten,diachi")] AspNetUser aspNetUser)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.AspNetUsers.Add(aspNetUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.AspNetUsers.Add(aspNetUser);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(aspNetUser);
+                return View(aspNetUser);
+            }
         }
 
         // GET: Administrator/AspNetUsers/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
-            if (aspNetUser == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+                if (aspNetUser == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUser);
             }
-            return View(aspNetUser);
         }
 
         // POST: Administrator/AspNetUsers/Edit/5
@@ -82,28 +117,42 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,ngaysinh,profile,avatar,hoten,diachi")] AspNetUser aspNetUser)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(aspNetUser).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            return View(aspNetUser);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(aspNetUser).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(aspNetUser);
+            }
         }
 
         // GET: Administrator/AspNetUsers/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
-            if (aspNetUser == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+                if (aspNetUser == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUser);
             }
-            return View(aspNetUser);
         }
 
         // POST: Administrator/AspNetUsers/Delete/5
@@ -111,10 +160,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
-            db.AspNetUsers.Remove(aspNetUser);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+                db.AspNetUsers.Remove(aspNetUser);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

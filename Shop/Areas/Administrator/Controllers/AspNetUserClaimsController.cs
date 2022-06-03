@@ -17,30 +17,51 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/AspNetUserClaims
         public ActionResult Index()
         {
-            var aspNetUserClaims = db.AspNetUserClaims.Include(a => a.AspNetUser);
-            return View(aspNetUserClaims.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var aspNetUserClaims = db.AspNetUserClaims.Include(a => a.AspNetUser);
+                return View(aspNetUserClaims.ToList());
+            }
         }
 
         // GET: Administrator/AspNetUserClaims/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
-            if (aspNetUserClaim == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
+                if (aspNetUserClaim == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUserClaim);
             }
-            return View(aspNetUserClaim);
         }
 
         // GET: Administrator/AspNetUserClaims/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
+                return View();
+            }
         }
 
         // POST: Administrator/AspNetUserClaims/Create
@@ -50,31 +71,45 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,ClaimType,ClaimValue")] AspNetUserClaim aspNetUserClaim)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.AspNetUserClaims.Add(aspNetUserClaim);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.AspNetUserClaims.Add(aspNetUserClaim);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserClaim.UserId);
-            return View(aspNetUserClaim);
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserClaim.UserId);
+                return View(aspNetUserClaim);
+            }
         }
 
         // GET: Administrator/AspNetUserClaims/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
-            if (aspNetUserClaim == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
+                if (aspNetUserClaim == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserClaim.UserId);
+                return View(aspNetUserClaim);
             }
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserClaim.UserId);
-            return View(aspNetUserClaim);
         }
 
         // POST: Administrator/AspNetUserClaims/Edit/5
@@ -84,29 +119,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,UserId,ClaimType,ClaimValue")] AspNetUserClaim aspNetUserClaim)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(aspNetUserClaim).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserClaim.UserId);
-            return View(aspNetUserClaim);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(aspNetUserClaim).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserClaim.UserId);
+                return View(aspNetUserClaim);
+            }
         }
 
         // GET: Administrator/AspNetUserClaims/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
-            if (aspNetUserClaim == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
+                if (aspNetUserClaim == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUserClaim);
             }
-            return View(aspNetUserClaim);
         }
 
         // POST: Administrator/AspNetUserClaims/Delete/5
@@ -114,10 +163,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
-            db.AspNetUserClaims.Remove(aspNetUserClaim);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                AspNetUserClaim aspNetUserClaim = db.AspNetUserClaims.Find(id);
+                db.AspNetUserClaims.Remove(aspNetUserClaim);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -17,31 +17,52 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/Laptop
         public ActionResult Index()
         {
-            var laptops = db.Laptops.Include(l => l.Hang).Include(l => l.NhuCau);
-            return View(laptops.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var laptops = db.Laptops.Include(l => l.Hang).Include(l => l.NhuCau);
+                return View(laptops.ToList());
+            }
         }
 
         // GET: Administrator/Laptop/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            Laptop laptop = db.Laptops.Find(id);
-            if (laptop == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Laptop laptop = db.Laptops.Find(id);
+                if (laptop == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(laptop);
             }
-            return View(laptop);
         }
 
         // GET: Administrator/Laptop/Create
         public ActionResult Create()
         {
-            ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang");
-            ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang");
+                ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau");
+                return View();
+            }
         }
 
         // POST: Administrator/Laptop/Create
@@ -52,33 +73,47 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "malaptop,tenlaptop,giaban,mota,hinh,mahang,manhucau,cpu,gpu,ram,hardware,manhinh,ngaycapnhat,soluongton,pin,trangthai")] Laptop laptop)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Laptops.Add(laptop);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Laptops.Add(laptop);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
-            ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau", laptop.manhucau);
-            return View(laptop);
+                ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
+                ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau", laptop.manhucau);
+                return View(laptop);
+            }
         }
 
         // GET: Administrator/Laptop/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            Laptop laptop = db.Laptops.Find(id);
-            if (laptop == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Laptop laptop = db.Laptops.Find(id);
+                if (laptop == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
+                ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau", laptop.manhucau);
+                return View(laptop);
             }
-            ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
-            ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau", laptop.manhucau);
-            return View(laptop);
         }
 
         // POST: Administrator/Laptop/Edit/5
@@ -89,30 +124,44 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "malaptop,tenlaptop,giaban,mota,hinh,mahang,manhucau,cpu,gpu,ram,hardware,manhinh,ngaycapnhat,soluongton,pin,trangthai")] Laptop laptop)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(laptop).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
-            ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau", laptop.manhucau);
-            return View(laptop);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(laptop).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
+                ViewBag.manhucau = new SelectList(db.NhuCaus, "manhucau", "tennhucau", laptop.manhucau);
+                return View(laptop);
+            }
         }
 
         // GET: Administrator/Laptop/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            Laptop laptop = db.Laptops.Find(id);
-            if (laptop == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Laptop laptop = db.Laptops.Find(id);
+                if (laptop == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(laptop);
             }
-            return View(laptop);
         }
 
         // POST: Administrator/Laptop/Delete/5
@@ -120,10 +169,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Laptop laptop = db.Laptops.Find(id);
-            db.Laptops.Remove(laptop);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                Laptop laptop = db.Laptops.Find(id);
+                db.Laptops.Remove(laptop);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

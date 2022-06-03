@@ -17,30 +17,51 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/DanhGia
         public ActionResult Index()
         {
-            var danhGias = db.DanhGias.Include(d => d.Laptop);
-            return View(danhGias.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var danhGias = db.DanhGias.Include(d => d.Laptop);
+                return View(danhGias.ToList());
+            }
         }
 
         // GET: Administrator/DanhGia/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DanhGia danhGia = db.DanhGias.Find(id);
-            if (danhGia == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DanhGia danhGia = db.DanhGias.Find(id);
+                if (danhGia == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(danhGia);
             }
-            return View(danhGia);
         }
 
         // GET: Administrator/DanhGia/Create
         public ActionResult Create()
         {
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop");
+                return View();
+            }
         }
 
         // POST: Administrator/DanhGia/Create
@@ -50,31 +71,45 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "madanhgia,ten,noidung,vote,ngaydanhgia,malaptop,trangthai")] DanhGia danhGia)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.DanhGias.Add(danhGia);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DanhGias.Add(danhGia);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
-            return View(danhGia);
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
+                return View(danhGia);
+            }
         }
 
         // GET: Administrator/DanhGia/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DanhGia danhGia = db.DanhGias.Find(id);
-            if (danhGia == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DanhGia danhGia = db.DanhGias.Find(id);
+                if (danhGia == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
+                return View(danhGia);
             }
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
-            return View(danhGia);
         }
 
         // POST: Administrator/DanhGia/Edit/5
@@ -84,29 +119,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "madanhgia,ten,noidung,vote,ngaydanhgia,malaptop,trangthai")] DanhGia danhGia)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(danhGia).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
-            return View(danhGia);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(danhGia).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
+                return View(danhGia);
+            }
         }
 
         // GET: Administrator/DanhGia/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DanhGia danhGia = db.DanhGias.Find(id);
-            if (danhGia == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DanhGia danhGia = db.DanhGias.Find(id);
+                if (danhGia == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(danhGia);
             }
-            return View(danhGia);
         }
 
         // POST: Administrator/DanhGia/Delete/5
@@ -114,10 +163,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DanhGia danhGia = db.DanhGias.Find(id);
-            db.DanhGias.Remove(danhGia);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                DanhGia danhGia = db.DanhGias.Find(id);
+                db.DanhGias.Remove(danhGia);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
