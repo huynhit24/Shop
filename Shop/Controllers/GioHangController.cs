@@ -120,7 +120,7 @@ namespace Shop.Controllers
         }
         public ActionResult XoaTatCaGioHang()// xóa tất cả các mặt hàng trong giỏ hàng
         {
-            List<GioHang> lstGioHang = Laygiohang();
+            /*List<GioHang> lstGioHang = Laygiohang();*/
             List<GioHang> lstGiohang = Laygiohang();
             lstGiohang.Clear();
             return RedirectToAction("GioHang");
