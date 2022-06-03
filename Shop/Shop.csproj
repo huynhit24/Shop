@@ -2804,12 +2804,15 @@
     <Content Include="Content\images\cod-payment.jpg" />
     <Content Include="Content\images\contract.png" />
     <Content Include="Content\images\dang-ky-bo-cong-thuong.png" />
+    <Content Include="Content\images\dashboard-session.png" />
     <Content Include="Content\images\dat-hang-thanh-cong.png" />
     <Content Include="Content\images\dathangthanhcong.png" />
     <Content Include="Content\images\dell-insprion.jpg" />
     <Content Include="Content\images\dell.png" />
     <Content Include="Content\images\dependabot.png" />
     <Content Include="Content\images\ducdat.png" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\fairy.png" />
     <Content Include="Content\images\Fashion380x2002x-760x400-1.png" />
     <Content Include="Content\images\Florentino.jpg" />
     <Content Include="Content\images\forward.png" />
@@ -2860,6 +2863,7 @@
     <Content Include="Content\images\mental-health.png" />
     <Content Include="Content\images\msi.png" />
     <Content Include="Content\images\no-cart.png" />
+    <Content Include="Content\images\online-learning.png" />
     <Content Include="Content\images\Payment_MoMo.png" />
     <Content Include="Content\images\Payment_MoMo_Failed.png" />
     <Content Include="Content\images\payoo-payment.jpg" />
@@ -2878,6 +2882,7 @@
     <Content Include="Content\images\them-shortcut-trang-web-vao-menu-ngu-canh-windows-size-696x364-znd.jpg" />
     <Content Include="Content\images\top-menu-web-site-01.jpg" />
     <Content Include="Content\images\trai-79x271-9.png" />
+    <Content Include="Content\images\user.png" />
     <Content Include="Content\images\visa-payment.jpg" />
     <Content Include="Content\images\VnPay.png" />
     <Content Include="Content\images\zalopay.png" />
@@ -4480,6 +4485,7 @@
     <Content Include="Areas\Administrator\Views\MainPage\LoginAdmin.cshtml" />
     <Content Include="Areas\Administrator\Views\MainPage\Error401.cshtml" />
     <Content Include="Content\images\Lap trinh Tren Moi Truong Windows - Danh gia hoc phan.docx" />
+    <Content Include="Areas\Administrator\Views\MainPage\BangDieuKhien.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>

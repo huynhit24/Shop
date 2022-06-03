@@ -45,6 +45,8 @@
     <link rel="stylesheet" href="~/Areas/Administrator/Data/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Areas/Administrator/Data/dist/css/adminlte.min.css">
+
+    @*<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />*@
     <link href="~/Areas/Administrator/Data/dist/css/main.css" rel="stylesheet" />
     @*<script>
         window.onload = function () {
@@ -111,6 +113,40 @@
                 transform: scale(1.2);
                 z-index: 100;
             }
+
+        /* Sticky cho thống kê người dùng truy cập*/
+        .sticky-sidebar {
+        }
+
+            .sticky-sidebar.active {
+                display: block;
+            }
+
+            .sticky-sidebar div {
+                position: fixed;
+                top: 750px;
+                width: 89px;
+                z-index: 999;
+            }
+
+        /*Căn chỉnh sidebar banner*/
+        @@media screen and (max-width: 2000px) {
+            .sticky-sidebar .banner-left {
+                left: calc(((100vw - 1200px)/2) - 80px);
+            }
+        }
+
+        @@media screen and (max-width: 2200px) {
+            .sticky-sidebar .banner-right {
+                right: calc(((100vw - 1600px)/2) - 90px);
+            }
+        }
+
+        @@media screen and (max-width: 1200px) {
+            .sticky-sidebar div {
+                width: 69px;
+            }
+        }
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -131,6 +167,11 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Index","MainPage")" class="nav-link">
                         <img src="~/Areas/Administrator/Data/images/dashboard.png" width="30" height="30" /> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="https://www.facebook.com/ILaptop-102788879063090/" class="nav-link" rel="noreferrer" target="_blank">
+                        <img src="~/Content/images/facebook.png" width="30" height="30" /> Fanpage
                     </a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
@@ -277,13 +318,12 @@
                                 <p>Tài khoản</p>
                             </a>
                         </li>
-                        <!--<li class="nav-item">
-                        <a href="@Url.Action("Index","Admin")" class="nav-link">-->
-                        @*<i class="fas fa-circle nav-icon"></i>*@
-                        <!--<img src="~/Areas/Administrator/Data/images/software-engineer.png" alt="Alternate Text" width="40" height="40" />
-                                <p>Quản trị Admin</p>
+                        <li class="nav-item laptopzoom">
+                            <a href="@Url.Action("Index","AspNetRoles")" class="nav-link">
+                                <img src="~/Areas/Administrator/Data/images/software-engineer.png" alt="Alternate Text" width="40" height="40" />
+                                <p>Phân quyền</p>
                             </a>
-                        </li>-->
+                        </li>
                         <!-- My Project ------------------------------------------------------ End-->
                     </ul>
                 </nav>
@@ -368,6 +408,7 @@
     <script src="~/Areas/Administrator/Data/plugins/summernote/summernote-bs4.js"></script>
     <link href="~/Areas/Administrator/Data/plugins/summernote/summernote-bs4.css" rel="stylesheet" />
     <!-- CodeMirror -->
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <!-- AdminLTE for demo purposes -->
