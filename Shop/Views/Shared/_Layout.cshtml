@@ -26,7 +26,7 @@
         #myBtn {
             display: none;
             position: fixed;
-            bottom: 60px;
+            bottom: 20px;
             right: 10px;
             z-index: 99;
             border: none;
@@ -174,18 +174,18 @@
             }
 
         .sticky-sidebar {
-
-        }
-        .sticky-sidebar.active {
-            display: block;
         }
 
-        .sticky-sidebar div {
-            position: fixed;
-            top: 195px;
-            width: 89px;
-            z-index: 999;
-        }
+            .sticky-sidebar.active {
+                display: block;
+            }
+
+            .sticky-sidebar div {
+                position: fixed;
+                top: 195px;
+                width: 89px;
+                z-index: 999;
+            }
 
         /*Căn chỉnh sidebar banner*/
         @@media screen and (max-width: 2000px) {
@@ -200,20 +200,30 @@
             }
         }
 
+        @@media screen and (max-width: 2200px) {
+            .sticky-sidebar .banner {
+                right: calc(((100vw - 1600px)/2) - 90px);
+            }
+        }
+
         @@media screen and (max-width: 1200px) {
             .sticky-sidebar div {
                 width: 69px;
             }
         }
+
+        .modal-backdrop {
+            opacity: 0.3 !important;
+        }
     </style>
 </head>
 <body>
+    <button id="myBtn" title="Lên đầu trang"><img src="~/Content/images/back-to-top.png" title='lên đầu trang' width='14' /></button>
     <div class="container-fluid">
 
         <div class="row min-vh-100">
             <div class="col-12">
                 <header class="row">
-                    <button id="myBtn" title="Lên đầu trang"><img src="~/Content/images/back-to-top.png" title='lên đầu trang' width='14' /></button>
                     <script>
                         window.onscroll = function () { scrollFunction() };
                         function scrollFunction() {
@@ -529,6 +539,214 @@
         </a>
 
     </div>
+
+    <!-- Tìm kiếm VIP-->
+    <!-- Button trigger modal -->
+    <div class="sticky-sidebar active">
+        <div class="banner laptopzoom">
+            <a href="" style="border: none;background-color: white;" data-bs-toggle="modal" data-bs-target="#staticBackdropSearch">
+                <img src="~/Content/images/shopping.png" alt="Tìm kiếm VIP" width="79" height="79" />
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdropSearch" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="height: auto;">
+                <div class="modal-header" style="background-color: red; color: white;">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tìm kiếm nâng cao</h5>
+                    <div style="margin-left: 300px;">
+                        <div class="col-lg mx-auto mt-4 mt-lg-0 text-center">
+                            @using (Html.BeginForm("ListLaptopTheoSearch", "Home"))
+                            {
+                                <div class="form-group">
+                                    <div class="input-group text-center">
+
+                                        <input name="SearchString" type="search" class="form-control border-dark" placeholder="Tìm kiếm sản phẩm..." required>
+                                        <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Nav -->
+                            <div class="row">
+                                <nav class="navbar navbar-expand-lg navbar-light bg-white col-12">
+                                    <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavSearch">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="mainNavSearch">
+                                        <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Trang chủ</a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="electronics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-arrow-circle-right"></i> Hãng Laptop</a>
+                                                <div class="dropdown-menu neonBack" aria-labelledby="electronics">
+                                                    @foreach (var item in home.GetListHang())
+                                                    {
+                                                        <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = item.mahang})">@item.tenhang</a>
+                                                    }
+
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="fashion" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-address-book"></i> Nhu cầu sử dụng</a>
+                                                <div class="dropdown-menu neonBack" aria-labelledby="fashion">
+                                                    @foreach (var item in home.GetListNhuCau())
+                                                    {
+                                                        <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = item.manhucau})">@item.tennhucau</a>
+                                                    }
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="books" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-blog"></i> Blog</a>
+                                                <div class="dropdown-menu neonBack" aria-labelledby="books">
+                                                    @foreach (var item in home.GetListChuDe())
+                                                    {
+                                                        <a class="dropdown-item laptopzoom" href="@Url.Action("ListBaiVietTheoChuDeId","Home", new { id = item.machude})">@item.tenchude</a>
+                                                    }
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Nav -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">1 <img src="~/Content/images/login-moi-nhat.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop mới nhất <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #e3fce2;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">1 <img src="~/Content/images/laptop-gia-re.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop giá rẻ nhất <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #b8f1f7;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">2 <img src="~/Content/images/laptop-ban-chay.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop bán chạy nhất <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #fcfcde;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">3 <img src="~/Content/images/laptop-comment.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Đánh giá nhiều nhất <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #fce5fa;color: blue;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">5 <img src="~/Content/images/laptop-gia-max.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop giá cao nhất <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #fbf1e8;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">7  <img src="~/Content/images/laptop-web-traffic.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Cấu hình khủng <i class="fa fa-eye"></i>
+                        </div>
+
+                    </div>
+                    <div class="row" style="background-color: #dee6fb;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <div class="row">
+                            <div class="col-md" style="color: deepskyblue;">
+                                <p style="color: black;">Khoảng giá</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Dưới 10 triệu
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        10 triệu - 15 triệu
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        15 triệu - 25 triệu
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Trên 25 triệu
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md" style="color: orangered;">
+                                <p style="color: black;">CHIP && Card đồ họa</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Intel
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        AMD
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        GTX
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        RTX
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md" style="color: orange;">
+                                <p style="color: black;">Dòng CPU</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Intel Core i9
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Intel Core i7
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Intel Core i5
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Intel Core i3
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <button style="vertical-align: central; align-items: center; margin-top: 10px;" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Áp dụng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+
     <script type="text/javascript" src="~/Content/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/js/script.js"></script>

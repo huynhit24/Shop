@@ -2811,6 +2811,7 @@
     <Content Include="Content\images\dell.png" />
     <Content Include="Content\images\dependabot.png" />
     <Content Include="Content\images\ducdat.png" />
+    <Content Include="Content\images\edit-crud.png" />
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\fairy.png" />
     <Content Include="Content\images\Fashion380x2002x-760x400-1.png" />
@@ -2854,9 +2855,15 @@
     <Content Include="Content\images\laptop-%288%29.jpg" />
     <Content Include="Content\images\laptop-%289%29.jpg" />
     <Content Include="Content\images\laptop-asus-vivibook.jpg" />
+    <Content Include="Content\images\laptop-ban-chay.png" />
+    <Content Include="Content\images\laptop-comment.png" />
+    <Content Include="Content\images\laptop-gia-max.png" />
+    <Content Include="Content\images\laptop-gia-re.png" />
+    <Content Include="Content\images\laptop-web-traffic.png" />
     <Content Include="Content\images\lenovo.png" />
     <Content Include="Content\images\lenovoLaptop-390x210.png" />
     <Content Include="Content\images\log-out.png" />
+    <Content Include="Content\images\login-moi-nhat.png" />
     <Content Include="Content\images\logo-momo.png" />
     <Content Include="Content\images\macbook-air-m1.jpg" />
     <Content Include="Content\images\master-card-payment.jpg" />
@@ -2873,6 +2880,7 @@
     <Content Include="Content\images\quang-cao-tiki.png" />
     <Content Include="Content\images\samsung-390-210-390x210.png" />
     <Content Include="Content\images\shopping-cart-not-product.png" />
+    <Content Include="Content\images\shopping.png" />
     <Content Include="Content\images\slider-1.jpg" />
     <Content Include="Content\images\slider-2.jpg" />
     <Content Include="Content\images\slider-3.jpg" />
