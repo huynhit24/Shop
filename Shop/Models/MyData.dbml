@@ -83,8 +83,8 @@
       <Column Name="malaptop" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dongia" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Association Name="DonHang_ChiTietDonHang" Member="DonHang" ThisKey="madon" OtherKey="madon" Type="DonHang" IsForeignKey="true" />
       <Association Name="Laptop_ChiTietDonHang" Member="Laptop" ThisKey="malaptop" OtherKey="malaptop" Type="Laptop" IsForeignKey="true" />
+      <Association Name="DonHang_ChiTietDonHang" Member="DonHang" ThisKey="madon" OtherKey="madon" Type="DonHang" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChuDe" Member="ChuDes">
@@ -106,18 +106,6 @@
       <Column Name="malaptop" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="trangthai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Laptop_DanhGia" Member="Laptop" ThisKey="malaptop" OtherKey="malaptop" Type="Laptop" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DonHang" Member="DonHangs">
-    <Type Name="DonHang">
-      <Column Name="madon" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="thanhtoan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="giaohang" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ngaydat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ngaygiao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="makh" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Association Name="DonHang_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="madon" OtherKey="madon" Type="ChiTietDonHang" />
-      <Association Name="AspNetUser_DonHang" Member="AspNetUser" ThisKey="makh" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Hang" Member="Hangs">
@@ -206,6 +194,19 @@
       <Column Name="machude" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="TinTuc_BinhLuan" Member="BinhLuans" ThisKey="matin" OtherKey="matin" Type="BinhLuan" />
       <Association Name="ChuDe_TinTuc" Member="ChuDe" ThisKey="machude" OtherKey="machude" Type="ChuDe" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DonHang" Member="DonHangs">
+    <Type Name="DonHang">
+      <Column Name="madon" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="thanhtoan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="giaohang" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ngaydat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaygiao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="makh" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="tinhtrang" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="DonHang_ChiTietDonHang" Member="ChiTietDonHangs" ThisKey="madon" OtherKey="madon" Type="ChiTietDonHang" />
+      <Association Name="AspNetUser_DonHang" Member="AspNetUser" ThisKey="makh" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

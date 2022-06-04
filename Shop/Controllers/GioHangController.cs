@@ -158,6 +158,7 @@ namespace Shop.Controllers
             dh.ngaygiao = DateTime.Parse(ngaygiao);
             dh.giaohang = false;
             dh.thanhtoan = false;
+            dh.tinhtrang = '0';
             /*if ((bool)Session["thanhtoan"] == true)
             {
                 dh.thanhtoan = true;
@@ -489,6 +490,7 @@ namespace Shop.Controllers
             dh.ngaygiao = DateTime.Now;
             dh.giaohang = false;
             dh.thanhtoan = true;
+            dh.tinhtrang = '0';
 
             data.DonHangs.InsertOnSubmit(dh);
             data.SubmitChanges();

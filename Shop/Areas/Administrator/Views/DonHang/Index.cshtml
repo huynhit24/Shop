@@ -36,7 +36,7 @@
                                         </th>
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.giaohang)*@
-                                            @Html.DisplayName("Tình trạng giao hàng")
+                                            @Html.DisplayName("Giao hàng")
                                         </th>
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.ngaydat)*@
@@ -45,6 +45,10 @@
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.ngaygiao)*@
                                             @Html.DisplayName("Ngày giao")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.ngaygiao)*@
+                                            @Html.DisplayName("Tình trạng")
                                         </th>
                                         <th class="text-center" style="vertical-align:middle">
                                             Thao tác
@@ -85,6 +89,9 @@
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.ngaygiao)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tinhtrang)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.madon }) |
