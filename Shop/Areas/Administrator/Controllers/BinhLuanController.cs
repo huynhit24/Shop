@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -81,6 +82,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.BinhLuans.Add(binhLuan);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới Bình luận blog thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -129,6 +131,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(binhLuan).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật Bình luận blog thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
@@ -172,6 +175,7 @@ namespace Shop.Areas.Administrator.Controllers
                 BinhLuan binhLuan = db.BinhLuans.Find(id);
                 db.BinhLuans.Remove(binhLuan);
                 db.SaveChanges();
+                Notification.set_flash("Xóa bình luận blog thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

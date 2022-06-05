@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
-
+@Html.Partial("_MessageAlert")
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
         <div class="container-fluid">
@@ -63,7 +63,7 @@
                                                 @Html.DisplayFor(modelItem => item.tencongty)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinhnen)" alt="Alternate Text" height="100" width="100"/>
+                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinhnen)" alt="Alternate Text" height="100" width="100" />
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.link)

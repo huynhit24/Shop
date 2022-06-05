@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -79,6 +80,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.AspNetRoles.Add(aspNetRole);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới quyền Role thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -125,6 +127,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(aspNetRole).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật Role thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 return View(aspNetRole);
@@ -167,6 +170,7 @@ namespace Shop.Areas.Administrator.Controllers
                 AspNetRole aspNetRole = db.AspNetRoles.Find(id);
                 db.AspNetRoles.Remove(aspNetRole);
                 db.SaveChanges();
+                Notification.set_flash("Xóa Role thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

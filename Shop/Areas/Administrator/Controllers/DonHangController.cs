@@ -82,6 +82,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.DonHangs.Add(donHang);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới đơn hàng thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -173,6 +174,7 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 DonHang donHang = db.DonHangs.Find(id);
                 db.DonHangs.Remove(donHang);
+                Notification.set_flash("Đã xóa đơn hàng thành công !", "success");
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -83,6 +84,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Laptops.Add(laptop);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới Laptop thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -134,6 +136,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(laptop).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật Laptop thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
@@ -178,6 +181,7 @@ namespace Shop.Areas.Administrator.Controllers
                 Laptop laptop = db.Laptops.Find(id);
                 db.Laptops.Remove(laptop);
                 db.SaveChanges();
+                Notification.set_flash("Xóa Laptop thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

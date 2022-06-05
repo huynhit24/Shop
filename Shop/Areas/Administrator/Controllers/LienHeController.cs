@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -79,6 +80,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.LienHes.Add(lienHe);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới Liên hệ (Contact) thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -125,6 +127,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(lienHe).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật Liên hệ (Contact) thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 return View(lienHe);
@@ -167,6 +170,7 @@ namespace Shop.Areas.Administrator.Controllers
                 LienHe lienHe = db.LienHes.Find(id);
                 db.LienHes.Remove(lienHe);
                 db.SaveChanges();
+                Notification.set_flash("Xóa Liên hệ (Contact) thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -79,6 +80,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.QuangCaos.Add(quangCao);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới QUẢNG CÁO thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -125,6 +127,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(quangCao).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật QUẢNG CÁO thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 return View(quangCao);
@@ -167,6 +170,7 @@ namespace Shop.Areas.Administrator.Controllers
                 QuangCao quangCao = db.QuangCaos.Find(id);
                 db.QuangCaos.Remove(quangCao);
                 db.SaveChanges();
+                Notification.set_flash("Xóa QUẢNG CÁO thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

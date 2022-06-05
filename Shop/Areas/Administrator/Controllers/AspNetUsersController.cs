@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -80,6 +81,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.AspNetUsers.Add(aspNetUser);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới tài khoản đăng nhập thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -127,6 +129,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(aspNetUser).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật tài khoản thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 return View(aspNetUser);
@@ -169,6 +172,7 @@ namespace Shop.Areas.Administrator.Controllers
                 AspNetUser aspNetUser = db.AspNetUsers.Find(id);
                 db.AspNetUsers.Remove(aspNetUser);
                 db.SaveChanges();
+                Notification.set_flash("Xóa tài khoản Account thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

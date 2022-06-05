@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -82,6 +83,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.TinTucs.Add(tinTuc);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới bài viết thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -131,6 +133,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(tinTuc).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật bài viết thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 ViewBag.machude = new SelectList(db.ChuDes, "machude", "tenchude", tinTuc.machude);
@@ -174,6 +177,7 @@ namespace Shop.Areas.Administrator.Controllers
                 TinTuc tinTuc = db.TinTucs.Find(id);
                 db.TinTucs.Remove(tinTuc);
                 db.SaveChanges();
+                Notification.set_flash("Xóa bài viết thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

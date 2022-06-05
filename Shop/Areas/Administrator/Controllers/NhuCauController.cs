@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -79,6 +80,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.NhuCaus.Add(nhuCau);
                     db.SaveChanges();
+                    Notification.set_flash("Thêm mới NHU CẦU SỬ DỤNG thành công !", "success");
                     return RedirectToAction("Index");
                 }
 
@@ -125,6 +127,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(nhuCau).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Cập nhật NHU CẦU SỬ DỤNG thành công !", "success");
                     return RedirectToAction("Index");
                 }
                 return View(nhuCau);
@@ -167,6 +170,7 @@ namespace Shop.Areas.Administrator.Controllers
                 NhuCau nhuCau = db.NhuCaus.Find(id);
                 db.NhuCaus.Remove(nhuCau);
                 db.SaveChanges();
+                Notification.set_flash("Xóa NHU CẦU SỬ DỤNG thành công !", "success");
                 return RedirectToAction("Index");
             }
         }

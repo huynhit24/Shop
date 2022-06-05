@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
-
+@Html.Partial("_MessageAlert")
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
         <div class="container-fluid">
@@ -124,11 +124,11 @@
                                             <td class="text-center" style="vertical-align:middle">
                                                 @if (item.LockoutEnabled == true)
                                                 {
-                                                <p style="color: darkgreen; padding: 4px; font-family: Roboto; font-weight: bold;"><i class="fa fa-circle" style="color: darkgreen;"></i>  Đã bật</p> 
+                                                    <p style="color: darkgreen; padding: 4px; font-family: Roboto; font-weight: bold;"><i class="fa fa-circle" style="color: darkgreen;"></i>  Đã bật</p>
                                                 }
                                                 else
                                                 {
-                                                    <p style="color: darkblue; padding: 4px; font-weight: bold; font-family: Roboto;"><i class="fa fa-circle" style="color: darkblue;"></i>  Đang tắt</p> 
+                                                    <p style="color: darkblue; padding: 4px; font-weight: bold; font-family: Roboto;"><i class="fa fa-circle" style="color: darkblue;"></i>  Đang tắt</p>
                                                 }
                                                 @*@Html.DisplayFor(modelItem => item.LockoutEnabled)*@
                                             </td>
