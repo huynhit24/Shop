@@ -221,6 +221,12 @@
     <Compile Include="Areas\Administrator\Controllers\NhuCauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\QuangCaoController.cs" />
     <Compile Include="Areas\Administrator\Controllers\TinTucController.cs" />
+    <Compile Include="Areas\Administrator\Data\message\CheckSlug.cs" />
+    <Compile Include="Areas\Administrator\Data\message\ModelNotification.cs" />
+    <Compile Include="Areas\Administrator\Data\message\ModelThongbao.cs" />
+    <Compile Include="Areas\Administrator\Data\message\Notification.cs" />
+    <Compile Include="Areas\Administrator\Data\message\XMessage.cs" />
+    <Compile Include="Areas\Administrator\Data\message\XString.cs" />
     <Compile Include="Common\CommonFields.cs" />
     <Compile Include="Common\StringHelpers.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -920,6 +926,7 @@
     <Content Include="Areas\Administrator\Data\images\dashboard.png" />
     <Content Include="Areas\Administrator\Data\images\delete.png" />
     <Content Include="Areas\Administrator\Data\images\dialogue.png" />
+    <Content Include="Areas\Administrator\Data\images\edit-crud.png" />
     <Content Include="Areas\Administrator\Data\images\eye.png" />
     <Content Include="Areas\Administrator\Data\images\halalnode-401.jpg" />
     <Content Include="Areas\Administrator\Data\images\hang.png" />
@@ -937,6 +944,12 @@
     <Content Include="Areas\Administrator\Data\images\sv3.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv4.jpg" />
     <Content Include="Areas\Administrator\Data\images\trending-topic.png" />
+    <Content Include="Areas\Administrator\Data\libraries\css\style.css" />
+    <Content Include="Areas\Administrator\Data\libraries\css\sweetalert2.min.css" />
+    <Content Include="Areas\Administrator\Data\libraries\css\toastr.min.css" />
+    <Content Include="Areas\Administrator\Data\libraries\js\karma.laclac.min.js" />
+    <Content Include="Areas\Administrator\Data\libraries\js\sweetalert2.min.js" />
+    <Content Include="Areas\Administrator\Data\libraries\js\toastr.min.js" />
     <Content Include="Areas\Administrator\Data\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Areas\Administrator\Data\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Areas\Administrator\Data\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -4495,6 +4508,8 @@
     <Content Include="Areas\Administrator\Views\MainPage\Error401.cshtml" />
     <Content Include="Content\images\Lap trinh Tren Moi Truong Windows - Danh gia hoc phan.docx" />
     <Content Include="Areas\Administrator\Views\MainPage\BangDieuKhien.cshtml" />
+    <Content Include="Areas\Administrator\Views\Shared\_MessageAlert.cshtml" />
+    <Content Include="Areas\Administrator\Data\libraries\css\toastr.js.map" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>

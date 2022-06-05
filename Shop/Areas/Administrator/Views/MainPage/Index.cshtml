@@ -18,45 +18,45 @@
         opacity: 0.3 !important;
     }
 </style>
-
-<!-- Page Container START -->
-<div class="container" style="margin-top: 10px;">
-
-    <!-- Button trigger modal -->
-    <div class="sticky-sidebar active">
-        <div class="bannner laptopzoom">
-            <button type="button" style="border: none;" data-toggle="modal" data-target="#exampleModalCenter">
-                <img src="~/Content/images/dashboard-session.png" alt="Alternate Text" width="79" height="79" />
-            </button>
-        </div>
+<!-- Button trigger modal -->
+<div class="sticky-sidebar active">
+    <div class="bannner laptopzoom">
+        <button type="button" style="border: none;" data-toggle="modal" data-target="#exampleModalCenter">
+            <img src="~/Content/images/dashboard-session.png" alt="Alternate Text" width="79" height="79" />
+        </button>
     </div>
+</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" style="vertical-align: middle; margin: 20px; background-color: transparent;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Hệ thống</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <i class="anticon anticon-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-5" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
-                            <p style="font-weight: bold; color: red;font-size: 2rem;">@ViewBag.Online <img src="~/Content/images/user.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;"/> </p> Đang Online
-                        </div>
-                        <div class="col-5" style="background-color: #b3eae0;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
-                            <p style="font-weight: bold; color: red;font-size: 2rem;">@ViewBag.SoNguoiTruyCap <img src="~/Content/images/fairy.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;"/></p> Truy cập Website
-                        </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" style="vertical-align: middle; margin: 20px; background-color: transparent;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Hệ thống</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="anticon anticon-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-5" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;">@ViewBag.Online <img src="~/Content/images/user.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /> </p> Đang Online
+                    </div>
+                    <div class="col-5" style="background-color: #b3eae0;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;">@ViewBag.SoNguoiTruyCap <img src="~/Content/images/fairy.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p> Truy cập Website
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success" data-dismiss="modal">Đóng</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>
+</div>
+<!-- Page Container START -->
+<div class="container" style="margin-top: 10px;">
+
+
 
     <!-- Content Wrapper START -->
     <div class="main-content">
@@ -100,7 +100,7 @@
                             </div>
                             <div class="m-l-15">
                                 <h3 class="m-b-0">@home.DemHoaDon().ToString("#,##")</h3>
-                                <p class="m-b-0 text-muted">Hóa đơn</p>
+                                <p class="m-b-0 text-muted">Đơn đặt hàng</p>
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
-
+@Html.Partial("_MessageAlert")
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
         <div class="container-fluid">
@@ -97,7 +97,7 @@
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.madon }) |
                                                     @Html.ActionLink("Details", "Details", new { id = item.madon }) |
                                                     @Html.ActionLink("Delete", "Delete", new { id = item.madon })*@
-                                                <a href="@Url.Action("Edit","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a href="@Url.Action("Edit","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
                                                 <a href="@Url.Action("Details","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
                                                 <a href="@Url.Action("Delete","DonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
                                             </td>

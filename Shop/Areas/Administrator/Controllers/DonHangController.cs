@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -129,6 +130,7 @@ namespace Shop.Areas.Administrator.Controllers
                 {
                     db.Entry(donHang).State = EntityState.Modified;
                     db.SaveChanges();
+                    Notification.set_flash("Đã cập nhật trạng thái đơn hàng !", "success");
                     return RedirectToAction("Index");
                 }
                 ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);

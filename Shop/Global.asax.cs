@@ -24,6 +24,7 @@ namespace Shop
         protected void Session_Start()
         {
             Application.Lock();
+            Session["Notification"] = "";
             Application["SoNguoiTruyCap"] = (int)Application["SoNguoiTruyCap"] + 1;
             Application["Online"] = (int)Application["Online"] + 1;
             Application.UnLock();
