@@ -11,7 +11,7 @@
 }
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+@Html.Partial("_Nofit")
 <!-- Product section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
@@ -71,7 +71,8 @@
                 </table>
                 <div class="d-flex">
                     @*<input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 3rem;" />*@
-                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = Model.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-danger flex-shrink-0" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });">
+                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = Model.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-danger flex-shrink-0">
+                        <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
                         <i class="fa fa-cart-plus me-1"></i>
                         Thêm vào giỏ
                     </a>
@@ -147,8 +148,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>     
-                    
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-5">

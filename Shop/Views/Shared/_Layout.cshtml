@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="~/Content/css/style.css">
     <link href="~/Content/css/styles.css" rel="stylesheet" />
     <link href="~/Content/css/phonerang.css" rel="stylesheet" />
+    <!-- Toastr && SweetAlert2 -->
+    <link href="~/Areas/Administrator/Data/libraries/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/Areas/Administrator/Data/libraries/css/sweetalert2.min.css" rel="stylesheet" />
     <style>
         #myBtn {
             display: none;
@@ -187,9 +190,9 @@
                 z-index: 999;
             }
 
-            .banner {
-                margin-top: 300px;
-            }
+        .banner {
+            margin-top: 300px;
+        }
 
         /*Căn chỉnh sidebar banner*/
         @@media screen and (max-width: 2000px) {
@@ -755,7 +758,10 @@
     <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Content/js/script.js"></script>
     <script type="text/javascript" src="~/Content/js/scripts.js"></script>
-
+    <!-- Toastr && SweetAlert2 -->
+    <script src="~/Areas/Administrator/Data/libraries/js/karma.laclac.min.js"></script>
+    <script src="~/Areas/Administrator/Data/libraries/js/toastr.min.js"></script>
+    <script src="~/Areas/Administrator/Data/libraries/js/sweetalert2.min.js"></script>
     @RenderSection("scripts", required: false)
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 </body>

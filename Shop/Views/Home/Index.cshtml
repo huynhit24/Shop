@@ -34,7 +34,7 @@
             z-index: 100;
         }
 </style>
-
+@Html.Partial("_Nofit")
 <main class="row">
     <!--Banner dọc 2 bên-->
     <div class="sticky-sidebar active">
@@ -165,7 +165,8 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });" -->
                                         </div>
                                     </div>
                                 </div>
@@ -271,7 +272,8 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-primary"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-dark mua" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-dark mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
                                         </div>
 
                                     </div>
@@ -383,7 +385,8 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-warning"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a id="add-cart" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-danger mua add-cart" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <a id="add-cart" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-danger mua add-cart"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
 
                                         </div>
                                     </div>
@@ -457,9 +460,9 @@
                                                     </div>
                                                 </div>
                                                 @*<div class="owl-nav">
-                                                    <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
-                                                    <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
-                                                </div>*@
+                                                        <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button>
+                                                        <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button>
+                                                    </div>*@
                                                 <div class="owl-dots disabled">
 
                                                 </div>
