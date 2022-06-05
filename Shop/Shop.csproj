@@ -943,6 +943,7 @@
     <Content Include="Areas\Administrator\Data\images\sv2.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv3.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv4.jpg" />
+    <Content Include="Areas\Administrator\Data\images\trash-crud.png" />
     <Content Include="Areas\Administrator\Data\images\trending-topic.png" />
     <Content Include="Areas\Administrator\Data\libraries\css\style.css" />
     <Content Include="Areas\Administrator\Data\libraries\css\sweetalert2.min.css" />

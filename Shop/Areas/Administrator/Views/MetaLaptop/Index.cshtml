@@ -57,9 +57,9 @@
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.mameta }) |
                                                     @Html.ActionLink("Details", "Details", new { id = item.mameta }) |
                                                     @Html.ActionLink("Delete", "Delete", new { id = item.mameta })*@
-                                                <a href="@Url.Action("Edit","MetaLaptop", new { id = item.mameta })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a href="@Url.Action("Edit","MetaLaptop", new { id = item.mameta })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
                                                 <a href="@Url.Action("Details","MetaLaptop", new { id = item.mameta })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
-                                                <a href="@Url.Action("Delete","MetaLaptop", new { id = item.mameta })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                                <a href="@Url.Action("Delete","MetaLaptop", new { id = item.mameta })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
                                             </td>
                                         </tr>
                                     }

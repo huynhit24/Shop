@@ -45,9 +45,9 @@
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                                                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                                                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                                                <a href="@Url.Action("Edit","AspNetRoles", new { id = item.Id })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a href="@Url.Action("Edit","AspNetRoles", new { id = item.Id })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
                                                 <a href="@Url.Action("Details","AspNetRoles", new { id = item.Id })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
-                                                <a href="@Url.Action("Delete","AspNetRoles", new { id = item.Id })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                                <a href="@Url.Action("Delete","AspNetRoles", new { id = item.Id })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
                                             </td>
                                         </tr>
                                     }
