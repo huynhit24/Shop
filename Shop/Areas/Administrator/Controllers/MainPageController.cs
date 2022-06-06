@@ -43,10 +43,12 @@ namespace Shop.Areas.Administrator.Controllers
         {
             if (Session["taikhoanadmin"] == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Account", new { area = ""});
             }
             else
             {
+                ViewBag.Online = HttpContext.Application["Online"].ToString();
+                ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString(); // Số lượng người truy cập website (user && admin)
                 return View();
             }
         }
@@ -186,6 +188,21 @@ namespace Shop.Areas.Administrator.Controllers
             Session["TaiKhoan"] = null;
             Session["taikhoanadmin"] = null;
             return RedirectToAction("Login", "Account", new { area = "" });
+        }
+
+        //thông kê số người truy cập website
+        public ActionResult BangDieuKhien()
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                ViewBag.Online = HttpContext.Application["Online"].ToString();
+                ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString(); // Số lượng người truy cập website (user && admin)
+                return PartialView();
+            }
         }
     }
 }

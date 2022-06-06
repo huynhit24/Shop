@@ -27,7 +27,7 @@
         })
     </script>
 }
-
+@Html.Partial("_MessageAlert")
 <div class="container container-fluid">
     <div class="p-5" style="background-color: white">
 
@@ -70,57 +70,57 @@
                     @Html.Label("Hình", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage", placeholder = "laptop-(1).png" })
-                        <a id="btnSelectImage" href="#">Chọn ảnh</a>
+                        <a style="font-weight: bold;background-color: greenyellow; color: #085e49; padding: 8px; margin: 16px;" id="btnSelectImage" href="#"> <i class="fa fa-image"></i> Chọn ảnh</a>
                         @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
                         <img id="imgSelectImage" src="/Data/images/@Model.hinh" alt="No image" height="200" width="200" />
                     </div>
                 </div>
 
                 @*<div class="form-group">
-                    @Html.LabelFor(model => model.hinh, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.hinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
 
-                        <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
-                               style="display:none" />
-                        <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
-                    </div>
-                </div>*@
+                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                                   style="display:none" />
+                            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+                        </div>
+                    </div>*@
 
                 @* @section upload
-                {
-                    <script>
-                        $(function () {
-                            $('#btnUpload').click(function () {
-                                $('#fileUpload').trigger('click');
+                    {
+                        <script>
+                            $(function () {
+                                $('#btnUpload').click(function () {
+                                    $('#fileUpload').trigger('click');
+                                });
                             });
-                        });
-                        $('#fileUpload').change(function () {
-                            if (window.FormData !== undefined) {
-                                var fileUpload = $('#fileUpload').get(0);
-                                var files = fileUpload.files;
-                                var formData = new FormData();
-                                formData.append('file', files[0]);
+                            $('#fileUpload').change(function () {
+                                if (window.FormData !== undefined) {
+                                    var fileUpload = $('#fileUpload').get(0);
+                                    var files = fileUpload.files;
+                                    var formData = new FormData();
+                                    formData.append('file', files[0]);
 
-                                $.ajax(
-                                    {
-                                        type: 'POST',
-                                        url: '/Laptop/ProcessUpload',
-                                        contentType: false,
-                                        processData: false,
-                                        data: formData,
-                                        success: function (urlImage) {
+                                    $.ajax(
+                                        {
+                                            type: 'POST',
+                                            url: '/Laptop/ProcessUpload',
+                                            contentType: false,
+                                            processData: false,
+                                            data: formData,
+                                            success: function (urlImage) {
 
-                                            $('#pictureUpload').attr('src', urlImage);
-                                            $('#hinh').val(urlImage);
-                                        },
-                                        error: function (err) {
-                                            alert('Error ', err.statusText);
-                                        }
-                                    });
-                            }
-                        });
-                    </script>
-                }*@
+                                                $('#pictureUpload').attr('src', urlImage);
+                                                $('#hinh').val(urlImage);
+                                            },
+                                            error: function (err) {
+                                                alert('Error ', err.statusText);
+                                            }
+                                        });
+                                }
+                            });
+                        </script>
+                    }*@
 
                 <div class="form-group">
                     @Html.Label("Hãng sản xuất", "mahang", htmlAttributes: new { @class = "control-label col-md-2" })

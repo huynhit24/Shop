@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
-
+@Html.Partial("_MessageAlert")
 <divk class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
         <h2>Xem thông tin tài khoản</h2>
@@ -143,7 +143,7 @@
             </dl>
         </div>
         <p>
-            @Html.ActionLink("Sửa", "Edit" , new { id = Model.Id }) |
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.Id }) |
             @Html.ActionLink("Quay lại", "Index", "AspNetUsers")
         </p>
     </div>

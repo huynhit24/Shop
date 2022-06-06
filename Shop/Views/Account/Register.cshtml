@@ -3,7 +3,7 @@
     ViewBag.Title = "Đăng ký";
 }
 
-<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%); max-width: 1200px; margin-left: auto; margin-right: auto;">
     <div class="container px-1 px-lg-1 my-1">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">@ViewBag.Title</h1>
@@ -11,7 +11,19 @@
         </div>
     </div>
 </header>
-<div class="container-fluid">
+<div class="container-fluid" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <!--Banner dọc 2 bên-->
+    <div class="sticky-sidebar active">
+        <div class="banner-left">
+            <img src="~/Content/images/trai-79x271-9.png" alt="Alternate Text" width="79" height="271" />
+        </div>
+    </div>
+    <div class="sticky-sidebar active">
+        <div class="banner-right">
+            <img src="~/Content/images/Phai-79x271.png" alt="Alternate Text" width="79" height="271" />
+        </div>
+    </div>
+    <!--End-->
     <div class="row card-body">
         <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal formDiv", role = "form" }))
@@ -22,31 +34,31 @@
                 @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="form-group m-3">
                     @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
-                    @Html.Label("Email (*)", new { @class = "col-md-2 control-label" })
+                    @Html.Label("Email (*)", new { @class = "col-md-6 control-label" })
                     <div class="col-md-12">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group m-3">
-                    @Html.Label("Mật khẩu (*)", new { @class = "col-md-2 control-label" })
+                    @Html.Label("Mật khẩu (*)", new { @class = "col-md-6 control-label" })
                     <div class="col-md-12">
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group m-3">
-                    @Html.Label("Xác thực mật khẩu (*)", new { @class = "col-md-4 control-label" })
+                    @Html.Label("Xác thực mật khẩu (*)", new { @class = "col-md-7 control-label" })
                     <div class="col-md-12">
                         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group m-3">
-                    @Html.Label("Họ tên (*)", new { @class = "col-md-2 control-label" })
+                    @Html.Label("Họ tên (*)", new { @class = "col-md-6 control-label" })
                     <div class="col-md-12">
                         @Html.TextBoxFor(m => m.hoten, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group m-3">
-                    @Html.Label("Địa chỉ", new { @class = "col-md-2 control-label" })
+                    @Html.Label("Địa chỉ", new { @class = "col-md-6 control-label" })
                     <div class="col-md-12">
                         @Html.TextBoxFor(m => m.diachi, new { @class = "form-control" })
                     </div>

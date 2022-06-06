@@ -11,7 +11,7 @@
 }
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+@Html.Partial("_Nofit")
 <!-- Product section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
@@ -71,7 +71,8 @@
                 </table>
                 <div class="d-flex">
                     @*<input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 3rem;" />*@
-                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = Model.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-danger flex-shrink-0" onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });">
+                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = Model.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-danger flex-shrink-0">
+                        <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
                         <i class="fa fa-cart-plus me-1"></i>
                         Thêm vào giỏ
                     </a>
@@ -126,14 +127,29 @@
 
 
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
+    <div class="container pt-lg-5 px-lg-5 my-5">
         <div class="row">
             <div class="col-md-7">
                 <div class="col-12 text-uppercase">
                     <h2><u>Mô tả sản phẩm</u></h2>
                 </div>
                 <div class="col-12" id="details">
-                    @Html.Raw(Model.mota)
+
+                    <div class="container pt-5 px-lg-5 my-5 accordion" id="accordionExample2">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button style="background-color: orange; color: white" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                    Xem nội dung
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                                <div class="accordion-body">
+                                    @Html.Raw(Model.mota)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-5">
@@ -292,7 +308,7 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-warning mt-auto" href="@Url.Action("Details","Home", new { id = item.malaptop})"><i class="fa fa-eye"></i> Xem thêm</a></div>
+                            <div class="text-center"><a class="btn btn-warning mt-auto" href="@Url.Action("Details","Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })"><i class="fa fa-eye"></i> Xem thêm</a></div>
                         </div>
                     </div>
                 </div>

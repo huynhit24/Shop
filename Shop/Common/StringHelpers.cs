@@ -41,5 +41,22 @@ namespace Shop.Common
             string temp = encodedUrl.Normalize(NormalizationForm.FormD);
             return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ","-");
         }
+
+        public static string SeoLink(this string url)
+        {
+            string seolink = (url ?? "").ToLower();
+            seolink = Regex.Replace(seolink, @"\&+", "va");
+            seolink = url.Replace(" ", "-").Replace("%", "-").Replace("$", "-").Replace("#", "-").Replace("@","-").Replace("!","-").Replace("~","-").Replace("^","-")
+                                .Replace("&","-").Replace("*","-").Replace("(","-").Replace(")","-").Replace("_","-").Replace("+","-").Replace("=","-").Replace("{","-")
+                                .Replace("}","-").Replace("|","-").Replace("\\","-").Replace(":","-").Replace(";","-").Replace("\"","-").Replace("'","-")
+                                .Replace("<","-").Replace(">","-").Replace(",","-").Replace(".","-").Replace("?","-").Replace("/","-").Replace("`","-");
+            seolink = seolink.Replace(@"à | á | ạ | ả | ã | â | ầ | ấ | ậ | ẩ | ẫ | ă | ằ | ắ | ặ | ẳ | ẵ", "a");
+            seolink = seolink.Replace(@"đ", "d");
+            seolink = seolink.Replace(@"ê | ế | ề | ễ | ệ", "e");
+            seolink = seolink.Replace(@"ư | ứ | ừ | ữ | ự", "u");
+            seolink = seolink.Replace(@"ô | ố | ồ | ỗ | ộ", "o");
+            seolink = seolink.Replace(@"í | ì | ị | ĩ", "d");
+            return seolink.ToLower();
+        }
     }
 }

@@ -5,6 +5,28 @@
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
+<script src="~/Plugins/ckeditor/ckeditor.js"></script>
+<script src="~/Plugins/ckfinder/ckfinder.js"></script>
+
+@section jsFooter{
+    <script>
+
+        var editor = CKEDITOR.replace('profile', {
+            customConfig: '/Plugin/ckeditor/config.js',
+        });
+
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url.substring(13));
+                $('#imgSelectImage').attr('src', url);
+            };
+            finder.popup();
+        })
+    </script>
+}
+@Html.Partial("_MessageAlert")
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
         <h2>Tạo mới tài khoản đăng nhập</h2>
@@ -131,7 +153,7 @@
                 <div class="form-group">
                     @Html.Label("Profile cá nhân", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.profile, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextAreaFor(model => model.profile, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.profile, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -139,8 +161,10 @@
                 <div class="form-group">
                     @Html.Label("Avatar", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.avatar, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextBoxFor(model => model.avatar, new { htmlAttributes = new { @class = "form-control" } })
+                        <a style="font-weight: bold;background-color: greenyellow; color: #085e49; padding: 8px; margin: 16px;" id="btnSelectImage" href="#"> <i class="fa fa-image"></i> Chọn ảnh</a>
                         @Html.ValidationMessageFor(model => model.avatar, "", new { @class = "text-danger" })
+                        <img id="imgSelectImage" src="/Data/images/user-acc.png" alt="No image" height="200" width="200" />
                     </div>
                 </div>
 

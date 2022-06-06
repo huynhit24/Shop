@@ -17,30 +17,51 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/AspNetUserLogins
         public ActionResult Index()
         {
-            var aspNetUserLogins = db.AspNetUserLogins.Include(a => a.AspNetUser);
-            return View(aspNetUserLogins.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var aspNetUserLogins = db.AspNetUserLogins.Include(a => a.AspNetUser);
+                return View(aspNetUserLogins.ToList());
+            }
         }
 
         // GET: Administrator/AspNetUserLogins/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
-            if (aspNetUserLogin == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
+                if (aspNetUserLogin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUserLogin);
             }
-            return View(aspNetUserLogin);
         }
 
         // GET: Administrator/AspNetUserLogins/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email");
+                return View();
+            }
         }
 
         // POST: Administrator/AspNetUserLogins/Create
@@ -50,31 +71,45 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LoginProvider,ProviderKey,UserId")] AspNetUserLogin aspNetUserLogin)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.AspNetUserLogins.Add(aspNetUserLogin);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.AspNetUserLogins.Add(aspNetUserLogin);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserLogin.UserId);
-            return View(aspNetUserLogin);
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserLogin.UserId);
+                return View(aspNetUserLogin);
+            }
         }
 
         // GET: Administrator/AspNetUserLogins/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
-            if (aspNetUserLogin == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
+                if (aspNetUserLogin == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserLogin.UserId);
+                return View(aspNetUserLogin);
             }
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserLogin.UserId);
-            return View(aspNetUserLogin);
         }
 
         // POST: Administrator/AspNetUserLogins/Edit/5
@@ -84,29 +119,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "LoginProvider,ProviderKey,UserId")] AspNetUserLogin aspNetUserLogin)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(aspNetUserLogin).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserLogin.UserId);
-            return View(aspNetUserLogin);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(aspNetUserLogin).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", aspNetUserLogin.UserId);
+                return View(aspNetUserLogin);
+            }
         }
 
         // GET: Administrator/AspNetUserLogins/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
-            if (aspNetUserLogin == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
+                if (aspNetUserLogin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(aspNetUserLogin);
             }
-            return View(aspNetUserLogin);
         }
 
         // POST: Administrator/AspNetUserLogins/Delete/5
@@ -114,10 +163,17 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
-            db.AspNetUserLogins.Remove(aspNetUserLogin);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                AspNetUserLogin aspNetUserLogin = db.AspNetUserLogins.Find(id);
+                db.AspNetUserLogins.Remove(aspNetUserLogin);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

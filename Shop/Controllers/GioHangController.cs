@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Shop.Areas.Administrator.Data.message;
 using Shop.Mail;
 using Shop.Models;
 using Shop.MoMo;
@@ -41,6 +42,7 @@ namespace Shop.Controllers
             {
                 sanpham = new GioHang(id);
                 lstGioHang.Add(sanpham);
+                Notification.set_flash("Thêm giỏ hàng thành công!", "success");
                 return Redirect(strURL);
             }
             else
@@ -103,6 +105,7 @@ namespace Shop.Controllers
             if (sanpham != null)
             {
                 lstGiohang.RemoveAll(n => n.malaptop == id);
+                Notification.set_flash("Xóa mặt hàng thành công!", "success");
                 return RedirectToAction("GioHang");
             }
             return RedirectToAction("GioHang");
@@ -120,9 +123,10 @@ namespace Shop.Controllers
         }
         public ActionResult XoaTatCaGioHang()// xóa tất cả các mặt hàng trong giỏ hàng
         {
-            List<GioHang> lstGioHang = Laygiohang();
+            /*List<GioHang> lstGioHang = Laygiohang();*/
             List<GioHang> lstGiohang = Laygiohang();
             lstGiohang.Clear();
+            Notification.set_flash("Xóa giỏ hàng thành công!", "success");
             return RedirectToAction("GioHang");
         }
 
@@ -158,6 +162,7 @@ namespace Shop.Controllers
             dh.ngaygiao = DateTime.Parse(ngaygiao);
             dh.giaohang = false;
             dh.thanhtoan = false;
+            dh.tinhtrang = '0';
             /*if ((bool)Session["thanhtoan"] == true)
             {
                 dh.thanhtoan = true;
@@ -209,6 +214,7 @@ namespace Shop.Controllers
 
             data.SubmitChanges();
             Session["GioHang"] = null;
+            Notification.set_flash("Bạn đã đặt hàng thành công!", "success");
             return RedirectToAction("XacnhanDonhang", "GioHang");
         }
         public ActionResult XacnhanDonhang()//xác nhận đơn mạng
@@ -489,6 +495,7 @@ namespace Shop.Controllers
             dh.ngaygiao = DateTime.Now;
             dh.giaohang = false;
             dh.thanhtoan = true;
+            dh.tinhtrang = '0';
 
             data.DonHangs.InsertOnSubmit(dh);
             data.SubmitChanges();
@@ -517,6 +524,7 @@ namespace Shop.Controllers
 
             data.SubmitChanges();
             Session["GioHang"] = null;
+            Notification.set_flash("Bạn đã thanh toán thành công!", "success");
         }
 
         /* ZaloPay Test*/

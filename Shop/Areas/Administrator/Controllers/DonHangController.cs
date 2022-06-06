@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -17,30 +18,53 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/DonHang
         public ActionResult Index()
         {
-            var donHangs = db.DonHangs.Include(d => d.AspNetUser);
-            return View(donHangs.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var donHangs = db.DonHangs.Include(d => d.AspNetUser);
+                return View(donHangs.ToList());
+            }
         }
 
         // GET: Administrator/DonHang/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DonHang donHang = db.DonHangs.Find(id);
-            if (donHang == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi xem chi tiết đơn hàng ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                return View(donHang);
             }
-            return View(donHang);
         }
 
         // GET: Administrator/DonHang/Create
         public ActionResult Create()
         {
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email");
+                return View();
+            }
         }
 
         // POST: Administrator/DonHang/Create
@@ -48,33 +72,50 @@ namespace Shop.Areas.Administrator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "madon,thanhtoan,giaohang,ngaydat,ngaygiao,makh")] DonHang donHang)
+        public ActionResult Create([Bind(Include = "madon,thanhtoan,giaohang,ngaydat,ngaygiao,makh,tinhtrang")] DonHang donHang)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.DonHangs.Add(donHang);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DonHangs.Add(donHang);
+                    db.SaveChanges();
+                    Notification.set_flash("Thêm mới đơn hàng thành công !", "success");
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
-            return View(donHang);
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
+                return View(donHang);
+            }
         }
 
         // GET: Administrator/DonHang/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DonHang donHang = db.DonHangs.Find(id);
-            if (donHang == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần sửa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
+                return View(donHang);
             }
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
-            return View(donHang);
         }
 
         // POST: Administrator/DonHang/Edit/5
@@ -82,31 +123,48 @@ namespace Shop.Areas.Administrator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "madon,thanhtoan,giaohang,ngaydat,ngaygiao,makh")] DonHang donHang)
+        public ActionResult Edit([Bind(Include = "madon,thanhtoan,giaohang,ngaydat,ngaygiao,makh,tinhtrang")] DonHang donHang)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(donHang).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
-            return View(donHang);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(donHang).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Notification.set_flash("Đã cập nhật trạng thái đơn hàng !", "success");
+                    return RedirectToAction("Index");
+                }
+                ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
+                return View(donHang);
+            }
         }
 
         // GET: Administrator/DonHang/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            DonHang donHang = db.DonHangs.Find(id);
-            if (donHang == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                return View(donHang);
             }
-            return View(donHang);
         }
 
         // POST: Administrator/DonHang/Delete/5
@@ -114,10 +172,18 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DonHang donHang = db.DonHangs.Find(id);
-            db.DonHangs.Remove(donHang);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                DonHang donHang = db.DonHangs.Find(id);
+                db.DonHangs.Remove(donHang);
+                Notification.set_flash("Đã xóa đơn hàng thành công !", "success");
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -4,7 +4,7 @@
     ViewBag.Title = "Đăng nhập";
 }
 
-<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%); max-width: 1200px; margin-left: auto; margin-right: auto;">
     <div class="container px-1 px-lg-1 my-1">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">@ViewBag.Title</h1>
@@ -12,7 +12,19 @@
         </div>
     </div>
 </header>
-<div class="container-fluid">
+<div class="container-fluid" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <!--Banner dọc 2 bên-->
+    <div class="sticky-sidebar active">
+        <div class="banner-left">
+            <img src="~/Content/images/trai-79x271-9.png" alt="Alternate Text" width="79" height="271" />
+        </div>
+    </div>
+    <div class="sticky-sidebar active">
+        <div class="banner-right">
+            <img src="~/Content/images/Phai-79x271.png" alt="Alternate Text" width="79" height="271" />
+        </div>
+    </div>
+    <!--End-->
     <div class="row card-body">
         <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4 formDiv-orange" style="margin-top: 20px;">
             <section id="loginForm">
@@ -58,12 +70,12 @@
                         </div>
                     </div>
                     @* <p>
-                @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
-            </p>*@
+                            @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
+                        </p>*@
                     @* Enable this once you have account confirmation enabled for password reset functionality
-            <p>
-                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-            </p>*@
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
                 }
             </section>
             <section id="socialLoginForm">

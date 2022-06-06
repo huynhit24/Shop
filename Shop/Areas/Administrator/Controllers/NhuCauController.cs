@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -17,28 +18,49 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/NhuCau
         public ActionResult Index()
         {
-            return View(db.NhuCaus.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View(db.NhuCaus.ToList());
+            }
         }
 
         // GET: Administrator/NhuCau/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            NhuCau nhuCau = db.NhuCaus.Find(id);
-            if (nhuCau == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                NhuCau nhuCau = db.NhuCaus.Find(id);
+                if (nhuCau == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nhuCau);
             }
-            return View(nhuCau);
         }
 
         // GET: Administrator/NhuCau/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Administrator/NhuCau/Create
@@ -48,29 +70,44 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "manhucau,tennhucau")] NhuCau nhuCau)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.NhuCaus.Add(nhuCau);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.NhuCaus.Add(nhuCau);
+                    db.SaveChanges();
+                    Notification.set_flash("Thêm mới NHU CẦU SỬ DỤNG thành công !", "success");
+                    return RedirectToAction("Index");
+                }
 
-            return View(nhuCau);
+                return View(nhuCau);
+            }
         }
 
         // GET: Administrator/NhuCau/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            NhuCau nhuCau = db.NhuCaus.Find(id);
-            if (nhuCau == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                NhuCau nhuCau = db.NhuCaus.Find(id);
+                if (nhuCau == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nhuCau);
             }
-            return View(nhuCau);
         }
 
         // POST: Administrator/NhuCau/Edit/5
@@ -80,28 +117,43 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "manhucau,tennhucau")] NhuCau nhuCau)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(nhuCau).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            return View(nhuCau);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(nhuCau).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Notification.set_flash("Cập nhật NHU CẦU SỬ DỤNG thành công !", "success");
+                    return RedirectToAction("Index");
+                }
+                return View(nhuCau);
+            }
         }
 
         // GET: Administrator/NhuCau/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            NhuCau nhuCau = db.NhuCaus.Find(id);
-            if (nhuCau == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                NhuCau nhuCau = db.NhuCaus.Find(id);
+                if (nhuCau == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(nhuCau);
             }
-            return View(nhuCau);
         }
 
         // POST: Administrator/NhuCau/Delete/5
@@ -109,10 +161,18 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NhuCau nhuCau = db.NhuCaus.Find(id);
-            db.NhuCaus.Remove(nhuCau);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                NhuCau nhuCau = db.NhuCaus.Find(id);
+                db.NhuCaus.Remove(nhuCau);
+                db.SaveChanges();
+                Notification.set_flash("Xóa NHU CẦU SỬ DỤNG thành công !", "success");
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

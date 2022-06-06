@@ -10,12 +10,12 @@
             <div class="col-auto">
                 <ul class="top-nav">
                     <li>
-                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                     </li>
                     <li>
                         @Html.ActionLink("Đơn hàng của bạn", "DonHangDaMua", "Home")
                     </li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+                    <li><a class="btn-sm btn-outline-danger" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
                 </ul>
             </div>
         }

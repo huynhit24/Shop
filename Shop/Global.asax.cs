@@ -16,6 +16,24 @@ namespace Shop
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Application["SoNguoiTruyCap"] = 0;
+            Application["Online"] = 0;
+        }
+
+        protected void Session_Start()
+        {
+            Application.Lock();
+            Session["Notification"] = "";
+            Application["SoNguoiTruyCap"] = (int)Application["SoNguoiTruyCap"] + 1;
+            Application["Online"] = (int)Application["Online"] + 1;
+            Application.UnLock();
+        }
+        protected void Session_End()
+        {
+            Application.Lock();
+            Application["Online"] = (int)Application["Online"] - 1;
+            Application.UnLock();
         }
     }
 }

@@ -42,6 +42,12 @@ namespace Shop
             );
 
             routes.MapRoute(
+                name: "Post Details",
+                url: "{controller}/{action}/{id}/{postName}",
+                defaults: new { controller = "Home", action = "PostDetails", id = UrlParameter.Optional, postName = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Laptop Details",
                 url: "{controller}/{action}/{id}/{postName}",
                 defaults: new { controller = "Home", action = "Details", id = UrlParameter.Optional, postName = UrlParameter.Optional }

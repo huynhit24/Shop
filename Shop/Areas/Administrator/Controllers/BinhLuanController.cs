@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -17,30 +18,51 @@ namespace Shop.Areas.Administrator.Controllers
         // GET: Administrator/BinhLuan
         public ActionResult Index()
         {
-            var binhLuans = db.BinhLuans.Include(b => b.TinTuc);
-            return View(binhLuans.ToList());
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var binhLuans = db.BinhLuans.Include(b => b.TinTuc);
+                return View(binhLuans.ToList());
+            }
         }
 
         // GET: Administrator/BinhLuan/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            if (binhLuan == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                BinhLuan binhLuan = db.BinhLuans.Find(id);
+                if (binhLuan == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(binhLuan);
             }
-            return View(binhLuan);
         }
 
         // GET: Administrator/BinhLuan/Create
         public ActionResult Create()
         {
-            ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude");
-            return View();
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude");
+                return View();
+            }
         }
 
         // POST: Administrator/BinhLuan/Create
@@ -50,31 +72,46 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "mabinhluan,ten,noidung,vote,ngaybinhluan,matin,trangthai")] BinhLuan binhLuan)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.BinhLuans.Add(binhLuan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.BinhLuans.Add(binhLuan);
+                    db.SaveChanges();
+                    Notification.set_flash("Thêm mới Bình luận blog thành công !", "success");
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
-            return View(binhLuan);
+                ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
+                return View(binhLuan);
+            }
         }
 
         // GET: Administrator/BinhLuan/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            if (binhLuan == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                BinhLuan binhLuan = db.BinhLuans.Find(id);
+                if (binhLuan == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
+                return View(binhLuan);
             }
-            ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
-            return View(binhLuan);
         }
 
         // POST: Administrator/BinhLuan/Edit/5
@@ -84,29 +121,44 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "mabinhluan,ten,noidung,vote,ngaybinhluan,matin,trangthai")] BinhLuan binhLuan)
         {
-            if (ModelState.IsValid)
+            if (Session["taikhoanadmin"] == null)
             {
-                db.Entry(binhLuan).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Error401", "MainPage");
             }
-            ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
-            return View(binhLuan);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(binhLuan).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Notification.set_flash("Cập nhật Bình luận blog thành công !", "success");
+                    return RedirectToAction("Index");
+                }
+                ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
+                return View(binhLuan);
+            }
         }
 
         // GET: Administrator/BinhLuan/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["taikhoanadmin"] == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error401", "MainPage");
             }
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            if (binhLuan == null)
+            else
             {
-                return HttpNotFound();
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                BinhLuan binhLuan = db.BinhLuans.Find(id);
+                if (binhLuan == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(binhLuan);
             }
-            return View(binhLuan);
         }
 
         // POST: Administrator/BinhLuan/Delete/5
@@ -114,10 +166,18 @@ namespace Shop.Areas.Administrator.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BinhLuan binhLuan = db.BinhLuans.Find(id);
-            db.BinhLuans.Remove(binhLuan);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                BinhLuan binhLuan = db.BinhLuans.Find(id);
+                db.BinhLuans.Remove(binhLuan);
+                db.SaveChanges();
+                Notification.set_flash("Xóa bình luận blog thành công !", "success");
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -26,7 +26,7 @@
         })
     </script>
 }
-
+@Html.Partial("_MessageAlert")
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
         <h2>Tạo mới bài viết</h2>
@@ -50,7 +50,7 @@
                     @Html.Label("Hình nền", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.hinhnen, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage", placeholder = "laptop-(1).png" })
-                        <a id="btnSelectImage" href="#">Chọn ảnh</a>
+                        <a style="font-weight: bold;background-color: greenyellow; color: #085e49; padding: 8px; margin: 16px;" id="btnSelectImage" href="#"> <i class="fa fa-image"></i> Chọn ảnh</a>
                         @Html.ValidationMessageFor(model => model.hinhnen, "", new { @class = "text-danger" })
                         <img id="imgSelectImage" src="/Data/images/laptop-(1).png" alt="No image" height="200" width="200" />
                     </div>

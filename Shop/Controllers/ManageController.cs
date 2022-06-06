@@ -55,12 +55,12 @@ namespace Shop.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Mật khẩu của bạn đã được thay đổi."
+                : message == ManageMessageId.SetPasswordSuccess ? "Mật khẩu của bạn đã được thiết lập."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Xác thực hai yếu tố của bạn đã được thiết lập."
+                : message == ManageMessageId.Error ? "Một lỗi đã xảy ra."
+                : message == ManageMessageId.AddPhoneSuccess ? "Số điện thoại của bạn đã được thêm."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Số điện thoại của bạn đã bị xóa."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -123,7 +123,7 @@ namespace Shop.Controllers
                 var message = new IdentityMessage
                 {
                     Destination = model.Number,
-                    Body = "Your security code is: " + code
+                    Body = "Mã bảo mật của bạn là: " + code
                 };
                 await UserManager.SmsService.SendAsync(message);
             }

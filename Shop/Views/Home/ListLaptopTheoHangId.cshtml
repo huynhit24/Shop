@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<Shop.Models.Laptop>
 @using PagedList.Mvc;
+@using Shop.Common
 
 @{
     ViewBag.Title = "ListLaptopTheoHangId";
@@ -7,8 +8,19 @@
     int? temp = 0;
 }
 
+<style>
+    .laptopzoom_ {
+        transition: transform .2s;
+    }
+
+        .laptopzoom_ :hover {
+            transform: scale(1.1);
+            z-index: 100;
+        }
+</style>
+
 <!-- Header-->
-<header class="py-5" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+<header class="py-5" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); max-width: 1200px; margin-left: auto; margin-right: auto;">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Danh sách laptop</h1>
@@ -17,13 +29,25 @@
     </div>
 </header>
 <!-- Section-->
-<section class="py-5">
+<section class="py-5" style="background-color: #f7eeee; max-width: 1200px; margin-left: auto; margin-right: auto; ">
+    <!--Banner dọc 2 bên-->
+    <div class="sticky-sidebar active">
+        <div class="banner-left">
+            <img src="~/Content/images/trai-79x271-9.png" alt="Alternate Text" width="79" height="271" />
+        </div>
+    </div>
+    <div class="sticky-sidebar active">
+        <div class="banner-right">
+            <img src="~/Content/images/Phai-79x271.png" alt="Alternate Text" width="79" height="271" />
+        </div>
+    </div>
+    <!--End-->
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach (var item in Model)
             {
                 temp = item.mahang;
-                <div class="col mb-5">
+                <div class="col mb-5 laptopzoom">
                     <div class="card h-100">
                         <!-- Product image-->
                         <img class="card-img-top" src="/Data/images/@item.hinh" alt="..." />
@@ -49,7 +73,7 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-success mt-auto" href="@Url.Action( "Details", "Home", new { id = item.malaptop})"><i class="fa fa-eye"></i> Xem chi tiết</a></div>
+                            <div class="text-center"><a class="btn btn-outline-success mt-auto" href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })"><i class="fa fa-eye"></i> Xem chi tiết</a></div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +82,7 @@
     </div>
 </section>
 
-<div style="text-align:center; margin-bottom: 32px;">
+<div style="text-align: center; background-color: #f7eeee; margin-bottom: 32px; max-width: 1200px; margin-left: auto; margin-right: auto; ">
     <div class="lead" style="margin-bottom: 20px">
         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
         @Model.PageCount
