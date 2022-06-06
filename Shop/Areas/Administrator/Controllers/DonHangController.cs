@@ -40,11 +40,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Lỗi xem chi tiết đơn hàng ! (id == null)", "danger");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 DonHang donHang = db.DonHangs.Find(id);
                 if (donHang == null)
                 {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
                     return HttpNotFound();
                 }
                 return View(donHang);
@@ -102,11 +104,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần sửa ! (id == null)", "danger");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 DonHang donHang = db.DonHangs.Find(id);
                 if (donHang == null)
                 {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
                     return HttpNotFound();
                 }
                 ViewBag.makh = new SelectList(db.AspNetUsers, "Id", "Email", donHang.makh);
@@ -150,11 +154,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần xóa ! (id == null)", "danger");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 DonHang donHang = db.DonHangs.Find(id);
                 if (donHang == null)
                 {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
                     return HttpNotFound();
                 }
                 return View(donHang);
