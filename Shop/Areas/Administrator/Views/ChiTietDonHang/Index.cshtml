@@ -57,7 +57,8 @@
                                                 @Html.DisplayFor(modelItem => item.soluong)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                @Html.DisplayFor(modelItem => item.dongia)
+                                                @String.Format("{0:0,0}", item.dongia) đ
+                                                @*@Html.DisplayFor(modelItem => item.dongia)*@
                                             </td>
                                             @*<td class="text-center" style="vertical-align:middle">*@
                                                 @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

@@ -7,7 +7,7 @@
 @Html.Partial("_MessageAlert")
 <div class="container-sm container-fluid">
     <div class="p-5" style="background-color: white">
-        <h2>Xem thông tin đơn hàng</h2>
+        <h2>Xem đơn hàng</h2>
 
         <div>
             <hr />
@@ -62,6 +62,7 @@
             </dl>
         </div>
         <p>
+            <a style="border-style: solid; padding: 5px; border-color: #08c4ee; border-width: thin; border-radius: 20px;" href="@Url.Action("InvoiceDetails","DonHang", new {ID = Model.madon })"><i class="fa fa-eye"></i> Xem</a>
             @Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |
             @Html.ActionLink("Quay lại", "Index", "DonHang")
         </p>

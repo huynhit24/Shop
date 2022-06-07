@@ -29,6 +29,25 @@ namespace Shop.Areas.Administrator.Controllers
             }
         }
 
+        //xem chi tiết đơn đặt hàng
+        public ActionResult InvoiceDetails(int? id)
+        {
+            if (id == null)
+            {
+                Notification.set_flash("Không tồn tại đơn hàng!", "warning");
+                return RedirectToAction("Index");
+            }
+            DonHang donHang = db.DonHangs.Find(id);
+            if (donHang == null)
+            {
+                Notification.set_flash("Không tồn tại  đơn hàng!", "warning");
+                return RedirectToAction("Index");
+            }
+            ViewBag.orderDetails = db.ChiTietDonHangs.Where(m => m.madon == id).ToList();
+            ViewBag.productOrder = db.Laptops.ToList();
+            return View(donHang);
+        }
+
         // GET: Administrator/DonHang/Details/5
         public ActionResult Details(int? id)
         {

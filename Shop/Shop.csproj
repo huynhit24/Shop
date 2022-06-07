@@ -4511,6 +4511,7 @@
     <Content Include="Areas\Administrator\Views\MainPage\BangDieuKhien.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\_MessageAlert.cshtml" />
     <Content Include="Areas\Administrator\Data\libraries\css\toastr.js.map" />
+    <Content Include="Areas\Administrator\Views\DonHang\InvoiceDetails.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>

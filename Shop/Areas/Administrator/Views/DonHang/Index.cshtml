@@ -43,6 +43,10 @@
                                             @Html.DisplayName("Giao hàng")
                                         </th>
                                         <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.giaohang)*@
+                                            @Html.DisplayName("Xem đơn hàng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.ngaydat)*@
                                             @Html.DisplayName("Ngày đặt")
                                         </th>
@@ -90,6 +94,9 @@
                                                 {
                                                     <p style="color: red;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
                                                 }
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                <a style="border-style: solid; padding: 5px; border-color: #08c4ee; border-width: thin; border-radius: 20px;" href="@Url.Action("InvoiceDetails","DonHang", new {ID = item.madon })"><i class="fa fa-eye"></i> Xem</a>
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.ngaydat)
