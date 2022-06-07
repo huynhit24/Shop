@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Nhu cầu !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 NhuCau nhuCau = db.NhuCaus.Find(id);
                 if (nhuCau == null)
                 {
+                    Notification.set_flash("Không tìm thấy Nhu cầu !", "warning");
                     return HttpNotFound();
                 }
                 return View(nhuCau);
@@ -99,11 +101,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Nhu cầu !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 NhuCau nhuCau = db.NhuCaus.Find(id);
                 if (nhuCau == null)
                 {
+                    Notification.set_flash("Không tìm thấy Nhu cầu !", "warning");
                     return HttpNotFound();
                 }
                 return View(nhuCau);
@@ -145,11 +149,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Nhu cầu !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 NhuCau nhuCau = db.NhuCaus.Find(id);
                 if (nhuCau == null)
                 {
+                    Notification.set_flash("Không tìm thấy Nhu cầu !", "warning");
                     return HttpNotFound();
                 }
                 return View(nhuCau);

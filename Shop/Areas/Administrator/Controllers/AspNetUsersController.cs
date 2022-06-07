@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 AspNetUser aspNetUser = db.AspNetUsers.Find(id);
                 if (aspNetUser == null)
                 {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
                     return HttpNotFound();
                 }
                 return View(aspNetUser);
@@ -100,11 +102,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 AspNetUser aspNetUser = db.AspNetUsers.Find(id);
                 if (aspNetUser == null)
                 {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
                     return HttpNotFound();
                 }
                 return View(aspNetUser);
@@ -147,11 +151,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 AspNetUser aspNetUser = db.AspNetUsers.Find(id);
                 if (aspNetUser == null)
                 {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
                     return HttpNotFound();
                 }
                 return View(aspNetUser);

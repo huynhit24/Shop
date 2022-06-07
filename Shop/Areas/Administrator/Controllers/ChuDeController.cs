@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 ChuDe chuDe = db.ChuDes.Find(id);
                 if (chuDe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return HttpNotFound();
                 }
                 return View(chuDe);
@@ -99,11 +101,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 ChuDe chuDe = db.ChuDes.Find(id);
                 if (chuDe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return HttpNotFound();
                 }
                 return View(chuDe);
@@ -145,11 +149,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 ChuDe chuDe = db.ChuDes.Find(id);
                 if (chuDe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return HttpNotFound();
                 }
                 return View(chuDe);

@@ -40,11 +40,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy META-LAPTOP !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
                 if (metaLaptop == null)
                 {
+                    Notification.set_flash("Không tìm thấy META-LAPTOP !", "warning");
                     return HttpNotFound();
                 }
                 return View(metaLaptop);
@@ -102,11 +104,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy META-LAPTOP !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
                 if (metaLaptop == null)
                 {
+                    Notification.set_flash("Không tìm thấy META-LAPTOP !", "warning");
                     return HttpNotFound();
                 }
                 ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", metaLaptop.malaptop);
@@ -150,11 +154,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy META-LAPTOP !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 MetaLaptop metaLaptop = db.MetaLaptops.Find(id);
                 if (metaLaptop == null)
                 {
+                    Notification.set_flash("Không tìm thấy META-LAPTOP !", "warning");
                     return HttpNotFound();
                 }
                 return View(metaLaptop);

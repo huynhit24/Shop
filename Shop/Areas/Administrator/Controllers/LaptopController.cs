@@ -40,11 +40,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Laptop !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Laptop laptop = db.Laptops.Find(id);
                 if (laptop == null)
                 {
+                    Notification.set_flash("Không tìm thấy Laptop !", "warning");
                     return HttpNotFound();
                 }
                 return View(laptop);
@@ -105,11 +107,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Laptop !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Laptop laptop = db.Laptops.Find(id);
                 if (laptop == null)
                 {
+                    Notification.set_flash("Không tìm thấy Laptop !", "warning");
                     return HttpNotFound();
                 }
                 ViewBag.mahang = new SelectList(db.Hangs, "mahang", "tenhang", laptop.mahang);
@@ -156,11 +160,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Laptop !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Laptop laptop = db.Laptops.Find(id);
                 if (laptop == null)
                 {
+                    Notification.set_flash("Không tìm thấy Laptop !", "warning");
                     return HttpNotFound();
                 }
                 return View(laptop);
