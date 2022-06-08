@@ -4797,6 +4797,7 @@
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Views\QuickPay\Index.cshtml" />
     <Content Include="Views\Shared\_Nofit.cshtml" />
+    <Content Include="Views\Home\InvoiceInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

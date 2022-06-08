@@ -1,5 +1,6 @@
 ﻿using BotDetect.Web.Mvc;
 using PagedList;
+using Shop.Areas.Administrator.Data.message;
 using Shop.Common;
 using Shop.Models;
 using System;
@@ -239,6 +240,25 @@ namespace Shop.Controllers
             }
             var baiviet = data.TinTucs.Where(n => n.matin == id).FirstOrDefault();
             return View(baiviet);
+        }
+
+        //xem chi tiết đơn đặt hàng
+        public ActionResult InvoiceInfo(int? id)
+        {
+            if (id == null)
+            {
+                Notification.set_flash("Không tồn tại đơn hàng!", "warning");
+                return RedirectToAction("Index");
+            }
+            DonHang donHang = data.DonHangs.Where(n => n.madon == id).FirstOrDefault();
+            if (donHang == null)
+            {
+                Notification.set_flash("Không tồn tại  đơn hàng!", "warning");
+                return RedirectToAction("Index");
+            }
+            ViewBag.orderDetails = data.ChiTietDonHangs.Where(m => m.madon == id).ToList();
+            ViewBag.productOrder = data.Laptops.ToList();
+            return View(donHang);
         }
 
         public ActionResult ListBaiVietTheoChuDeId(int? page, int id)
