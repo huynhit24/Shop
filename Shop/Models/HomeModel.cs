@@ -25,7 +25,11 @@ namespace Shop.Models
         }
         public List<Laptop> GetListLaptop_LASTEST()// lấy ra danh sách Laptop thep ngày mới nhất là ngày hiện tại
         {
-            List<Laptop> list = data.Laptops.Where(n => n.trangthai == true && (n.ngaycapnhat.GetValueOrDefault() <= DateTime.Today && n.ngaycapnhat.GetValueOrDefault().Day >= DateTime.Today.Day - 7)).OrderByDescending(n => n.ngaycapnhat).Take(8).ToList();
+            List<Laptop> list = data.Laptops.Where(n => n.trangthai == true 
+                                                && (n.ngaycapnhat.GetValueOrDefault() <= DateTime.Today 
+                                                && n.ngaycapnhat.GetValueOrDefault().Day >= DateTime.Today.Day - 7) 
+                                                && n.ngaycapnhat.GetValueOrDefault().Month == DateTime.Today.Month
+                                                && n.ngaycapnhat.GetValueOrDefault().Year == DateTime.Today.Year).OrderByDescending(n => n.ngaycapnhat).Take(8).ToList();
             return list;
         }
         public List<Laptop> GetListLaptop_TOPSELLING()// lấy ra danh sách Laptop giả rẻ hơn 15tr
@@ -119,6 +123,41 @@ namespace Shop.Models
         public int DemSanPhamBan()// đếm số lượng sản phẩm bán
         {
             int count = data.Laptops.Where(n => n.trangthai == true).Count();
+            return count;
+        }
+
+        ///Thống kê theo các tiêu chí Laptop
+        
+        //Đếm số lượng Laptop mới nhất
+        public int DemLaptopMoiNhat()
+        {
+            int count = data.Laptops.Where(n => n.trangthai == true && (n.ngaycapnhat.GetValueOrDefault() <= DateTime.Today 
+                                            && n.ngaycapnhat.GetValueOrDefault().Day >= DateTime.Today.Day - 7 
+                                            && n.ngaycapnhat.GetValueOrDefault().Month == DateTime.Today.Month 
+                                            && n.ngaycapnhat.GetValueOrDefault().Year == DateTime.Today.Year)).OrderByDescending(n => n.ngaycapnhat).Count();
+            return count;
+        }
+
+        //Đếm số lượng Laptop rẻ nhất
+        public int DemLaptopReNhat()
+        {
+            int count = data.Laptops.Where(n => n.trangthai == true 
+                                            && (n.ngaycapnhat.GetValueOrDefault() <= DateTime.Today 
+                                            && n.ngaycapnhat.GetValueOrDefault().Day >= DateTime.Today.Day - 7)).OrderByDescending(n => n.ngaycapnhat).Count();
+            return count;
+        }
+
+        //Đếm số lượng Laptop giá rẻ (<= 15 triệu đồng)
+        public int DemLaptopGiaRe()// đếm số lượng sản phẩm bán
+        {
+            int count = data.Laptops.Where(n => n.trangthai == true && n.giaban <= 15000000).Count();
+            return count;
+        }
+
+        //Đếm số lượng Laptop giá cao (>= 30 triệu)
+        public int DemLaptopGiaCao()// đếm số lượng sản phẩm bán
+        {
+            int count = data.Laptops.Where(n => n.trangthai == true && n.giaban >= 30000000).Count();
             return count;
         }
     }
