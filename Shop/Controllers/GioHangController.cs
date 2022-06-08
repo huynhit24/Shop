@@ -155,11 +155,11 @@ namespace Shop.Controllers
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
             Laptop s = new Laptop();
             List<GioHang> gh = Laygiohang();// lấy giỏ hàng
-            var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
+            //var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
-            dh.ngaygiao = DateTime.Parse(ngaygiao);
+            //dh.ngaygiao = DateTime.Now;
             dh.giaohang = false;
             dh.thanhtoan = false;
             dh.tinhtrang = '0';
@@ -187,6 +187,9 @@ namespace Shop.Controllers
                 data.ChiTietDonHangs.InsertOnSubmit(ctdh);
             }
 
+            data.SubmitChanges();
+            Session["GioHang"] = null;
+
             //Gửi mail tới khác dùng
 
             /*string detail = "";
@@ -204,16 +207,27 @@ namespace Shop.Controllers
             content = content.Replace("{Email}", kh.Email);
             content = content.Replace("{Total}", total.ToString());
 
-            //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+            try
+            {
+                //kiểm tra xem email đã xác thực Login hay chưa bởi Google Facebook
+                var checkedMail = data.AspNetUserLogins.Where(n => n.UserId == kh.Id);
+                if (checkedMail != null)
+                {
+                    //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
 
-            new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
-            new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
+                    new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
+                    new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
 
-            //End
-
-            data.SubmitChanges();
-            Session["GioHang"] = null;
+                    //End
+                }
+            }
+            catch (Exception)
+            {
+                Notification.set_flash("Lỗi kết nối tới máy chủ STMP Google!", "warning");
+                return RedirectToAction("Index", "Home");
+            }
+            
             Notification.set_flash("Bạn đã đặt hàng thành công!", "success");
             return RedirectToAction("XacnhanDonhang", "GioHang");
         }
@@ -345,8 +359,8 @@ namespace Shop.Controllers
             //Kiểm tra số tiền
             if(gh.Sum(p => p.dThanhTien) >= 50000000)
             {
-                Notification.set_flash("Số tiền không được vượt quá 50 triệu!", "warning");
-                return RedirectToAction("DatHang", "GioHang");
+                Notification.set_flash("Số tiền vượt quá 50 triệu!", "danger");
+                return RedirectToAction("BadRequestMoMo", "GioHang");
             }
 
             //Before sign HMAC SHA256 signature
@@ -499,7 +513,7 @@ namespace Shop.Controllers
 
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
-            dh.ngaygiao = DateTime.Now;
+            //dh.ngaygiao = DateTime.Now;
             dh.giaohang = false;
             dh.thanhtoan = true;
             dh.tinhtrang = '0';
@@ -518,6 +532,11 @@ namespace Shop.Controllers
                 data.ChiTietDonHangs.InsertOnSubmit(ctdh);
             }
 
+            data.SubmitChanges();
+            Session["GioHang"] = null;
+            Notification.set_flash("Bạn đã thanh toán thành công!", "success");
+
+
             string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
 
             var total = gh.Sum(n => n.giaban);
@@ -525,13 +544,29 @@ namespace Shop.Controllers
             content = content.Replace("{Phone}", kh.PhoneNumber);
             content = content.Replace("{Email}", kh.Email);
             content = content.Replace("{Total}", total.ToString());
+            try
+            {
+                //kiểm tra xem email đã xác thực Login hay chưa bởi Google Facebook
+                var checkedMail = data.AspNetUserLogins.Where(n => n.UserId == kh.Id);
+                if (checkedMail != null)
+                {
+                    //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
-            new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
-            new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
 
-            data.SubmitChanges();
-            Session["GioHang"] = null;
-            Notification.set_flash("Bạn đã thanh toán thành công!", "success");
+                    new MailHelper().SendEmail(kh.Email, "Xác nhận đặt mua laptop tại iLaptop", content);
+                    new MailHelper().SendEmail("ilaptoppro@gmail.com", "Xác nhận đặt mua laptop tại iLaptop", content);
+
+                    //End
+                }
+            }
+            catch (Exception)
+            {
+                Notification.set_flash("Lỗi kết nối tới máy chủ STMP Google!", "warning");
+                RedirectToAction("Index", "Home");
+                return;
+            }
+            
+            
         }
 
         /* ZaloPay Test*/
