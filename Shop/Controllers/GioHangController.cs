@@ -342,6 +342,13 @@ namespace Shop.Controllers
             string requestId = DateTime.Now.Ticks.ToString();
             string extraData = "";
 
+            //Kiểm tra số tiền
+            if(gh.Sum(p => p.dThanhTien) >= 50000000)
+            {
+                Notification.set_flash("Số tiền không được vượt quá 50 triệu!", "warning");
+                return RedirectToAction("DatHang", "GioHang");
+            }
+
             //Before sign HMAC SHA256 signature
             string rawHash = "partnerCode=" +
                 partnerCode + "&accessKey=" +
