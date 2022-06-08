@@ -562,7 +562,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
             <div class="modal-content" style="height: auto;">
                 <div class="modal-header" style="background-color: red; color: white;">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tìm kiếm nâng cao</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Thống kê Laptop</h5>
                     <div style="margin-left: 300px;">
                         <div class="col-lg mx-auto mt-4 mt-lg-0 text-center">
                             @using (Html.BeginForm("ListLaptopTheoSearch", "Home"))
@@ -650,94 +650,99 @@
                         </div>
 
                     </div>
-                    <div class="row" style="background-color: #dee6fb;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
-                        <div class="row">
-                            <div class="col-md" style="color: deepskyblue;">
-                                <p style="color: black;">Khoảng giá</p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Dưới 10 triệu
-                                    </label>
+                    <!-- Đang fix -->
+                    @*<div class="row" style="background-color: #dee6fb;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        @using (Html.BeginForm("ListLaptopTheoSearch", "Home"))
+                        {
+                            <div class="row">
+                                <div class="col-md" style="color: deepskyblue;">
+                                    <p style="color: black;">Khoảng giá</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Dưới 10 triệu
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            10 triệu - 15 triệu
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            15 triệu - 25 triệu
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" >
+                                        <label class="form-check-label" for="flexRadioDefault4">
+                                            Trên 25 triệu
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        10 triệu - 15 triệu
-                                    </label>
+                                <div class="col-md" style="color: orangered;">
+                                    <p style="color: black;">CHIP && Card đồ họa</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Intel
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            AMD
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            GTX
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            RTX
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        15 triệu - 25 triệu
-                                    </label>
+                                <div class="col-md" style="color: orange;">
+                                    <p style="color: black;">Dòng CPU</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Intel Core i9
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Intel Core i7
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Intel Core i5
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Intel Core i3
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Trên 25 triệu
-                                    </label>
+                                <div>
+                                    <button style="vertical-align: central; align-items: center; margin-top: 10px;" type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">Áp dụng</button>
                                 </div>
                             </div>
-                            <div class="col-md" style="color: orangered;">
-                                <p style="color: black;">CHIP && Card đồ họa</p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Intel
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        AMD
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        GTX
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        RTX
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md" style="color: orange;">
-                                <p style="color: black;">Dòng CPU</p>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Intel Core i9
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Intel Core i7
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Intel Core i5
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Intel Core i3
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <button style="vertical-align: central; align-items: center; margin-top: 10px;" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Áp dụng</button>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    </div>*@
+                    <!-- End -->
                 </div>
 
 
