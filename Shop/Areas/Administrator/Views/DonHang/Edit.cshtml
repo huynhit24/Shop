@@ -21,10 +21,21 @@
                 <div class="form-group">
                     @Html.Label("Thanh toán", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.thanhtoan)
-                            @Html.ValidationMessageFor(model => model.thanhtoan, "", new { @class = "text-danger" })
-                        </div>
+                        @*<div class="checkbox">
+                                @Html.EditorFor(model => model.thanhtoan)
+                                @Html.ValidationMessageFor(model => model.thanhtoan, "", new { @class = "text-danger" })
+                            </div>*@
+                        @Html.DropDownListFor(model => model.thanhtoan, new SelectList(
+                               new[]
+                               {
+                                   new { Value = "", Text = "(none)" },
+                                   new { Value = "true", Text = "Hủy đơn hàng" },
+                                   new { Value = "false", Text = "Khôi phục đơn hàng" },
+                               },
+                               "Value",
+                               "Text",
+                               Model
+                           ))
                     </div>
                 </div>
 

@@ -188,7 +188,7 @@ namespace Shop.Controllers
             }
 
             data.SubmitChanges();
-            Session["GioHang"] = null;
+            
 
             //Gửi mail tới khác dùng
 
@@ -201,7 +201,8 @@ namespace Shop.Controllers
 
             string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
 
-            var total = gh.Sum(n => n.giaban);
+            //var total = gh.Sum(n => n.giaban);
+            var total = TongTien();
             content = content.Replace("{CustomerName}", kh.hoten);
             content = content.Replace("{Phone}", kh.PhoneNumber);
             content = content.Replace("{Email}", kh.Email);
@@ -229,6 +230,7 @@ namespace Shop.Controllers
             }
             
             Notification.set_flash("Bạn đã đặt hàng thành công!", "success");
+            Session["GioHang"] = null;
             return RedirectToAction("XacnhanDonhang", "GioHang");
         }
         public ActionResult XacnhanDonhang()//xác nhận đơn mạng
@@ -533,13 +535,13 @@ namespace Shop.Controllers
             }
 
             data.SubmitChanges();
-            Session["GioHang"] = null;
             Notification.set_flash("Bạn đã thanh toán thành công!", "success");
 
 
             string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
 
-            var total = gh.Sum(n => n.giaban);
+            //var total = gh.Sum(n => n.giaban);
+            var total = TongTien();
             content = content.Replace("{CustomerName}", kh.hoten);
             content = content.Replace("{Phone}", kh.PhoneNumber);
             content = content.Replace("{Email}", kh.Email);
@@ -565,8 +567,8 @@ namespace Shop.Controllers
                 RedirectToAction("Index", "Home");
                 return;
             }
-            
-            
+
+            Session["GioHang"] = null;
         }
 
         /* ZaloPay Test*/
