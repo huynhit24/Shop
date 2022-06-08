@@ -1,12 +1,12 @@
-﻿@model Shop.EF.DonHang
+﻿@model Shop.Models.DonHang
 
 @{
     ViewBag.Title = "InvoiceInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Html.Partial("_MessageAlert")
-<div class="container-sm container-fluid">
+@Html.Partial("_Nofit")
+<div class="container-sm container-fluid" id="source-html">
     <div class="p-5" style="background-color: white">
         <h2 class="text-center" style="margin-bottom: 30px;">Xem thông tin đơn hàng</h2>
 
@@ -29,6 +29,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+                                                <td>Đơn hàng: <b> ĐH-@Model.madon</b></td>
+                                            </tr>
                                             <tr>
                                                 <td>Họ tên KH: <b> @Model.AspNetUser.hoten</b></td>
                                             </tr>
@@ -124,10 +127,10 @@
                                                 <td class="col-6">
                                                     @if (Model.giaohang == true)
                                                     {
-                                                        <a style="color: green;font-weight: bold;" href="#"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<span class="bold">Đã giao Hàng</span></a> }
+                                                        <a style="color: green;font-weight: bold;text-decoration:none;" href="#"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<span class="bold">Đã giao Hàng</span></a> }
                                                     else if (Model.giaohang == false)
                                                     {
-                                                        <a style="color: blue;font-weight: bold;" href="#"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;<span class="bold">Chưa giao hàng</span></a>}
+                                                        <a style="color: blue;font-weight: bold;text-decoration:none;" href="#"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;<span class="bold">Chưa giao hàng</span></a>}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -145,8 +148,26 @@
         <p>
             @*@Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |*@
             @*@Html.ActionLink("Quay lại", "Index", "DonHang")*@
-            <a class="btn btn-outline-success" href="@Url.Action("Index","DonHang")"> Quay lại </a>
+            <a class="btn btn-outline-primary" href="@Url.Action("Index","Home")"> <i class="fa fa-arrow-alt-circle-left"></i> Quay lại </a>
+            <button class="btn btn-success" id="btn-export" onclick="exportHTML();"> <i class="fa fa-file-invoice-dollar"></i> Xuất đơn hàng </button>
         </p>
     </div>
 </div>
+<script>
+    function exportHTML(){
+       var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+            "xmlns='http://www.w3.org/TR/REC-html40'>"+
+            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+       var footer = "</body></html>";
+       var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
 
+       var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+       var fileDownload = document.createElement("a");
+       document.body.appendChild(fileDownload);
+       fileDownload.href = source;
+       fileDownload.download = 'donhang.doc';
+       fileDownload.click();
+       document.body.removeChild(fileDownload);
+    }
+</script>
