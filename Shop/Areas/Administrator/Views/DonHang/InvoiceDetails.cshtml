@@ -71,7 +71,7 @@
                                                         @ctdh.Laptop.tenlaptop
                                                     </td>
                                                     <td class="text-center" style="vertical-align:middle">
-                                                        <img src="/Data/images/@ctdh.Laptop.hinh" width="100" height="100" alt="No image"/>
+                                                        <img src="/Data/images/@ctdh.Laptop.hinh" width="100" height="100" alt="No image" />
                                                     </td>
                                                     <td class="text-center" style="vertical-align:middle">
                                                         @String.Format("{0:0,0}", ctdh.dongia) đ
@@ -122,14 +122,23 @@
                                                 <td class="col-7"><b> @String.Format("{0:0,0₫}", tongtien) </b></td>
                                             </tr>
                                             <tr>
-                                                <td class="col-6" > Giao hàng </td>
-                                                <td class="col-6" >
+                                                <td class="col-6"> Giao hàng </td>
+                                                <td class="col-6">
                                                     @if (Model.giaohang == true)
                                                     {
-                                                        <a style="color: green;font-weight: bold;" href="#"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<span class="bold">Đã giao Hàng</span></a> }
-                                                    else if (Model.giaohang == false)
+                                                        <a style="color: green;font-weight: bold;" href="#"><i class="fa fa-check-square"></i>&nbsp;&nbsp;<span class="bold">Đã giao Hàng</span></a>
+                                                    }
+                                                    else
                                                     {
-                                                        <a style="color: blue;font-weight: bold;" href="#"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;<span class="bold">Chưa giao hàng</span></a>}
+                                                        if (Model.giaohang == false)
+                                                        {
+                                                            <a style="color: blue;font-weight: bold;" href="#"><i class="fa fa-truck"></i>&nbsp;&nbsp;<span class="bold">Đang giao hàng</span></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a style="color: deepskyblue;font-weight: bold;" href="#"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;<span class="bold">Chưa giao hàng</span></a>
+                                                        }
+                                                    }
                                                 </td>
                                             </tr>
                                         </tbody>

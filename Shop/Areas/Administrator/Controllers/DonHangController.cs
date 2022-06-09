@@ -238,7 +238,7 @@ namespace Shop.Areas.Administrator.Controllers
                 }
                 donHang.tinhtrang = "1";
                 db.SaveChanges();
-                Notification.set_flash("Đã hủy thành công đơn hàng!" + " ID = " + id, "success");
+                Notification.set_flash("Đã hủy thành công đơn hàng!", "success");
                 return RedirectToAction("Index");
             }  
         }
@@ -265,7 +265,7 @@ namespace Shop.Areas.Administrator.Controllers
                 }
                 donHang.tinhtrang = "0";
                 db.SaveChanges();
-                Notification.set_flash("Khôi phục thành công đơn hàng!" + " ID = " + id, "success");
+                Notification.set_flash("Khôi phục thành công đơn hàng!", "success");
                 return RedirectToAction("Index");
             }
         }
