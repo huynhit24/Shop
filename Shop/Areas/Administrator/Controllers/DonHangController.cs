@@ -213,5 +213,61 @@ namespace Shop.Areas.Administrator.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //cập nhật hủy đơn && khôi phục đơn
+
+        //Hủy đơn hàng
+        public ActionResult DelTrash(int? id)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                donHang.tinhtrang = "1";
+                db.SaveChanges();
+                Notification.set_flash("Đã hủy thành công đơn hàng!" + " ID = " + id, "success");
+                return RedirectToAction("Index");
+            }  
+        }
+
+        //Hủy đơn hàng
+        public ActionResult UndoTrash(int? id)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                donHang.tinhtrang = "0";
+                db.SaveChanges();
+                Notification.set_flash("Khôi phục thành công đơn hàng!" + " ID = " + id, "success");
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

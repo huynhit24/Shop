@@ -4,6 +4,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
+
+<style>
+    .invoice-shop-huy {
+        border-style: solid;
+        padding: 5px;
+        border-color: red;
+        border-width: thin;
+        border-radius: 20px;
+        font-weight: bold;
+        color: red;
+        transition: transform .2s;
+    }
+
+        .invoice-shop-huy:hover {
+            background-color: red;
+            color: white;
+            transform: scale(1.2);
+            box-shadow: 4px 4px;
+        }
+</style>
+
 @Html.Partial("_MessageAlert")
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
@@ -23,9 +44,9 @@
                             <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","DonHang")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
                         </div>
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered">
                                 <thead>
-                                    <tr style="background-color: #189f09; color: white;">
+                                    <tr style="background-color: black; color: white;">
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.AspNetUser.Email)*@
                                             @Html.DisplayName("Mã đơn hàng")
@@ -58,8 +79,11 @@
                                             @*@Html.DisplayNameFor(model => model.ngaygiao)*@
                                             @Html.DisplayName("Tình trạng")
                                         </th>
-                                        <th class="text-center" style="vertical-align:middle">
-                                            Thao tác
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Xử lý đơn
+                                        </th>
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Tác vụ
                                         </th>
                                     </tr>
                                 </thead>
@@ -92,7 +116,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <p style="color: red;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                                                    <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
                                                 }
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
@@ -105,9 +129,33 @@
                                                 @Html.DisplayFor(modelItem => item.ngaygiao)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                @Html.DisplayFor(modelItem => item.tinhtrang)
+                                                @if (item.tinhtrang == "1")
+                                                {
+                                                    <p style="color: black;"> <strike> Đã hủy </strike></p>
+                                                }
+                                                else
+                                                {
+                                                    if (item.tinhtrang == "0")
+                                                    {
+                                                        <p style="color: green;"> Xác nhận</p>
+                                                    }
+                                                }
                                             </td>
-                                            <td class="text-center" style="vertical-align:middle">
+                                            <td class="text-center" style="vertical-align: middle; min-width: 80px;">
+                                                @if (item.tinhtrang == "0")
+                                                {
+                                                    <a class="invoice-shop-huy" href="@Url.Action("DelTrash","DonHang", new {ID = item.madon })"><i class="fa fa-trash-alt"></i> Hủy đơn</a>
+                                                }
+                                                else
+                                                {
+                                                    if (item.tinhtrang == "1")
+                                                    {
+                                                        <a class="btn btn-success rounded-pill" btn href="@Url.Action("UndoTrash","DonHang", new {ID = item.madon })"><i class="fa fa-undo"></i> Khôi phục</a>
+                                                    }
+                                                }
+
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle; min-width: 80px;">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.madon }) |
                                                     @Html.ActionLink("Details", "Details", new { id = item.madon }) |
                                                     @Html.ActionLink("Delete", "Delete", new { id = item.madon })*@
