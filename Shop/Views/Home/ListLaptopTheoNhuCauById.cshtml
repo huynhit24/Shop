@@ -1,12 +1,13 @@
 ﻿@model PagedList.IPagedList<Shop.Models.Laptop>
 @using PagedList.Mvc;
 @using Shop.Common
-
+@using Shop.Models
 
 @{
     ViewBag.Title = "ListLaptopTheoNhuCauId";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int? temp = 0;
+    HomeModel home = new HomeModel();
 }
 
 <style>
@@ -62,13 +63,73 @@
                             </div>
                             <div class="text-center">
                                 <!--Product star-->
-                                <small>
-                                    <i class="fas fa-star" style="color:orange"></i>
-                                    <i class="fas fa-star" style="color:orange"></i>
-                                    <i class="fas fa-star" style="color:orange"></i>
-                                    <i class="far fa-star" style="color:orange"></i>
-                                    <i class="far fa-star" style="color:orange"></i>
-                                </small>
+                                @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                {
+                                    <small>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @*<small>
+                                        <i class="fas fa-star" style="color:orange"></i>
+                                        <i class="fas fa-star" style="color:orange"></i>
+                                        <i class="fas fa-star" style="color:orange"></i>
+                                        <i class="far fa-star" style="color:orange"></i>
+                                        <i class="far fa-star" style="color:orange"></i>
+                                    </small>*@
                             </div>
                         </div>
                         <!-- Product actions-->
