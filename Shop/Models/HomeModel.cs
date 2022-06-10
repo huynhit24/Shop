@@ -160,5 +160,40 @@ namespace Shop.Models
             int count = data.Laptops.Where(n => n.trangthai == true && n.giaban >= 30000000).Count();
             return count;
         }
+
+        //Đếm số vote sản phẩm
+        public int DemVoteLaptop(int id)
+        {
+            try
+            {
+                int count = data.DanhGias.Where(n => n.trangthai == true && n.malaptop == id).Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            
+        }
+
+        //Đếm tổng star rồi chia
+        public double DemStarDanhGia(int id)
+        {
+            try
+            {
+                int countVote = data.DanhGias.Where(n => n.trangthai == true && n.malaptop == id).Count();
+                int vote = (int)data.DanhGias.Where(n => n.trangthai == true && n.malaptop == id).Sum(item => item.vote);
+                double voteAgv = 0;
+                if(countVote != 0)
+                {
+                    voteAgv = vote / countVote;
+                }
+                return voteAgv;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }    
+        }
     }
 }

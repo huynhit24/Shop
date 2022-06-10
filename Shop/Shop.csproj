@@ -930,6 +930,7 @@
     <Content Include="Areas\Administrator\Data\images\eye.png" />
     <Content Include="Areas\Administrator\Data\images\halalnode-401.jpg" />
     <Content Include="Areas\Administrator\Data\images\hang.png" />
+    <Content Include="Areas\Administrator\Data\images\invoice-cance-list.png" />
     <Content Include="Areas\Administrator\Data\images\laptop.png" />
     <Content Include="Areas\Administrator\Data\images\meta.png" />
     <Content Include="Areas\Administrator\Data\images\nhucau.png" />
@@ -943,6 +944,8 @@
     <Content Include="Areas\Administrator\Data\images\sv2.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv3.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv4.jpg" />
+    <Content Include="Areas\Administrator\Data\images\timetable-2.png" />
+    <Content Include="Areas\Administrator\Data\images\timetable.png" />
     <Content Include="Areas\Administrator\Data\images\trash-crud.png" />
     <Content Include="Areas\Administrator\Data\images\trending-topic.png" />
     <Content Include="Areas\Administrator\Data\libraries\css\style.css" />

@@ -13,6 +13,7 @@ using Shop.Controllers;
 using System.Net;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Shop.Areas.Administrator.Data.message;
 
 namespace Shop.Areas.Administrator.Controllers
 {
@@ -49,6 +50,7 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 ViewBag.Online = HttpContext.Application["Online"].ToString();
                 ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString(); // Số lượng người truy cập website (user && admin)
+                Notification.set_flash("Đăng nhập Admin thành công!", "success");
                 return View();
             }
         }

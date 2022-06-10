@@ -309,7 +309,7 @@ namespace Shop.Controllers
 
         public ActionResult Comment()
         {
-            var comment = (from cd in data.DanhGias select cd).Where(n => n.malaptop == CommonFields.id); ;
+            var comment = (from cd in data.DanhGias select cd).Where(n => n.malaptop == CommonFields.id && n.trangthai == true); ;
             return PartialView(comment);
         }
     }

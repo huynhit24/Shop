@@ -25,7 +25,15 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.thanhtoan)
+                    @if (Model.thanhtoan == true)
+                    {
+                        <p style="color: green;font-weight: bold;"><i class="fa fa-check-circle"></i> Đã thanh toán</p>
+                    }
+                    else
+                    {
+                        <p style="color: blue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa thanh toán</p>
+                    }
+                    @*@Html.DisplayFor(model => model.thanhtoan)*@
                 </dd>
 
                 <dt>
@@ -33,7 +41,24 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.giaohang)
+                    @if (Model.giaohang == true)
+                    {
+                        <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
+                    }
+                    else
+                    {
+                        if (Model.giaohang == false)
+                        {
+
+                            <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                        }
+                        else
+                        {
+                            <p style="color: deepskyblue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa giao hàng</p>
+                        }
+
+                    }
+                    @*@Html.DisplayFor(model => model.giaohang)*@
                 </dd>
 
                 <dt>
@@ -57,7 +82,18 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.tinhtrang)
+                    @if (Model.tinhtrang == "1")
+                    {
+                        <p style="color: black;"> <strike> Đã hủy </strike></p>
+                    }
+                    else
+                    {
+                        if (Model.tinhtrang == "0")
+                        {
+                            <p style="color: green;"> Xác nhận</p>
+                        }
+                    }
+                    @*@Html.DisplayFor(model => model.tinhtrang)*@
                 </dd>
             </dl>
         </div>
