@@ -50,7 +50,6 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 ViewBag.Online = HttpContext.Application["Online"].ToString();
                 ViewBag.SoNguoiTruyCap = HttpContext.Application["SoNguoiTruyCap"].ToString(); // Số lượng người truy cập website (user && admin)
-                Notification.set_flash("Đăng nhập Admin thành công!", "success");
                 return View();
             }
         }
@@ -189,6 +188,7 @@ namespace Shop.Areas.Administrator.Controllers
         {
             Session["TaiKhoan"] = null;
             Session["taikhoanadmin"] = null;
+            Notification.set_flash("Đăng xuất thành công!", "success");
             return RedirectToAction("Login", "Account", new { area = "" });
         }
 

@@ -101,6 +101,7 @@ namespace Shop.Controllers
                         if (AuthAdmin(kh) == true)
                         {
                             Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            Notification.set_flash("Đăng nhập Admin thành công!", "success");
                             return RedirectToAction("Index", "Administrator/MainPage");
                         }
                         else
@@ -373,6 +374,7 @@ namespace Shop.Controllers
                         if (AuthAdmin(kh) == true)
                         {
                             Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            Notification.set_flash("Đăng nhập Admin thành công!", "success");
                             return RedirectToAction("Index", "Administrator/MainPage");
                         }
                         else

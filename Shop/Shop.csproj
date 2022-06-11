@@ -936,6 +936,7 @@
     <Content Include="Areas\Administrator\Data\images\nhucau.png" />
     <Content Include="Areas\Administrator\Data\images\order.png" />
     <Content Include="Areas\Administrator\Data\images\pie-chart.png" />
+    <Content Include="Areas\Administrator\Data\images\profits.png" />
     <Content Include="Areas\Administrator\Data\images\rating.png" />
     <Content Include="Areas\Administrator\Data\images\seo.png" />
     <Content Include="Areas\Administrator\Data\images\share-post.png" />

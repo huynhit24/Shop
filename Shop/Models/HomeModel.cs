@@ -176,6 +176,51 @@ namespace Shop.Models
             
         }
 
+        //Đếm số vote sản phẩm trong bảng Đánh giá
+        public int CountComment()
+        {
+            try
+            {
+                int count = data.BinhLuans.Where(n => n.trangthai == true).Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
+        //Đếm số vote sản phẩm trong bảng Tin tức
+        public int CountPost()
+        {
+            try
+            {
+                int count = data.TinTucs.Where(n => n.xuatban == true).Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
+        //Đếm số vote sản phẩm trong bảng 
+        public int CountDanhGia()
+        {
+            try
+            {
+                int count = data.DanhGias.Where(n => n.trangthai == true).Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+
+        }
+
         //Đếm tổng star rồi chia
         public double DemStarDanhGia(int id)
         {
