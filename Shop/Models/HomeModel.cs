@@ -96,16 +96,17 @@ namespace Shop.Models
             return data.QuangCaos.Where(n => n.trangthai == true).ToList();
         }
 
-        public decimal LoiNhuan()// tính lợi nhuận ngày
+        public double LoiNhuan()// tính lợi nhuận ngày
         {
-            decimal money = 0;
-            decimal? temp = 0;
+            double temp = 0;
             foreach (var item in data.ChiTietDonHangs)
             {
-                temp = item.soluong * item.dongia;
+                if(item.soluong != null && item.dongia != null)
+                {
+                    temp += (double)(Convert.ToDouble(item.soluong) * Convert.ToDouble(item.dongia));
+                }
             }
-            money = (decimal)temp;
-            return money;
+            return (double)temp;
         }
 
         public int DemHoaDon()// đếm số hóa đơn
