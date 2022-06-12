@@ -4613,6 +4613,7 @@
     <Content Include="Plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Plugins\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Plugins\ckfinder\userfiles\.htaccess" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\detailview.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
