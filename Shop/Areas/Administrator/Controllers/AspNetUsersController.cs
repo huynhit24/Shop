@@ -191,5 +191,61 @@ namespace Shop.Areas.Administrator.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //cập nhật hủy đơn && khôi phục đơn
+
+        //Hủy đơn hàng
+        public ActionResult DelTrashAcc(string id)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy tài khoản cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUser acc = db.AspNetUsers.Find(id);
+                if (acc == null)
+                {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
+                    return HttpNotFound();
+                }
+                acc.LockoutEnabled = false;
+                db.SaveChanges();
+                Notification.set_flash("Đã khóa tài khoản thành công!", "success");
+                return RedirectToAction("Index");
+            }
+        }
+
+        //Hủy đơn hàng
+        public ActionResult UndoTrashAcc(string id)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy tài khoản cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUser acc = db.AspNetUsers.Find(id);
+                if (acc == null)
+                {
+                    Notification.set_flash("Không tìm thấy tài khoản !", "warning");
+                    return HttpNotFound();
+                }
+                acc.LockoutEnabled = true;
+                db.SaveChanges();
+                Notification.set_flash("Mở khóa thành công tài khoản!", "warning");
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

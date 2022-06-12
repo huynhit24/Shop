@@ -45,26 +45,26 @@
                                                 @Html.DisplayNameFor(model => model.SecurityStamp)
                                             </th>*@
                                         <th class="text-center" style="vertical-align:middle">
-                                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                                            @Html.DisplayName("SĐT")
                                         </th>
                                         @*<th class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
                                             </th>*@
-                                        <th class="text-center" style="vertical-align:middle">
-                                            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-                                        </th>
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Bảo mật 2 lớp")
+                                        </th>*@
                                         @*<th class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
                                             </th>*@
                                         <th class="text-center" style="vertical-align:middle">
-                                            @Html.DisplayNameFor(model => model.LockoutEnabled)
+                                            @Html.DisplayName("Khóa tài khoản")
                                         </th>
                                         @*<th class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayNameFor(model => model.AccessFailedCount)
                                             </th>*@
-                                        <th class="text-center" style="vertical-align:middle">
+                                        @*<th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayNameFor(model => model.UserName)
-                                        </th>
+                                        </th>*@
                                         <th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Ngày sinh")
                                         </th>
@@ -74,6 +74,9 @@
                                         @*<th class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayNameFor(model => model.diachi)
                                             </th>*@
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Xử lý Acc
+                                        </th>
                                         <th class="text-center" style="vertical-align:middle; min-width: 100px;">
                                             Thao tác
                                         </th>
@@ -107,7 +110,7 @@
                                             @*<td class="text-center" style="vertical-align:middle">
                                                     @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
                                                 </td>*@
-                                            <td class="text-center" style="vertical-align:middle">
+                                            @*<td class="text-center" style="vertical-align:middle">
                                                 @if (item.TwoFactorEnabled == true)
                                                 {
                                                     <p style="background-color: #E5FAF1; font-weight: bold; color: darkgreen; font-family: Roboto; padding: 4px;"> Đã bật</p>
@@ -116,8 +119,8 @@
                                                 {
                                                     <p style="background-color: #EAF2FF; font-weight:bold; color: darkblue; font-family: Roboto; padding: 4px;"> Đang tắt</p>
                                                 }
-                                                @*@Html.DisplayFor(modelItem => item.TwoFactorEnabled)*@
-                                            </td>
+                                                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+                                            </td>*@
                                             @*<td class="text-center" style="vertical-align:middle">
                                                     @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
                                                 </td>*@
@@ -135,9 +138,9 @@
                                             @*<td class="text-center" style="vertical-align:middle">
                                                     @Html.DisplayFor(modelItem => item.AccessFailedCount)
                                                 </td>*@
-                                            <td class="text-center" style="vertical-align:middle">
+                                            @*<td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.UserName)
-                                            </td>
+                                            </td>*@
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.ngaysinh)
                                             </td>
@@ -147,6 +150,20 @@
                                             @* <td class="text-center" style="vertical-align:middle">
                                                     @Html.DisplayFor(modelItem => item.diachi)
                                                 </td>*@
+                                            <td class="text-center" style="vertical-align: middle; min-width: 80px;">
+                                                @if (item.LockoutEnabled == true)
+                                                {
+                                                    <a class="invoice-shop-huy" href="@Url.Action("DelTrashAcc","AspNetUsers", new {ID = item.Id })"><i class="fa fa-trash-alt"></i> Khóa acc</a>
+                                                }
+                                                else
+                                                {
+                                                    if (item.LockoutEnabled == false)
+                                                    {
+                                                        <a class="btn btn-success rounded-pill" btn href="@Url.Action("UndoTrashAcc","AspNetUsers", new {ID = item.Id })"><i class="fa fa-undo"></i> Mở khóa</a>
+                                                    }
+                                                }
+
+                                            </td>
                                             <td class="text-center" style="vertical-align: middle;min-width: 100px;">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                                                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
