@@ -927,6 +927,7 @@
     <Content Include="Areas\Administrator\Data\images\delete.png" />
     <Content Include="Areas\Administrator\Data\images\dialogue.png" />
     <Content Include="Areas\Administrator\Data\images\edit-crud.png" />
+    <Content Include="Areas\Administrator\Data\images\excel.png" />
     <Content Include="Areas\Administrator\Data\images\eye.png" />
     <Content Include="Areas\Administrator\Data\images\halalnode-401.jpg" />
     <Content Include="Areas\Administrator\Data\images\hang.png" />
@@ -4517,6 +4518,7 @@
     <Content Include="Areas\Administrator\Data\libraries\css\toastr.js.map" />
     <Content Include="Areas\Administrator\Views\DonHang\InvoiceDetails.cshtml" />
     <Content Include="Areas\Administrator\Views\DonHang\IndexCancel.cshtml" />
+    <Content Include="Areas\Administrator\Views\Laptop\ExcelDonHangImport.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -4806,6 +4808,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\" />
     <Folder Include="Views\Callback\" />
     <Folder Include="Views\Gateway\" />
     <Folder Include="Views\History\" />

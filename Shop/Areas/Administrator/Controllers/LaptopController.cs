@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -209,6 +213,120 @@ namespace Shop.Areas.Administrator.Controllers
             }
             file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
             return file.FileName;
+        }
+
+        public ActionResult ExcelDonHangImport()
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        //Làm nhập file Excel
+        /// <summary>
+        /// giải thích
+        /// Sử dụng: SqlClient + OleDb
+        /// </summary>
+        /// <param name="postedFile"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ImportDonHang(HttpPostedFileBase postedFile)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                try
+                {
+                    string filePath = string.Empty;
+                    if (postedFile != null)
+                    {
+                        string path = Server.MapPath("~/Upload/");
+                        if (!Directory.Exists(path))
+                        {
+                            Directory.CreateDirectory(path);
+                        }
+
+                        filePath = path + Path.GetFileName(postedFile.FileName);
+                        string extension = Path.GetExtension(postedFile.FileName);
+                        postedFile.SaveAs(filePath);
+
+                        string conString = string.Empty;
+                        switch (extension)
+                        {
+                            case ".xls":
+                                conString = ConfigurationManager.ConnectionStrings["DataModel"].ConnectionString;
+                                break;
+                            case ".xlsx":
+                                conString = ConfigurationManager.ConnectionStrings["DataModel"].ConnectionString;
+                                break;
+                        }
+
+                        DataTable dtExcel = new DataTable();
+                        conString = string.Format(conString, filePath);
+                        using (OleDbConnection connExcel = new OleDbConnection(conString))
+                        {
+                            using (OleDbCommand cmdExcel = new OleDbCommand())
+                            {
+                                using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                                {
+                                    cmdExcel.Connection = connExcel;
+                                    connExcel.Open();
+                                    DataTable dtExcelSchema;
+                                    dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                                    string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                                    connExcel.Close();
+
+                                    connExcel.Open();
+                                    cmdExcel.CommandText = "SELECT *from [" + sheetName + "]";
+                                    odaExcel.SelectCommand = cmdExcel;
+                                    odaExcel.Fill(dtExcel);
+                                    connExcel.Close();
+                                }
+                            }
+                        }
+                        conString = ConfigurationManager.ConnectionStrings["ConnectContext"].ConnectionString;
+                        using (SqlConnection con = new SqlConnection(conString))
+                        {
+                            using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
+                            {
+                                sqlBulkCopy.DestinationTableName = "dbo.[DonHang]";
+                                sqlBulkCopy.ColumnMappings.Add("tenlaptop", "tenlaptop");
+                                sqlBulkCopy.ColumnMappings.Add("giaban", "giaban");
+                                sqlBulkCopy.ColumnMappings.Add("mota", "mota");
+                                sqlBulkCopy.ColumnMappings.Add("hinh", "hinh");
+                                sqlBulkCopy.ColumnMappings.Add("mahang", "mahang");
+                                sqlBulkCopy.ColumnMappings.Add("manhucau", "manhucau");
+                                sqlBulkCopy.ColumnMappings.Add("cpu", "cpu");
+                                sqlBulkCopy.ColumnMappings.Add("gpu", "gpu");
+                                sqlBulkCopy.ColumnMappings.Add("ram", "ram");
+                                sqlBulkCopy.ColumnMappings.Add("hardware", "hardware");
+                                sqlBulkCopy.ColumnMappings.Add("manhinh", "manhinh");
+                                sqlBulkCopy.ColumnMappings.Add("ngaycapnhat", "ngaycapnhat");
+                                sqlBulkCopy.ColumnMappings.Add("soluongton", "soluongton");
+                                sqlBulkCopy.ColumnMappings.Add("pin", "pin");
+                                sqlBulkCopy.ColumnMappings.Add("trangthai", "trangthai");
+                                con.Open();
+                                sqlBulkCopy.WriteToServer(dtExcel);
+                                con.Close();
+                            }
+                        }
+
+                    }
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return RedirectToAction("Index");
+                }
+            }
         }
     }
 }
