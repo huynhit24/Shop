@@ -29,6 +29,19 @@ namespace Shop.Areas.Administrator.Controllers
             }
         }
 
+        public ActionResult IndexCancel()
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                var donHangs = db.DonHangs.Include(d => d.AspNetUser).Where(n => n.tinhtrang == "1");
+                return View(donHangs.ToList());
+            }
+        }
+
         //xem chi tiết đơn đặt hàng
         public ActionResult InvoiceDetails(int? id)
         {
