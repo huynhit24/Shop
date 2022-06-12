@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Quảng cáo !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 QuangCao quangCao = db.QuangCaos.Find(id);
                 if (quangCao == null)
                 {
+                    Notification.set_flash("Không tìm thấy Quảng cáo !", "warning");
                     return HttpNotFound();
                 }
                 return View(quangCao);
@@ -99,11 +101,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Quảng cáo !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 QuangCao quangCao = db.QuangCaos.Find(id);
                 if (quangCao == null)
                 {
+                    Notification.set_flash("Không tìm thấy Quảng cáo !", "warning");
                     return HttpNotFound();
                 }
                 return View(quangCao);
@@ -145,11 +149,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Quảng cáo !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 QuangCao quangCao = db.QuangCaos.Find(id);
                 if (quangCao == null)
                 {
+                    Notification.set_flash("Không tìm thấy Quảng cáo !", "warning");
                     return HttpNotFound();
                 }
                 return View(quangCao);

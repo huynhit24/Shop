@@ -137,16 +137,77 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div>
-                                                        <small>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                                        </small>
+                                                        @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                                        {
+                                                            <small>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+
+                                                        @*<small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>*@
                                                     </div>
                                                     <div class="product-description">
-                                                        3 đánh giá
+                                                        @home.DemVoteLaptop(item.malaptop) đánh giá
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -246,16 +307,76 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div>
-                                                        <small>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                                        </small>
+                                                        @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                                        {
+                                                            <small>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @*<small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>*@
                                                     </div>
                                                     <div class="product-description">
-                                                        3 đánh giá
+                                                        @home.DemVoteLaptop(item.malaptop)  đánh giá
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -359,16 +480,76 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div>
-                                                        <small>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="fas fa-star" style="color: #ed0fef"></i>
-                                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                                            <i class="far fa-star" style="color: #ed0fef"></i>
-                                                        </small>
+                                                        @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                                        {
+                                                            <small>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                                        {
+                                                            <small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                            </small>
+                                                        }
+                                                        @*<small>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                                            </small>*@
                                                     </div>
                                                     <div class="product-description">
-                                                        3 đánh giá
+                                                        @home.DemVoteLaptop(item.malaptop)  đánh giá
                                                     </div>
                                                 </div>
                                                 <div class="col-6">

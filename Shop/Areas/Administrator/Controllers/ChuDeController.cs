@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 ChuDe chuDe = db.ChuDes.Find(id);
                 if (chuDe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return HttpNotFound();
                 }
                 return View(chuDe);
@@ -67,8 +69,8 @@ namespace Shop.Areas.Administrator.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "machude,tenchude,slug,hinh")] ChuDe chuDe)
+        [ValidateAntiForgeryToken] //Raw: [Bind(Include = "machude,tenchude,slug,hinh")] ChuDe chuDe
+        public ActionResult Create([Bind(Include = "machude,tenchude,slug")] ChuDe chuDe)
         {
             if (Session["taikhoanadmin"] == null)
             {
@@ -99,11 +101,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 ChuDe chuDe = db.ChuDes.Find(id);
                 if (chuDe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return HttpNotFound();
                 }
                 return View(chuDe);
@@ -115,7 +119,7 @@ namespace Shop.Areas.Administrator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "machude,tenchude,slug,hinh")] ChuDe chuDe)
+        public ActionResult Edit([Bind(Include = "machude,tenchude,slug")] ChuDe chuDe)
         {
             if (Session["taikhoanadmin"] == null)
             {
@@ -145,11 +149,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 ChuDe chuDe = db.ChuDes.Find(id);
                 if (chuDe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Chủ đề !", "warning");
                     return HttpNotFound();
                 }
                 return View(chuDe);

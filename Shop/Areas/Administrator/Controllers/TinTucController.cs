@@ -40,11 +40,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bài viết !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 TinTuc tinTuc = db.TinTucs.Find(id);
                 if (tinTuc == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bài viết !", "warning");
                     return HttpNotFound();
                 }
                 return View(tinTuc);
@@ -103,11 +105,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bài viết !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 TinTuc tinTuc = db.TinTucs.Find(id);
                 if (tinTuc == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bài viết !", "warning");
                     return HttpNotFound();
                 }
                 ViewBag.machude = new SelectList(db.ChuDes, "machude", "tenchude", tinTuc.machude);
@@ -152,11 +156,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bài viết !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 TinTuc tinTuc = db.TinTucs.Find(id);
                 if (tinTuc == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bài viết !", "warning");
                     return HttpNotFound();
                 }
                 return View(tinTuc);

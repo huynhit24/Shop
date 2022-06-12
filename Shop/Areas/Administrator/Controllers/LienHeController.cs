@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Liên hệ !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 LienHe lienHe = db.LienHes.Find(id);
                 if (lienHe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Liên hệ !", "warning");
                     return HttpNotFound();
                 }
                 return View(lienHe);
@@ -99,11 +101,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Liên hệ !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 LienHe lienHe = db.LienHes.Find(id);
                 if (lienHe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Liên hệ !", "warning");
                     return HttpNotFound();
                 }
                 return View(lienHe);
@@ -145,11 +149,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Liên hệ !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 LienHe lienHe = db.LienHes.Find(id);
                 if (lienHe == null)
                 {
+                    Notification.set_flash("Không tìm thấy Liên hệ !", "warning");
                     return HttpNotFound();
                 }
                 return View(lienHe);

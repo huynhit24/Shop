@@ -930,11 +930,13 @@
     <Content Include="Areas\Administrator\Data\images\eye.png" />
     <Content Include="Areas\Administrator\Data\images\halalnode-401.jpg" />
     <Content Include="Areas\Administrator\Data\images\hang.png" />
+    <Content Include="Areas\Administrator\Data\images\invoice-cance-list.png" />
     <Content Include="Areas\Administrator\Data\images\laptop.png" />
     <Content Include="Areas\Administrator\Data\images\meta.png" />
     <Content Include="Areas\Administrator\Data\images\nhucau.png" />
     <Content Include="Areas\Administrator\Data\images\order.png" />
     <Content Include="Areas\Administrator\Data\images\pie-chart.png" />
+    <Content Include="Areas\Administrator\Data\images\profits.png" />
     <Content Include="Areas\Administrator\Data\images\rating.png" />
     <Content Include="Areas\Administrator\Data\images\seo.png" />
     <Content Include="Areas\Administrator\Data\images\share-post.png" />
@@ -943,6 +945,8 @@
     <Content Include="Areas\Administrator\Data\images\sv2.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv3.jpg" />
     <Content Include="Areas\Administrator\Data\images\sv4.jpg" />
+    <Content Include="Areas\Administrator\Data\images\timetable-2.png" />
+    <Content Include="Areas\Administrator\Data\images\timetable.png" />
     <Content Include="Areas\Administrator\Data\images\trash-crud.png" />
     <Content Include="Areas\Administrator\Data\images\trending-topic.png" />
     <Content Include="Areas\Administrator\Data\libraries\css\style.css" />
@@ -4511,6 +4515,8 @@
     <Content Include="Areas\Administrator\Views\MainPage\BangDieuKhien.cshtml" />
     <Content Include="Areas\Administrator\Views\Shared\_MessageAlert.cshtml" />
     <Content Include="Areas\Administrator\Data\libraries\css\toastr.js.map" />
+    <Content Include="Areas\Administrator\Views\DonHang\InvoiceDetails.cshtml" />
+    <Content Include="Areas\Administrator\Views\DonHang\IndexCancel.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
@@ -4796,6 +4802,7 @@
     <Content Include="Views\Site\Index.cshtml" />
     <Content Include="Views\QuickPay\Index.cshtml" />
     <Content Include="Views\Shared\_Nofit.cshtml" />
+    <Content Include="Views\Home\InvoiceInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

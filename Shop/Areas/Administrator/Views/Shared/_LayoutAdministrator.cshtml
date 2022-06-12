@@ -1,7 +1,8 @@
-﻿
+﻿@using Shop.Models
 
 @{
     Layout = null;
+    HomeModel home = new HomeModel();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -175,17 +176,27 @@
                     </li>*@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Index","MainPage")" class="nav-link">
-                        <img src="~/Areas/Administrator/Data/images/dashboard.png" width="30" height="30" /> Dashboard
+                        <img src="~/Areas/Administrator/Data/images/dashboard.png" width="20" height="20" /> Dashboard
                     </a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="https://www.facebook.com/ILaptop-102788879063090/" class="nav-link" rel="noreferrer" target="_blank">
-                        <img src="~/Content/images/facebook.png" width="30" height="30" /> Fanpage
+                        <img src="~/Content/images/facebook.png" width="20" height="20" /> Fanpage
                     </a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="@Url.Action("Logout","MainPage")" class="nav-link">
-                        <img src="~/Content/images/log-out.png" width="30" height="30" /> Đăng xuất
+                <li class="nav-item d-none d-sm-inline-block" style="margin-left: 4px;">
+                    <a href="@Url.Action("IndexCancel","DonHang")" class="btn btn-primary">
+                        <img src="~/Areas/Administrator/Data/images/trash-crud.png" width="20" height="20" /> Đơn hàng đã hủy (@home.CountInvoiceCancel())
+                    </a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block" style="margin-left: 4px;">
+                    <a href="@Url.Action("Index","MainPage")" class="btn btn-success">
+                        <img src="~/Areas/Administrator/Data/images/profits.png" width="20" height="20" /> Doanh thu
+                    </a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block" style="margin-left: 4px;">
+                    <a href="@Url.Action("Logout","MainPage")" class="btn btn-danger">
+                        <img src="~/Content/images/log-out.png" width="20" height="20" /> Đăng xuất
                     </a>
                 </li>
             </ul>
@@ -417,6 +428,11 @@
     <script src="~/Areas/Administrator/Data/plugins/summernote/summernote-bs4.js"></script>
     <link href="~/Areas/Administrator/Data/plugins/summernote/summernote-bs4.css" rel="stylesheet" />
 
+
+    <!-- Test Datatable -->
+    <link href="~/Areas/Administrator/Data/plugins/datatables-select/css/select.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/Areas/Administrator/Data/plugins/datatables-select/js/dataTables.select.min.js"></script>
+    <!-- End -->
     <!-- Toast && SweetAlert2-->
     @*<script src="~/Areas/Administrator/Data/plugins/toastr/toastr.min.js"></script>
         <script src="~/Areas/Administrator/Data/plugins/sweetalert2/sweetalert2.min.js"></script>*@
@@ -432,17 +448,22 @@
     <script>
         $(function () {
             $("#example1").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": true,
+                "lengthMenu": [[5, 10, 15, 25, 50, 75, -1], [5, 10, 15, 25, 50, 75, "All"]],
+                "pageLength": 10,
                 "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
+                "lengthChange": true,
+                "searching": true,
                 "ordering": true,
-                "info": true,
-                "autoWidth": false,
+                "autoWidth": true,
                 "responsive": true,
+                "lengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
+                "pageLength": 10,
             });
         });
         table = $('#example').DataTable({

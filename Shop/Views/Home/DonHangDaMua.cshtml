@@ -26,17 +26,17 @@
 
 <div class="container-sm" style="margin-top: 50px;margin-bottom:50px;">
     @*@using (Html.BeginForm("Export", "Report", FormMethod.Post, new { @id = "Export_Form" }))
-    {
-        <input type="hidden" name="GridHtml">
-        <input type="submit" id="btnSubmit" value="Export">
-    }
-    <div id="Grid">
-        <div class="text-center">
-            <img src="~/Content/images/iLaptop.png" alt="Alternate Text" />
-            <p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p>
-            <p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p>
-        </div>
-    </div>*@
+        {
+            <input type="hidden" name="GridHtml">
+            <input type="submit" id="btnSubmit" value="Export">
+        }
+        <div id="Grid">
+            <div class="text-center">
+                <img src="~/Content/images/iLaptop.png" alt="Alternate Text" />
+                <p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p>
+                <p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p>
+            </div>
+        </div>*@
     <table id="datatablesSimple" class="table table-bordered table-striped" style="margin-top: 20px;">
         <thead>
             <tr style="background-color: #189f09; color: white;">
@@ -103,9 +103,10 @@
                     <td class="text-center" style="vertical-align:middle">
 
                         <!-- Button trigger modal -->
-                        <a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
+                        @*<a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
                             <i class="fa fa-eye"></i> Xem
-                        </a>
+                        </a>*@
+                        <a style="border-style: solid; padding: 5px; border-color: #08c4ee; border-width: thin; border-radius: 20px;text-decoration:none;" href="@Url.Action("InvoiceInfo","Home", new {ID = item.madon })"><i class="fa fa-eye"></i> Xem</a>
 
                         @*<a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="" onclick="">
                                 <i class="fa fa-flag-checkered"></i> Xem
@@ -113,7 +114,7 @@
 
                         @*<a class="btn btn-sm btn-danger" href="#" onclick="return getbyID(' + @item.madon + ')">Xem</a>*@
 
-                        <div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        @*<div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="height: auto;">
                                     <div class="modal-header">
@@ -121,11 +122,9 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <table @*id="tblStocks"*@ id="tbl_exporttable_to_xls" class="table table-bordered table-responsive-lg">
+                                        <table id="tblStocks" id="tbl_exporttable_to_xls" class="table table-bordered table-responsive-lg">
                                             <tr>
-                                                @*<th>
-                                                        @Html.DisplayNameFor(model => model.malaptop)
-                                                    </th>*@
+                                                
                                                 <th class="text-center" style="vertical-align:middle">
                                                     @Html.DisplayName("Laptop") <i class="fa fa-laptop"></i>
                                                 </th>
@@ -147,9 +146,7 @@
                                             @foreach (var ctdh in home.GetListChiTietDonHangTheoDonDatHang(item.madon).ToList())
                                             {
                                                 <tr>
-                                                    @*<td>
-                                                            @Html.DisplayFor(modelItem => item.malaptop)
-                                                        </td>*@
+                                                    
                                                     <td class="text-center" style="vertical-align:middle">
                                                         @ctdh.Laptop.tenlaptop
                                                     </td>
@@ -190,11 +187,11 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                        @*<button type="button" class="btn btn-primary">Understood</button>*@
+                                        
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
 
                     </td>
                 </tr>
@@ -222,9 +219,9 @@
 </script>
 <script src="~/Scripts/detailview.js"></script>
 @*<script>
-    $(function () {
-        $("#btnSubmit").click(function () {
-            $("input[name='GridHtml']").val($("#Grid").html("<div class="text-center">< img src = "~/Content/images/iLaptop.png" alt = "Alternate Text" /><p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p><p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p></div >"));
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='GridHtml']").val($("#Grid").html("<div class="text-center">< img src = "~/Content/images/iLaptop.png" alt = "Alternate Text" /><p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p><p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p></div >"));
+            });
         });
-    });
-</script>*@
+    </script>*@

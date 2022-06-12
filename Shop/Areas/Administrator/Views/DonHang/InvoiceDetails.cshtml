@@ -1,0 +1,162 @@
+﻿@model Shop.EF.DonHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2 class="text-center" style="margin-bottom: 30px;">Xem thông tin đơn hàng</h2>
+
+        <!-- Content -->
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox ">
+                        <div class="ibox-title">
+                            @*<h5 style="color:red;">@Model.Name</h5>*@
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <table class="table border">
+                                        <thead style="background-color: red; color: white;">
+                                            <tr class="text-center" style="vertical-align:middle">
+                                                <th>Địa chỉ nhận hàng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Đơn hàng: <b> ĐH-@Model.madon</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Họ tên KH: <b> @Model.AspNetUser.hoten</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Số điện thoại: <b> @Model.AspNetUser.PhoneNumber</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Địa chỉ: <b> @Model.AspNetUser.diachi</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email: <b> @Model.AspNetUser.Email</b></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-9">
+                                    <table class="table border">
+                                        <thead style="background-color: blue; color: white;">
+                                            <tr>
+                                                <th class="text-center" style="vertical-align:middle">Sản phẩm</th>
+                                                <th class="text-center" style="vertical-align:middle">Ảnh</th>
+                                                <th class="text-center" style="vertical-align:middle">Giá</th>
+                                                <th class="text-center" style="vertical-align:middle">SL</th>
+                                                <th class="text-center" style="vertical-align:middle">Tổng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @{ decimal? tongtien = 0; int? tongsoluong = 0; }
+                                            @foreach (var ctdh in ViewBag.orderDetails)
+                                            {
+                                                <tr>
+                                                    @*<td>
+                                                            @Html.DisplayFor(modelItem => item.malaptop)
+                                                        </td>*@
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @ctdh.Laptop.tenlaptop
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        <img src="/Data/images/@ctdh.Laptop.hinh" width="100" height="100" alt="No image" />
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @String.Format("{0:0,0}", ctdh.dongia) đ
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @ctdh.soluong
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @{
+                                                            decimal? thanhtien = ctdh.soluong * ctdh.dongia;
+                                                            tongtien += thanhtien;
+                                                            tongsoluong += ctdh.soluong;
+                                                        }
+                                                        @String.Format("{0:0,0}", @thanhtien) đ
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                            @*@{double ThanhTien = 0;
+                                                    foreach (var c in ViewBag.orderDetails)
+                                                    {
+                                                        ThanhTien += c.soluong * c.dongia;
+                                                        <tr>
+                                                            @foreach (var y in ViewBag.productOrder)
+                                                            {
+                                                                if (y.ID == c.malaptop)
+                                                                {
+                                                                    <td> <img src="/Data/images/@y.hinh" alt="No image" width="70">@y.tenlaptop</td>
+                                                                }
+                                                            }
+                                                            <td>    @String.Format("{0:0,0₫}", c.dongia)</td>
+                                                            <td class="text-center">x    @c.Quantity</td>
+                                                            <td>    @String.Format("{0:0,0₫}", ThanhTien) </td>
+                                                        </tr>
+                                                    }
+                                                }*@
+
+                                            <tr class="border-top">
+                                                <td class="col-3"> Thành tiền</td>
+                                                <td class="col-7"><b> @String.Format("{0:0,0₫}", tongtien) </b></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-3"> Phí vận chuyển</td>
+                                                <td class="col-7"><b> @String.Format("{0:0₫}", 0) </b></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-3"> Tổng cộng </td>
+                                                <td class="col-7"><b> @String.Format("{0:0,0₫}", tongtien) </b></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="col-6"> Giao hàng </td>
+                                                <td class="col-6">
+                                                    @if (Model.giaohang == true)
+                                                    {
+                                                        <a style="color: green;font-weight: bold;" href="#"><i class="fa fa-check-square"></i>&nbsp;&nbsp;<span class="bold">Đã giao Hàng</span></a>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (Model.giaohang == false)
+                                                        {
+                                                            <a style="color: blue;font-weight: bold;" href="#"><i class="fa fa-truck"></i>&nbsp;&nbsp;<span class="bold">Đang giao hàng</span></a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a style="color: deepskyblue;font-weight: bold;" href="#"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;<span class="bold">Chưa giao hàng</span></a>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- End -->
+        <p>
+            @*@Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |*@
+            @*@Html.ActionLink("Quay lại", "Index", "DonHang")*@
+            <a class="btn btn-outline-success" href="@Url.Action("Index","DonHang")"> Quay lại </a>
+        </p>
+    </div>
+</div>

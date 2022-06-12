@@ -39,11 +39,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Hãng !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Hang hang = db.Hangs.Find(id);
                 if (hang == null)
                 {
+                    Notification.set_flash("Không tìm thấy Hãng !", "warning");
                     return HttpNotFound();
                 }
                 return View(hang);
@@ -99,11 +101,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Hãng !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Hang hang = db.Hangs.Find(id);
                 if (hang == null)
                 {
+                    Notification.set_flash("Không tìm thấy Hãng !", "warning");
                     return HttpNotFound();
                 }
                 return View(hang);
@@ -145,11 +149,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Hãng !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Hang hang = db.Hangs.Find(id);
                 if (hang == null)
                 {
+                    Notification.set_flash("Không tìm thấy Hãng !", "warning");
                     return HttpNotFound();
                 }
                 return View(hang);

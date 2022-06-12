@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-
+@Html.Partial("_Nofit")
 <div style="margin-bottom: 20px;">
     <header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
         <div class="container px-1 px-lg-1 my-1">
@@ -28,7 +28,7 @@
 
 <div class="container-sm container-fluid" style="margin-top: 50px;margin-bottom:50px;">
     <table @*id="tblStocks"*@ id="tbl_exporttable_to_xls" class="table table-bordered tab" style="box-shadow: 5px 5px blue;">
-        <tr>
+        <tr style="background-color:green;color:white;">
             @*<th>
                     @Html.DisplayNameFor(model => model.malaptop)
                 </th>*@
@@ -81,7 +81,7 @@
         <tr style="font-weight: bold; text-align:right; color:red">
             <td colspan="7">
                 <div>
-                    <p>Số lượng sách: @ViewBag.Tongsoluong</p>
+                    <p>Số lượng Laptop: @ViewBag.Tongsoluong</p>
                     <p>Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</p>
                 </div>
             </td>
@@ -149,10 +149,11 @@
                         </tr>
                         <tr style="height: 40px">
                             <td>
-                                Ngày giao:
+                                Ngày giao: 
                             </td>
                             <td style="font-weight: bold">
-                                <input type="date" name="NgayGiao" />
+                                @*<input type="date" name="NgayGiao" />*@
+                                Sẽ gửi qua email khách hàng sau khi đã duyệt!
                             </td>
                         </tr>
 

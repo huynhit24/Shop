@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Shop.EF.DonHang>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexCancel";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
 
@@ -142,27 +142,12 @@
                                                 {
                                                     <p style="color: black;"> <strike> Đã hủy </strike></p>
                                                 }
-                                                else
-                                                {
-                                                    if (item.tinhtrang == "0")
-                                                    {
-                                                        <p style="color: green;"> Xác nhận</p>
-                                                    }
-                                                }
                                             </td>
                                             <td class="text-center" style="vertical-align: middle; min-width: 80px;">
-                                                @if (item.tinhtrang == "0")
+                                                @if (item.tinhtrang == "1")
                                                 {
-                                                    <a class="invoice-shop-huy" href="@Url.Action("DelTrash","DonHang", new {ID = item.madon })"><i class="fa fa-trash-alt"></i> Hủy đơn</a>
+                                                    <a class="btn btn-success rounded-pill" btn href="@Url.Action("UndoTrash","DonHang", new {ID = item.madon })"><i class="fa fa-undo"></i> Khôi phục</a>
                                                 }
-                                                else
-                                                {
-                                                    if (item.tinhtrang == "1")
-                                                    {
-                                                        <a class="btn btn-success rounded-pill" btn href="@Url.Action("UndoTrash","DonHang", new {ID = item.madon })"><i class="fa fa-undo"></i> Khôi phục</a>
-                                                    }
-                                                }
-
                                             </td>
                                             <td class="text-center" style="vertical-align:middle; min-width: 80px;">
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.madon }) |
@@ -183,3 +168,4 @@
         </div>
     </section>
 </body>
+

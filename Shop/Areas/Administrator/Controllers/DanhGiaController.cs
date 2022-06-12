@@ -40,11 +40,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Đánh giá !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 DanhGia danhGia = db.DanhGias.Find(id);
                 if (danhGia == null)
                 {
+                    Notification.set_flash("Không tìm thấy Đánh giá !", "warning");
                     return HttpNotFound();
                 }
                 return View(danhGia);
@@ -102,11 +104,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Đánh giá !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 DanhGia danhGia = db.DanhGias.Find(id);
                 if (danhGia == null)
                 {
+                    Notification.set_flash("Không tìm thấy Đánh giá !", "warning");
                     return HttpNotFound();
                 }
                 ViewBag.malaptop = new SelectList(db.Laptops, "malaptop", "tenlaptop", danhGia.malaptop);
@@ -150,11 +154,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Đánh giá !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 DanhGia danhGia = db.DanhGias.Find(id);
                 if (danhGia == null)
                 {
+                    Notification.set_flash("Không tìm thấy Đánh giá !", "warning");
                     return HttpNotFound();
                 }
                 return View(danhGia);

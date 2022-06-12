@@ -40,11 +40,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bình luận !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 BinhLuan binhLuan = db.BinhLuans.Find(id);
                 if (binhLuan == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bình luận !", "warning");
                     return HttpNotFound();
                 }
                 return View(binhLuan);
@@ -102,11 +104,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bình luận !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 BinhLuan binhLuan = db.BinhLuans.Find(id);
                 if (binhLuan == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bình luận !", "warning");
                     return HttpNotFound();
                 }
                 ViewBag.matin = new SelectList(db.TinTucs, "matin", "tieude", binhLuan.matin);
@@ -150,11 +154,13 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (id == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bình luận !", "warning");
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 BinhLuan binhLuan = db.BinhLuans.Find(id);
                 if (binhLuan == null)
                 {
+                    Notification.set_flash("Không tìm thấy Bình luận !", "warning");
                     return HttpNotFound();
                 }
                 return View(binhLuan);

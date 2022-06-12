@@ -1,5 +1,6 @@
 ﻿using BotDetect.Web.Mvc;
 using PagedList;
+using Shop.Areas.Administrator.Data.message;
 using Shop.Common;
 using Shop.Models;
 using System;
@@ -241,6 +242,25 @@ namespace Shop.Controllers
             return View(baiviet);
         }
 
+        //xem chi tiết đơn đặt hàng
+        public ActionResult InvoiceInfo(int? id)
+        {
+            if (id == null)
+            {
+                Notification.set_flash("Không tồn tại đơn hàng!", "warning");
+                return RedirectToAction("Index");
+            }
+            DonHang donHang = data.DonHangs.Where(n => n.madon == id).FirstOrDefault();
+            if (donHang == null)
+            {
+                Notification.set_flash("Không tồn tại  đơn hàng!", "warning");
+                return RedirectToAction("Index");
+            }
+            ViewBag.orderDetails = data.ChiTietDonHangs.Where(m => m.madon == id).ToList();
+            ViewBag.productOrder = data.Laptops.ToList();
+            return View(donHang);
+        }
+
         public ActionResult ListBaiVietTheoChuDeId(int? page, int id)
         {
             if (page == null) page = 1;
@@ -263,7 +283,7 @@ namespace Shop.Controllers
         {
             CommonFields.seek = SearchString;
             if (page == null) page = 1;
-            var all_laptop = (from s in data.Laptops select s).OrderBy(m => m.malaptop).Where(n => n.trangthai == true && n.tenlaptop.Contains(SearchString));
+            var all_laptop = (from s in data.Laptops select s).OrderBy(m => m.malaptop).Where(n => n.trangthai == true && (n.tenlaptop.Contains(SearchString)));
             int pageSize = 3;
             int pageNum = page ?? 1;
             return View(all_laptop.ToPagedList(pageNum, pageSize));
@@ -289,7 +309,7 @@ namespace Shop.Controllers
 
         public ActionResult Comment()
         {
-            var comment = (from cd in data.DanhGias select cd).Where(n => n.malaptop == CommonFields.id); ;
+            var comment = (from cd in data.DanhGias select cd).Where(n => n.malaptop == CommonFields.id && n.trangthai == true); ;
             return PartialView(comment);
         }
     }

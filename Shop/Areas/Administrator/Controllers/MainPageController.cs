@@ -13,6 +13,7 @@ using Shop.Controllers;
 using System.Net;
 using System.Threading.Tasks;
 using System.Security.Claims;
+using Shop.Areas.Administrator.Data.message;
 
 namespace Shop.Areas.Administrator.Controllers
 {
@@ -187,6 +188,7 @@ namespace Shop.Areas.Administrator.Controllers
         {
             Session["TaiKhoan"] = null;
             Session["taikhoanadmin"] = null;
+            Notification.set_flash("Đăng xuất thành công!", "success");
             return RedirectToAction("Login", "Account", new { area = "" });
         }
 

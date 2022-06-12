@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Shop.Models;
+using Shop.Areas.Administrator.Data.message;
 
 namespace Shop.Controllers
 {
@@ -100,6 +101,7 @@ namespace Shop.Controllers
                         if (AuthAdmin(kh) == true)
                         {
                             Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            Notification.set_flash("Đăng nhập Admin thành công!", "success");
                             return RedirectToAction("Index", "Administrator/MainPage");
                         }
                         else
@@ -110,6 +112,7 @@ namespace Shop.Controllers
                                 return View("Lockout");
                             }
                             Session["TaiKhoan"] = kh;// gán kh vào session
+                            Notification.set_flash("Đăng nhập khách hàng thành công!","success");
                             return RedirectToLocal(returnUrl);
                         }
                     }
@@ -195,7 +198,7 @@ namespace Shop.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    Notification.set_flash("Đăng ký tài khoản khách thành công!", "success");
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -371,6 +374,7 @@ namespace Shop.Controllers
                         if (AuthAdmin(kh) == true)
                         {
                             Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            Notification.set_flash("Đăng nhập Admin thành công!", "success");
                             return RedirectToAction("Index", "Administrator/MainPage");
                         }
                         else
@@ -381,6 +385,7 @@ namespace Shop.Controllers
                                 return View("Lockout");
                             }
                             Session["TaiKhoan"] = kh;// gán kh vào session
+                            Notification.set_flash("Đăng nhập khách hàng thành công!", "success");
                             return RedirectToLocal(returnUrl);
                         }                   
                     }
@@ -445,6 +450,7 @@ namespace Shop.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Session["taikhoanadmin"] = null;
             Session["TaiKhoan"] = null;
+            Notification.set_flash("Đăng xuất thành công!", "success");
             return RedirectToAction("Index", "Home");
         }
 
