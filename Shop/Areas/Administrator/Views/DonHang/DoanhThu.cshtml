@@ -1,0 +1,77 @@
+﻿@*@model PagedList.PagedList<Shop.EF.DonHang>
+    @using PagedList.Mvc;*@
+
+@{
+    ViewBag.Title = "DoanhThu";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+<!-- Favicon -->
+<link rel="shortcut icon" href="~/Areas/Administrator/Data/assets/images/logo/favicon.png">
+
+<!-- page css -->
+<!-- Core css -->
+<link href="~/Areas/Administrator/Data/assets/css/app.min.css" rel="stylesheet">
+
+<div class="container-sm container-fluid">
+    <div class="main-content">
+        <h1 class="text-center">Doanh thu Shop Laptop</h1>
+        <div class="p-5" style="background-color: white">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card laptopzoom">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h3 class="m-b-0">@ViewBag.DTThang.ToString("#,##") <sup>đ</sup></h3>
+                                    <p class="m-b-0 text-muted">Doanh thu Tháng hiện tại (VNĐ)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card laptopzoom">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h3 class="m-b-0">@ViewBag.DTNgay.ToString("#,##") <sup>đ</sup></h3>
+                                    <p class="m-b-0 text-muted">Doanh thu Tháng hiện tại (VNĐ)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card laptopzoom">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+                                    <h3 class="m-b-0">@ViewBag.DTNam.ToString("#,##") <sup>đ</sup></h3>
+                                    <p class="m-b-0 text-muted">Doanh thu Tháng hiện tại (VNĐ)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Core Vendors JS -->
+<script src="~/Areas/Administrator/Data/assets/js/vendors.min.js"></script>
+
+<!-- page js -->
+<script src="~/Areas/Administrator/Data/assets/vendors/chartjs/Chart.min.js"></script>
+<script src="~/Areas/Administrator/Data/assets/js/pages/dashboard-default.js"></script>
+
+<!-- Core JS -->
+<script src="~/Areas/Administrator/Data/assets/js/app.min.js"></script>

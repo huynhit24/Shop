@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ClosedXML.Excel;
+using PagedList;
 using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
@@ -280,6 +283,74 @@ namespace Shop.Areas.Administrator.Controllers
                 db.SaveChanges();
                 Notification.set_flash("Khôi phục thành công đơn hàng!", "success");
                 return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult DoanhThu()
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                List<ChiTietDonHang> listCTDonHang = db.ChiTietDonHangs.ToList();
+                //Tính doanh thu tháng hiện tại
+                double DTThang = 0;
+                foreach (var item in listCTDonHang)
+                {
+                    if (item.DonHang.ngaydat.GetValueOrDefault().Month == DateTime.Now.Month && item.DonHang.ngaydat.GetValueOrDefault().Year == DateTime.Now.Year)
+                    {
+                        DTThang += (double) (item.dongia * item.soluong);
+                    }
+                }
+                double DTNgay = 0;
+                foreach (var item in listCTDonHang)
+                {
+                    if (item.DonHang.ngaydat.GetValueOrDefault().Day == DateTime.Now.Day && item.DonHang.ngaydat.GetValueOrDefault().Month == DateTime.Now.Month && item.DonHang.ngaydat.GetValueOrDefault().Year == DateTime.Now.Year)
+                    {
+                        DTNgay += (double)(item.dongia * item.soluong);
+                    }
+                }
+                double DTNam = 0;
+                foreach (var item in listCTDonHang)
+                {
+                    if (item.DonHang.ngaydat.GetValueOrDefault().Year == DateTime.Now.Year)
+                    {
+                        DTNam += (double)(item.dongia * item.soluong);
+                    }
+                }
+                ViewBag.DTThang = DTThang;
+                ViewBag.DTNgay = DTNgay;
+                ViewBag.DTNam = DTNam;
+                return View();
+            }
+        }
+
+        public FileResult Export()
+        {
+            DataTable dt = new DataTable("Grib");
+            dt.Columns.AddRange(new DataColumn[] {
+                new DataColumn("Ngày"),
+                new DataColumn("Tổng Doanh Thu")
+            });
+            var emps = db.ChiTietDonHangs.GroupBy(p => p.DonHang.ngaydat).Distinct().Select(g => new
+            {
+                Pla = g.Key,
+                Total = g.Sum(t => t.dongia * t.soluong)
+            });
+            foreach (var emp in emps)
+            {
+                dt.Rows.Add(emp.Pla, emp.Total);
+            }
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Doanh-Thu.xlsx");
+                }
             }
         }
     }

@@ -27,6 +27,9 @@
                                 <thead>
                                     <tr style="background-color: red; color: white;">
                                         <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Email")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Mã khách hàng")
                                         </th>
                                         <th class="text-center" style="vertical-align:middle">
@@ -39,14 +42,17 @@
                                             @Html.DisplayName("Đơn giá")
                                         </th>
                                         @*<th class="text-center" style="vertical-align:middle">
-                                            Thao tác
-                                        </th>*@
+            Thao tác
+        </th>*@
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.DonHang.AspNetUser.Email)
+                                            </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.DonHang.makh)
                                             </td>
@@ -61,10 +67,10 @@
                                                 @*@Html.DisplayFor(modelItem => item.dongia)*@
                                             </td>
                                             @*<td class="text-center" style="vertical-align:middle">*@
-                                                @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                                @*<a href="@Url.Action("Edit","ChiTietDonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                            @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                            @*<a href="@Url.Action("Edit","ChiTietDonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/seo.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
                                                 <a href="@Url.Action("Details","ChiTietDonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
                                                 <a href="@Url.Action("Delete","ChiTietDonHang", new { id = item.madon })"><img style="width:40px;height:40px;" src="~/Areas/Administrator/Data/images/delete.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>*@
                                             @*</td>*@
