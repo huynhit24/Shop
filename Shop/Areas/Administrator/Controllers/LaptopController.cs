@@ -253,7 +253,7 @@ namespace Shop.Areas.Administrator.Controllers
                         {
                             Directory.CreateDirectory(path);
                         }
-
+                                                
                         filePath = path + Path.GetFileName(postedFile.FileName);
                         string extension = Path.GetExtension(postedFile.FileName);
                         postedFile.SaveAs(filePath);
@@ -262,10 +262,10 @@ namespace Shop.Areas.Administrator.Controllers
                         switch (extension)
                         {
                             case ".xls":
-                                conString = ConfigurationManager.ConnectionStrings["DataModel"].ConnectionString;
+                                conString = ConfigurationManager.ConnectionStrings["Excel03ConString"].ConnectionString;
                                 break;
                             case ".xlsx":
-                                conString = ConfigurationManager.ConnectionStrings["DataModel"].ConnectionString;
+                                conString = ConfigurationManager.ConnectionStrings["Excel07ConString"].ConnectionString;
                                 break;
                         }
 
@@ -292,12 +292,13 @@ namespace Shop.Areas.Administrator.Controllers
                                 }
                             }
                         }
-                        conString = ConfigurationManager.ConnectionStrings["ConnectContext"].ConnectionString;
+                        conString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                         using (SqlConnection con = new SqlConnection(conString))
                         {
                             using (SqlBulkCopy sqlBulkCopy = new SqlBulkCopy(con))
                             {
-                                sqlBulkCopy.DestinationTableName = "dbo.[DonHang]";
+                                sqlBulkCopy.DestinationTableName = "[dbo].[Laptop]";
+                                sqlBulkCopy.ColumnMappings.Add("malaptop", "malaptop");
                                 sqlBulkCopy.ColumnMappings.Add("tenlaptop", "tenlaptop");
                                 sqlBulkCopy.ColumnMappings.Add("giaban", "giaban");
                                 sqlBulkCopy.ColumnMappings.Add("mota", "mota");
@@ -320,11 +321,13 @@ namespace Shop.Areas.Administrator.Controllers
                         }
 
                     }
-                    return RedirectToAction("Index");
+                    Notification.set_flash("Nhập Excel Laptop thành công!", "success");
+                    return RedirectToAction("Index","Laptop");
                 }
-                catch
+                catch (Exception)
                 {
-                    return RedirectToAction("Index");
+                    Notification.set_flash("Lỗi nhập File Excel!", "danger");
+                    return RedirectToAction("Index", "Laptop");
                 }
             }
         }

@@ -28,6 +28,10 @@
                                     <tr>
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.Hang.tenhang)*@
+                                            @Html.DisplayName("ID")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.Hang.tenhang)*@
                                             @Html.DisplayName("Tên hãng")
                                         </th>
                                         <th class="text-center" style="vertical-align:middle">
@@ -95,6 +99,9 @@
                                     @foreach (var item in Model)
                                     {
                                         <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                L-@Html.DisplayFor(modelItem => item.malaptop)
+                                            </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.Hang.tenhang)
                                             </td>

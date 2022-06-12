@@ -31,7 +31,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" style="vertical-align: middle; margin: 20px; background-color: transparent;">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Hệ thống</h5>
@@ -41,12 +41,36 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-5" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                    <div class="col-md" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
                         <p style="font-weight: bold; color: red;font-size: 2rem;">@ViewBag.Online <img src="~/Content/images/user.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /> </p> Đang Online
                     </div>
-                    <div class="col-5" style="background-color: #b3eae0;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                    <div class="col-md" style="background-color: #b3eae0;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
                         <p style="font-weight: bold; color: red;font-size: 2rem;">@ViewBag.SoNguoiTruyCap <img src="~/Content/images/fairy.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p> Truy cập Website
                     </div>
+                    <div class="col-md" style="background-color: #b3eae0;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;">@home.CountInvoiceCancel() <img src="~/Areas/Administrator/Data/images/invoice-cance-list.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p> Đơn hàng đã hủy
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;"> @home.DemLaptopMoiNhat() <img src="~/Content/images/login-moi-nhat.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop mới nhập <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="col-md" style="background-color: #e3fce2;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;"> @home.DemLaptopGiaRe() <img src="~/Content/images/laptop-gia-re.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop giá rẻ (<= 15tr) <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="col-md" style="background-color: #b8f1f7;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;">2 <img src="~/Content/images/laptop-ban-chay.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop bán chạy <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="col-md" style="background-color: #fcfcde;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;">3 <img src="~/Content/images/laptop-comment.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Đánh giá nhiều <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="col-md" style="background-color: #fce5fa;color: blue;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;"> @home.DemLaptopGiaCao() <img src="~/Content/images/laptop-gia-max.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop giá cao (>= 30tr) <i class="fa fa-eye"></i>
+                    </div>
+                    <div class="col-md" style="background-color: #fbf1e8;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        <p style="font-weight: bold; color: red;font-size: 2rem;">7  <img src="~/Content/images/laptop-web-traffic.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Cấu hình khủng <i class="fa fa-eye"></i>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-footer">
