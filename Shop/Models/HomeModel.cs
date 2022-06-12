@@ -222,6 +222,20 @@ namespace Shop.Models
 
         }
 
+        //Đếm đơn hàng đã hủy
+        public int CountInvoiceCancel()
+        {
+            try
+            {
+                int count = data.DonHangs.Where(n => n.tinhtrang.ToString() == "1").Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
         //Đếm tổng star rồi chia
         public double DemStarDanhGia(int id)
         {
@@ -241,5 +255,7 @@ namespace Shop.Models
                 return 0;
             }    
         }
+
+        
     }
 }

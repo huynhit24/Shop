@@ -1,7 +1,8 @@
-﻿
+﻿@using Shop.Models
 
 @{
     Layout = null;
+    HomeModel home = new HomeModel();
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -185,7 +186,7 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block" style="margin-left: 4px;">
                     <a href="@Url.Action("IndexCancel","DonHang")" class="btn btn-primary">
-                        <img src="~/Areas/Administrator/Data/images/trash-crud.png" width="20" height="20" /> Đơn hàng đã hủy
+                        <img src="~/Areas/Administrator/Data/images/trash-crud.png" width="20" height="20" /> Đơn hàng đã hủy (@home.CountInvoiceCancel())
                     </a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block" style="margin-left: 4px;">
