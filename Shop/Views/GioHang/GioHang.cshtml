@@ -64,8 +64,11 @@
                         Thao tác <i class="fa fa-ticket-alt"></i>
                     </th>
                     <th class="text-center" style="vertical-align:middle">
-                        Giỏ hàng <i class="fa fa-shopping-bag"></i>
+                        Thao tác <i class="fa fa-ticket-alt"></i>
                     </th>
+                    @*<th class="text-center" style="vertical-align:middle">
+                            Giỏ hàng <i class="fa fa-shopping-bag"></i>
+                        </th>*@
                 </tr>
 
                 @foreach (var item in Model)
@@ -83,7 +86,7 @@
                                 @String.Format("{0:0,0}", item.giaban) VNĐ
                             </td>
                             <td class="text-center" style="vertical-align:middle">
-                                <input type="number" min="1" name="txtSolg" value="@item.iSoluong" />
+                                <input type="number" min="1" name="txtSolg" value="@item.iSoluong" onchange="this.form.submit()" style="text-align:center;font-weight: bold" />
                             </td>
 
                             <td class="text-center" style="vertical-align:middle">
@@ -92,11 +95,12 @@
                             </td>
                             <td class="text-center" style="vertical-align:middle">
                                 <a class="btn btn-warning" href="@Url.Action("Details", "Home", new { id = item.malaptop })"> <i class="fa fa-eye"></i> Chi tiết</a>  @*@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.malaptop })*@
-                                <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })"> <i class="fa fa-trash"></i> Xóa bỏ</a>
+
                                 <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Xóa thành công!', showConfirmButton: false });" -->
                             </td>
                             <td class="text-center" style="vertical-align:middle">
-                                <input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success" />
+                                <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })"> <i class="fa fa-trash"></i> Xóa bỏ</a>
+                                @*<input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success" />*@
                             </td>
                         }
                     </tr>

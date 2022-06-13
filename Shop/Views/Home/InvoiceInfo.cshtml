@@ -148,7 +148,7 @@
         <p>
             @*@Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |*@
             @*@Html.ActionLink("Quay lại", "Index", "DonHang")*@
-            <a class="btn btn-outline-primary" href="@Url.Action("Index","Home")"> <i class="fa fa-arrow-alt-circle-left"></i> Quay lại </a>
+            <a class="btn btn-outline-primary" href="@Url.Action("DonHangDaMua","Home")"> <i class="fa fa-arrow-alt-circle-left"></i> Quay lại </a>
             <button class="btn btn-success" id="btn-export" onclick="exportHTML();"> <i class="fa fa-file-invoice-dollar"></i> Xuất đơn hàng </button>
         </p>
     </div>

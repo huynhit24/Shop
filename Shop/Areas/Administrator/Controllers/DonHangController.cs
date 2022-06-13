@@ -320,9 +320,30 @@ namespace Shop.Areas.Administrator.Controllers
                         DTNam += (double)(item.dongia * item.soluong);
                     }
                 }
-                ViewBag.DTThang = DTThang;
-                ViewBag.DTNgay = DTNgay;
-                ViewBag.DTNam = DTNam;
+                if(DTThang != 0)
+                {
+                    ViewBag.DTThang = DTThang;
+                }
+                else
+                {
+                    ViewBag.DTThang = 0;
+                }
+                if (DTNam != 0)
+                {
+                    ViewBag.DTNgay = DTNgay;
+                }
+                else
+                {
+                    ViewBag.DTNgay = 0;
+                }
+                if (DTNam != 0)
+                {
+                    ViewBag.DTNam = DTNam;
+                }
+                else
+                {
+                    ViewBag.DTNam = 0;
+                }
                 return View();
             }
         }
