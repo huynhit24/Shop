@@ -62,8 +62,19 @@
                     @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.trangthai)
-                            @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })
+                            @Html.DropDownListFor(model => model.trangthai, new SelectList(
+                               new[]
+                               {
+                        @*new { Value = "", Text = "(none)" },*@
+new { Value = "true", Text = "Đã duyệt" },
+new { Value = "false", Text = "Chưa duyệt" },
+},
+"Value",
+"Text",
+Model
+))
+                            @*@Html.EditorFor(model => model.trangthai)
+        @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })*@
                         </div>
                     </div>
                 </div>
