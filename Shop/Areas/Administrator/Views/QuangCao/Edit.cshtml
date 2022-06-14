@@ -53,9 +53,15 @@
                 <div class="form-group">
                     @Html.Label("Ngày bắt đầu", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="date" name="ngaybatdau" value="@Model.ngaybatdau.Value.ToString("yyyy-MM-dd")" />
-                        @*@Html.EditorFor(model => model.ngaybatdau, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ngaybatdau, "", new { @class = "text-danger" })*@
+                        @if (Model.ngaybatdau != null)
+                        {
+                            <input type="date" name="ngaybatdau" value="@Model.ngaybatdau.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.ngaybatdau, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.ngaybatdau, "", new { @class = "text-danger" })
+                        }
                     </div>
                 </div>
 
@@ -64,7 +70,7 @@
                     <div class="col-md-10">
                         <input type="date" name="ngayhethan" value="@Model.ngayhethan.Value.ToString("yyyy-MM-dd")" />
                         @*@Html.EditorFor(model => model.ngayhethan, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ngayhethan, "", new { @class = "text-danger" })*@
+                            @Html.ValidationMessageFor(model => model.ngayhethan, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
