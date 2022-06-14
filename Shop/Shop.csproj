@@ -937,6 +937,15 @@
     <Content Include="Areas\Administrator\Data\dist\js\pages\dashboard.js" />
     <Content Include="Areas\Administrator\Data\dist\js\pages\dashboard2.js" />
     <Content Include="Areas\Administrator\Data\dist\js\pages\dashboard3.js" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox.css" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox.umd.js" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox\blank.gif" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox\fancybox_loading.gif" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox\fancybox_overlay.png" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox\fancybox_sprite.png" />
+    <Content Include="Areas\Administrator\Data\fancybox\jquery.fancybox.css" />
+    <Content Include="Areas\Administrator\Data\fancybox\jquery.fancybox.js" />
+    <Content Include="Areas\Administrator\Data\fancybox\panzoom.css" />
     <Content Include="Areas\Administrator\Data\images\adwords.png" />
     <Content Include="Areas\Administrator\Data\images\boy.png" />
     <Content Include="Areas\Administrator\Data\images\chitietdonhang.png" />
@@ -974,6 +983,11 @@
     <Content Include="Areas\Administrator\Data\libraries\js\karma.laclac.min.js" />
     <Content Include="Areas\Administrator\Data\libraries\js\sweetalert2.min.js" />
     <Content Include="Areas\Administrator\Data\libraries\js\toastr.min.js" />
+    <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\.gitignore" />
+    <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\css\images\selector.png" />
+    <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\css\jquery.jqZoom.css" />
+    <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\index.html" />
+    <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\js\jquery.jqZoom.js" />
     <Content Include="Areas\Administrator\Data\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Areas\Administrator\Data\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Areas\Administrator\Data\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -4538,6 +4552,8 @@
     <Content Include="Areas\Administrator\Views\DonHang\IndexCancel.cshtml" />
     <Content Include="Areas\Administrator\Views\Laptop\ExcelDonHangImport.cshtml" />
     <Content Include="Areas\Administrator\Views\DonHang\DoanhThu.cshtml" />
+    <Content Include="Areas\Administrator\Data\fancybox\fancybox\Baobinh.net.url" />
+    <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\README.md" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>

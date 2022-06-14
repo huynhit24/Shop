@@ -4,6 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
 }
+
+<!-- Or from a CDN -->
+<script src="https://unpkg.com/js-image-zoom/js-image-zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script>
+
 @Html.Partial("_MessageAlert")
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
@@ -25,7 +30,7 @@
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
+                                    <tr style="background-color: #0a96f3; color: white;">
                                         <th class="text-center" style="vertical-align:middle">
                                             @*@Html.DisplayNameFor(model => model.Hang.tenhang)*@
                                             @Html.DisplayName("ID")
@@ -120,7 +125,10 @@
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @*@Html.DisplayFor(modelItem => item.hinh)*@
-                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinh)" alt="No image" width="100" height="100" />
+                                                <div>
+                                                    <img @*class="fancybox-image"*@ src="/Data/images/@Html.DisplayFor(modelItem => item.hinh)" alt="No image" width="100" height="100"/>
+                                                </div>
+
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.cpu)
@@ -176,3 +184,17 @@
         </div>
     </section>
 </body>
+<script>
+    @*$(function () {
+        $("img .zoom-box").jqZoom({
+            selectorWidth: 30,
+            selectorHeight: 30,
+            viewerWidth: 400,
+            viewerHeight: 300
+        });
+    })*@
+    @*var options = {
+        width: 100, // required
+    };
+    new ImageZoom(document.getElementById("img-container"), options);*@
+</script>

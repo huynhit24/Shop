@@ -45,8 +45,9 @@
                 <div class="form-group">
                     @Html.Label("Ngày đánh giá", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ngaydanhgia, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ngaydanhgia, "", new { @class = "text-danger" })
+                        <input type="date" name="ngaydanhgia" value="@Model.ngaydanhgia.Value.ToString("yyyy-MM-dd")" />
+                        @*@Html.EditorFor(model => model.ngaydanhgia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ngaydanhgia, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 

@@ -25,14 +25,8 @@
                                     <i class="anticon anticon-dollar"></i>
                                 </div>
                                 <div class="m-l-15">
-                                    @if (ViewBag.DTThang != "")
-                                    {
-                                        <h3 class="m-b-0">@ViewBag.DTThang.ToString("#,##") <sup>đ</sup></h3>
-                                    }
-                                    else
-                                    {
-                                        <h3 class="m-b-0">0 <sup>đ</sup></h3>
-                                    }
+
+                                    <h3 class="m-b-0">@ViewBag.DTThang.ToString("#,##") <sup>đ</sup></h3>
 
                                     <p class="m-b-0 text-muted">Doanh thu Tháng hiện tại (VNĐ)</p>
                                 </div>
@@ -48,14 +42,9 @@
                                     <i class="anticon anticon-dollar"></i>
                                 </div>
                                 <div class="m-l-15">
-                                    @if (ViewBag.DTThang != "")
-                                    {
-                                        <h3 class="m-b-0">@ViewBag.DTNgay.ToString("#,##") <sup>đ</sup></h3>
-                                    }
-                                    else
-                                    {
-                                        <h3 class="m-b-0">0 <sup>đ</sup></h3>
-                                    }
+
+                                    <h3 class="m-b-0">@ViewBag.DTNgay.ToString("#,##") <sup>đ</sup></h3>
+
                                     <p class="m-b-0 text-muted">Doanh thu Ngày hiện tại (VNĐ)</p>
                                 </div>
                             </div>
@@ -70,14 +59,9 @@
                                     <i class="anticon anticon-dollar"></i>
                                 </div>
                                 <div class="m-l-15">
-                                    @if (ViewBag.DTThang != "")
-                                    {
-                                        <h3 class="m-b-0">@ViewBag.DTNam.ToString("#,##") <sup>đ</sup></h3>
-                                    }
-                                    else
-                                    {
-                                        <h3 class="m-b-0">0 <sup>đ</sup></h3>
-                                    }
+
+                                    <h3 class="m-b-0">@ViewBag.DTNam.ToString("#,##") <sup>đ</sup></h3>
+
                                     <p class="m-b-0 text-muted">Doanh thu Năm hiện tại (VNĐ)</p>
                                 </div>
                             </div>

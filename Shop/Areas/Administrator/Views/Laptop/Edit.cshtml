@@ -181,8 +181,9 @@
                 <div class="form-group">
                     @Html.Label("Ngày cập nhật", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "datetime" } })
-                        @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+                        <input type="date" name="ngaycapnhat" value="@Model.ngaycapnhat.Value.ToString("yyyy-MM-dd")" />
+                        @*@Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
