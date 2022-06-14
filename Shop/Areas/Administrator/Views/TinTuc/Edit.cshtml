@@ -108,8 +108,19 @@
                 @Html.Label("Xuất bản", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.xuatban)
-                        @Html.ValidationMessageFor(model => model.xuatban, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.xuatban, new SelectList(
+                              new[]
+                              {
+                    @*new { Value = "", Text = "(none)" },*@
+new { Value = "true", Text = "Đã xuất bản" },
+new { Value = "false", Text = "Lưu nháp" },
+},
+"Value",
+"Text",
+Model
+))
+                        @*@Html.EditorFor(model => model.xuatban)
+        @Html.ValidationMessageFor(model => model.xuatban, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
             </div>

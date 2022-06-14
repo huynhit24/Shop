@@ -179,6 +179,11 @@
                         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                     </li>*@
                 <li class="nav-item d-none d-sm-inline-block">
+                    <a target="_blank" href="@Url.Action("Index","Home", new { area = ""})" class="nav-link">
+                        <p class="red" style="font-size: 1em;"><i class="fa fa-laptop-code"></i> Shop Laptop</p>
+                    </a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
                     <a href="@Url.Action("Index","MainPage")" class="nav-link">
                         <img src="~/Areas/Administrator/Data/images/dashboard.png" width="20" height="20" /> Dashboard
                     </a>
@@ -232,7 +237,7 @@
                     </div>*@
 
                 <!-- SidebarSearch Form -->
-                <div class="form-inline">
+                @*<div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
@@ -241,7 +246,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>*@
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
