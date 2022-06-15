@@ -16,6 +16,7 @@ namespace Shop.EF
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
@@ -33,9 +34,9 @@ namespace Shop.EF
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AspNetRole>()
-                .HasMany(e => e.AspNetUsers)
-                .WithMany(e => e.AspNetRoles)
-                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
+                .HasMany(e => e.AspNetUserRoles)
+                .WithRequired(e => e.AspNetRole)
+                .HasForeignKey(e => e.RoleId);
 
             modelBuilder.Entity<AspNetUser>()
                 .Property(e => e.avatar)
@@ -48,6 +49,11 @@ namespace Shop.EF
 
             modelBuilder.Entity<AspNetUser>()
                 .HasMany(e => e.AspNetUserLogins)
+                .WithRequired(e => e.AspNetUser)
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetUser>()
+                .HasMany(e => e.AspNetUserRoles)
                 .WithRequired(e => e.AspNetUser)
                 .HasForeignKey(e => e.UserId);
 
@@ -66,6 +72,11 @@ namespace Shop.EF
 
             modelBuilder.Entity<ChuDe>()
                 .Property(e => e.hinh)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DonHang>()
+                .Property(e => e.tinhtrang)
+                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<DonHang>()

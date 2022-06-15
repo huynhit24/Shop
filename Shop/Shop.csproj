@@ -271,6 +271,7 @@
     <Compile Include="EF\AspNetUser.cs" />
     <Compile Include="EF\AspNetUserClaim.cs" />
     <Compile Include="EF\AspNetUserLogin.cs" />
+    <Compile Include="EF\AspNetUserRole.cs" />
     <Compile Include="EF\BinhLuan.cs" />
     <Compile Include="EF\ChiTietDonHang.cs" />
     <Compile Include="EF\ChuDe.cs" />
