@@ -252,6 +252,7 @@
     <Compile Include="Areas\Administrator\Controllers\NhuCauController.cs" />
     <Compile Include="Areas\Administrator\Controllers\QuangCaoController.cs" />
     <Compile Include="Areas\Administrator\Controllers\TinTucController.cs" />
+    <Compile Include="Areas\Administrator\Data\excel\ReadExcel.cs" />
     <Compile Include="Areas\Administrator\Data\message\CheckSlug.cs" />
     <Compile Include="Areas\Administrator\Data\message\ModelNotification.cs" />
     <Compile Include="Areas\Administrator\Data\message\ModelThongbao.cs" />

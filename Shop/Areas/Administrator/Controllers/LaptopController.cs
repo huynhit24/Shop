@@ -10,6 +10,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using OfficeOpenXml;
+using Shop.Areas.Administrator.Data.excel;
 using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
@@ -214,6 +216,51 @@ namespace Shop.Areas.Administrator.Controllers
             file.SaveAs(Server.MapPath("~/Content/images/" + file.FileName));
             return file.FileName;
         }
+
+        //EPPlus Excel
+        public ActionResult GetLaptopsFromExcel(HttpPostedFileBase fileExcel)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                List<Laptop> list = new List<Laptop>();
+                if (fileExcel != null)
+                {
+                    try
+                    {
+                        using (ExcelPackage package = new ExcelPackage(fileExcel.InputStream))
+                        {
+                            ExcelWorkbook workbook = package.Workbook;
+                            if (workbook != null)
+                            {
+                                ExcelWorksheet worksheet = workbook.Worksheets.FirstOrDefault();
+                                if (worksheet != null)
+                                {
+                                    list = worksheet.ReadExcelToList<Laptop>();
+                                    foreach (var item in list)
+                                    {
+                                        ViewBag.listLaptop = item.tenlaptop;
+                                    }
+                                    //ViewBag.listLaptop = list;
+                                    return RedirectToAction("ExcelDonHangImport","Laptop");
+                                    //Your code
+                                }
+                            }
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+                        //Save error log
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+        }
+
 
         public ActionResult ExcelDonHangImport()
         {
