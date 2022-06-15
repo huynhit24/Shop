@@ -91,7 +91,16 @@
                         }
                         else
                         {
-                            <p style="color: red;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                            if (item.giaohang == false)
+                            {
+
+                                <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                            }
+                            else
+                            {
+                                <p style="color: deepskyblue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa giao hàng</p>
+                            }
+
                         }
                     </td>
                     <td class="text-center" style="vertical-align:middle">
