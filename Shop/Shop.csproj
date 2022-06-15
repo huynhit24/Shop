@@ -238,6 +238,7 @@
     <Compile Include="Areas\Administrator\Controllers\AspNetRolesController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AspNetUserClaimsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AspNetUserLoginsController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Areas\Administrator\Controllers\AspNetUsersController.cs" />
     <Compile Include="Areas\Administrator\Controllers\BinhLuanController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ChiTietDonHangController.cs" />
@@ -975,6 +976,7 @@
     <Content Include="Areas\Administrator\Data\images\hang.png" />
     <Content Include="Areas\Administrator\Data\images\invoice-cance-list.png" />
     <Content Include="Areas\Administrator\Data\images\laptop.png" />
+    <Content Include="Areas\Administrator\Data\images\leader-roles-user.png" />
     <Content Include="Areas\Administrator\Data\images\meta.png" />
     <Content Include="Areas\Administrator\Data\images\nhucau.png" />
     <Content Include="Areas\Administrator\Data\images\order.png" />
@@ -4852,6 +4854,11 @@
     <Content Include="Areas\Administrator\Views\DonHang\DoanhThu.cshtml" />
     <Content Include="Areas\Administrator\Data\fancybox\fancybox\Baobinh.net.url" />
     <Content Include="Areas\Administrator\Data\plugins\magnify-image-hover\README.md" />
+    <Content Include="Areas\Administrator\Views\AspNetUserRoles\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserRoles\Delete.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserRoles\Details.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserRoles\Edit.cshtml" />
+    <Content Include="Areas\Administrator\Views\AspNetUserRoles\Index.cshtml" />
     <None Include="Models\MyData.dbml.layout">
       <DependentUpon>MyData.dbml</DependentUpon>
     </None>
