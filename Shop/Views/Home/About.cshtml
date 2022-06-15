@@ -2,6 +2,179 @@
     ViewBag.Title = "About";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    /*------- 25. Contect us style  -------*/
+    .contact-info-wrap-3 h3, .get-in-touch-wrap h3 {
+        text-transform: capitalize;
+        font-size: 25px;
+        font-weight: 600;
+        margin: 0 0 30px;
+    }
+
+    @@media only screen and (max-width: 767px) {
+        .contact-info-wrap-3 h3, .get-in-touch-wrap h3 {
+            margin: 0 0 24px;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 991px) {
+        .contact-info-wrap-3.pb-85, .get-in-touch-wrap.pb-85 {
+            padding-bottom: 45px;
+        }
+    }
+
+    @@media only screen and (max-width: 767px) {
+        .contact-info-wrap-3.pb-85, .get-in-touch-wrap.pb-85 {
+            padding-bottom: 25px;
+        }
+    }
+
+    .single-contact-info-3 {
+        background-color: #f7f7f7;
+        padding: 48px 10px 49px;
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single-contact-info-3 {
+            padding: 28px 20px 29px;
+        }
+    }
+
+    .single-contact-info-3 > i {
+        font-size: 24px;
+        color: #ff2f2f;
+        -webkit-transition: all .3s ease 0s;
+        -o-transition: all .3s ease 0s;
+        transition: all .3s ease 0s;
+        display: block;
+    }
+
+    .single-contact-info-3 h4 {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        text-transform: capitalize;
+        margin: 19px 0 10px;
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single-contact-info-3 h4 {
+            font-size: 18px;
+            margin: 12px 0 10px;
+        }
+    }
+
+    .single-contact-info-3 p {
+        letter-spacing: .4px;
+        font-size: 15px;
+        color: #000000;
+    }
+
+    .single-contact-info-3 ul li {
+        border-bottom: 2px solid #fff;
+        letter-spacing: 0.4px;
+        margin-bottom: 23px;
+        padding-bottom: 26px;
+        font-size: 15px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single-contact-info-3 ul li {
+            display: block;
+            margin-bottom: 11px;
+            padding-bottom: 11px;
+        }
+    }
+
+    .single-contact-info-3 ul li:last-child {
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        border-bottom: none;
+    }
+
+    .single-contact-info-3 ul li i {
+        font-size: 24px;
+        margin-right: 7px;
+        color: #ff2f2f;
+        -webkit-transition: all .3s ease 0s;
+        -o-transition: all .3s ease 0s;
+        transition: all .3s ease 0s;
+        display: inline-block;
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 991px) {
+        .single-contact-info-3 ul li i {
+            display: block;
+            margin-right: 0px;
+            margin-bottom: 3px;
+        }
+    }
+
+    .single-contact-info-3 ul li a {
+        color: #000000;
+    }
+
+        .single-contact-info-3 ul li a:hover {
+            color: #ff2f2f;
+        }
+
+    .single-contact-info-3 ul li:hover i {
+        -webkit-animation: 500ms ease-in-out 0s normal none 1 running tada;
+        animation: 500ms ease-in-out 0s normal none 1 running tada;
+    }
+
+    .single-contact-info-3:hover > i {
+        -webkit-animation: 500ms ease-in-out 0s normal none 1 running tada;
+        animation: 500ms ease-in-out 0s normal none 1 running tada;
+    }
+
+    .contact-from input, .contact-from textarea {
+        background: #f7f7f7 none repeat scroll 0 0;
+        border: none;
+        color: #000;
+        height: 60px;
+        padding: 2px 20px;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    @@media only screen and (max-width: 767px) {
+        .contact-from input, .contact-from textarea {
+            margin-bottom: 20px;
+        }
+    }
+
+    .contact-from textarea {
+        height: 200px;
+        padding: 20px 20px;
+    }
+
+    .contact-from button {
+        border: none;
+        background-color: transparent;
+        text-transform: capitalize;
+        background-color: #ff2f2f;
+        color: #fff;
+        padding: 12px 30px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+        .contact-from button:hover {
+            background-color: #000000;
+        }
+</style>
 <header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%);">
     <div class="container px-1 px-lg-1 my-1">
         <div class="text-center text-white">
@@ -14,7 +187,6 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Sale badge-->
@@ -37,7 +209,7 @@
                                 </small>
                             </div>
                             <!-- Product price-->
-                            Gánh team
+                            Admin
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -49,7 +221,7 @@
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Sale badge-->
-                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Bot</div>
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Thành viên</div>
                     <!-- Product image-->
                     <img class="card-img-top" src="~/Content/images/dependabot.png" alt="iLaptop" />
                     <!-- Product details-->
@@ -67,7 +239,7 @@
                                 </small>
                             </div>
                             <!-- Product price-->
-                            Thành viên
+                            Member
                         </div>
                     </div>
                     <!-- Product actions-->
