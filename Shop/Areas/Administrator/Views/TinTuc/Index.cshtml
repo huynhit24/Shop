@@ -41,9 +41,9 @@
                                         <th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Slug")
                                         </th>
-                                        <th class="text-center" style="vertical-align:middle">
+                                        @*<th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Nội dung")
-                                        </th>
+                                        </th>*@
                                         <th class="text-center" style="vertical-align:middle">
                                             @Html.DisplayName("Lượt xem")
                                         </th>
@@ -77,9 +77,9 @@
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.slug)
                                             </td>
-                                            <td class="text-center" style="vertical-align:middle">
+                                            @*<td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.noidung)
-                                            </td>
+                                            </td>*@
                                             <td class="text-center" style="vertical-align:middle">
                                                 @Html.DisplayFor(modelItem => item.luotxem)
                                             </td>
@@ -94,7 +94,7 @@
                                                 }
                                                 else
                                                 {
-                                                    <p style="color: blue;font-weight: bold;"><i class="fa fa-draft2digital"></i> Lưu nháp</p>
+                                                    <p style="color: blue;font-weight: bold;"><i class="fa fa-trash-restore"></i> Lưu nháp</p>
                                                 }
                                             </td>
                                             <td class="text-center" style="vertical-align: middle; min-width: 100px;">

@@ -160,7 +160,7 @@ namespace Shop.Controllers
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
             //dh.ngaygiao = DateTime.Now;
-            dh.giaohang = false;
+            dh.giaohang = null;
             dh.thanhtoan = false;
             dh.tinhtrang = '0';
             /*if ((bool)Session["thanhtoan"] == true)
@@ -516,7 +516,7 @@ namespace Shop.Controllers
             dh.makh = kh.Id;
             dh.ngaydat = DateTime.Now;
             //dh.ngaygiao = DateTime.Now;
-            dh.giaohang = false;
+            dh.giaohang = null;
             dh.thanhtoan = true;
             dh.tinhtrang = '0';
 
@@ -545,7 +545,10 @@ namespace Shop.Controllers
             content = content.Replace("{CustomerName}", kh.hoten);
             content = content.Replace("{Phone}", kh.PhoneNumber);
             content = content.Replace("{Email}", kh.Email);
-            content = content.Replace("{Total}", total.ToString());
+            //content = content.Replace("{NgayDat}", dh.ngaydat.ToString());
+            content = content.Replace("{Total}", total.ToString(""));
+           /* content = content.Replace("{ThanhToan}", dh.thanhtoan == true ? "Đã thanh toán" : "Chưa thanh toán");
+            content = content.Replace("{GiaoHang}", dh.giaohang == true ? "Đã giao hàng" : (dh.giaohang == false ? "Đang giao hàng" : "Chưa giao hàng"));*/
             try
             {
                 //kiểm tra xem email đã xác thực Login hay chưa bởi Google Facebook
