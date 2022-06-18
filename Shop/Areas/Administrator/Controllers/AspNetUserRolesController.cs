@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator.Data.message;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
@@ -26,11 +27,13 @@ namespace Shop.Areas.Administrator.Controllers
         {
             if (id == null)
             {
+                Notification.set_flash("Không tìm thấy phần quyền này !", "warning");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
             if (aspNetUserRole == null)
             {
+                Notification.set_flash("Không tìm thấy phần quyền này !", "warning");
                 return HttpNotFound();
             }
             return View(aspNetUserRole);
@@ -55,6 +58,7 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 db.AspNetUserRoles.Add(aspNetUserRole);
                 db.SaveChanges();
+                Notification.set_flash("Thêm mới quyền cho tài khoản thành công!", "success");
                 return RedirectToAction("Index");
             }
 
@@ -91,6 +95,7 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 db.Entry(aspNetUserRole).State = EntityState.Modified;
                 db.SaveChanges();
+                Notification.set_flash("Cập nhật quyền tài khoản thành công !", "success");
                 return RedirectToAction("Index");
             }
             ViewBag.RoleId = new SelectList(db.AspNetRoles, "Id", "Name", aspNetUserRole.RoleId);
@@ -120,6 +125,7 @@ namespace Shop.Areas.Administrator.Controllers
         {
             AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
             db.AspNetUserRoles.Remove(aspNetUserRole);
+            Notification.set_flash("Xóa quyền tài khoản thành công !", "success");
             db.SaveChanges();
             return RedirectToAction("Index");
         }
