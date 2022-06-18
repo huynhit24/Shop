@@ -374,5 +374,13 @@ namespace Shop.Areas.Administrator.Controllers
                 }
             }
         }
+
+        public ActionResult GetData()
+        {
+            var query = db.ChiTietDonHangs.Include("DonHang")
+                   .GroupBy(p => p.DonHang.madon)
+                   .Select(g => new { name = g.Key, count = g.Sum(w => w.soluong * w.dongia) }).ToList();
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
     }
 }
