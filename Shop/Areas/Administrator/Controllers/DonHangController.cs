@@ -253,6 +253,35 @@ namespace Shop.Areas.Administrator.Controllers
                     return HttpNotFound();
                 }
                 donHang.tinhtrang = "1";
+                /*try //cập nhật lại số lượng tồn khi đơn hàng đã hủy
+                {
+                    Laptop lap = new Laptop(); // tạo biến Laptop lưu tạm thời
+                    List<Laptop> listLap = new List<Laptop>(); //lấy ra danh sách Laptop cần cập nhật lại số lượng tồn
+                    ChiTietDonHang ct = new ChiTietDonHang(); //lấy ra chi tiết đơn hàng
+                    List<ChiTietDonHang> listCT = new List<ChiTietDonHang>(); // lấy ra danh sách chi tiết cửa đơn hàng có mã đơn bằng id
+                    listCT = db.ChiTietDonHangs.Where(n => n.madon == id).ToList();
+                    if(listCT != null)
+                    {
+                        foreach (var itemCT in listCT)
+                        {
+                            foreach (var itemLap in listLap)
+                            {
+                                if (itemCT.malaptop == itemLap.malaptop)
+                                {
+                                    lap = itemLap;
+                                    lap.soluongton = lap.soluongton + itemCT.soluong;
+                                    db.SaveChanges();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    Notification.set_flash("Lỗi cập nhật Số lượng tồn!", "danger");
+                    return RedirectToAction("Index");
+                }*/
                 db.SaveChanges();
                 Notification.set_flash("Đã hủy thành công đơn hàng!", "success");
                 return RedirectToAction("Index");
@@ -280,12 +309,42 @@ namespace Shop.Areas.Administrator.Controllers
                     return HttpNotFound();
                 }
                 donHang.tinhtrang = "0";
+                /*try //cập nhật lại số lượng tồn khi đơn hàng đã khôi phục
+                {
+                    Laptop lap = new Laptop(); // tạo biến Laptop luu tạm thời
+                    List<Laptop> listLap = new List<Laptop>(); //lấy ra danh sách Laptop cần cập nhật lại số lượng tồn
+                    ChiTietDonHang ct = new ChiTietDonHang(); //lấy ra chi tiết đơn hàng
+                    List<ChiTietDonHang> listCT = new List<ChiTietDonHang>(); // lấy ra danh sách chi tiết cửa đơn hàng có mã đơn bằng id
+                    listCT = db.ChiTietDonHangs.Where(n => n.madon == donHang.madon).ToList();
+                    if (listCT != null)
+                    {
+                        foreach (var itemCT in listCT)
+                        {
+                            foreach (var itemLap in listLap)
+                            {
+                                if (itemCT.malaptop == itemLap.malaptop)
+                                {
+                                    lap = itemLap;
+                                    lap.soluongton = lap.soluongton - itemCT.soluong;
+                                    db.SaveChanges();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    Notification.set_flash("Lỗi cập nhật Số lượng tồn!", "danger");
+                    return RedirectToAction("Index");
+                }*/
                 db.SaveChanges();
                 Notification.set_flash("Khôi phục thành công đơn hàng!", "success");
                 return RedirectToAction("Index");
             }
         }
 
+        //tính doanh thu
         public ActionResult DoanhThu()
         {
             if (Session["taikhoanadmin"] == null)
@@ -375,6 +434,7 @@ namespace Shop.Areas.Administrator.Controllers
             }
         }
 
+        //Lấy Data để thống kê biểu đồ tiền đơn đặt hàng
         public ActionResult GetData()
         {
             var query = db.ChiTietDonHangs.Include("DonHang")

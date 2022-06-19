@@ -153,7 +153,7 @@ namespace Shop.Controllers
         {
             DonHang dh = new DonHang();
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
-            Laptop s = new Laptop();
+            Laptop lap = new Laptop(); // lấy
             List<GioHang> gh = Laygiohang();// lấy giỏ hàng
             //var ngaygiao = String.Format("{0:MM/dd/yyyy}", collection["NgayGiao"]);//lấy ngày giao format lại
 
@@ -175,19 +175,33 @@ namespace Shop.Controllers
 
             data.DonHangs.InsertOnSubmit(dh);
             data.SubmitChanges();
-            foreach (var item in gh)
+            try
             {
-                ChiTietDonHang ctdh = new ChiTietDonHang();
-                ctdh.madon = dh.madon;
-                ctdh.malaptop = item.malaptop;
-                ctdh.soluong = item.iSoluong;
-                ctdh.dongia = (decimal)item.giaban;
-                s = data.Laptops.Single(n => n.malaptop == item.malaptop);
-                data.SubmitChanges();
-                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
-            }
+                foreach (var item in gh)
+                {
+                    ChiTietDonHang ctdh = new ChiTietDonHang();
+                    ctdh.madon = dh.madon;
+                    ctdh.malaptop = item.malaptop;
+                    ctdh.soluong = item.iSoluong;
+                    ctdh.dongia = (decimal)item.giaban;
+                    data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+                    // lấy số lượng tồn trừ đi
+                    lap = data.Laptops.FirstOrDefault(n => n.malaptop == item.malaptop);
+                    if(lap.soluongton > ctdh.soluong && lap.soluongton != null)
+                    {
+                        lap.soluongton = lap.soluongton - ctdh.soluong;
+                    }               
+                    data.SubmitChanges();
+                }
 
-            data.SubmitChanges();
+                data.SubmitChanges();
+            }
+            catch (Exception)
+            {
+                Notification.set_flash("Lỗi cập nhật dữ liệu!", "danger");
+                return RedirectToAction("Index", "Home");
+            }
+            
             
 
             //Gửi mail tới khác dùng
@@ -243,12 +257,12 @@ namespace Shop.Controllers
             return View();
         }
 
-        public ActionResult ThanhToanThatBai()
+        public ActionResult ThanhToanThatBai()// Trả về View thông báo Thanh toán Thất bại
         {
             return View();
         }
 
-        public ActionResult BadRequestMoMo()
+        public ActionResult BadRequestMoMo()//trả về view thông báo Bad Request
         {
             return View();
         }
@@ -273,7 +287,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]*/
-        public ActionResult PaymentMoMo()
+        public ActionResult PaymentMoMo()// Thanh toán MoMo HTTP GET lấy link
         {
             DonHang dh = new DonHang();
             AspNetUser kh = (AspNetUser)Session["TaiKhoan"];// ép session về kh để lấy thông tin
@@ -503,7 +517,7 @@ namespace Shop.Controllers
         }
 
         //[HttpPost]
-        public void SavePayment()
+        public void SavePayment()// Lưu đơn hàng vào database
         {
             //cập nhật dữ liệu vào db
 
