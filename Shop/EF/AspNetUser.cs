@@ -13,8 +13,8 @@ namespace Shop.EF
         {
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
+            AspNetUserRoles = new HashSet<AspNetUserRole>();
             DonHangs = new HashSet<DonHang>();
-            AspNetRoles = new HashSet<AspNetRole>();
         }
 
         public string Id { get; set; }
@@ -64,9 +64,9 @@ namespace Shop.EF
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual ICollection<DonHang> DonHangs { get; set; }
     }
 }

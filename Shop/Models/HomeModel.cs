@@ -25,11 +25,13 @@ namespace Shop.Models
         }
         public List<Laptop> GetListLaptop_LASTEST()// lấy ra danh sách Laptop thep ngày mới nhất là ngày hiện tại
         {
-            List<Laptop> list = data.Laptops.Where(n => n.trangthai == true 
+            /*List<Laptop> list = data.Laptops.Where(n => n.trangthai == true 
                                                 && (n.ngaycapnhat.GetValueOrDefault() <= DateTime.Today 
                                                 && n.ngaycapnhat.GetValueOrDefault().Day >= DateTime.Today.Day - 7) 
                                                 && n.ngaycapnhat.GetValueOrDefault().Month == DateTime.Today.Month
-                                                && n.ngaycapnhat.GetValueOrDefault().Year == DateTime.Today.Year).OrderByDescending(n => n.ngaycapnhat).Take(8).ToList();
+                                                && n.ngaycapnhat.GetValueOrDefault().Year == DateTime.Today.Year).OrderByDescending(n => n.ngaycapnhat).Take(8).ToList();*/
+            List<Laptop> list = data.Laptops.Where(n => n.trangthai == true
+                                                && (n.ngaycapnhat.GetValueOrDefault() <= DateTime.Today)).OrderByDescending(n => n.ngaycapnhat).Take(8).ToList();
             return list;
         }
         public List<Laptop> GetListLaptop_TOPSELLING()// lấy ra danh sách Laptop giả rẻ hơn 15tr

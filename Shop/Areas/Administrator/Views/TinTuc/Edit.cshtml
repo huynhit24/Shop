@@ -92,8 +92,15 @@
             <div class="form-group">
                 @Html.Label("Ngày cập nhật", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+                    @if (Model.ngaycapnhat != null)
+                    {
+                        <input type="date" name="ngaycapnhat" value="@Model.ngaycapnhat.Value.ToString("yyyy-MM-dd")" />
+                    }
+                    else
+                    {
+                        @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+                    }
                 </div>
             </div>
 
@@ -101,8 +108,19 @@
                 @Html.Label("Xuất bản", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.xuatban)
-                        @Html.ValidationMessageFor(model => model.xuatban, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.xuatban, new SelectList(
+                              new[]
+                              {
+                    @*new { Value = "", Text = "(none)" },*@
+new { Value = "true", Text = "Đã xuất bản" },
+new { Value = "false", Text = "Lưu nháp" },
+},
+"Value",
+"Text",
+Model
+))
+                        @*@Html.EditorFor(model => model.xuatban)
+        @Html.ValidationMessageFor(model => model.xuatban, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
             </div>

@@ -127,10 +127,21 @@
                                                 <td class="col-6">
                                                     @if (Model.giaohang == true)
                                                     {
-                                                        <a style="color: green;font-weight: bold;text-decoration:none;" href="#"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<span class="bold">Đã giao Hàng</span></a> }
-                                                    else if (Model.giaohang == false)
+                                                        <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
+                                                    }
+                                                    else
                                                     {
-                                                        <a style="color: blue;font-weight: bold;text-decoration:none;" href="#"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;<span class="bold">Chưa giao hàng</span></a>}
+                                                        if (Model.giaohang == false)
+                                                        {
+
+                                                            <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="color: deepskyblue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa giao hàng</p>
+                                                        }
+
+                                                    }
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -148,7 +159,7 @@
         <p>
             @*@Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |*@
             @*@Html.ActionLink("Quay lại", "Index", "DonHang")*@
-            <a class="btn btn-outline-primary" href="@Url.Action("Index","Home")"> <i class="fa fa-arrow-alt-circle-left"></i> Quay lại </a>
+            <a class="btn btn-outline-primary" href="@Url.Action("DonHangDaMua","Home")"> <i class="fa fa-arrow-alt-circle-left"></i> Quay lại </a>
             <button class="btn btn-success" id="btn-export" onclick="exportHTML();"> <i class="fa fa-file-invoice-dollar"></i> Xuất đơn hàng </button>
         </p>
     </div>

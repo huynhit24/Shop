@@ -85,8 +85,19 @@
                 <div class="form-group">
                     @Html.Label("Tình trạng", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.tinhtrang, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.tinhtrang, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(model => model.tinhtrang, new SelectList(
+                               new[]
+                               {
+                    @*new { Value = "", Text = "(none)" },*@
+new { Value = "0", Text = "Xác nhận" },
+new { Value = "1", Text = "Đã hủy" },
+},
+"Value",
+"Text",
+Model
+))
+                        @*@Html.EditorFor(model => model.tinhtrang, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.tinhtrang, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 

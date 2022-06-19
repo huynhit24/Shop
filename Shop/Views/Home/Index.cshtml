@@ -226,7 +226,14 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            @if (item.soluongton <= 0)
+                                            {
+                                                <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            }
                                             <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });" -->
                                         </div>
                                     </div>
@@ -393,7 +400,14 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-primary"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-dark mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            @if (item.soluongton <= 0)
+                                            {
+                                                <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            }
                                             <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
                                         </div>
 
@@ -566,7 +580,14 @@
                                         </div>
                                         <div class="col-12 mb-3 align-self-end">
                                             <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-warning"><i class="fas fa-eye me-2"></i>Xem chi tiết</a>
-                                            <a id="add-cart" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-danger mua add-cart"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            @if (item.soluongton <= 0)
+                                            {
+                                                <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                                            }
                                             <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
 
                                         </div>

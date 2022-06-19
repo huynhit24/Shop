@@ -175,7 +175,7 @@ a.product-name:hover, a.product-name:focus {
     top: 0;
     left: -300px;
     z-index: 5;
-    background-color: rgba(233, 10, 10, .85);;
+    background-color: rgba(233, 10, 10, .85);
     color: #fff;
     padding: 3px 15px;
     width: 0;

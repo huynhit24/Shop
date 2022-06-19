@@ -139,8 +139,15 @@
                 <div class="form-group">
                     @Html.Label("Ngày sinh", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.ngaysinh, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+                        @if (Model.ngaysinh != null)
+                        {
+                            <input type="date" name="ngaysinh" value="@Model.ngaysinh.Value.ToString(" yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.ngaysinh, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+                        }
                     </div>
                 </div>
 

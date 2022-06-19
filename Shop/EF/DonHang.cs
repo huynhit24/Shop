@@ -31,6 +31,7 @@ namespace Shop.EF
 
         [StringLength(1)]
         public string tinhtrang { get; set; }
+
         public virtual AspNetUser AspNetUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

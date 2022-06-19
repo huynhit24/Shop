@@ -11,7 +11,7 @@ namespace Shop.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetRole()
         {
-            AspNetUsers = new HashSet<AspNetUser>();
+            AspNetUserRoles = new HashSet<AspNetUserRole>();
         }
 
         public string Id { get; set; }
@@ -21,6 +21,6 @@ namespace Shop.EF
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
     }
 }
