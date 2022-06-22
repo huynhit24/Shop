@@ -153,20 +153,133 @@
                 <div class="card laptopzoom">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5>Tổng doanh thu</h5>
-                            <div>
-                                <div class="btn-group">
-                                    <button class="btn btn-default active">
-                                        <span>Tháng</span>
-                                    </button>
-                                    <button class="btn btn-default">
-                                        <span>Năm</span>
-                                    </button>
-                                </div>
-                            </div>
+                            <h5>Top 4 Laptop bán chạy</h5>
+                            @*<div>
+                                    <div class="btn-group">
+                                        <button class="btn btn-default active">
+                                            <span>Tháng</span>
+                                        </button>
+                                        <button class="btn btn-default">
+                                            <span>Năm</span>
+                                        </button>
+                                    </div>
+                                </div>*@
                         </div>
-                        <div class="m-t-50" style="height: 330px">
-                            <canvas class="chart" id="revenue-chart"></canvas>
+                        <div class="m-t-30" style="height: 345px; margin-top: 5px;">
+                            @*<canvas class="chart" id="revenue-chart"></canvas>*@
+                            @*<canvas class="chart" id="bar-chart"></canvas>*@
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Laptop</th>
+                                            <th>Bán</th>
+                                            <th>Doanh số</th>
+                                            <th style="max-width: 70px">Hàng còn lại</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="avatar avatar-image rounded">
+                                                        <img src="~/Areas/Administrator/Data/assets/images/others/thumb-9.jpg" alt="">
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <span>Gray Sofa</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>81</td>
+                                            <td>$1,912.00</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress progress-sm w-100 m-b-0">
+                                                        <div class="progress-bar bg-success" style="width: 82%"></div>
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        82
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="avatar avatar-image rounded">
+                                                        <img src="~/Areas/Administrator/Data/assets/images/others/thumb-10.jpg" alt="">
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <span>Gray Sofa</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>26</td>
+                                            <td>$1,377.00</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress progress-sm w-100 m-b-0">
+                                                        <div class="progress-bar bg-success" style="width: 61%"></div>
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        61
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="avatar avatar-image rounded">
+                                                        <img src="~/Areas/Administrator/Data/assets/images/others/thumb-11.jpg" alt="">
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <span>Wooden Rhino</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>71</td>
+                                            <td>$9,212.00</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress progress-sm w-100 m-b-0">
+                                                        <div class="progress-bar bg-danger" style="width: 23%"></div>
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        23
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="media align-items-center">
+                                                    <div class="avatar avatar-image rounded">
+                                                        <img src="~/Areas/Administrator/Data/assets/images/others/thumb-12.jpg" alt="">
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        <span>Red Chair</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>79</td>
+                                            <td>$1,298.00</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="progress progress-sm w-100 m-b-0">
+                                                        <div class="progress-bar bg-warning" style="width: 54%"></div>
+                                                    </div>
+                                                    <div class="m-l-10">
+                                                        54
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -216,6 +329,85 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Doanh thu</h5>
+                            @*<div>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-default">View All</a>
+                                </div>*@
+                        </div>
+                        @*<div class="m-t-30">
+                                <div class="d-md-flex">
+                                    <div class="pr-4 m-v-10 border-right border-hide-md">
+                                        <p class="m-b-0">Doanh thu</p>
+                                        <h3 class="m-b-0">
+                                            <span>$58,323</span>
+                                            <span class="text-success m-l-10 font-size-14">+6.71%</span>
+                                        </h3>
+                                    </div>
+                                    <div class="px-md-4 m-v-10 border-right border-hide-md">
+                                        <p class="m-b-0">Bán hàng</p>
+                                        <h3 class="m-b-0">
+                                            <span>$17,523</span>
+                                            <span class="text-danger m-l-10 font-size-14">+1.82%</span>
+                                        </h3>
+                                    </div>
+                                    <div class="px-md-4 m-v-10">
+                                        <p class="m-b-0">Phí tổn</p>
+                                        <h3 class="m-b-0">
+                                            <span>$8,217</span>
+                                            <span class="text-success m-l-10 font-size-14">+11.2%</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="m-t-50" style="height: 240px">
+                            <canvas class="chart" id="revenue-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>Top 4 Khách VIP</h5>
+                            <div>
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-default">View All</a>
+                                </div>
+                        </div>
+                        <div class="m-t-30">
+                            <ul class="list-group list-group-flush">
+                                @foreach (var item in home.GET_TOP_4_USERS_VIP())
+                                {
+                                    <li class="list-group-item p-h-0">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex">
+                                                <div class="avatar avatar-image m-r-15">
+                                                    <img src="assets/images/others/thumb-9.jpg" alt="">
+                                                </div>
+                                                <div>
+                                                    <h6 class="m-b-0">
+                                                        <a href="javascript:void(0);" class="text-dark"> Gray Sofa</a>
+                                                    </h6>
+                                                    <span class="text-muted font-size-13">Home Decoration</span>
+                                                </div>
+                                            </div>
+                                            <span class="badge badge-pill badge-cyan font-size-12">
+                                                <span class="font-weight-semibold m-l-5">+18.3%</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
         </div>
         @*<div class="row">
                 <div class="col-md-12 col-lg-4">
@@ -998,3 +1190,82 @@
 
 <!-- Core JS -->
 <script src="~/Areas/Administrator/Data/assets/js/app.min.js"></script>
+<script src="~/Areas/Administrator/Data/assets/vendors/chartjs/Chart.min.js"></script>
+<script src="~/Areas/Administrator/Data/assets/js/pages/dashboard-e-commerce.js"></script>
+<script>
+    import themeColors from '../constant/theme-constant'
+
+    chart()
+    {
+        //Bar Chart
+        const barChart = document.getElementById("bar-chart");
+        const barCtx = barChart.getContext('2d');
+        barChart.height = 120;
+        const barConfig = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'],
+                datasets: [{
+                    label: 'Series A',
+                    backgroundColor: themeColors.blue,
+                    borderWidth: 0,
+                    data: [56, 55, 40, 37, 54, 76, 63, 62]
+                },
+                {
+                    label: 'Series B',
+                    backgroundColor: themeColors.blueLight,
+                    borderWidth: 0,
+                    data: [86, 27, 90, 43, 65, 76, 87, 85]
+                }]
+            },
+
+            options: {
+                scaleShowVerticalLines: false,
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        categoryPercentage: 0.45,
+                        barPercentage: 0.70,
+                        display: true,
+                        scaleLabel: {
+                            display: false,
+                            labelString: 'Month'
+                        },
+                        gridLines: false,
+                        ticks: {
+                            display: true,
+                            beginAtZero: true,
+                            fontSize: 13,
+                            padding: 10
+                        }
+                    }],
+                    yAxes: [{
+                        categoryPercentage: 0.35,
+                        barPercentage: 0.70,
+                        display: true,
+                        scaleLabel: {
+                            display: false,
+                            labelString: 'Value'
+                        },
+                        gridLines: {
+                            drawBorder: false,
+                            offsetGridLines: false,
+                            drawTicks: false,
+                            borderDash: [3, 4],
+                            zeroLineWidth: 1,
+                            zeroLineBorderDash: [3, 4]
+                        },
+                        ticks: {
+                            max: 100,
+                            stepSize: 20,
+                            display: true,
+                            beginAtZero: true,
+                            fontSize: 13,
+                            padding: 10
+                        }
+                    }]
+                }
+            }
+        });
+    }
+</script>

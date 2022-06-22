@@ -258,6 +258,15 @@ namespace Shop.Models
             }    
         }
 
-        
+        /**
+         * Top 4 Khách VIP
+         */
+
+        //Lấy TOP 4 khách hàng VIP
+        /*public List<AspNetUser> GET_TOP_4_USERS_VIP()
+        {
+            List<AspNetUser> list = data.AspNetUsers.Where(n => n.DonHangs.Count(m => m.ChiTietDonHangs.GroupBy(o => o.madon).Sum()));
+            return list;
+        }*/
     }
 }

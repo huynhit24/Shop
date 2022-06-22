@@ -135,7 +135,16 @@
                                                 @Html.DisplayFor(modelItem => item.ngaydat)
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
-                                                @Html.DisplayFor(modelItem => item.ngaygiao)
+                                                @if (item.ngaygiao == null)
+                                                {
+                                                    <p style="color: black;">  Chưa duyệt ngày giao! </p>
+                                                    <a style="margin-right:5px;" href="@Url.Action("UpdateNgayGiao","DonHang", new { ID = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/calendar.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật ngày" /></a>
+                                                }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.ngaygiao)
+                                                    <a style="margin-right:5px;" href="@Url.Action("UpdateNgayGiao","DonHang", new { ID = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/calendar.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật ngày" /></a>
+                                                }
                                             </td>
                                             <td class="text-center" style="vertical-align:middle">
                                                 @if (item.tinhtrang == "1")

@@ -344,6 +344,32 @@ namespace Shop.Areas.Administrator.Controllers
             }
         }
 
+        public ActionResult UpdateNgayGiao(int? id)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                donHang.ngaygiao = DateTime.Now;
+                db.SaveChanges();
+                Notification.set_flash("Cập nhật ngày giao thành công!", "success");
+                return RedirectToAction("Index");
+            }
+        }
+
         //tính doanh thu
         public ActionResult DoanhThu()
         {
