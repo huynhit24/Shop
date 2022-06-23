@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Shop.EF.DonHang>
-
+@using Shop.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+    HomeModel home = new HomeModel();
 }
 
 <style>
@@ -40,7 +41,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h2 style="text-align:center;color:#fff">Đơn hàng</h2>
+                            <h2 style="text-align:center;color:#fff">Đơn hàng - @home.CountInvoice() (Đơn)</h2>
                             <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","DonHang")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
                         </div>
                         <div class="card-body">

@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Shop.EF.Laptop>
-
+@using Shop.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+    HomeModel home = new HomeModel();
 }
 
 <!-- Or from a CDN -->
@@ -43,7 +44,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h2 style="text-align:center;color:#fff">Laptop</h2>
+                            <h2 style="text-align:center;color:#fff">Laptop - @home.CountLaptop() (Laptops)</h2>
                             <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","Laptop")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
                         </div>
                         <div class="card-body">
