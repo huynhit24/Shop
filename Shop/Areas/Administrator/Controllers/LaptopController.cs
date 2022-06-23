@@ -90,6 +90,16 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (laptop.giaban <= 0)
+                    {
+                        Notification.set_flash("Giá bán Laptop phải > 0đ!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (laptop.soluongton < 0)
+                    {
+                        Notification.set_flash("Số lượng tồn phải >= 0!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     db.Laptops.Add(laptop);
                     db.SaveChanges();
                     Notification.set_flash("Thêm mới Laptop thành công !", "success");
@@ -144,6 +154,16 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (laptop.giaban <= 0)
+                    {
+                        Notification.set_flash("Giá bán Laptop phải > 0đ!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (laptop.soluongton < 0)
+                    {
+                        Notification.set_flash("Số lượng tồn phải >= 0!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     db.Entry(laptop).State = EntityState.Modified;
                     db.SaveChanges();
                     Notification.set_flash("Cập nhật Laptop thành công !", "success");
