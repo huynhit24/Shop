@@ -117,12 +117,15 @@ namespace Shop.Controllers
             try
             {
                 if (sanpham != null)
-                {
-                    sanpham.iSoluong = int.Parse(collection["txtSolg"].ToString());
-                    if (sanpham.iSoluong >= 50)
+                {               
+                    if (int.Parse(collection["txtSolg"].ToString()) > 50)
                     {
-                        Notification.set_flash("Mua hàng số lượng >= 50!\nXin vui lòng liên hệ Admin Shop!", "warning");
+                        Notification.set_flash("Mua hàng số lượng lớn > 50 liên hệ Admin!", "warning");
                         return RedirectToAction("GioHang");
+                    }
+                    else
+                    {
+                        sanpham.iSoluong = int.Parse(collection["txtSolg"].ToString());
                     }
                 }
             }

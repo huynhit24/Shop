@@ -81,6 +81,11 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (aspNetUser.Email == null || aspNetUser.Email.Equals(""))
+                    {
+                        Notification.set_flash("Vui lòng nhập Email!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     db.AspNetUsers.Add(aspNetUser);
                     db.SaveChanges();
                     Notification.set_flash("Thêm mới tài khoản đăng nhập thành công !", "success");
@@ -131,6 +136,11 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (aspNetUser.Email == null || aspNetUser.Email.Equals(""))
+                    {
+                        Notification.set_flash("Vui lòng nhập Email!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     db.Entry(aspNetUser).State = EntityState.Modified;
                     db.SaveChanges();
                     Notification.set_flash("Cập nhật tài khoản thành công !", "success");

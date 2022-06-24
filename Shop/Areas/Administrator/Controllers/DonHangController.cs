@@ -118,6 +118,16 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (donHang.ngaydat == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày đặt!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaygiao == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày giao!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     if (donHang.ngaydat > donHang.ngaygiao)
                     {
                         Notification.set_flash("Ngày giao phải sau ngày đặt hàng!", "danger");
@@ -177,6 +187,16 @@ namespace Shop.Areas.Administrator.Controllers
                     if (donHang.ngaydat > donHang.ngaygiao)
                     {
                         Notification.set_flash("Ngày giao phải sau ngày đặt hàng!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaydat == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày đặt!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaygiao == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày giao!", "danger");
                         return RedirectToAction("Index");
                     }
                     db.Entry(donHang).State = EntityState.Modified;

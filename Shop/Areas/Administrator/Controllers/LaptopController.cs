@@ -90,6 +90,16 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (laptop.tenlaptop == null || laptop.tenlaptop.Equals(""))
+                    {
+                        Notification.set_flash("Vui lòng nhập tên Laptop!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (laptop.giaban == null)
+                    {
+                        Notification.set_flash("Vui lòng nhập giá bán!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     if (laptop.giaban <= 0)
                     {
                         Notification.set_flash("Giá bán Laptop phải > 0đ!", "danger");
@@ -154,6 +164,16 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (laptop.tenlaptop == null || laptop.tenlaptop.Equals(""))
+                    {
+                        Notification.set_flash("Vui lòng nhập tên Laptop!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (laptop.giaban == null)
+                    {
+                        Notification.set_flash("Vui lòng nhập giá bán!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     if (laptop.giaban <= 0)
                     {
                         Notification.set_flash("Giá bán Laptop phải > 0đ!", "danger");
