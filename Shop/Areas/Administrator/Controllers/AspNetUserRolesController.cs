@@ -23,14 +23,15 @@ namespace Shop.Areas.Administrator.Controllers
         }
 
         // GET: Administrator/AspNetUserRoles/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, string roleId)
         {
-            if (id == null)
+            if (id == null || roleId == null)
             {
                 Notification.set_flash("Không tìm thấy phần quyền này !", "warning");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
+            //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
+            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
             if (aspNetUserRole == null)
             {
                 Notification.set_flash("Không tìm thấy phần quyền này !", "warning");
