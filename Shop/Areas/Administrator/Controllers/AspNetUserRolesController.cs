@@ -69,13 +69,14 @@ namespace Shop.Areas.Administrator.Controllers
         }
 
         // GET: Administrator/AspNetUserRoles/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, string roleId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
+            //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
+            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
             if (aspNetUserRole == null)
             {
                 return HttpNotFound();
@@ -105,13 +106,14 @@ namespace Shop.Areas.Administrator.Controllers
         }
 
         // GET: Administrator/AspNetUserRoles/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string id, string roleId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
+            //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
+            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
             if (aspNetUserRole == null)
             {
                 return HttpNotFound();

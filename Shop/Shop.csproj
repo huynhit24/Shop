@@ -5223,6 +5223,7 @@
     <Content Include="Views\Home\InvoiceInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Api\" />
     <Folder Include="App_Data\" />
     <Folder Include="Repository\" />
     <Folder Include="Service\" />
