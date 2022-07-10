@@ -13,6 +13,7 @@ namespace Shop.Areas.Administrator.Controllers
 {
     public class AspNetUserRolesController : Controller
     {
+        //ĐỂ LÀM PHÂN QUYỀN TA THÊM 1 TRƯỜNG ROLE KHÁC OR ĐỔI MÃ LIÊN KẾT
         private DataModel db = new DataModel();
 
         // GET: Administrator/AspNetUserRoles
@@ -23,15 +24,16 @@ namespace Shop.Areas.Administrator.Controllers
         }
 
         // GET: Administrator/AspNetUserRoles/Details/5
-        public ActionResult Details(string id, string roleId)
+        public ActionResult Details(string id)//public ActionResult Details(string id, string roleId)
         {
-            if (id == null || roleId == null)
+            if (id == null)//id == null || roleId == null
             {
                 Notification.set_flash("Không tìm thấy phần quyền này !", "warning");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
-            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
+            //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
+            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id);
             if (aspNetUserRole == null)
             {
                 Notification.set_flash("Không tìm thấy phần quyền này !", "warning");
@@ -69,14 +71,15 @@ namespace Shop.Areas.Administrator.Controllers
         }
 
         // GET: Administrator/AspNetUserRoles/Edit/5
-        public ActionResult Edit(string id, string roleId)
+        public ActionResult Edit(string id)//public ActionResult Details(string id, string roleId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
-            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
+            //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
+            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id);
             if (aspNetUserRole == null)
             {
                 return HttpNotFound();
@@ -106,14 +109,15 @@ namespace Shop.Areas.Administrator.Controllers
         }
 
         // GET: Administrator/AspNetUserRoles/Delete/5
-        public ActionResult Delete(string id, string roleId)
+        public ActionResult Delete(string id)//public ActionResult Details(string id, string roleId)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.Find(id);
-            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
+            //AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id && n.RoleId == roleId);
+            AspNetUserRole aspNetUserRole = db.AspNetUserRoles.FirstOrDefault(n => n.UserId == id);
             if (aspNetUserRole == null)
             {
                 return HttpNotFound();

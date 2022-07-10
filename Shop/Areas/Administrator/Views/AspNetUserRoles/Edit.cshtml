@@ -21,6 +21,26 @@
                 @Html.HiddenFor(model => model.UserId)
 
                 @Html.HiddenFor(model => model.RoleId)
+            <div class="form-group">
+                @Html.Label("Quyền Account:", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.RoleId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                    </div>
+                    @*@Html.DropDownListFor(model => model.RoleId, new SelectList(
+                               new[]
+                               {
+                                        new { Value = "1", Text = "ADMIN" },
+                                        new { Value = "2", Text = "STAFF" },
+                                        new { Value = "3", Text = "USER" },
+                                        },
+                                        "Value",
+                                        "Text",
+                                        Model
+                                ))*@
+                </div>
+            </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
