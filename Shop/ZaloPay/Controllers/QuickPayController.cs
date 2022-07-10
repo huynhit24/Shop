@@ -50,7 +50,7 @@ namespace Shop.ZaloPay.Controllers
 
             Session["result"] = result;
 
-            return Redirect("/QuickPay");
+            return Redirect("/QuickPay/Index");
         }
     }
 }

@@ -338,6 +338,7 @@
     </Compile>
     <Compile Include="MoMo\MoMoSecurity.cs" />
     <Compile Include="MoMo\PaymentRequest.cs" />
+    <Compile Include="NganLuong\nganluonAPI\APICheckoutV3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ZaloPay\Controllers\CallbackController.cs" />
@@ -5225,6 +5226,8 @@
   <ItemGroup>
     <Folder Include="Api\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Dao\" />
+    <Folder Include="Dto\" />
     <Folder Include="Repository\" />
     <Folder Include="Service\" />
     <Folder Include="Upload\" />
