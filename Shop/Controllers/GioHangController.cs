@@ -114,11 +114,27 @@ namespace Shop.Controllers
         {
             List<GioHang> lstGiohang = Laygiohang();
             GioHang sanpham = lstGiohang.SingleOrDefault(n => n.malaptop == id);
-            if (sanpham != null)
+            try
             {
-                sanpham.iSoluong = int.Parse(collection["txtSolg"].ToString());
-
+                if (sanpham != null)
+                {               
+                    if (int.Parse(collection["txtSolg"].ToString()) > 50)
+                    {
+                        Notification.set_flash("Mua hàng số lượng lớn > 50 liên hệ Admin!", "warning");
+                        return RedirectToAction("GioHang");
+                    }
+                    else
+                    {
+                        sanpham.iSoluong = int.Parse(collection["txtSolg"].ToString());
+                    }
+                }
             }
+            catch (Exception)
+            {
+                Notification.set_flash("Nhập sai định dạng số lượng!", "warning");
+                return RedirectToAction("GioHang");
+            }                                          
+            
             return RedirectToAction("GioHang");
         }
         public ActionResult XoaTatCaGioHang()// xóa tất cả các mặt hàng trong giỏ hàng

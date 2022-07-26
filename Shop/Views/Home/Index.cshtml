@@ -10,6 +10,15 @@
 <link href="~/Content/css/slides.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+      rel="stylesheet" />
 
 <style>
     .row .h-100:hover {
@@ -33,6 +42,23 @@
             transform: scale(1.2);
             z-index: 100;
         }
+
+    .result-label {
+        background: linear-gradient(to right,#e91f63,#db2663);
+    }
+
+    .result-label {
+        margin-bottom: 5px;
+    }
+
+    .result-label {
+        border-radius: 20px;
+        display: inline-block;
+        font-size: 0;
+        overflow: hidden;
+        max-width: 100%;
+        padding-right: 8px;
+    }
 </style>
 @Html.Partial("_Nofit")
 <main class="row">
@@ -91,6 +117,559 @@
             </div>
         </div>
         <!-- Slider -->
+        <!-- Slide products-->
+        <div class="col-12" style="margin-top: 10px;background-color: blue;border-radius: 16px;">
+            <div class="row">
+                <h1 class="text-center" style="color: white;margin-top:16px;">XU HƯỚNG MUA SẮM</h1>
+            </div>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row" style="margin-left: 5px;margin-right: 5px;">
+                            @foreach (var item in Model.GetListLaptop_FEATURED())
+                            {
+                                <!-- Product -->
+                                <div class="col-lg-3 col-sm-6 my-3">
+                                    <div class="col-12 bg-white text-center h-100 product-item" style="border-radius:12px;">
+                                        <div class="row h-100">
+                                            <div class="item-product__sticker-percent">
+                                                <p class="text-white">Nổi bật</p>
+                                            </div>
+                                            <div class="col-12 p-0 mb-3">
+                                                <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })">
+                                                    <img src="/Data/images/@item.hinh" class="img-fluid" style="width:200px;height:200px;">
+                                                </a>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <a style="font-size:1rem;margin: 1rem;" href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="product-name">@item.tenlaptop</a>
+                                            </div>
+                                            @*<div class="col-12 mb-3">
+                                                <p class="result-label"><img width="20" height="20" class=" ls-is-cached lazyloaded" alt="SINH NHẬT GIẢM SỐC" data-src="https://cdn.tgdd.vn/2022/07/content/50x50-50x50-12.png" src="https://cdn.tgdd.vn/2022/07/content/50x50-50x50-12.png"><span>SINH NHẬT GIẢM SỐC</span></p>
+                                            </div>*@
+                                            <div class="col-12 mb-3">
+
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div>
+                                                            @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                                            {
+                                                                <small>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+
+                                                            @*<small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>*@
+                                                        </div>
+                                                        <div class="product-description">
+                                                            @home.DemVoteLaptop(item.malaptop) đánh giá
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="product-price-old">
+
+                                                        </span>
+                                                        <br>
+                                                        <span class="product-price" style="font-size:1rem;margin: 1rem;color: red;">
+                                                            @String.Format("{0:0,0}", item.giaban) đ
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="col-12 mb-3 align-self-end">
+                                                <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem</a>
+                                                @if (item.soluongton <= 0)
+                                                {
+                                                    <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Mua</a>
+                                                }
+                                                <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });" -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product -->
+                            }
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row" style="margin-left: 5px;margin-right: 5px;">
+                            @foreach (var item in Model.GetListLaptop_FEATURED())
+                            {
+                                <!-- Product -->
+                                <div class="col-lg-3 col-sm-6 my-3">
+                                    <div class="col-12 bg-white text-center h-100 product-item" style="border-radius:12px;">
+                                        <div class="row h-100">
+                                            <div class="item-product__sticker-percent">
+                                                <p class="text-white">Nổi bật</p>
+                                            </div>
+                                            <div class="col-12 p-0 mb-3">
+                                                <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })">
+                                                    <img src="/Data/images/@item.hinh" class="img-fluid" style="width:200px;height:200px;">
+                                                </a>
+                                            </div>
+                                            @*<div class="col-12 mb-3">
+                                                <a style="font-size:1rem;margin: 1rem;" href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="product-name">@item.tenlaptop</a>
+                                            </div>*@
+                                            <div class="col-12 mb-3">
+
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div>
+                                                            @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                                            {
+                                                                <small>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+
+                                                            @*<small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>*@
+                                                        </div>
+                                                        <div class="product-description">
+                                                            @home.DemVoteLaptop(item.malaptop) đánh giá
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="product-price-old">
+
+                                                        </span>
+                                                        <br>
+                                                        <span class="product-price" style="font-size:1rem;margin: 1rem;color: red;">
+                                                            @String.Format("{0:0,0}", item.giaban) đ
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="col-12 mb-3 align-self-end">
+                                                <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem</a>
+                                                @if (item.soluongton <= 0)
+                                                {
+                                                    <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Mua</a>
+                                                }
+                                                <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });" -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product -->
+                            }
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row" style="margin-left: 5px;margin-right: 5px;">
+                            @foreach (var item in Model.GetListLaptop_FEATURED())
+                            {
+                                <!-- Product -->
+                                <div class="col-lg-3 col-sm-6 my-3">
+                                    <div class="col-12 bg-white text-center h-100 product-item" style="border-radius:12px;">
+                                        <div class="row h-100">
+                                            <div class="item-product__sticker-percent">
+                                                <p class="text-white">Nổi bật</p>
+                                            </div>
+                                            <div class="col-12 p-0 mb-3">
+                                                <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })">
+                                                    <img src="/Data/images/@item.hinh" class="img-fluid" style="width:200px;height:200px;">
+                                                </a>
+                                            </div>
+                                            @*<div class="col-12 mb-3">
+                                                <a style="font-size:1rem;margin: 1rem;" href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="product-name">@item.tenlaptop</a>
+                                            </div>*@
+                                            <div class="col-12 mb-3">
+
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div>
+                                                            @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                                            {
+                                                                <small>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+                                                            @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                                            {
+                                                                <small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                </small>
+                                                            }
+
+                                                            @*<small>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="fas fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                    <i class="far fa-star" style="color: #ed0fef"></i>
+                                                                </small>*@
+                                                        </div>
+                                                        <div class="product-description">
+                                                            @home.DemVoteLaptop(item.malaptop) đánh giá
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="product-price-old">
+
+                                                        </span>
+                                                        <br>
+                                                        <span class="product-price" style="font-size:1rem;margin: 1rem;color: red;">
+                                                            @String.Format("{0:0,0}", item.giaban) đ
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="col-12 mb-3 align-self-end">
+                                                <a href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })" class="btn btn-sm btn-success"><i class="fas fa-eye me-2"></i>Xem</a>
+                                                @if (item.soluongton <= 0)
+                                                {
+                                                    <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Mua</a>
+                                                }
+                                                <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: true, confirmButtonText: `OK` });" -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product -->
+                            }
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="margin-left: 0px; left: -72px;">
+                    <span class="" aria-hidden="true" style="background-color: white; color: black;border-radius:45px;"><i class="fa fa-arrow-left" style="padding:12px;"></i></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="margin-right: 0px; right: -72px;">
+                    <span class="" aria-hidden="true" style="background-color: white;color: black;border-radius:45px;"><i class="fa fa-arrow-right" style="padding:12px;"></i></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="row" style="margin-bottom: 10px; text-align: center;">
+                <div class="col-12" style="margin-bottom: 10px;">
+                    <a href="@Url.Action("GetListAllLaptop","Home")" class="btn btn-lg btn-white mua"><i class="fas fa-shopping-bag me-2"></i>Xem tất cả sản phẩm</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide banners-->
+        <div class="col-12" style="margin-top: 10px;background-color: blue;border-radius: 16px;">
+            <div class="row">
+                <h1 class="text-center" style="color: white;margin-top:16px;">XU HƯỚNG MUA SẮM</h1>
+            </div>
+            <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-12 py-3">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Content/images/samsung-390-210-390x210.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/sport-380x200-380x200.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; " />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/macbook-air-m1.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/top-menu-web-site-01.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-12 py-3">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Content/images/samsung-390-210-390x210.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/sport-380x200-380x200.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; " />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/macbook-air-m1.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/top-menu-web-site-01.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-12 py-3">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Content/images/samsung-390-210-390x210.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/sport-380x200-380x200.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; " />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/macbook-air-m1.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/top-menu-web-site-01.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-12 py-3">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="~/Content/images/samsung-390-210-390x210.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/sport-380x200-380x200.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; " />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/macbook-air-m1.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="~/Content/images/top-menu-web-site-01.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Banner quảng cáo -->
+                    @*<div class="row">
+                        <div class="col-12 py-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="~/Content/images/samsung-390-210-390x210.png" alt="iLaptop" style="width:288px;height:125px;border-radius: 8px;box-shadow: rgb(255 0 0) 10px 10px inset;" />
+                                </div>
+                                <div class="col-3">
+                                    <img src="~/Content/images/sport-380x200-380x200.png" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px; box-sizing: border-box; " />
+                                </div>
+                                <div class="col-3">
+                                    <img src="~/Content/images/macbook-air-m1.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                </div>
+                                <div class="col-3">
+                                    <img src="~/Content/images/top-menu-web-site-01.jpg" alt="iLaptop" style="width: 288px; height: 125px; border-radius: 8px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <!-- Banner quảng cáo -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev" style="margin-left: 0px; left: -72px;">
+                    <span class="" aria-hidden="true" style="background-color: white; color: black;border-radius:45px;"><i class="fa fa-arrow-left" style="padding:12px;"></i></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next" style="margin-right: 0px; right: -72px;">
+                    <span class="" aria-hidden="true" style="background-color: white;color: black;border-radius:45px;"><i class="fa fa-arrow-right" style="padding:12px;"></i></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="row" style="margin-bottom: 10px; text-align: center;">
+                <div class="col-12" style="margin-bottom: 10px;">
+                    <a href="@Url.Action("GetListAllLaptop","Home")" class="btn btn-lg btn-white mua"><i class="fas fa-shopping-bag me-2"></i>Xem tất cả sản phẩm</a>
+                </div>
+            </div>
+        </div>
         <!-- Featured Products -->
         <div class="col-12">
             <div class="row">
@@ -108,8 +687,10 @@
                                     }
                                     <a class="btn btn-sm btn-danger border-3" href="@Url.Action("GetListAllLaptop","Home")"><i class="fa fa-arrow-alt-circle-right"></i>  Xem tất cả</a>
                                 </div>
-                            </div>
 
+
+
+                            </div>
 
                         </div>
                     </div>
@@ -118,7 +699,7 @@
                         {
                             <!-- Product -->
                             <div class="col-lg-3 col-sm-6 my-3 laptopzoom">
-                                <div class="col-12 bg-white text-center h-100 product-item">
+                                <div class="col-12 bg-white text-center h-100 product-item" style="border-radius:12px;">
                                     <div class="row h-100">
                                         <div class="item-product__sticker-percent">
                                             <p class="text-white">Nổi bật</p>
@@ -296,7 +877,7 @@
                         {
                             <!-- Product -->
                             <div class="col-lg-3 col-sm-6 my-3 laptopzoom">
-                                <div class="col-12 bg-white text-center h-100 product-item">
+                                <div class="col-12 bg-white text-center h-100 product-item" style="border-radius:12px;">
                                     <div class="row h-100">
                                         <div class="item-product__sticker-percent">
                                             <p class="text-white">Mới nhất</p>
@@ -476,7 +1057,7 @@
                         {
                             <!-- Product -->
                             <div class="col-lg-3 col-sm-6 my-3 laptopzoom">
-                                <div class="col-12 bg-white text-center h-100 product-item">
+                                <div class="col-12 bg-white text-center h-100 product-item" style="border-radius:12px;">
                                     <div class="row h-100">
                                         <div class="item-product__sticker-percent">
                                             <p class="text-white">Giá rẻ</p>
@@ -659,6 +1240,11 @@
                                                                 <img width="380" height="200" loading="lazy" class=" lazyloaded" alt="Promote AVA" src="~/Content/images/lenovoLaptop-390x210.png">
                                                             </a>
                                                         </div>
+                                                        @*<div class="owl-item active" style="width: 380px; margin-right: 30px;">
+                                                                <a aria-label="slide" data-cate="0" data-place="2054" href="https://www.thegioididong.com/avaji">
+                                                                    <img width="380" height="200" loading="lazy" class=" lazyloaded" alt="Promote AVA" src="~/Content/images/lenovoLaptop-390x210.png">
+                                                                </a>
+                                                            </div>*@
                                                     </div>
                                                 </div>
                                                 @*<div class="owl-nav">
@@ -719,5 +1305,7 @@
     </div>
 </main>
 
-
+<!-- MDB -->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
 

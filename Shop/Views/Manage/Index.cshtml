@@ -13,18 +13,6 @@
 </header>
 
 <section class="py-5" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
-    <!--Banner dọc 2 bên-->
-    <div class="sticky-sidebar active">
-        <div class="banner-left">
-            <img src="~/Content/images/trai-79x271-9.png" alt="Alternate Text" width="79" height="271" />
-        </div>
-    </div>
-    <div class="sticky-sidebar active">
-        <div class="banner-right">
-            <img src="~/Content/images/Phai-79x271.png" alt="Alternate Text" width="79" height="271" />
-        </div>
-    </div>
-    <!--End-->
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
@@ -55,7 +43,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div style="border: 4px;" class="text-center social-icon"><a class="btn btn-outline-danger mt-auto" href="https://github.com/huynhit24" target="_blank"><i class="fa fa-money-bill-wave-alt"></i> Đơn hàng đã mua</a></div>
+                        <div style="border: 4px;" class="text-center social-icon"><a class="btn btn-outline-danger mt-auto" href="@Url.Action("DonHangDaMua","Home")" target="_blank"><i class="fa fa-money-bill-wave-alt"></i> Đơn hàng đã mua</a></div>
                     </div>
                 </div>
             </div>
@@ -91,10 +79,11 @@
 
                          Uncomment the following block after you have set up two-factor authentication
                     *@
-                    @*
-                        <dt>Phone Number:</dt>
+                    
+                        <dt>Số điện thoại:</dt>
                         <dd>
                             @(Model.PhoneNumber ?? "None")
+
                             @if (Model.PhoneNumber != null)
                             {
                                 <br />
@@ -102,28 +91,28 @@
                                 using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
                                     @Html.AntiForgeryToken()
-                                    <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                                    <text>[<input type="submit" value="Remove" class="btn btn-success" />]</text>
                                 }
                             }
                             else
                             {
-                                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                                <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")&nbsp;&nbsp;]</text>
                             }
                         </dd>
-                    *@
-                    @*<dt>Xác thực 2 lớp:</dt>
-                        <dd>*@
+                    
+                    <dt>Xác thực 2 lớp:</dt>
+                        <dd>
                     @*<p>
                             There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                             for details on setting up this ASP.NET application to support two-factor authentication.
                         </p>*@
-                    @*@if (Model.TwoFactor)
+                    @if (Model.TwoFactor)
                         {
                             using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <text>Enabled
-                                <input type="submit" value="Disable" class="btn btn-link" />
+                                <input type="submit" value="Disable" class="btn btn-warning" />
                                 </text>
                             }
                         }
@@ -136,8 +125,8 @@
                                 <input type="submit" value="Enable" class="btn btn-link" />
                                 </text>
                             }
-                        }*@
-                    @*</dd>*@
+                        }
+                    </dd>
                 </dl>
             </div>
         </div>

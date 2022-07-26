@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,6 +13,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Shop.Models;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace Shop
 {
@@ -28,7 +33,31 @@ namespace Shop
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your SMS service here to send a text message.
-            return Task.FromResult(0);
+            try
+            {
+                //Twilio Begin
+                var accountSid = ConfigurationManager.AppSettings["SMSAccountIdentification"];
+                var authToken = ConfigurationManager.AppSettings["SMSAccountPassword"];
+                var fromNumber = ConfigurationManager.AppSettings["SMSAccountFrom"];
+
+                TwilioClient.Init(accountSid, authToken);
+
+                MessageResource result = MessageResource.Create(
+                            new PhoneNumber(message.Destination),
+                            from: new PhoneNumber(fromNumber),
+                            body: message.Body
+                );
+
+                //Status is one of Queued, Sending, Sent, Failed or null if the number is not valid
+                Trace.TraceInformation(result.Status.ToString());
+                //Twilio doesn't currently have an async API, so return success.
+                return Task.FromResult(0);
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(0);
+            }
+            
         }
     }
 
@@ -40,7 +69,7 @@ namespace Shop
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -81,7 +110,7 @@ namespace Shop
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

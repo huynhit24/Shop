@@ -258,6 +258,57 @@ namespace Shop.Models
             }    
         }
 
-        
+        //Đếm tất cả đơn hàng
+        public int CountInvoice()
+        {
+            try
+            {
+                int count = data.DonHangs.Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        //Đếm tất cả Laptop
+        public int CountLaptop()
+        {
+            try
+            {
+                int count = data.Laptops.Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        //Đếm tất cả Account
+        public int CountAccount()
+        {
+            try
+            {
+                int count = data.AspNetUsers.Count();
+                return count;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        /**
+         * Top 4 Khách VIP
+         */
+
+        //Lấy TOP 4 khách hàng VIP
+        /*public List<AspNetUser> GET_TOP_4_USERS_VIP()
+        {
+            List<AspNetUser> list = data.AspNetUsers.Where(n => n.DonHangs.Count(m => m.ChiTietDonHangs.GroupBy(o => o.madon).Sum()));
+            return list;
+        }*/
     }
 }

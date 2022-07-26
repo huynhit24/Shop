@@ -32,6 +32,7 @@ namespace Shop.Areas.Administrator.Controllers
             }
         }
 
+        //xuất danh sách đơn hàng đã hủy
         public ActionResult IndexCancel()
         {
             if (Session["taikhoanadmin"] == null)
@@ -117,6 +118,21 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (donHang.ngaydat == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày đặt!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaygiao == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày giao!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaydat > donHang.ngaygiao)
+                    {
+                        Notification.set_flash("Ngày giao phải sau ngày đặt hàng!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     db.DonHangs.Add(donHang);
                     db.SaveChanges();
                     Notification.set_flash("Thêm mới đơn hàng thành công !", "success");
@@ -168,6 +184,21 @@ namespace Shop.Areas.Administrator.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (donHang.ngaydat > donHang.ngaygiao)
+                    {
+                        Notification.set_flash("Ngày giao phải sau ngày đặt hàng!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaydat == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày đặt!", "danger");
+                        return RedirectToAction("Index");
+                    }
+                    if (donHang.ngaygiao == null)
+                    {
+                        Notification.set_flash("Vui lòng thêm ngày giao!", "danger");
+                        return RedirectToAction("Index");
+                    }
                     db.Entry(donHang).State = EntityState.Modified;
                     db.SaveChanges();
                     Notification.set_flash("Đã cập nhật trạng thái đơn hàng !", "success");
@@ -340,6 +371,37 @@ namespace Shop.Areas.Administrator.Controllers
                 }*/
                 db.SaveChanges();
                 Notification.set_flash("Khôi phục thành công đơn hàng!", "success");
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult UpdateNgayGiao(int? id)
+        {
+            if (Session["taikhoanadmin"] == null)
+            {
+                return RedirectToAction("Error401", "MainPage");
+            }
+            else
+            {
+                if (id == null)
+                {
+                    Notification.set_flash("Lỗi không tìm thấy đơn hàng cần xóa ! (id == null)", "danger");
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                DonHang donHang = db.DonHangs.Find(id);
+                if (donHang == null)
+                {
+                    Notification.set_flash("Không tìm thấy đơn hàng !", "warning");
+                    return HttpNotFound();
+                }
+                donHang.ngaygiao = DateTime.Now;
+                if (donHang.ngaydat > donHang.ngaygiao)
+                {
+                    Notification.set_flash("Ngày giao phải sau ngày đặt hàng!", "danger");
+                    return RedirectToAction("Index");
+                }
+                db.SaveChanges();
+                Notification.set_flash("Cập nhật ngày giao thành công!", "success");
                 return RedirectToAction("Index");
             }
         }

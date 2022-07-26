@@ -38,6 +38,11 @@
                     <a class="btn text-white" style="background-color: #f217d9" href="@Url.Action("Index", "Home")"> <i class="fa fa-cart-arrow-down"></i> Mua thêm</a>
                 </p>
             </div>
+            <div class="container">
+                <div class="text-center">
+                    <img src="~/Content/images/trang-thai-1.png" alt="Alternate Text" height="110" width="500" />
+                </div>
+            </div>
         </div>
         <div class="container-sm container-fluid" style="margin-top: 50px;margin-bottom:50px;">
             <table class="table table-bordered tab">
@@ -86,7 +91,7 @@
                                 @String.Format("{0:0,0}", item.giaban) VNĐ
                             </td>
                             <td class="text-center" style="vertical-align:middle">
-                                <input type="number" min="1" name="txtSolg" value="@item.iSoluong" onchange="this.form.submit()" style="text-align:center;font-weight: bold" />
+                                <input type="number" min="1" max="50" step="1" name="txtSolg" value="@item.iSoluong" onchange="this.form.submit()" style="text-align:center;font-weight: bold" />
                             </td>
 
                             <td class="text-center" style="vertical-align:middle">
@@ -121,7 +126,7 @@
                 <tr style="font-weight: bold; color:blue; text-align:right">
                     <td colspan="7">
                         @*@Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")*@
-                        <a class="btn btn-secondary text-white" href="@Url.Action("XoaTatCaGioHang", "GioHang")"> <i class="fa fa-trash-alt"></i> Xóa giỏ hàng </a>
+                        <a class="btn btn-danger text-white" href="@Url.Action("XoaTatCaGioHang", "GioHang")"> <i class="fa fa-trash-alt"></i> Xóa giỏ hàng </a>
                     </td>
                 </tr>
 
@@ -131,7 +136,14 @@
                             @*@Html.ActionLink("Tieps tục mua hàng", "Index", "Home")
                                 @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")*@
                             <a class="btn btn-outline-dark" href="@Url.Action("Index", "Home")"> <i class="fa fa-arrow-left"></i> Tiếp tục mua hàng</a>
-                            <a class="btn btn-dark" href="@Url.Action("Dathang", "GioHang")">Thanh toán đặt hàng <i class="fa fa-arrow-right"></i></a>
+                            @if (ViewBag.Tongsoluong.ToString() == "0")
+                            {
+                                <button disabled class="btn btn-info">Vui lòng chọn số lượng <i class="fa fa-arrow-right"></i></button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-dark" href="@Url.Action("Dathang", "GioHang")">Thanh toán đặt hàng <i class="fa fa-arrow-right"></i></a>
+                            }
                         </div>
                     </td>
                 </tr>
