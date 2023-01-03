@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +8,7 @@ namespace Shop.Models
 {
     public class HomeModel
     {
-        MyDataDataContext data = new MyDataDataContext();
+        DataModel data = new DataModel();
         public List<Laptop> GetListLaptop()
         {
             List<Laptop> list = data.Laptops.Where(n => n.trangthai == true).ToList();

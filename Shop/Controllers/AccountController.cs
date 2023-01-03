@@ -8,8 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Shop.Models;
+using Shop.EF;
 using Shop.Areas.Administrator.Data.message;
+using Shop.Models;
 
 namespace Shop.Controllers
 {
@@ -19,7 +20,7 @@ namespace Shop.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        MyDataDataContext context = new MyDataDataContext(); //
+        DataModel context = new DataModel();
         public AccountController()
         {
         }

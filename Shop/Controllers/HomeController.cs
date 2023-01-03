@@ -2,6 +2,7 @@
 using PagedList;
 using Shop.Areas.Administrator.Data.message;
 using Shop.Common;
+using Shop.EF;
 using Shop.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Shop.Controllers
 {
     public class HomeController : Controller
     {
-        MyDataDataContext data = new MyDataDataContext();
+        DataModel data = new DataModel();
         public ActionResult Index()
         {
             HomeModel home = new HomeModel();
@@ -109,8 +110,8 @@ namespace Shop.Controllers
                 lh.noidung = noidung;
                 lh.trangthai = true;
 
-                data.LienHes.InsertOnSubmit(lh);
-                data.SubmitChanges();
+                data.LienHes.Add(lh);
+                data.SaveChanges();
                 MvcCaptcha.ResetCaptcha("contactCaptcha");
             }
             return RedirectToAction("Index","Home");
@@ -158,8 +159,8 @@ namespace Shop.Controllers
                 dg.ngaydanhgia = DateTime.Now;
                 dg.malaptop = malaptop;
                 dg.trangthai = true;
-                data.DanhGias.InsertOnSubmit(dg);
-                data.SubmitChanges();
+                data.DanhGias.Add(dg);
+                data.SaveChanges();
                 MvcCaptcha.ResetCaptcha("commentCaptcha");
             }
 
@@ -213,8 +214,8 @@ namespace Shop.Controllers
                 qc.ngayhethan = DateTime.Parse(ngayhethan);
                 qc.trangthai = false;
 
-                data.QuangCaos.InsertOnSubmit(qc);
-                data.SubmitChanges();
+                data.QuangCaos.Add(qc);
+                data.SaveChanges();
             }
             
             return RedirectToAction("Index", "Home");

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Shop.Areas.Administrator.Data.message;
+using Shop.EF;
 using Shop.Mail;
 using Shop.Models;
 using Shop.MoMo;
@@ -15,7 +16,7 @@ namespace Shop.Controllers
 {
     public class GioHangController : Controller
     {
-        MyDataDataContext data = new MyDataDataContext();
+        DataModel data = new DataModel();
 
         public JsonResult GetbyID(int ID)
         {
@@ -178,7 +179,7 @@ namespace Shop.Controllers
             //dh.ngaygiao = DateTime.Now;
             dh.giaohang = null;
             dh.thanhtoan = false;
-            dh.tinhtrang = '0';
+            dh.tinhtrang = "0";
             /*if ((bool)Session["thanhtoan"] == true)
             {
                 dh.thanhtoan = true;
@@ -189,8 +190,8 @@ namespace Shop.Controllers
             }*/
 
 
-            data.DonHangs.InsertOnSubmit(dh);
-            data.SubmitChanges();
+            data.DonHangs.Add(dh);
+            data.SaveChanges();
             try
             {
                 foreach (var item in gh)
@@ -200,17 +201,17 @@ namespace Shop.Controllers
                     ctdh.malaptop = item.malaptop;
                     ctdh.soluong = item.iSoluong;
                     ctdh.dongia = (decimal)item.giaban;
-                    data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+                    data.ChiTietDonHangs.Add(ctdh);
                     // lấy số lượng tồn trừ đi
                     lap = data.Laptops.FirstOrDefault(n => n.malaptop == item.malaptop);
                     if(lap.soluongton > ctdh.soluong && lap.soluongton != null)
                     {
                         lap.soluongton = lap.soluongton - ctdh.soluong;
                     }               
-                    data.SubmitChanges();
+                    data.SaveChanges();
                 }
 
-                data.SubmitChanges();
+                data.SaveChanges();
             }
             catch (Exception)
             {
@@ -548,10 +549,10 @@ namespace Shop.Controllers
             //dh.ngaygiao = DateTime.Now;
             dh.giaohang = null;
             dh.thanhtoan = true;
-            dh.tinhtrang = '0';
+            dh.tinhtrang = "0";
 
-            data.DonHangs.InsertOnSubmit(dh);
-            data.SubmitChanges();
+            data.DonHangs.Add(dh);
+            data.SaveChanges();
             foreach (var item in gh)
             {
                 ChiTietDonHang ctdh = new ChiTietDonHang();
@@ -560,11 +561,11 @@ namespace Shop.Controllers
                 ctdh.soluong = item.iSoluong;
                 ctdh.dongia = (decimal)item.giaban;
                 s = data.Laptops.Single(n => n.malaptop == item.malaptop);
-                data.SubmitChanges();
-                data.ChiTietDonHangs.InsertOnSubmit(ctdh);
+                data.SaveChanges();
+                data.ChiTietDonHangs.Add(ctdh);
             }
 
-            data.SubmitChanges();
+            data.SaveChanges();
             Notification.set_flash("Bạn đã thanh toán thành công!", "success");
 
 

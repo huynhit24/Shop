@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.EF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Shop.Models
 {
     public class GioHang
     {
-        MyDataDataContext data = new MyDataDataContext();
+        DataModel data = new DataModel();
         public int malaptop { get; set; }
         [Display(Name = "Tên Laptop")]
         public string tenlaptop { get; set; }
