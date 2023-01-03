@@ -1,0 +1,70 @@
+﻿@model Shop.EF.BinhLuan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xem chi tiết bình luận</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tiêu đề")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TinTuc.tieude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tên người bình luận")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ten)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nội dung")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.noidung)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Vote")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.vote)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày bình luận")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaybinhluan)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Trạng thái")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.mabinhluan }) |
+            @Html.ActionLink("Quay lại", "Index", "BinhLuan")
+        </p>
+    </div>
+</div>

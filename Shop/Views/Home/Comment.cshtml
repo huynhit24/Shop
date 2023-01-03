@@ -1,0 +1,99 @@
+﻿@using Shop.Models
+
+@{ 
+    HomeModel homeVote = new HomeModel();
+}
+<!-- Review -->
+<div class="row">
+    <div class="col-12">
+        @foreach (var item in Model)
+        {
+            <!-- Comments -->
+            <div class="col-12 text-justify py-2 px-3 mb-3 bg-gray">
+                <div class="row">
+                    <div class="col-12">
+                        <strong class="me-2">@item.ten</strong>
+                        @if (item.vote == 0)
+                        {
+                            <small>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                            </small>
+                        }
+                        @if (item.vote == 1)
+                        {
+                            <small>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                            </small>
+                        }
+                        @if (item.vote == 2)
+                        {
+                            <small>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                            </small>
+                        }
+                        @if (item.vote == 3)
+                        {
+                            <small>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                            </small>
+                        }
+                        @if (item.vote == 4)
+                        {
+                            <small>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="far fa-star" style="color: #ed0fef"></i>
+                            </small>
+                        }
+                        @if (item.vote == 5)
+                        {
+                            <small>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                                <i class="fas fa-star" style="color: #ed0fef"></i>
+                            </small>
+                        }
+                        @*<small>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </small>*@
+                    </div>
+                    <div class="col-12">
+                        <p>@item.noidung</p>
+                    </div>
+                    <div class="col-12">
+                        <small>
+                            <i class="fas fa-clock me-2"></i>@item.ngaydanhgia
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <!-- Comments -->
+        }
+        <a data-appid="2323097334574596743" data-size="10" data-href="https://localhost:44345/Home/"></a>
+    </div>
+</div>
+<!-- Review -->

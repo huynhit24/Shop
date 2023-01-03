@@ -1,0 +1,142 @@
+﻿@model Shop.EF.Laptop
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Chi tiết thông tin Laptop</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Thương hiệu")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Hang.tenhang)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nhu cầu sử dụng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NhuCau.tennhucau)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tên Laptop")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tenlaptop)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Giá bán")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.giaban)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Mô tả")
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.mota.ToString())
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ảnh minh họa")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hinh)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("CPU")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.cpu)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("GPU")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.gpu)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("RAM")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ram)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Hardware")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hardware)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Màn hình")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.manhinh)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày cập nhật")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaycapnhat)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Số lượng tồn")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.soluongton)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("PIN Laptop")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.pin)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Trạng thái")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.malaptop }) |
+            @Html.ActionLink("Quay lại", "Index", "Laptop")
+        </p>
+    </div>
+</div>

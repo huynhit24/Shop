@@ -1,0 +1,103 @@
+﻿@using Shop.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Đặng nhập quản trị </title>
+
+    <!-- Font Icon -->
+    @*<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">*@
+    <link href="~/vendor/fonts/material-icon/css/material-design-iconic-font.min.css" rel="stylesheet" />
+    <!-- Main css -->
+    @*<link rel="stylesheet" href="css/style.css">*@
+    <link href="~/Areas/Administrator/Data/dist/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="main">
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content" style="padding-top:100px">
+                    <div class="signin-image">
+                        <figure>
+                            <img src="~/Content/images/hacker.png" />
+                        </figure>
+                    </div>
+
+                    @*<div class="signin-form" style="padding-top:30px">
+                            <h2 class="form-title">Đặng nhập</h2>
+                            <form method="POST" class="register-form" id="login-form">
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                    <input type="text" name="Email" id="your_name" placeholder="Tên đăng nhập" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="password" name="Password" id="your_pass" placeholder="Mật khẩu" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="RememberMe" id="remember-me" class="agree-term" />
+                                    <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                                </div>
+                                <div class="form-group form-button">
+                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập" />
+                                </div>
+                            </form>
+                            <h4 style="color:red;text-align:center">@ViewBag.ThongBao</h4>
+
+                        </div>*@
+
+                    @using (Html.BeginForm("LoginAdmin", "MainPage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <h2 class="form-title">Đặng nhập</h2>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+
+                            <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="Email" id="your_name" placeholder="Tên đăng nhập" />
+                            @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+
+                            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="Password" id="your_pass" placeholder="Mật khẩu" />
+                            @*@Html.PasswordFor(m => m.Password, new { @class = "form-control", @id = "your_pass" })*@
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        <h4 style="color:red;text-align:center">@ViewBag.ThongBao</h4>
+                        <div class="form-group form-button">
+
+                            <input type="submit" value="Đăng nhập" name="signin" id="signin" class="form-submit" />
+
+                        </div>
+                        @* <p>
+                                @Html.ActionLink("Đăng ký tài khoản mới", "Register","Account",new { @class = "btn btn-outline-warning"})
+                            </p>*@
+                        @* Enable this once you have account confirmation enabled for password reset functionality
+                            <p>
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </p>*@
+                    }
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

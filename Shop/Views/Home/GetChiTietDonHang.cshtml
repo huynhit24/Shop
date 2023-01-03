@@ -1,0 +1,100 @@
+﻿@model  List<Shop.Models.ChiTietDonHang>
+
+@using Shop.Models;
+@{
+    ViewBag.Title = "GetChiTietDonHang";
+    HomeModel home = new HomeModel();
+}
+
+
+<div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="height: auto;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Chi tiết đơn hàng đã mua</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table @*id="tblStocks"*@ id="tbl_exporttable_to_xls" class="table table-bordered table-responsive-lg">
+                    <tr>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.malaptop)
+                            </th>*@
+                        <th class="text-center" style="vertical-align:middle">
+                            @Html.DisplayName("Laptop") <i class="fa fa-laptop"></i>
+                        </th>
+                        <th class="text-center" style="vertical-align:middle">
+                            @Html.DisplayName("Hình minh họa") <i class="fa fa-image"></i>
+                        </th>
+                        <th class="text-center" style="vertical-align:middle">
+                            @Html.DisplayName("Gía bán")
+                        </th>
+                        <th class="text-center" style="vertical-align:middle">
+                            @Html.DisplayName("Số lượng mua")
+                        </th>
+                        <th class="text-center" style="vertical-align:middle">
+                            @Html.DisplayName("Thành tiền") <i class="fa fa-money-bill"></i>
+                        </th>
+                    </tr>
+                    @{ decimal? tongtien = 0; int? tongsoluong = 0; }
+                    @foreach (var ctdh in Model)
+                    {
+                        <tr>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.malaptop)
+                                </td>*@
+                            <td class="text-center" style="vertical-align:middle">
+                                @ctdh.Laptop.tenlaptop
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <img src="/Data/images/@ctdh.Laptop.hinh" width="100" height="250" />
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                @String.Format("{0:0,0}", ctdh.dongia) đ
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                @ctdh.soluong
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                @{
+                                    decimal? thanhtien = ctdh.soluong * ctdh.dongia;
+                                    tongtien += thanhtien;
+                                    tongsoluong += ctdh.soluong;
+                                }
+                                @String.Format("{0:0,0}", @thanhtien) đ
+                            </td>
+                        </tr>
+                    }
+                    <tr style="font-weight: bold; text-align:right; color:red">
+                        <td colspan="7">
+                            <div>
+                                <p>Số lượng: @tongsoluong</p>
+                                <p>Tổng tiền: @String.Format("{0:0,0}", tongtien) VNĐ</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-weight: bold; text-align:right">
+                        <td colspan="6">
+                            <button class="btn text-white" style="background-color: #0fa573" onclick="ExportToExcel('xlsx')"> <i class="fa fa-file-excel"></i> Xuất Excel</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                @*<button type="button" class="btn btn-primary">Understood</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script>
+    function ExportToExcel(type, fn, dl) {
+        var elt = document.getElementById('tbl_exporttable_to_xls');
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        return dl ?
+            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+            XLSX.writeFile(wb, fn || ('DonDatHang.' + (type || 'xlsx')));
+    }
+</script>

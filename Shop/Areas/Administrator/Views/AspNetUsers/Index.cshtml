@@ -1,0 +1,186 @@
+﻿@model IEnumerable<Shop.EF.AspNetUser>
+@using Shop.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+    HomeModel home = new HomeModel();
+}
+@Html.Partial("_MessageAlert")
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Tài khoản đăng nhập - @home.CountAccount() (Accounts)</h2>
+                            @*<a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","AspNetUsers")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>*@
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered">
+                                <thead>
+                                    <tr style="background-color: #ff6a00; color: white;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Avatar")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Họ tên")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayNameFor(model => model.Email)
+                                        </th>
+                                        @* <th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.EmailConfirmed)
+                                            </th>*@
+                                        @* <th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.PasswordHash)
+                                            </th>*@
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.SecurityStamp)
+                                            </th>*@
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("SĐT")
+                                        </th>
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                                            </th>*@
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Bảo mật 2 lớp")
+                                        </th>*@
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+                                            </th>*@
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Khóa tài khoản")
+                                        </th>
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.AccessFailedCount)
+                                            </th>*@
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayNameFor(model => model.UserName)
+                                        </th>*@
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Ngày sinh")
+                                        </th>
+                                        @* <th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.profile)
+                                            </th>*@
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayNameFor(model => model.diachi)
+                                            </th>*@
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Xử lý Acc
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle; min-width: 100px;">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.avatar)" alt="No image" height="50" width="50" />
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.hoten)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                                                </td>*@
+                                            @* <td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.PasswordHash)
+                                                </td>*@
+                                            @* <td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.SecurityStamp)
+                                                </td>*@
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                            </td>
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+                                                </td>*@
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                @if (item.TwoFactorEnabled == true)
+                                                {
+                                                    <p style="background-color: #E5FAF1; font-weight: bold; color: darkgreen; font-family: Roboto; padding: 4px;"> Đã bật</p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="background-color: #EAF2FF; font-weight:bold; color: darkblue; font-family: Roboto; padding: 4px;"> Đang tắt</p>
+                                                }
+                                                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+                                            </td>*@
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+                                                </td>*@
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @if (item.LockoutEnabled == true)
+                                                {
+                                                    <p style="color: darkgreen; padding: 4px; font-family: Roboto; font-weight: bold;"><i class="fa fa-circle" style="color: darkgreen;"></i>  Đã bật</p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="color: darkblue; padding: 4px; font-weight: bold; font-family: Roboto;"><i class="fa fa-circle" style="color: darkblue;"></i>  Đang tắt</p>
+                                                }
+                                                @*@Html.DisplayFor(modelItem => item.LockoutEnabled)*@
+                                            </td>
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                                                </td>*@
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.UserName)
+                                            </td>*@
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ngaysinh)
+                                            </td>
+                                            @* <td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.profile)
+                                                </td>*@
+                                            @* <td class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayFor(modelItem => item.diachi)
+                                                </td>*@
+                                            <td class="text-center" style="vertical-align: middle; min-width: 80px;">
+                                                @if (item.LockoutEnabled == true)
+                                                {
+                                                    <a class="invoice-shop-huy" href="@Url.Action("DelTrashAcc","AspNetUsers", new {ID = item.Id })"><i class="fa fa-trash-alt"></i> Khóa acc</a>
+                                                }
+                                                else
+                                                {
+                                                    if (item.LockoutEnabled == false)
+                                                    {
+                                                        <a class="btn btn-success rounded-pill" btn href="@Url.Action("UndoTrashAcc","AspNetUsers", new {ID = item.Id })"><i class="fa fa-undo"></i> Mở khóa</a>
+                                                    }
+                                                }
+
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle;min-width: 100px;">
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                                <a style="margin-right:5px;" href="@Url.Action("Edit","AspNetUsers", new { id = item.Id })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a style="margin-left:5px;margin-right:5px;" href="@Url.Action("Details","AspNetUsers", new { id = item.Id })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a style="margin-left:5px;" href="@Url.Action("Delete","AspNetUsers", new { id = item.Id })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

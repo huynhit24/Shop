@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Shop.EF.LienHe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Liên hệ</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","LienHe")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr style="background-color: #e9bd13; color: white;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tên người liên hệ")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Email")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Điện thoại")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Website")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Nội dung")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Trạng thái")
+                                        </th>
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.hoten)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.email)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.dienthoai)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.website)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.noidung)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.trangthai)*@
+                                                @if (item.trangthai == true)
+                                                {
+                                                    <p style="background-color: rgb(7 83 239 / 0.85);" class="btn text-white"><i class="fa fa-check"></i> Đã duyệt</p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="btn btn-danger"><i class="fa fa-square"></i> Chưa duyệt</p>
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.malienhe }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.malienhe }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.malienhe })*@
+                                                <a style="margin-right:5px;" href="@Url.Action("Edit","LienHe", new { id = item.malienhe })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a style="margin-left:5px;margin-right:5px;" href="@Url.Action("Details","LienHe", new { id = item.malienhe })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a style="margin-left:5px;" href="@Url.Action("Delete","LienHe", new { id = item.malienhe })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

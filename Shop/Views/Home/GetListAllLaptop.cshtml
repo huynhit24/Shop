@@ -1,0 +1,171 @@
+﻿@model PagedList.IPagedList<Shop.Models.Laptop>
+@using PagedList.Mvc;
+@using Shop.Common
+@using Shop.Models
+
+@{
+    ViewBag.Title = "GetListAllLaptop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    HomeModel home = new HomeModel();
+}
+
+<style>
+    .laptopzoom_ {
+        transition: transform .2s;
+    }
+
+        .laptopzoom_ :hover {
+            transform: scale(1.1);
+            z-index: 100;
+        }
+</style>
+
+<!-- Header-->
+<header class="py-5" style="background-image: url(/Content/images/laptop-hang-nao-ben-nhat.jpg);">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Danh sách laptop</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Chọn một sản phẩm xem thử!</p>
+        </div>
+    </div>
+</header>
+
+<!-- Section-->
+<section class="py-5" style="background-color: #f7eeee; max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-5 laptopzoom">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/Data/images/@item.hinh" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@item.tenlaptop</h5>
+
+                                <!-- Product price-->
+                                @String.Format("{0:0,0}", item.giaban) đ
+                            </div>
+                            <div class="text-center">
+                                <!--Product star-->
+                                @if (home.DemStarDanhGia(item.malaptop) == 0)
+                                {
+                                    <small>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 0 && home.DemStarDanhGia(item.malaptop) <= 1)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 1 && home.DemStarDanhGia(item.malaptop) <= 2)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 2 && home.DemStarDanhGia(item.malaptop) <= 3)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 3 && home.DemStarDanhGia(item.malaptop) <= 4)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="far fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @if (home.DemStarDanhGia(item.malaptop) > 4 && home.DemStarDanhGia(item.malaptop) <= 5)
+                                {
+                                    <small>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                        <i class="fas fa-star" style="color: yellow"></i>
+                                    </small>
+                                }
+                                @*<small>
+                                        <i class="fas fa-star" style="color:orange"></i>
+                                        <i class="fas fa-star" style="color:orange"></i>
+                                        <i class="fas fa-star" style="color:orange"></i>
+                                        <i class="far fa-star" style="color:orange"></i>
+                                        <i class="far fa-star" style="color:orange"></i>
+                                    </small>*@
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-success mt-auto" href="@Url.Action( "Details", "Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })"><i class="fa fa-eye"></i> Xem chi tiết</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<div style="text-align: center; margin-bottom: 32px; background-color: #f7eeee; max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <div class="lead" style="margin-bottom: 20px">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+        @Model.PageCount
+    </div>
+    <div class="pagination" style="margin-left: 400px; display: inline-block; margin-left: auto; margin-right: auto">
+        @Html.PagedListPager(Model, page => Url.Action("GetListAllLaptop", "Home", new { page = page }))
+    </div>
+</div>
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a .active {
+                background-color: #ff0000;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>

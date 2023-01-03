@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Shop.Models;
+using Shop.Areas.Administrator.Data.message;
 
 namespace Shop.Controllers
 {
@@ -18,11 +19,12 @@ namespace Shop.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        MyDataDataContext context = new MyDataDataContext(); //
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +36,9 @@ namespace Shop.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -51,6 +53,21 @@ namespace Shop.Controllers
                 _userManager = value;
             }
         }
+
+        //----------------------------Login Admin-----------------------------
+        public bool AuthAdmin(AspNetUser checkUser)
+        {
+            var user = context.AspNetUsers.FirstOrDefault(u => u.UserName == checkUser.UserName);
+            if (user == null)
+                return false;
+            var userExist = user.AspNetUserRoles.FirstOrDefault(r => r.UserId == user.Id);
+            if (userExist == null)
+                return false;
+            if (userExist.RoleId != "1")
+                return false;
+            return true;
+        }
+
 
         //
         // GET: /Account/Login
@@ -79,7 +96,26 @@ namespace Shop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        AspNetUser kh = context.AspNetUsers.Where(p => p.Email == model.Email).FirstOrDefault();
+                        if (AuthAdmin(kh) == true)
+                        {
+                            Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            Notification.set_flash("Đăng nhập Admin thành công!", "success");
+                            return RedirectToAction("Index", "Administrator/MainPage");
+                        }
+                        else
+                        {
+                            if (kh.LockoutEnabled == false)
+                            {
+                                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                return View("Lockout");
+                            }
+                            Session["TaiKhoan"] = kh;// gán kh vào session
+                            Notification.set_flash("Đăng nhập khách hàng thành công!","success");
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -120,7 +156,7 @@ namespace Shop.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,18 +187,18 @@ namespace Shop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, hoten = model.hoten, diachi = model.diachi };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    Notification.set_flash("Đăng ký tài khoản khách thành công!", "success");
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -333,7 +369,27 @@ namespace Shop.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        var kh = context.AspNetUsers.Where(p => p.Email == loginInfo.Email).FirstOrDefault();
+                        if (AuthAdmin(kh) == true)
+                        {
+                            Session["taikhoanadmin"] = kh;// gán kh vào session admin
+                            Notification.set_flash("Đăng nhập Admin thành công!", "success");
+                            return RedirectToAction("Index", "Administrator/MainPage");
+                        }
+                        else
+                        {
+                            if (kh.LockoutEnabled == false)
+                            {
+                                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                return View("Lockout");
+                            }
+                            Session["TaiKhoan"] = kh;// gán kh vào session
+                            Notification.set_flash("Đăng nhập khách hàng thành công!", "success");
+                            return RedirectToLocal(returnUrl);
+                        }                   
+                    }
+                //return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -367,7 +423,7 @@ namespace Shop.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, hoten = "", diachi = "" };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -392,6 +448,9 @@ namespace Shop.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session["taikhoanadmin"] = null;
+            Session["TaiKhoan"] = null;
+            Notification.set_flash("Đăng xuất thành công!", "success");
             return RedirectToAction("Index", "Home");
         }
 

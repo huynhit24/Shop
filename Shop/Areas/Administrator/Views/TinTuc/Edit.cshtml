@@ -1,0 +1,147 @@
+﻿@model Shop.EF.TinTuc
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<script src="~/Plugins/ckeditor/ckeditor.js"></script>
+<script src="~/Plugins/ckfinder/ckfinder.js"></script>
+
+@section jsFooter{
+    <script>
+
+        var editor = CKEDITOR.replace('noidung', {
+            customConfig: '/Plugin/ckeditor/config.js',
+        });
+
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url.substring(13));
+                $('#imgSelectImage').attr('src', url);
+            };
+            finder.popup();
+        })
+    </script>
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <h2>Cập nhật bài viết</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.matin)
+
+            <div class="form-group">
+                @Html.Label("Tiêu đề bài viết", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tieude, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tieude, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Hình nền", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.hinhnen, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage", placeholder = "laptop-(1).png" })
+                    <a style="font-weight: bold;background-color: greenyellow; color: #085e49; padding: 8px; margin: 16px;" id="btnSelectImage" href="#"> <i class="fa fa-image"></i> Chọn ảnh</a>
+                    @Html.ValidationMessageFor(model => model.hinhnen, "", new { @class = "text-danger" })
+                    <img id="imgSelectImage" src="/Data/images/@Model.hinhnen" alt="No image" height="200" width="200" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Tóm tắt", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tomtat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tomtat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Slug", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.slug, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.slug, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.noidung, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Lượt xem", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.luotxem, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.luotxem, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Ngày cập nhật", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Model.ngaycapnhat != null)
+                    {
+                        <input type="date" name="ngaycapnhat" value="@Model.ngaycapnhat.Value.ToString("yyyy-MM-dd")" />
+                    }
+                    else
+                    {
+                        @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Xuất bản", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.DropDownListFor(model => model.xuatban, new SelectList(
+                              new[]
+                              {
+                    @*new { Value = "", Text = "(none)" },*@
+new { Value = "true", Text = "Đã xuất bản" },
+new { Value = "false", Text = "Lưu nháp" },
+},
+"Value",
+"Text",
+Model
+))
+                        @*@Html.EditorFor(model => model.xuatban)
+        @Html.ValidationMessageFor(model => model.xuatban, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Mã chủ đề", "machude", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("machude", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.machude, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Quay lại", "Index", "TinTuc")
+    </div>
+</div>

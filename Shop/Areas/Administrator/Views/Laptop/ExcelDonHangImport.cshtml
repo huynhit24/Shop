@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "ExcelDonHangImport";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@ViewBag.listLaptop
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Nhập Excel Laptop</h2>
+        <div>
+            @using (Html.BeginForm("ImportDonHang", "Laptop", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="fileExcel" style="border: 1px solid #ccc;display: block;padding: 6px 12px;cursor: pointer;margin-bottom:10px;" />
+                <input type="submit" value="Nhập vào" class="btn btn-success" />
+            }
+        </div>
+    </div>
+</div>

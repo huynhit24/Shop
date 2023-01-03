@@ -1,0 +1,112 @@
+﻿@model Shop.Models.QuangCao
+
+<!-- Captcha -->
+@using BotDetect.Web.Mvc
+@using BotDetect.Web.UI
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+@{
+    MvcCaptcha quangcaoCaptcha = new MvcCaptcha("quangcaoCaptcha");
+    quangcaoCaptcha.UserInputID = "CaptchaCodeAD";
+}
+
+@{
+    ViewBag.Title = "QuangCao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="py-5" style="background: linear-gradient(70deg, rgba(33,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Liên hệ đặt quảng cáo</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">Khách hàng vui lòng liên hệ trước khi gửi thông tin quảng cáo! 💌💌💌</p>
+            <a style="background-color: #ea0bca; margin: 10px;" class="btn text-white" href="@Url.Action("Contact","Home")"><i class="fa fa-mail-bulk"></i> Liên hệ trước</a>
+        </div>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row card-body">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4 formDiv-blue" style="margin-top: 20px;">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        <h4 class="text-center">Vui lòng điền thông tin liên hệ quảng cáo để được tư vấn!</h4>
+                    </div>
+
+                    <!--Tắt ValidationSummary -->
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label("Tên quảng cáo", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.tenqc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tenqc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Tên công ty", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.tencongty, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tencongty, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Hình", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.hinhnen, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.hinhnen, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Link", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Ngày bắt đầu", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @*@Html.EditorFor(model => model.ngaybatdau, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ngaybatdau, "", new { @class = "text-danger" })*@
+                            <input type="date" name="ngaybatdau" class="form-control col-md-6" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Ngày đến hạn", htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-12">
+                            @*@Html.EditorFor(model => model.ngayhethan, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ngayhethan, "", new { @class = "text-danger" })*@
+                            <input type="date" name="ngayhethan" class="form-control col-md-6" />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <div class="col-md-offset-2 col-md-12">
+                            @Html.Captcha(quangcaoCaptcha)
+                            @Html.TextBox("CaptchaCodeAD")
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <div class="col-md-offset-2 col-md-12 text-center">
+                            <input type="submit" value="✅ Xác nhận" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
+            <a class="btn btn-success" href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Về trang chủ</a>
+        </div>
+    </div>
+</div>

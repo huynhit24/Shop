@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Shop.EF.AspNetUserRole>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+@Html.Partial("_MessageAlert")
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Phân quyền</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","AspNetUserRoles")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered">
+                                <thead>
+                                    <tr style="background-color: #ff6a00; color: white;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayNameFor(model => model.AspNetRole.Name)
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayNameFor(model => model.Note)
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.AspNetRole.Name)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.Note)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                                <a style="margin-right:5px;" href="@Url.Action("Edit","AspNetUserRoles", new { id = item.UserId, roleId = item.RoleId })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a style="margin-left:5px;margin-right:5px;" href="@Url.Action("Details","AspNetUserRoles", new { id = item.UserId, roleId = item.RoleId })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a style="margin-left:5px;" href="@Url.Action("Delete","AspNetUserRoles", new { id = item.UserId, roleId = item.RoleId })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

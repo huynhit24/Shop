@@ -1,0 +1,132 @@
+﻿@model Shop.EF.DonHang
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Cập nhật thông tin Đơn hàng</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.madon)
+
+                <div class="form-group">
+                    @Html.Label("Thanh toán", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*<div class="checkbox">
+                                @Html.EditorFor(model => model.thanhtoan)
+                                @Html.ValidationMessageFor(model => model.thanhtoan, "", new { @class = "text-danger" })
+                            </div>*@
+                        @Html.DropDownListFor(model => model.thanhtoan, new SelectList(
+                               new[]
+                               {
+        @*new { Value = "", Text = "(none)" },*@
+new { Value = "true", Text = "Đã thanh toán" },
+new { Value = "false", Text = "Chưa thanh toán" },
+},
+"Value",
+"Text",
+Model
+))
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Giao hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*<div class="checkbox">
+                                @Html.EditorFor(model => model.giaohang)
+                                @Html.ValidationMessageFor(model => model.giaohang, "", new { @class = "text-danger" })
+                            </div>*@
+                        @Html.DropDownListFor(model => model.giaohang, new SelectList(
+                               new[]
+                               {
+                                        new { Value = "", Text = "Chưa giao hàng" },
+                                        new { Value = "true", Text = "Đã giao hàng" },
+                                        new { Value = "false", Text = "Đang thanh toán" },
+                                        },
+                                        "Value",
+                                        "Text",
+                                        Model
+                                ))
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ngày đặt hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (Model.ngaydat != null)
+                        {
+                            <input type="date" name="ngaydat" value="@Model.ngaydat.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.ngaydat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.ngaydat, "", new { @class = "text-danger" })
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ngày giao hàng", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (Model.ngaygiao != null)
+                        {
+                            <input type="date" name="ngaygiao" value="@Model.ngaygiao.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.ngaygiao, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.ngaygiao, "", new { @class = "text-danger" })
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Email khách hàng", "makh", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("makh", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.makh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Tình trạng", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.tinhtrang, new SelectList(
+                               new[]
+                               {
+        @*new { Value = "", Text = "(none)" },*@
+new { Value = "0", Text = "Xác nhận" },
+new { Value = "1", Text = "Đã hủy" },
+},
+"Value",
+"Text",
+Model
+))
+                        @*@Html.EditorFor(model => model.tinhtrang, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tinhtrang, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Quay lại", "Index", "DonHang")
+        </div>
+    </div>
+</div>

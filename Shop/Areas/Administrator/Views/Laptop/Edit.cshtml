@@ -1,0 +1,245 @@
+﻿@model Shop.EF.Laptop
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<script src="~/Plugins/ckeditor/ckeditor.js"></script>
+<script src="~/Plugins/ckfinder/ckfinder.js"></script>
+
+
+@section jsFooter{
+    <script>
+
+        var editor = CKEDITOR.replace('mota', {
+            customConfig: '/Plugin/ckeditor/config.js',
+        });
+
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url.substring(13));
+                $('#imgSelectImage').attr('src', url);
+            };
+            finder.popup();
+        })
+    </script>
+}
+@Html.Partial("_MessageAlert")
+<div class="container container-fluid">
+    <div class="p-5" style="background-color: white">
+
+        <h2>Sửa thông tin Laptop</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.malaptop)
+
+                <div class="form-group">
+                    @Html.Label("Tên Laptop", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.tenlaptop, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tenlaptop, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Giá bán", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.giaban, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.giaban, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Mô tả", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mota, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Hình", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage", placeholder = "laptop-(1).png" })
+                        <a style="font-weight: bold;background-color: greenyellow; color: #085e49; padding: 8px; margin: 16px;" id="btnSelectImage" href="#"> <i class="fa fa-image"></i> Chọn ảnh</a>
+                        @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+                        <img id="imgSelectImage" src="/Data/images/@Model.hinh" alt="No image" height="200" width="200" />
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.hinh, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+
+                            <input type="file" name="fileUpload" id="fileUpload" accept="image/*"
+                                   style="display:none" />
+                            <input type="button" id="btnUpload" value="Chọn" class="btn btn-success" />
+                        </div>
+                    </div>*@
+
+                @* @section upload
+                    {
+                        <script>
+                            $(function () {
+                                $('#btnUpload').click(function () {
+                                    $('#fileUpload').trigger('click');
+                                });
+                            });
+                            $('#fileUpload').change(function () {
+                                if (window.FormData !== undefined) {
+                                    var fileUpload = $('#fileUpload').get(0);
+                                    var files = fileUpload.files;
+                                    var formData = new FormData();
+                                    formData.append('file', files[0]);
+
+                                    $.ajax(
+                                        {
+                                            type: 'POST',
+                                            url: '/Laptop/ProcessUpload',
+                                            contentType: false,
+                                            processData: false,
+                                            data: formData,
+                                            success: function (urlImage) {
+
+                                                $('#pictureUpload').attr('src', urlImage);
+                                                $('#hinh').val(urlImage);
+                                            },
+                                            error: function (err) {
+                                                alert('Error ', err.statusText);
+                                            }
+                                        });
+                                }
+                            });
+                        </script>
+                    }*@
+
+                <div class="form-group">
+                    @Html.Label("Hãng sản xuất", "mahang", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("mahang", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.mahang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Nhu cầu sử dụng", "manhucau", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("manhucau", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.manhucau, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("CPU", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cpu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cpu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("GPU", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.gpu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.gpu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("RAM", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ram, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ram, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Hardware", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.hardware, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.hardware, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Màn hình", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.manhinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.manhinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ngày cập nhật", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @if (Model.ngaycapnhat != null)
+                        {
+                            <input type="date" name="ngaycapnhat" value="@Model.ngaycapnhat.Value.ToString("yyyy-MM-dd")" />
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.ngaycapnhat, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.ngaycapnhat, "", new { @class = "text-danger" })
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Số lượng tồn", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.soluongton, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.soluongton, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("PIN Laptop", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.pin, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.pin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.DropDownListFor(model => model.trangthai, new SelectList(
+                               new[]
+                               {
+                        @*new { Value = "", Text = "(none)" },*@
+new { Value = "true", Text = "Đang bán" },
+new { Value = "false", Text = "Hết bán" },
+},
+"Value",
+"Text",
+Model
+))
+                            @*@Html.EditorFor(model => model.trangthai)
+        @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Quay lại", "Index", "Laptop")
+        </div>
+    </div>
+</div>

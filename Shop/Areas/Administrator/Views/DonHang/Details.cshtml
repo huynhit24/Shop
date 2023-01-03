@@ -1,0 +1,106 @@
+﻿@model Shop.EF.DonHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xem đơn hàng</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Email khách hàng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AspNetUser.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Thanh toán")
+                </dt>
+
+                <dd>
+                    @if (Model.thanhtoan == true)
+                    {
+                        <p style="color: green;font-weight: bold;"><i class="fa fa-check-circle"></i> Đã thanh toán</p>
+                    }
+                    else
+                    {
+                        <p style="color: blue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa thanh toán</p>
+                    }
+                    @*@Html.DisplayFor(model => model.thanhtoan)*@
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Giao hàng")
+                </dt>
+
+                <dd>
+                    @if (Model.giaohang == true)
+                    {
+                        <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
+                    }
+                    else
+                    {
+                        if (Model.giaohang == false)
+                        {
+
+                            <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                        }
+                        else
+                        {
+                            <p style="color: deepskyblue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa giao hàng</p>
+                        }
+
+                    }
+                    @*@Html.DisplayFor(model => model.giaohang)*@
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày đặt hàng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaydat)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày giao hàng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaygiao)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tình trạng")
+                </dt>
+
+                <dd>
+                    @if (Model.tinhtrang == "1")
+                    {
+                        <p style="color: black;"> <strike> Đã hủy </strike></p>
+                    }
+                    else
+                    {
+                        if (Model.tinhtrang == "0")
+                        {
+                            <p style="color: green;"> Xác nhận</p>
+                        }
+                    }
+                    @*@Html.DisplayFor(model => model.tinhtrang)*@
+                </dd>
+            </dl>
+        </div>
+        <p>
+            <a style="border-style: solid; padding: 5px; border-color: #08c4ee; border-width: thin; border-radius: 20px;" href="@Url.Action("InvoiceDetails","DonHang", new {ID = Model.madon })"><i class="fa fa-eye"></i> Xem</a>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.madon }) |
+            @Html.ActionLink("Quay lại", "Index", "DonHang")
+        </p>
+    </div>
+</div>

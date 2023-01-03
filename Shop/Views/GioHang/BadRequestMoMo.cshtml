@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "BadRequestMoMo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_Nofit")
+<div class="row" style="margin: 20px;">
+    <div class="col-12 text-center">
+        <img src="~/Content/images/bad-request-momo.jpeg" height="300" width="600" alt="Alternate Text" />
+    </div>
+</div>
+<h2 class="text-black text-xl-center">Số tiền không được vượt quá 50tr khi dùng MoMo!</h2>
+<h3 class="text-black text-xl-center">Vui lòng kiểm tra thanh toán lại !</h3>
+<p class="text-center" style="margin: 20px;">
+    <a class="btn btn-success" href="@Url.Action("Index","Home")"> <i class="fa fa-home"></i> Về trang chủ</a>
+</p>

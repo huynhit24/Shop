@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Shop.EF.Hang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Hãng</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","Hang")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr style="background-color: #ede811; color: green;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tên hãng sản xuất")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Logo hãng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tenhang)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinh)" alt="Alternate Text" width="100" height="100" />
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.mahang }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.mahang }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.mahang })*@
+                                                <a style="margin-right:5px;" href="@Url.Action("Edit","Hang", new { id = item.mahang })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a style="margin-left:5px;margin-right:5px;" href="@Url.Action("Details","Hang", new { id = item.mahang })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a style="margin-left:5px;" href="@Url.Action("Delete","Hang", new { id = item.mahang })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

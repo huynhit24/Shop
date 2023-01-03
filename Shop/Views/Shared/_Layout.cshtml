@@ -1,44 +1,773 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+﻿@using Shop.Models
+@using Shop.Common
+@{
+    HomeModel home = new HomeModel();
+}
 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iLaptop - Laptop mọi nhà</title>
+
+    <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="~/Content/css/styles.css" rel="stylesheet" />
+    <link href="~/Content/css/phonerang.css" rel="stylesheet" />
+    <!-- Toastr && SweetAlert2 -->
+    <link href="~/Areas/Administrator/Data/libraries/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/Areas/Administrator/Data/libraries/css/sweetalert2.min.css" rel="stylesheet" />
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: red;
+            border: 4px solid #ccc;
+            color: red;
+            cursor: pointer;
+            border-radius: 30px;
+            opacity: 0.7;
+            width: 60px;
+        }
+
+            #myBtn:hover {
+                background-color: #f1f1f1;
+            }
+
+        .neonText {
+            color: #fff;
+            text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+        }
+
+        .neonBack {
+            border-radius: 25px;
+            color: #fff;
+            box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px #0ba9ca, 0 0 30px #0ba9ca, 0 0 40px #0ba9ca, 0 0 50px #0ba9ca;
+            -webkit-animation: blink 0.7s infinite alternate;
+            animation: blink 0.7s infinite alternate;
+        }
+
+        .formDiv {
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px #04f19a, 0 0 30px #04f19a, 0 0 40px #04f19a, 0 0 50px #04f19a;
+            -webkit-animation: blink 0.7s infinite alternate;
+            animation: blink 0.7s infinite alternate;
+        }
+
+        .formDiv-orange {
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px orange, 0 0 30px orange, 0 0 40px orange, 0 0 50px orange;
+            -webkit-animation: blink 0.7s infinite alternate;
+            animation: blink 0.7s infinite alternate;
+        }
+
+        .formDiv-green {
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px green, 0 0 30px green, 0 0 40px green, 0 0 50px green;
+            -webkit-animation: blink 0.7s infinite alternate;
+            animation: blink 0.7s infinite alternate;
+        }
+
+        .formDiv-blue {
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px blue, 0 0 30px blue, 0 0 40px blue, 0 0 50px blue;
+            -webkit-animation: blink 0.7s infinite alternate;
+            animation: blink 0.7s infinite alternate;
+        }
+
+        .formDiv-red {
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red;
+            -webkit-animation: blink 0.7s infinite alternate;
+            animation: blink 0.7s infinite alternate;
+        }
+
+        .laptopzoom {
+            transition: transform .2s;
+        }
+
+            .laptopzoom:hover {
+                transform: scale(1.2);
+                z-index: 100;
+            }
+
+
+        .header__search {
+            /* margin-top: 8px; */
+            flex: 1;
+            height: 40px;
+            border-radius: 2px;
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .header__search-input-wrap {
+            height: 100%;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Search history */
+        .header__search-history {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            width: calc(100% - 16px);
+            background-color: var(--white-color);
+            border-radius: 3px;
+            box-shadow: 0 1px 3px #666;
+            display: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .header__search-history-heading {
+            margin: 6px 12px;
+            font-size: 1.4rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .header__search-history-list {
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 6px 0 0;
+        }
+
+        .header__search-history-item {
+            height: 38px;
+            padding: 0 12px;
+        }
+
+            .header__search-history-item:last-child {
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+
+            .header__search-history-item:hover {
+                background-color: #fafafa;
+            }
+
+            .header__search-history-item a {
+                text-decoration: none;
+                font-size: 1.4rem;
+                color: var(--text-color);
+                line-height: 38px;
+                display: block;
+            }
+
+        .sticky-sidebar {
+        }
+
+            .sticky-sidebar.active {
+                display: block;
+            }
+
+            .sticky-sidebar div {
+                position: fixed;
+                top: 195px;
+                width: 89px;
+                z-index: 999;
+            }
+
+        .banner {
+            margin-top: 300px;
+        }
+
+        /*Căn chỉnh sidebar banner*/
+        @@media screen and (max-width: 2000px) {
+            .sticky-sidebar .banner-left {
+                left: calc(((100vw - 1200px)/2) - 80px);
+            }
+        }
+
+        @@media screen and (max-width: 2000px) {
+            .sticky-sidebar .banner-right {
+                right: calc(((100vw - 1200px)/2) - 90px);
+            }
+        }
+
+        @@media screen and (max-width: 2200px) {
+            .sticky-sidebar .banner {
+                right: calc(((100vw - 1200px)/2) - 200px);
+            }
+        }
+
+        @@media screen and (max-width: 1200px) {
+            .sticky-sidebar div {
+                width: 69px;
+            }
+        }
+
+        .modal-backdrop {
+            opacity: 0.3 !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <button id="myBtn" title="Lên đầu trang"><img src="~/Content/images/back-to-top.png" title='lên đầu trang' width='14' /></button>
+    <div class="container-fluid">
+
+        <div class="row min-vh-100">
+            <div class="col-12">
+                <header class="row">
+                    <script>
+                        window.onscroll = function () { scrollFunction() };
+                        function scrollFunction() {
+
+                            if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+                                document.getElementById("myBtn").style.display = "block";
+                            } else {
+                                document.getElementById("myBtn").style.display = "none";
+                            }
+                        }
+
+                        document.getElementById('myBtn').addEventListener("click", function () {
+                            document.body.scrollTop = 0;
+                            document.documentElement.scrollTop = 0;
+                        });
+                    </script>
+                    <!-- Top Nav -->
+                    <div class="col-12 bg-dark py-2 d-md-block d-none">
+                        <div class="row">
+                            <div class="col-auto me-auto">
+                                <ul class="top-nav">
+                                    <li>
+                                        <a href="tel:+0365204529"><i class="fa fa-phone-square me-2"></i>0365204529</a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:huynh.it.24@gmail.com"><i class="fa fa-envelope me-2"></i>huynh.it.24@gmail.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-auto">
+                                @Html.Partial("_LoginPartial")
+                            </div>
+                            @*<div class="col-auto">
+                                    <ul class="top-nav">
+                                        <li>
+                                            <a href="@Url.Action("DangKy","NguoiDung")"><i class="fas fa-user-edit me-2"></i>Đăng ký</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("DangNhap","NguoiDung")"><i class="fas fa-sign-in-alt me-2"></i>Đăng nhập</a>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                        </div>
+                    </div>
+                    <!-- Top Nav -->
+                    <!-- Header -->
+                    <div class="col-12 bg-white pt-4">
+                        <div class="row">
+                            <div class="col-lg-auto">
+                                <div class="site-logo text-center text-lg-left">
+                                    <a href="@Url.Action("Index","Home")">iLaptop</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 mx-auto mt-4 mt-lg-0">
+                                @using (Html.BeginForm("ListLaptopTheoSearch", "Home"))
+                                {
+                                    <div class="form-group">
+                                        <div class="input-group text-center">
+
+                                            <input name="SearchString" type="search" class="form-control border-dark" placeholder="Tìm kiếm sản phẩm..." required>
+                                            <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-auto text-center text-lg-left header-item-holder">
+                                <a href="#" class="header-item">
+                                    @*<i class="fas fa-heart me-2"></i><span id="header-favorite">0</span>*@
+                                </a>
+                                <a href="cart.html" class="header-item">
+                                    @Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")
+                                    @*<i class="fas fa-shopping-bag me-2"></i><span id="header-qty" class="me-3">2</span>
+                                        <i class="fas fa-money-bill-wave me-2"></i><span id="header-price">0 đ</span>*@
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Nav -->
+                        <div class="row">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-white col-12">
+                                <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="mainNav">
+                                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Trang chủ <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="electronics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-arrow-circle-right"></i> Hãng Laptop</a>
+                                            <div class="dropdown-menu neonBack" aria-labelledby="electronics">
+                                                @foreach (var item in home.GetListHang())
+                                                {
+                                                    <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = item.mahang})">@item.tenhang</a>
+                                                }
+
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="fashion" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-address-book"></i> Nhu cầu sử dụng</a>
+                                            <div class="dropdown-menu neonBack" aria-labelledby="fashion">
+                                                @foreach (var item in home.GetListNhuCau())
+                                                {
+                                                    <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = item.manhucau})">@item.tennhucau</a>
+                                                }
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="books" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-blog"></i> Blog</a>
+                                            <div class="dropdown-menu neonBack" aria-labelledby="books">
+                                                @foreach (var item in home.GetListChuDe())
+                                                {
+                                                    <a class="dropdown-item laptopzoom" href="@Url.Action("ListBaiVietTheoChuDeId","Home", new { id = item.machude})">@item.tenchude</a>
+                                                }
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("About","Home")"><i class="fa fa-book"></i> Giới thiệu</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("Contact","Home")"><i class="fa fa-address-card"></i> Liên hệ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="@Url.Action("QuangCao","Home")"><i class="fa fa-atlas"></i> Đặt quảng cáo</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        <!-- Nav -->
+
+                    </div>
+                    <!-- Header -->
+
+                </header>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+            <div class="col-12">
+                <!-- Main Content -->
+                @RenderBody()
+                <!-- Main Content -->
+            </div>
+
+            <div class="col-12 align-self-end">
+                <!-- Footer -->
+                <footer class="row">
+                    <div class="col-12 bg-dark text-white pb-3 pt-5">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-4 text-center text-sm-left mb-sm-0 mb-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="footer-logo">
+                                            <a href="index.html">iLaptop</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <address>
+                                            Quận 1<br>
+                                            Tp. HCM, Việt Nam
+                                        </address>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="https://www.facebook.com/huynh2357/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="https://twitter.com/Huynhjs69" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://www.pinterest.com/fulldevs/_saved/" class="social-icon" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                                        <a href="https://www.instagram.com/huynh14097/" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                                        <a href="https://www.youtube.com/watch?v=RQZh23h7E48&t=52s" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+                                        <a href="https://github.com/huynhit24/" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-8 text-center text-sm-left mb-sm-0 mb-3">
+                                <div class="row">
+                                    <div class="col-12 text-uppercase">
+                                        <h4>Về iLaptop</h4>
+                                    </div>
+                                    <div class="col-12 text-justify">
+                                        <p>iLaptop - chuyên bán lẻ sỉ laptop uy tín cả nước. Chúng ta có nhiều mẫu mã hãng nhu cầu sử dụng đáp ứng được đầy đủ yêu cầu sử dụng của quý khách. Khách được nhân viên chăm sóc tư vấn sản phẩm 24/7.</p>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <img src="~/Content/images/dang-ky-bo-cong-thuong.png" alt="dang-ky-bo-cong-thuong" class="text-center">
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                <img src="~/Content/images/logo-momo.png" alt="dang-ky-bo-cong-thuong" class="text-center" style="width:50px;height:50px;margin-left:10px;">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <img src="~/Content/images/payoo-payment.jpg" alt="paypal" class="text-center">
+                                                <img src="~/Content/images/master-card-payment.jpg" alt="master-card" class="text-center">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <img src="~/Content/images/atm-payment.jpg" alt="atm" class="text-center">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-3 col-5 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
+                                <div class="row">
+                                    <div class="col-12 text-uppercase">
+                                        <h4>Liên kết</h4>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="footer-nav">
+                                            <li>
+                                                <a href="@Url.Action("Index","Home")">Trang chủ</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("Contact","Home")">Liên hệ</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("About","Home")">Giới thiệu</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Chính sách bảo mật</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Điều khoản và điều kiện</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-sm-2 col-4 me-auto mb-sm-0 mb-3">
+                                <div class="row">
+                                    <div class="col-12 text-uppercase text-underline">
+                                        <h4>Trợ giúp</h4>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="footer-nav">
+                                            <li>
+                                                <a href="#">FAQs</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Bảo hành</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">HD Thanh toán</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">HD Mua hàng</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Liên hệ hợp tác</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6 text-center text-sm-left">
+                                <div class="row">
+                                    <div class="col-12 text-uppercase">
+                                        <h4>Tin tức</h4>
+                                    </div>
+                                    <div class="col-12">
+                                        <form action="#">
+                                            <div class="mb-3">
+                                                <input type="text" class="form-control" placeholder="Nhập địa chỉ email..." required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-danger text-uppercase">Đăng ký</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer -->
+            </div>
+        </div>
+
+    </div>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/62402d2e0bfe3f4a876fe5bf/1fv5b0vji';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
+    <div class="zalo-chat-widget" data-oaid="579745863508352884" data-welcome-message="Chúng tôi có thể giúp gì cho bạn!" data-autopopup="0" data-width="" data-height=""></div>
+    <div class='phonering-alo-phone phonering-alo-green phonering-alo-show' id='phonering-alo-phoneIcon'>
+
+        <div class='phonering-alo-ph-circle'></div>
+
+        <div class='phonering-alo-ph-circle-fill'></div>
+
+        <a class='pps-btn-img hidden_lg' href='tel:0365204529' title='Liên hệ'>
+
+            <div class='phonering-alo-ph-img-circle'>
+
+            </div>
+
+            <div class='label-phone'>0365204529</div>
+
+        </a>
+
+        <a class='pps-btn-img hidden_mobile btn-call' href='tel:0365204529;' title='Liên hệ'>
+
+            <div class='phonering-alo-ph-img-circle'>
+
+            </div>
+
+            <div class='label-phone'>0365204529</div>
+
+        </a>
+
+    </div>
+
+    <!-- Tìm kiếm VIP-->
+    <!-- Button trigger modal -->
+    <div class="sticky-sidebar active">
+        <div class="banner laptopzoom">
+            <a href="" style="border: none;background-color: white;" data-bs-toggle="modal" data-bs-target="#staticBackdropSearch">
+                <img src="~/Content/images/search-product.png" alt="Tìm kiếm VIP" width="79" height="79" />
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdropSearch" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="height: auto;">
+                <div class="modal-header" style="background-color: red; color: white;">
+                    <h5 class="modal-title" id="staticBackdropLabel">Thống kê Laptop</h5>
+                    <div style="margin-left: 300px;">
+                        <div class="col-lg mx-auto mt-4 mt-lg-0 text-center">
+                            @using (Html.BeginForm("ListLaptopTheoSearch", "Home"))
+                            {
+                                <div class="form-group">
+                                    <div class="input-group text-center">
+
+                                        <input name="SearchString" type="search" class="form-control border-dark" placeholder="Tìm kiếm sản phẩm..." required>
+                                        <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Nav -->
+                            <div class="row">
+                                <nav class="navbar navbar-expand-lg navbar-light bg-white col-12">
+                                    <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavSearch">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="mainNavSearch">
+                                        <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Trang chủ</a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="electronics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-arrow-circle-right"></i> Hãng Laptop</a>
+                                                <div class="dropdown-menu neonBack" aria-labelledby="electronics">
+                                                    @foreach (var item in home.GetListHang())
+                                                    {
+                                                        <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoHangId","Home", new { id = item.mahang})">@item.tenhang</a>
+                                                    }
+
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="fashion" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-address-book"></i> Nhu cầu sử dụng</a>
+                                                <div class="dropdown-menu neonBack" aria-labelledby="fashion">
+                                                    @foreach (var item in home.GetListNhuCau())
+                                                    {
+                                                        <a class="dropdown-item laptopzoom" href="@Url.Action("ListLaptopTheoNhuCauById","Home", new { id = item.manhucau})">@item.tennhucau</a>
+                                                    }
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="books" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-blog"></i> Blog</a>
+                                                <div class="dropdown-menu neonBack" aria-labelledby="books">
+                                                    @foreach (var item in home.GetListChuDe())
+                                                    {
+                                                        <a class="dropdown-item laptopzoom" href="@Url.Action("ListBaiVietTheoChuDeId","Home", new { id = item.machude})">@item.tenchude</a>
+                                                    }
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Nav -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md" style="background-color: #EAF2FF;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;"> @home.DemLaptopMoiNhat() <img src="~/Content/images/login-moi-nhat.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop mới nhập <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #e3fce2;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;"> @home.DemLaptopGiaRe() <img src="~/Content/images/laptop-gia-re.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop giá rẻ (<= 15tr) <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #b8f1f7;color: blue; font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">2 <img src="~/Content/images/laptop-ban-chay.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop bán chạy <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #fcfcde;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">3 <img src="~/Content/images/laptop-comment.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Đánh giá nhiều <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #fce5fa;color: blue;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;"> @home.DemLaptopGiaCao() <img src="~/Content/images/laptop-gia-max.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Laptop giá cao (>= 30tr) <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="col-md" style="background-color: #fbf1e8;color: green;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                            <p style="font-weight: bold; color: red;font-size: 2rem;">7  <img src="~/Content/images/laptop-web-traffic.png" alt="Alternate Text" height="60" width="60" style="margin-left:80px;" /></p>Cấu hình khủng <i class="fa fa-eye"></i>
+                        </div>
+
+                    </div>
+                    <!-- Đang fix -->
+                    @*<div class="row" style="background-color: #dee6fb;font-weight: bold; border-radius: 12px;padding: 18px;margin:18px;">
+                        @using (Html.BeginForm("ListLaptopTheoSearch", "Home"))
+                        {
+                            <div class="row">
+                                <div class="col-md" style="color: deepskyblue;">
+                                    <p style="color: black;">Khoảng giá</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Dưới 10 triệu
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            10 triệu - 15 triệu
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                                        <label class="form-check-label" for="flexRadioDefault3">
+                                            15 triệu - 25 triệu
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" >
+                                        <label class="form-check-label" for="flexRadioDefault4">
+                                            Trên 25 triệu
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md" style="color: orangered;">
+                                    <p style="color: black;">CHIP && Card đồ họa</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Intel
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            AMD
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            GTX
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            RTX
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md" style="color: orange;">
+                                    <p style="color: black;">Dòng CPU</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Intel Core i9
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Intel Core i7
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Intel Core i5
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="SearchString" id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Intel Core i3
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button style="vertical-align: central; align-items: center; margin-top: 10px;" type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">Áp dụng</button>
+                                </div>
+                            </div>
+                        }
+                    </div>*@
+                    <!-- End -->
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <!-- End -->
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Content/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/script.js"></script>
+    <script type="text/javascript" src="~/Content/js/scripts.js"></script>
+    <!-- Toastr && SweetAlert2 -->
+    <script src="~/Areas/Administrator/Data/libraries/js/karma.laclac.min.js"></script>
+    <script src="~/Areas/Administrator/Data/libraries/js/toastr.min.js"></script>
+    <script src="~/Areas/Administrator/Data/libraries/js/sweetalert2.min.js"></script>
     @RenderSection("scripts", required: false)
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 </body>
 </html>

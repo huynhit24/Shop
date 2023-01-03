@@ -1,0 +1,70 @@
+﻿@model Shop.EF.LienHe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xem thông tin Liên hệ</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên người liên hệ")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hoten)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Email")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Điện thoại")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.dienthoai)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Website")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.website)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nội dung")
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.noidung.ToString())
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Trạng thái")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.malienhe }) |
+            @Html.ActionLink("Quay lại", "Index", "LienHe")
+        </p>
+    </div>
+</div>

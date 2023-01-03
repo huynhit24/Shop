@@ -1,41 +1,65 @@
 ﻿@model Shop.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Đăng ký";
 }
-
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+@Html.Partial("_Nofit")
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(200,9,121,1) 35%, rgba(0,212,255,1) 100%); max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">@ViewBag.Title</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">iLaptop - website bán Laptop úy tín giá tốt chuyên nghiệp! 😍😍😍</p>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+</header>
+<div class="container-fluid" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <div class="row card-body">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal formDiv", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4 class="m-3">Tạo tài khoản mới</h4>
+                @*<hr />*@
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group m-3">
+                    @*@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })*@
+                    @Html.Label("Email (*)", new { @class = "col-md-6 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-3">
+                    @Html.Label("Mật khẩu (*)", new { @class = "col-md-6 control-label" })
+                    <div class="col-md-12">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-3">
+                    @Html.Label("Xác thực mật khẩu (*)", new { @class = "col-md-7 control-label" })
+                    <div class="col-md-12">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-3">
+                    @Html.Label("Họ tên (*)", new { @class = "col-md-6 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.hoten, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-3">
+                    @Html.Label("Địa chỉ", new { @class = "col-md-6 control-label" })
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.diachi, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group m-3">
+                    <div class="col-md-offset-2 col-md-12 text-center" style="margin-top: 20px;">
+                        <input type="submit" class="btn btn-danger" value="Đăng ký" />
+                    </div>
+                </div>
+            }
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
-
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

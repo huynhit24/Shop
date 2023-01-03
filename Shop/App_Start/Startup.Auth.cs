@@ -54,15 +54,15 @@ namespace Shop
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "691222622111036",
+               appSecret: "b13f77837530a8025c785ddfb7f5078c");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "659348285678-au6236mvl6oadfmuk440rrgn5arolefs.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

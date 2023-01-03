@@ -1,0 +1,77 @@
+﻿@model Shop.EF.LienHe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa liên hệ</h2>
+
+        <h3>Bạn có chắc chắn muốn xóa Liên hệ này?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên người liên hệ")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hoten)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Email")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Điện thoại")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.dienthoai)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Website")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.website)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nội dung")
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.noidung.ToString())
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Trạng thái")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "LienHe")
+                </div>
+            }
+        </div>
+    </div>
+</div>

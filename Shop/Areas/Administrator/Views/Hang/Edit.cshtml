@@ -1,0 +1,68 @@
+﻿@model Shop.EF.Hang
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<script src="~/Plugins/ckfinder/ckfinder.js"></script>
+
+@section jsFooter{
+
+    <script>
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url.substring(13));
+                $('#imgSelectImage').attr('src', url);
+            };
+            finder.popup();
+        })
+    </script>
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Sửa đổi thông tin Hãng</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.mahang)
+
+                <div class="form-group">
+                    @Html.Label("Tên hãng", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.tenhang, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tenhang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Hình minh họa", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.hinh, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage", placeholder = "acer.png" })
+                        <a style="font-weight: bold;background-color: greenyellow; color: #085e49; padding: 8px; margin: 16px;" id="btnSelectImage" href="#"> <i class="fa fa-image"></i> Chọn ảnh</a>
+                        @Html.ValidationMessageFor(model => model.hinh, "", new { @class = "text-danger" })
+                        <img id="imgSelectImage" src="/Data/images/@Model.hinh" alt="No image" height="200" width="200" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Quay lại", "Index", "Hang")
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model Shop.EF.ChiTietDonHang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa chi tiết đơn hàng</h2>
+
+        <h3>Bạn có chắc chắc muốn xóa?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Mã khách hàng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DonHang.makh)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tên Laptop")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Số lượng mua")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.soluong)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Đơn giá bán")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.dongia)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "ChiTietDonHang")
+                </div>
+            }
+        </div>
+    </div>
+</div>

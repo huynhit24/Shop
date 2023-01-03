@@ -1,0 +1,328 @@
+﻿@model Shop.Models.Laptop
+
+@using Shop.Models
+@using Shop.Common
+@{
+    ViewBag.Title = "Details";
+
+    HomeModel home = new HomeModel();
+
+    CommonFields.id = Model.malaptop;
+}
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@Html.Partial("_Nofit")
+<!-- Product section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/Data/images/@Model.hinh" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="row text-center" style="font-weight:bold">
+                    <div class="col-6 small mb-1 pull-left" style="color:red">Cập nhật: @Model.ngaycapnhat.GetValueOrDefault().ToString("dd/MM/yyyy")</div>
+                    <div class="col-6 small mb-1 pull-right" style="color:#0094ff">@Model.Hang.tenhang - @Model.NhuCau.tennhucau</div>
+                </div>
+                <h1 class="display-5 fw-bolder">@Model.tenlaptop</h1>
+                <div class="fs-5 mb-5">
+                    @*<span class="text-decoration-line-through">@Model.giaban</span>*@
+                    <span>@String.Format("{0:0,0}", Model.giaban) đ </span>
+                </div>
+                <a class="zalo-follow-only-button" data-oaid="579745863508352884" style="margin-left:14px"></a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Thuộc tính</th>
+                            <th scope="col">Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>CPU</td>
+                            <td>@Model.cpu</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>GPU</td>
+                            <td>@Model.gpu</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Hardware</td>
+                            <td>@Model.hardware</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Màn hình</td>
+                            <td>@Model.manhinh</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Pin</td>
+                            <td>@Model.pin</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Số lượng tồn</td>
+                            <td>@Model.soluongton</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex">
+                    @*<input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" style="max-width: 3rem;" />*@
+                    @*<a href="@Url.Action("ThemGioHang", "GioHang", new { @id = Model.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-danger flex-shrink-0">*@
+                    @if (Model.soluongton <= 0)
+                    {
+                        <button disabled class="btn btn-sm btn-secondary mua"><i class="fas fa-pause-circle me-2"></i>Hết hàng</button>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ThemGioHang", "GioHang", new { @id = Model.malaptop, @strURL = Request.Url.ToString() })" class="btn btn-sm btn-outline-warning mua"><i class="fas fa-cart-plus me-2"></i>Thêm vào giỏ</a>
+                    }
+                    <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Đã thêm vào giỏ hàng!', showConfirmButton: false });" -->
+                    @*<i class="fa fa-cart-plus me-1"></i>
+                    Thêm vào giỏ
+                    </a>*@
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-success flex-shrink-0" style="margin-left:14px">
+                        <i class="fa fa-shopping-bag me-1"></i>
+                        Mua thêm
+                    </a>
+
+                    <a class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="4" data-color="blue" data-customize="false" style="margin-left:14px"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+
+    <div class="container px-4 px-lg-5 my-5 accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button style="background-color: red; color: white" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Thuộc tính khác (nếu có*)
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Thuộc tính</th>
+                                <th scope="col">Mô tả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in home.GetListMetaLaptopTheoLaptop(Model.malaptop))
+                            {
+                                <tr>
+                                    <td>@item.keymeta</td>
+                                    <td>@item.valuemeta</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+<section class="py-5">
+    <div class="container pt-lg-5 px-lg-5 my-5">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="col-12 text-uppercase">
+                    <h2><u>Mô tả sản phẩm</u></h2>
+                </div>
+                <div class="col-12" id="details">
+
+                    <div class="container pt-5 px-lg-5 my-5 accordion" id="accordionExample2">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button style="background-color: orange; color: white" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                                    Xem nội dung
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                                <div class="accordion-body">
+                                    @Html.Raw(Model.mota)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="col-12 px-md-4 sidebar h-100">
+
+                    <!-- Rating -->
+                    <div class="row">
+                        <div class="col-12 mt-md-0 mt-3 text-uppercase">
+                            <h2><u>Xếp hạng & Đánh giá</u></h2>
+                        </div>
+                        @*<div class="col-12">
+                                <div class="row">
+                                    <div class="col-sm-4 text-center">
+                                        <div class="row">
+                                            <div class="col-12 average-rating">
+                                                4.1
+                                            </div>
+                                            <div class="col-12">
+                                                of 100 reviews
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <ul class="rating-list mt-3">
+                                            <li>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-dark" role="progressbar" style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
+                                                </div>
+                                                <div class="rating-progress-label">
+                                                    5<i class="fas fa-star ms-1"></i>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-dark" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+                                                </div>
+                                                <div class="rating-progress-label">
+                                                    4<i class="fas fa-star ms-1"></i>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-dark" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">15%</div>
+                                                </div>
+                                                <div class="rating-progress-label">
+                                                    3<i class="fas fa-star ms-1"></i>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-dark" role="progressbar" style="width: 7%;" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100">7%</div>
+                                                </div>
+                                                <div class="rating-progress-label">
+                                                    2<i class="fas fa-star ms-1"></i>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-dark" role="progressbar" style="width: 3%;" aria-valuenow="3" aria-valuemin="3" aria-valuemax="100">3%</div>
+                                                </div>
+                                                <div class="rating-progress-label">
+                                                    1<i class="fas fa-star ms-1"></i>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                    <!-- Rating -->
+
+                    <div class="row">
+                        <div class="col-12 px-md-3 px-0">
+                            <hr>
+                        </div>
+                    </div>
+
+                    <!-- Add Review -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Thêm đánh giá</h4>
+                            @*<h4 class="red">@ViewBag.commentContentError</h4>*@
+                        </div>
+                        <div class="col-12">
+                            @*@using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="mb-3">
+                                        <textarea name="ten" class="form-control" placeholder="Họ tên..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea name="noidung" class="form-control" placeholder="Thêm đánh giá..."></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="text-hide" name="malaptop">@Model.malaptop</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="d-flex ratings justify-content-end flex-row-reverse">
+                                            <input type="radio" value="5" name="vote" id="rating-5"><label for="rating-5"></label>
+                                            <input type="radio" value="4" name="vote" id="rating-4"><label for="rating-4"></label>
+                                            <input type="radio" value="3" name="vote" id="rating-3"><label for="rating-3"></label>
+                                            <input type="radio" value="2" name="vote" id="rating-2"><label for="rating-2"></label>
+                                            <input type="radio" value="1" name="vote" id="rating-1" checked><label for="rating-1"></label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-outline-dark">Gửi</button>
+                                    </div>
+                                }*@
+                            @Html.Action("NhanXet", "Home")
+                        </div>
+                    </div>
+                    <!-- Add Review -->
+
+                    <div class="row">
+                        <div class="col-12 px-md-3 px-0">
+                            <hr>
+                        </div>
+                    </div>
+
+                    @Html.Action("Comment", "Home")
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Sản phẩm khác</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var item in home.GetListLaptop_OTHER())
+            {
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/Data/images/@item.hinh" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@item.tenlaptop</h5>
+                                <!-- Product reviews-->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                <!-- Product price-->
+                                @String.Format("{0:0,0}", item.giaban) đ
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-warning mt-auto" href="@Url.Action("Details","Home", new { id = item.malaptop, postName = StringHelpers.SeoLink(item.tenlaptop).ToLower() })"><i class="fa fa-eye"></i> Xem thêm</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+

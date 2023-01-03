@@ -1,0 +1,77 @@
+﻿@model Shop.EF.DanhGia
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa đánh giá sản phẩm</h2>
+
+        <h3>Bạn có chắc chắn muốn xóa đánh giá này?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên Laptop")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tên người đánh giá")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ten)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nội dung đánh giá")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.noidung)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Vote")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.vote)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày đanh giá")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaydanhgia)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Trạng thái")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "DanhGia")
+                </div>
+            }
+        </div>
+    </div>
+</div>

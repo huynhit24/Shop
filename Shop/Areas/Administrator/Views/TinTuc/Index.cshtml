@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Shop.EF.TinTuc>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Tin tức</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","TinTuc")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr style="background-color: #ff6a00; color: white;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tên chủ đề")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tiêu đề")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Hình nền")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Tóm tắt")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Slug")
+                                        </th>
+                                        @*<th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Nội dung")
+                                        </th>*@
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Lượt xem")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Ngày cập nhật")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @Html.DisplayName("Trạng thái xuất bản")
+                                        </th>
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Thao tác
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ChuDe.tenchude)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tieude)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                <img src="/Data/images/@Html.DisplayFor(modelItem => item.hinhnen)" alt="Alternate Text" height="100" width="100" />
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.tomtat)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.slug)
+                                            </td>
+                                            @*<td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.noidung)
+                                            </td>*@
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.luotxem)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ngaycapnhat)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.xuatban)*@
+                                                @if (item.xuatban == true)
+                                                {
+                                                    <p style="color: green;font-weight: bold;"><i class="fa fa-book"></i> Đã xuất bản</p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="color: blue;font-weight: bold;"><i class="fa fa-trash-restore"></i> Lưu nháp</p>
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.matin }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.matin }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.matin })*@
+                                                <a style="margin-right:5px;" href="@Url.Action("Edit","TinTuc", new { id = item.matin })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a style="margin-left:5px;margin-right:5px;" href="@Url.Action("Details","TinTuc", new { id = item.matin })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a style="margin-left:5px;" href="@Url.Action("Delete","TinTuc", new { id = item.matin })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

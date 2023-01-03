@@ -1,0 +1,48 @@
+﻿@model Shop.EF.AspNetUserRole
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xem chi tiết</h2>
+
+        <div>
+            <h4>AspNetUserRole</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AspNetRole.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AspNetRole.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AspNetUser.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Note)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Note)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

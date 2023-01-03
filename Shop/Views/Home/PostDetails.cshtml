@@ -1,0 +1,81 @@
+﻿@model Shop.Models.TinTuc
+@using Shop.Models
+
+@{
+    ViewBag.Title = "PostDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    HomeModel home = new HomeModel();
+    Random random = new Random(DateTime.Now.Millisecond);
+    QuangCao randomItem = home.GetListQuangCao().ToList().ElementAt(random.Next(0, home.GetListQuangCao().Count));
+}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0&appId=377559880155077&autoLogAppEvents=1" nonce="4WpvGoo4"></script>
+<header class="py-5" style="background-image: url(/Content/images/iStock-blog-it.jpg);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Blog</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">Chia thông tin thủ thuật hay! 😍😍😍</p>
+        </div>
+    </div>
+</header>
+<div class="container" style="margin-top: 16px">
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <!-- the actual blog post: title/author/date/content -->
+            <h1>@Model.tieude</h1>
+            <p class="lead">
+                Đăng bởi <a style="background-color: orangered" class="btn text-white" href="@Url.Action("Index","Home")"><i class="fa fa-laptop"></i> iLaptop</a>  |  <span class="glyphicon glyphicon-time"></span> Ngày cập nhật: @Model.ngaycapnhat.GetValueOrDefault().ToString("dd/MM/yyyy")
+            </p>
+            <hr>
+            <img src="/Data/images/@Model.hinhnen" class="img-responsive">
+            <hr>
+            <div>
+                @Html.Raw(Model.noidung.ToString())
+            </div>
+            <hr>
+
+        </div>
+
+        <div class="col-lg-4">
+            <!--<div class="panel-body">
+        <h4>Tìm kiếm bài viết</h4>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Tìm kiếm bài viết...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>-->
+            <!-- /input-group -->
+            <!--</div>-->
+            <!-- /well -->
+            <div class="well" style="margin-top: 16px;">
+                <h4>Chủ đề</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        @foreach (var item in home.GetListChuDe())
+                        {
+                            <a style="background-color: #0eebd7; margin: 4px;" class="btn text-white" href="@Url.Action("ListBaiVietTheoChuDeId","Home", new { id = item.machude})"><i class="fa fa-podcast"></i> @item.tenchude</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;" class="fb-page" data-href="https://www.facebook.com/ILaptop-102788879063090/" data-tabs="timeline" data-width="450" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ILaptop-102788879063090/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ILaptop-102788879063090/">ILaptop</a></blockquote></div>
+        </div>
+    </div>
+    <footer>
+        <div class="row" style="margin-bottom:10px;">
+            <div class="col-lg-12">
+                <a href="@randomItem.link"><img src="/Data/images/@randomItem.hinhnen" alt="Alternate Text" /></a>
+            </div>
+        </div>
+    </footer>
+
+</div>
+

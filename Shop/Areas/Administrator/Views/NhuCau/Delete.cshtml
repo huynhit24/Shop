@@ -1,0 +1,37 @@
+﻿@model Shop.EF.NhuCau
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa nhu cầu</h2>
+
+        <h3>Bạn có chắc chắn muốn xóa hay không?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên nhu cầu sử dụng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tennhucau)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "NhuCau")
+                </div>
+            }
+        </div>
+    </div>
+</div>

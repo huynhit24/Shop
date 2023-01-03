@@ -1,0 +1,102 @@
+﻿@model Shop.EF.TinTuc
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+<link href="~/Content/css/custom_scrollbar.css" rel="stylesheet" />
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xem thông tin bài viết</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên chủ đề")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ChuDe.tenchude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tiêu đề bài viết")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tieude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Hình nền")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hinhnen)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tóm tắt")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tomtat)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Slug")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.slug)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Lượt xem")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.luotxem)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày cập nhật")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaycapnhat)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Xuât bản")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.xuatban)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nội dung")
+                </dt>
+
+                <dd>
+                    @Html.Raw(Model.noidung.ToString())
+                    @*<div class="scrollbar scrollbar-danger">
+                            <div class="force-overflow">
+                                @Html.Raw(Model.noidung.ToString())
+                            </div>
+                        </div>*@
+                </dd>
+
+
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.matin }) |
+            @Html.ActionLink("Quay lại", "Index", "TinTuc")
+        </p>
+    </div>
+</div>

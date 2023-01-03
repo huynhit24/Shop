@@ -1,0 +1,46 @@
+﻿@model Shop.EF.ChuDe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Chi tiết Chủ đề bài viết</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên chủ đề")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tenchude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Slug")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.slug)
+                </dd>
+
+                @*<dt>
+                    @Html.DisplayName("Hình")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hinh)
+                </dd>*@
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.machude }) |
+            @Html.ActionLink("Quay lại", "Index", "ChuDe")
+        </p>
+    </div>
+</div>

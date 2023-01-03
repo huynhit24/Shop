@@ -1,17 +1,113 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model Shop.Models.LienHe
+
+<!-- Captcha -->
+@using BotDetect.Web.Mvc
+@using BotDetect.Web.UI
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+@{
+    MvcCaptcha contactCaptcha = new MvcCaptcha("contactCaptcha");
+    contactCaptcha.UserInputID = "CaptchaCodeID";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header class="py-5" style="background-image: url(/Content/images/background-contact.jpg);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Liên hệ tư vấn</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">Khách hàng vui lòng điền thông tin biểu mẫu dưới đây! 💌💌💌</p>
+        </div>
+    </div>
+</header>
+<div class="container-fluid">
+    <div class="row card-body">
+        @*<h1 class="red">@ViewBag.contactContentError</h1>*@
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4 formDiv-green" style="margin-top: 20px;">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                <div class="panel panel-default" style="border:1px">
+                    <div class="form-group">
+                        <h4 class="text-center">Vui lòng điền thông tin liên hệ để được tư vấn!</h4>
+                        <h4 class="text-center red">@ViewBag.contactContentError</h4>
+                    </div>
+                    <!--Tắt ValidationSummary -->
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.Label("Họ tên", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.hoten, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.hoten, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("SĐT", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Website", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.website, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.website, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Nội dung", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.noidung, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                            @Html.Label("Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.trangthai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.trangthai, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                    <div class="form-group" style="margin-top: 10px;">
+                        @Html.Label("Captcha", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-offset-2 col-md-12">
+                            @Html.Captcha(contactCaptcha)
+                            @Html.TextBox("CaptchaCodeID")
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <div class="col-md-offset-2 col-md-12 text-center">
+                            <input type="submit" value="✅ Xác nhận" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-4 mb-4">
+            @Html.ActionLink("Về trang chủ", "Index", "Home", new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,236 @@
+﻿@model  List<Shop.Models.DonHang>
+@using Shop.Models;
+@{
+    ViewBag.Title = "DonHangDaMua";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    HomeModel home = new HomeModel();
+    int idDDH = 0;
+}
+
+<link translate="yes" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<style>
+    .dataTable-dropdown {
+        @*display: none;*@
+    }
+</style>
+
+<header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(156,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+    <div class="container px-1 px-lg-1 my-1">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Đơn hàng đã mua của quý khách</h1>
+            <p class="lead fw-normal mb-0" style="color: #4cff00;">Qúy khách có muốn mua thêm Laptop không! 💌💌💌</p>
+            <a style="background-color: red; margin: 10px;" class="btn text-white" href="@Url.Action("Index","Home")"><i class="fa fa-laptop-house"></i> Mua Laptop</a>
+        </div>
+    </div>
+</header>
+
+<div class="container-sm" style="margin-top: 50px;margin-bottom:50px;">
+    @*@using (Html.BeginForm("Export", "Report", FormMethod.Post, new { @id = "Export_Form" }))
+        {
+            <input type="hidden" name="GridHtml">
+            <input type="submit" id="btnSubmit" value="Export">
+        }
+        <div id="Grid">
+            <div class="text-center">
+                <img src="~/Content/images/iLaptop.png" alt="Alternate Text" />
+                <p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p>
+                <p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p>
+            </div>
+        </div>*@
+    <table id="datatablesSimple" class="table table-bordered table-striped" style="margin-top: 20px;">
+        <thead>
+            <tr style="background-color: #189f09; color: white;">
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Mã đơn hàng")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Họ tên")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Thanh toán")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Tình trạng giao hàng")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Ngày đặt")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Ngày giao")
+                </th>
+                <th class="text-center" style="vertical-align:middle">
+                    @Html.DisplayName("Xem chi tiết")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                idDDH += 1;
+                <tr>
+                    <td class="text-center" style="vertical-align:middle">
+                        ĐH-@Html.DisplayFor(modelItem => item.madon)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.AspNetUser.hoten)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @if (item.thanhtoan == true)
+                        {
+                            <p style="color: green;font-weight: bold;"><i class="fa fa-check-circle"></i> Đã thanh toán</p>
+                        }
+                        else
+                        {
+                            <p style="color: blue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa thanh toán</p>
+                        }
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @if (item.giaohang == true)
+                        {
+                            <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
+                        }
+                        else
+                        {
+                            if (item.giaohang == false)
+                            {
+
+                                <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                            }
+                            else
+                            {
+                                <p style="color: deepskyblue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa giao hàng</p>
+                            }
+
+                        }
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.ngaydat)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+                        @Html.DisplayFor(modelItem => item.ngaygiao)
+                    </td>
+                    <td class="text-center" style="vertical-align:middle">
+
+                        <!-- Button trigger modal -->
+                        @*<a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="">
+                            <i class="fa fa-eye"></i> Xem
+                        </a>*@
+                        <a style="border-style: solid; padding: 5px; border-color: #08c4ee; border-width: thin; border-radius: 20px;text-decoration:none;" href="@Url.Action("InvoiceInfo","Home", new {ID = item.madon })"><i class="fa fa-eye"></i> Xem</a>
+
+                        @*<a data-id="@item.madon" id="lienket" style="color: green;text-decoration: none;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="" onclick="">
+                                <i class="fa fa-flag-checkered"></i> Xem
+                            </a>*@
+
+                        @*<a class="btn btn-sm btn-danger" href="#" onclick="return getbyID(' + @item.madon + ')">Xem</a>*@
+
+                        @*<div style="vertical-align: middle;margin:20px; " class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="height: auto;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Chi tiết đơn hàng đã mua</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table id="tblStocks" id="tbl_exporttable_to_xls" class="table table-bordered table-responsive-lg">
+                                            <tr>
+                                                
+                                                <th class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayName("Laptop") <i class="fa fa-laptop"></i>
+                                                </th>
+                                                <th class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayName("Hình minh họa") <i class="fa fa-image"></i>
+                                                </th>
+                                                <th class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayName("Gía bán")
+                                                </th>
+                                                <th class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayName("Số lượng mua")
+                                                </th>
+                                                <th class="text-center" style="vertical-align:middle">
+                                                    @Html.DisplayName("Thành tiền") <i class="fa fa-money-bill"></i>
+                                                </th>
+                                            </tr>
+
+                                            @{ decimal? tongtien = 0; int? tongsoluong = 0; }
+                                            @foreach (var ctdh in home.GetListChiTietDonHangTheoDonDatHang(item.madon).ToList())
+                                            {
+                                                <tr>
+                                                    
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @ctdh.Laptop.tenlaptop
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        <img src="/Data/images/@ctdh.Laptop.hinh" width="100" height="250" />
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @String.Format("{0:0,0}", ctdh.dongia) đ
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @ctdh.soluong
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align:middle">
+                                                        @{
+                                                            decimal? thanhtien = ctdh.soluong * ctdh.dongia;
+                                                            tongtien += thanhtien;
+                                                            tongsoluong += ctdh.soluong;
+                                                        }
+                                                        @String.Format("{0:0,0}", @thanhtien) đ
+                                                    </td>
+                                                </tr>
+                                            }
+                                            <tr style="font-weight: bold; text-align:right; color:red">
+                                                <td colspan="7">
+                                                    <div>
+                                                        <p>Số lượng: @tongsoluong</p>
+                                                        <p>Tổng tiền: @String.Format("{0:0,0}", tongtien) VNĐ</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr style="font-weight: bold; text-align:right">
+                                                <td colspan="6">
+                                                    <button class="btn text-white" style="background-color: #0fa573" onclick="ExportToExcel('xlsx')"> <i class="fa fa-file-excel"></i> Xuất Excel</button>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--Modal-->
+<!--End-->
+
+
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="~/Content/js/datatables-simple-demo.js"></script>
+<script>
+    function ExportToExcel(type, fn, dl) {
+        var elt = document.getElementById('tbl_exporttable_to_xls');
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        return dl ?
+            XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+            XLSX.writeFile(wb, fn || ('DonDatHang.' + (type || 'xlsx')));
+    }
+</script>
+<script src="~/Scripts/detailview.js"></script>
+@*<script>
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='GridHtml']").val($("#Grid").html("<div class="text-center">< img src = "~/Content/images/iLaptop.png" alt = "Alternate Text" /><p class="bold" style="font-weight: bold;">Chức mừng bạn đã đặt hàng thành công!</p><p class="italic">Chúng tôi sẽ tiến hành xử lý đơn hàng sớm nhất, bạn vui lòng chờ nhé!</p></div >"));
+            });
+        });
+    </script>*@

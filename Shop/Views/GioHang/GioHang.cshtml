@@ -1,0 +1,154 @@
+﻿@model IEnumerable<Shop.Models.GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@Html.Partial("_Nofit")
+<div id="root-cart">
+
+</div>
+
+@{
+    if (Model.Count() == 0)
+    {
+        <script>
+        document.getElementById("root-cart").insertAdjacentHTML("afterbegin", '<div class="row"><div class="col-12 text-center"><img src="/Content/images/no-cart.png" alt="Alternate Text"> <a class="btn text-white" style="background-color: red" href="@Url.Action("Index", "Home")"> <i class="fa fa-laptop"></i> Mua hàng?</a></div></div>');
+        </script>
+    }
+    else
+    {
+        <script>
+            document.getElementById("root-cart").style.display = "none";
+        </script>
+        <header class="py-5" style="background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+            <div class="container px-1 px-lg-1 my-1">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Giỏ hàng</h1>
+                    <p class="lead fw-normal mb-0" style="color: #4cff00;">Cám ơn quý khách đã lựa chọn sản phẩm từ iLaptop! 🧡🧡🧡</p>
+                </div>
+            </div>
+        </header>
+        <div class="row" style="margin-top: 10px;margin-bottom:10px;">
+            <div class="col-12">
+                <p>
+                    @*@Html.ActionLink("Create New", "Create")*@
+                    <a class="btn text-white" style="background-color: #f217d9" href="@Url.Action("Index", "Home")"> <i class="fa fa-cart-arrow-down"></i> Mua thêm</a>
+                </p>
+            </div>
+            <div class="container">
+                <div class="text-center">
+                    <img src="~/Content/images/trang-thai-1.png" alt="Alternate Text" height="110" width="500" />
+                </div>
+            </div>
+        </div>
+        <div class="container-sm container-fluid" style="margin-top: 50px;margin-bottom:50px;">
+            <table class="table table-bordered tab">
+                <tr style="background-color:green;color:white;">
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.malaptop)
+                        </th>*@
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.tenlaptop) <i class="fa fa-laptop"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.hinh) <i class="fa fa-image"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.giaban) <i class="fa fa-money-bill"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.iSoluong) <i class="fa fa-sort-numeric-up"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        @Html.DisplayNameFor(model => model.dThanhTien) <i class="fa fa-money-bill-wave-alt"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        Thao tác <i class="fa fa-ticket-alt"></i>
+                    </th>
+                    <th class="text-center" style="vertical-align:middle">
+                        Thao tác <i class="fa fa-ticket-alt"></i>
+                    </th>
+                    @*<th class="text-center" style="vertical-align:middle">
+                            Giỏ hàng <i class="fa fa-shopping-bag"></i>
+                        </th>*@
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center" style="vertical-align:middle">
+                            @Html.DisplayFor(modelItem => item.tenlaptop)
+                        </td>
+                        <td class="text-center" style="vertical-align:middle">
+                            <img src="/Data/images/@item.hinh" width="100" height="250" />
+                        </td>
+                        @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.malaptop }))
+                        {
+                            <td class="text-center" style="vertical-align:middle">
+                                @String.Format("{0:0,0}", item.giaban) VNĐ
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <input type="number" min="1" max="50" step="1" name="txtSolg" value="@item.iSoluong" onchange="this.form.submit()" style="text-align:center;font-weight: bold" />
+                            </td>
+
+                            <td class="text-center" style="vertical-align:middle">
+                                @*@Html.DisplayFor(modelItem => item.dThanhTien)*@
+                                @String.Format("{0:0,0}", item.dThanhTien) VNĐ
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <a class="btn btn-warning" href="@Url.Action("Details", "Home", new { id = item.malaptop })"> <i class="fa fa-eye"></i> Chi tiết</a>  @*@Html.ActionLink("Xóa", "XoaGioHang", new { @id = item.malaptop })*@
+
+                                <!-- onclick="Swal.fire({ position: 'center', icon: 'success', title: 'Xóa thành công!', showConfirmButton: false });" -->
+                            </td>
+                            <td class="text-center" style="vertical-align:middle">
+                                <a class="btn btn-danger" href="@Url.Action("XoaGioHang", "GioHang", new { id = item.malaptop })"> <i class="fa fa-trash"></i> Xóa bỏ</a>
+                                @*<input type="submit" value="✅ Cập nhập giỏ" class="btn btn-success" />*@
+                            </td>
+                        }
+                    </tr>
+                }
+                <tr style="font-weight:bold; text-align:right; color:red">
+                    @*<td colspan="2"> Số loại Laptop: @ViewBag.Tomgsoluongsanpham</td>
+                        <td colspan="2"> Số lượng Laptop: @ViewBag.Tongsoluong</td>
+                        <td colspan="4"> Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</td>*@
+                    <td colspan="7">
+                        <div>
+                            @*<p>Số loại Laptop: @ViewBag.Tomgsoluongsanpham</p>*@
+                            <p>Số lượng Laptop: @ViewBag.Tongsoluong</p>
+                            <p>Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style="font-weight: bold; color:blue; text-align:right">
+                    <td colspan="7">
+                        @*@Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")*@
+                        <a class="btn btn-danger text-white" href="@Url.Action("XoaTatCaGioHang", "GioHang")"> <i class="fa fa-trash-alt"></i> Xóa giỏ hàng </a>
+                    </td>
+                </tr>
+
+                <tr style="font-weight: bold; color:blue; text-align:right">
+                    <td colspan="7">
+                        <div>
+                            @*@Html.ActionLink("Tieps tục mua hàng", "Index", "Home")
+                                @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")*@
+                            <a class="btn btn-outline-dark" href="@Url.Action("Index", "Home")"> <i class="fa fa-arrow-left"></i> Tiếp tục mua hàng</a>
+                            @if (ViewBag.Tongsoluong.ToString() == "0")
+                            {
+                                <button disabled class="btn btn-info">Vui lòng chọn số lượng <i class="fa fa-arrow-right"></i></button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-dark" href="@Url.Action("Dathang", "GioHang")">Thanh toán đặt hàng <i class="fa fa-arrow-right"></i></a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    }
+}

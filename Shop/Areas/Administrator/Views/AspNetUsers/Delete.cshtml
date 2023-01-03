@@ -1,0 +1,166 @@
+﻿@model Shop.EF.AspNetUser
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa tài khoản đăng nhập</h2>
+
+        <h3>Bạn có chắc chắn muốn xóa tài khoản này?</h3>
+        <div>
+            <hr />
+            <div class="row">
+                <div class="col-3">
+                    <p style="font-weight:bold;">
+                        @Html.DisplayName("Avatar")
+                    </p>
+
+                    <div>
+                        <img src="/Data/images/@Model.avatar" alt="No image" height="200" width="200" />
+                        @*@Html.DisplayFor(model => model.avatar)*@
+                    </div>
+                </div>
+                <div class="col-9">
+                    <dl class="dl-horizontal">
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.EmailConfirmed)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.EmailConfirmed)
+                            </dd>*@
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.PasswordHash)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.PasswordHash)
+                            </dd>*@
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.SecurityStamp)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.SecurityStamp)
+                            </dd>*@
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+                            </dd>*@
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.TwoFactorEnabled)
+                            </dd>*@
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LockoutEndDateUtc)
+                            </dd>*@
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.LockoutEnabled)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.LockoutEnabled)
+                        </dd>
+
+                        @*<dt>
+                                @Html.DisplayNameFor(model => model.AccessFailedCount)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.AccessFailedCount)
+                            </dd>*@
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Ngày sinh")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ngaysinh)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Profile cá nhân (nếu có)")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.profile)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Họ tên")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.hoten)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayName("Địa chỉ")
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.diachi)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                            @Html.ActionLink("Quay lại", "Index", "AspNetUsers")
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

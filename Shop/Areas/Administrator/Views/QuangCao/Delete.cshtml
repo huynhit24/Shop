@@ -1,0 +1,85 @@
+﻿@model Shop.EF.QuangCao
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa quảng cáo</h2>
+
+        <h3>Bạn có muốn xóa quảng cáo này không?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên quảng cáo")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tenqc)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Tên công ty")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tencongty)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Hình nền")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hinhnen)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Link")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.link)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày bắt đầu")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngaybatdau)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Ngày hết hạn")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ngayhethan)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Trạng thái")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.trangthai)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model Shop.EF.ChuDe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa Chủ đề bài viết</h2>
+
+        <h3>Bạn có chắc chắn muốn xóa?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Ten chủ đề")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tenchude)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Slug")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.slug)
+                </dd>
+
+                @*<dt>
+                    @Html.DisplayName("Hình")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hinh)
+                </dd>*@
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Xóa bỏ" class="btn btn-danger" /> |
+                    @Html.ActionLink("Quay lại", "Index", "ChuDe")
+                </div>
+            }
+        </div>
+    </div>
+</div>

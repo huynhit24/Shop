@@ -1,0 +1,79 @@
+﻿@model Shop.Models.DanhGia
+
+<!-- Captcha -->
+@using BotDetect.Web.Mvc
+@using BotDetect.Web.UI
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+@{
+    MvcCaptcha commentCaptcha = new MvcCaptcha("commentCaptcha");
+    commentCaptcha.UserInputID = "CaptchaCode";
+}
+
+@using Shop.Common
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <!-- ValidationSummary từ true thành false, ban đầu nó là true-->
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="mb-3">
+        <textarea name="ten" class="form-control" placeholder="Họ tên..."></textarea>
+        @Html.ValidationMessageFor(model => model.ten, "", new { @class = "text-danger" })
+    </div>
+
+
+
+    <div class="mb-3">
+        <textarea name="noidung" class="form-control" placeholder="Thêm đánh giá..."></textarea>
+        @Html.ValidationMessageFor(model => model.noidung, "", new { @class = "text-danger" })
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.vote, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vote, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.vote, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.ngaydanhgia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ngaydanhgia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ngaydanhgia, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.malaptop, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.malaptop, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.malaptop, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="mb-3">
+        <div class="d-flex ratings justify-content-end flex-row-reverse">
+            <input type="radio" value="5" name="vote" id="rating-5"><label for="rating-5"></label>
+            <input type="radio" value="4" name="vote" id="rating-4"><label for="rating-4"></label>
+            <input type="radio" value="3" name="vote" id="rating-3"><label for="rating-3"></label>
+            <input type="radio" value="2" name="vote" id="rating-2"><label for="rating-2"></label>
+            <input type="radio" value="1" name="vote" id="rating-1" checked><label for="rating-1"></label>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        @Html.Captcha(commentCaptcha)
+        @Html.TextBox("CaptchaCode")
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-outline-dark">Gửi</button>
+    </div>
+    @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+}
+

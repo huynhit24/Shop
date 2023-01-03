@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<Shop.Models.TinTuc>
+@using PagedList.Mvc;
+@using Shop.Common;
+@{
+    ViewBag.Title = "ListBaiVietTheoChuDeId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int? temp = 0;
+}
+
+<!-- Header-->
+<header class="py-5" style="background-image: url(/Content/images/iStock-blog-it.jpg);">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Danh sách bài viết</h1>
+            <p class="lead fw-normal text-warning mb-0">Chọn một bài viết xem thử! 📰📰📰</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5" style="background-color: #f7eeee; margin-bottom: 32px; max-width: 1200px; margin-left: auto; margin-right: auto; ">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                temp = item.machude;
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/Data/images/@item.hinhnen" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@item.tieude</h5>
+
+                                <!-- Product price-->
+                                @item.ngaycapnhat.GetValueOrDefault().ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="text-center">
+                                <!--Product star-->
+                                <small>
+                                    <i class="fas fa-star" style="color:orange"></i>
+                                    <i class="fas fa-star" style="color:orange"></i>
+                                    <i class="fas fa-star" style="color:orange"></i>
+                                    <i class="far fa-star" style="color:orange"></i>
+                                    <i class="far fa-star" style="color:orange"></i>
+                                </small>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-success mt-auto" href="@Url.Action( "PostDetails", "Home", new { id = item.matin, postName = item.slug })"><i class="fa fa-eye"></i> Xem bài viết</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<div style="text-align: center; margin-bottom: 32px; background-color: #f7eeee; margin-bottom: 32px; max-width: 1200px; margin-left: auto; margin-right: auto; ">
+    <div class="lead" style="margin-bottom: 20px">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) /
+        @Model.PageCount
+    </div>
+    <div class="pagination" style="margin-left: 400px; display: inline-block; margin-left: auto; margin-right: auto">
+        @Html.PagedListPager(Model, page => Url.Action("ListBaiVietTheoChuDeId", "Home", new { page = page, id = temp }))
+    </div>
+</div>
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a .active {
+                background-color: #ff0000;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>

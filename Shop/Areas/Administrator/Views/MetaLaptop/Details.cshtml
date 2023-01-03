@@ -1,0 +1,46 @@
+﻿@model Shop.EF.MetaLaptop
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xem nội dung Meta Laptop</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên Laptop")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Laptop.tenlaptop)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Mã Key")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.keymeta)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Giá trị")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.valuemeta)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.mameta }) |
+            @Html.ActionLink("Quay lại", "Index", "MetaLaptop")
+        </p>
+    </div>
+</div>

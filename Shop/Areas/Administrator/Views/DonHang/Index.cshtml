@@ -1,0 +1,195 @@
+﻿@model IEnumerable<Shop.EF.DonHang>
+@using Shop.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+    HomeModel home = new HomeModel();
+}
+
+<style>
+    .invoice-shop-huy {
+        border-style: solid;
+        padding: 5px;
+        border-color: red;
+        border-width: thin;
+        border-radius: 20px;
+        font-weight: bold;
+        color: red;
+        transition: transform .2s;
+    }
+
+        .invoice-shop-huy:hover {
+            background-color: red;
+            color: white;
+            transform: scale(1.2);
+            box-shadow: 4px 4px;
+        }
+</style>
+
+@Html.Partial("_MessageAlert")
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 style="text-align:center;color:#fff">Đơn hàng - @home.CountInvoice() (Đơn)</h2>
+                            <a class="glass-button btn-outline-danger" style="background-color: rgb(232 221 13 / 0.48)" href="@Url.Action("Create","DonHang")"><img src="~/Content/images/contract.png" width="20" height="20" /> Tạo mới</a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered">
+                                <thead>
+                                    <tr style="background-color: #151111; color: white;">
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.AspNetUser.Email)*@
+                                            @Html.DisplayName("Mã đơn hàng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.AspNetUser.Email)*@
+                                            @Html.DisplayName("Email mua hàng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.thanhtoan)*@
+                                            @Html.DisplayName("Thanh toán")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.giaohang)*@
+                                            @Html.DisplayName("Giao hàng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.giaohang)*@
+                                            @Html.DisplayName("Xem đơn hàng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.ngaydat)*@
+                                            @Html.DisplayName("Ngày đặt")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.ngaygiao)*@
+                                            @Html.DisplayName("Ngày giao")
+                                        </th>
+                                        <th class="text-center" style="vertical-align:middle">
+                                            @*@Html.DisplayNameFor(model => model.ngaygiao)*@
+                                            @Html.DisplayName("Tình trạng")
+                                        </th>
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Xử lý đơn
+                                        </th>
+                                        <th class="text-center" style="vertical-align: middle; min-width: 100px;">
+                                            Tác vụ
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                ĐH-@Html.DisplayFor(modelItem => item.madon)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.thanhtoan)*@
+                                                @if (item.thanhtoan == true)
+                                                {
+                                                    <p style="color: green;font-weight: bold;"><i class="fa fa-check-circle"></i> Đã thanh toán</p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="color: blue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa thanh toán</p>
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @*@Html.DisplayFor(modelItem => item.giaohang)*@
+                                                @if (item.giaohang == true)
+                                                {
+                                                    <p style="color: black;font-weight: bold;"><i class="fa fa-check-square"></i> Đã giao hàng</p>
+                                                }
+                                                else
+                                                {
+                                                    if (item.giaohang == false)
+                                                    {
+
+                                                        <p style="color: #ea0fe6;font-weight: bold;"><i class="fa fa-truck"></i> Đang giao hàng</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p style="color: deepskyblue;font-weight: bold;"><i class="fa fa-info-circle"></i> Chưa giao hàng</p>
+                                                    }
+
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                <a style="border-style: solid; padding: 5px; border-color: #08c4ee; border-width: thin; border-radius: 20px;" href="@Url.Action("InvoiceDetails","DonHang", new {ID = item.madon })"><i class="fa fa-eye"></i> Xem</a>
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @Html.DisplayFor(modelItem => item.ngaydat)
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @if (item.ngaygiao == null)
+                                                {
+                                                    <p style="color: black;">  Chưa duyệt ngày giao! </p>
+                                                    <a style="margin-right:5px;" href="@Url.Action("UpdateNgayGiao","DonHang", new { ID = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/calendar.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật ngày" /></a>
+                                                }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.ngaygiao)
+                                                    <a style="margin-right:5px;" href="@Url.Action("UpdateNgayGiao","DonHang", new { ID = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/calendar.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Cập nhật ngày" /></a>
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle">
+                                                @if (item.tinhtrang == "1")
+                                                {
+                                                    <p style="color: black;"> <strike> Đã hủy </strike></p>
+                                                }
+                                                else
+                                                {
+                                                    if (item.tinhtrang == "0")
+                                                    {
+                                                        <p style="color: green;"> Xác nhận</p>
+                                                    }
+                                                }
+                                            </td>
+                                            <td class="text-center" style="vertical-align: middle; min-width: 80px;">
+                                                @if (item.tinhtrang == "0")
+                                                {
+                                                    <a class="invoice-shop-huy" href="@Url.Action("DelTrash","DonHang", new {ID = item.madon })"><i class="fa fa-trash-alt"></i> Hủy đơn</a>
+                                                }
+                                                else
+                                                {
+                                                    if (item.tinhtrang == "1")
+                                                    {
+                                                        <a class="btn btn-success rounded-pill" btn href="@Url.Action("UndoTrash","DonHang", new {ID = item.madon })"><i class="fa fa-undo"></i> Khôi phục</a>
+                                                    }
+                                                }
+
+                                            </td>
+                                            <td class="text-center" style="vertical-align:middle; min-width: 80px;">
+                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.madon }) |
+                                                    @Html.ActionLink("Details", "Details", new { id = item.madon }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.madon })*@
+                                                <a style="margin-right:5px;" href="@Url.Action("Edit","DonHang", new { id = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/edit-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Sửa" /></a>
+                                                <a style="margin-left:5px;margin-right:5px;" href="@Url.Action("Details","DonHang", new { id = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/eye.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xem" /></a>
+                                                <a style="margin-left:5px;" href="@Url.Action("Delete","DonHang", new { id = item.madon })"><img style="width:20px;height:20px;" src="~/Areas/Administrator/Data/images/trash-crud.png" data-bs-toggle="tooltip" data-bs-placement="top" title="Xóa" /></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

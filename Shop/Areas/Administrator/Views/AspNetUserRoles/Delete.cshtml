@@ -1,0 +1,55 @@
+﻿@model Shop.EF.AspNetUserRole
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Xóa</h2>
+
+        <h3>Bạn có chắc chắn muốn xóa quyền của Account này?</h3>
+        <div>
+            <h4>AspNetUserRole</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AspNetRole.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AspNetRole.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AspNetUser.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Note)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Note)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+    </div>
+</div>

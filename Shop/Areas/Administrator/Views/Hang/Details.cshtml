@@ -1,0 +1,38 @@
+﻿@model Shop.EF.Hang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+@Html.Partial("_MessageAlert")
+<div class="container-sm container-fluid">
+    <div class="p-5" style="background-color: white">
+        <h2>Thông tin hãng (thương hiệu)</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Tên hãng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.tenhang)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Banner hãng")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.hinh)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.mahang }) |
+            @Html.ActionLink("Quay lại", "Index", "Hang")
+        </p>
+    </div>
+</div>

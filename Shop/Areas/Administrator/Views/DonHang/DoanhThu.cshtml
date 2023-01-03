@@ -1,0 +1,139 @@
+﻿@*@model PagedList.PagedList<Shop.EF.DonHang>
+    @using PagedList.Mvc;*@
+
+@{
+    ViewBag.Title = "DoanhThu";
+    Layout = "~/Areas/Administrator/Views/Shared/_LayoutAdministrator.cshtml";
+}
+<!-- Favicon -->
+<link rel="shortcut icon" href="~/Areas/Administrator/Data/assets/images/logo/favicon.png">
+
+<!-- page css -->
+<!-- Core css -->
+<link href="~/Areas/Administrator/Data/assets/css/app.min.css" rel="stylesheet">
+<!-- Doanh thu -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div class="container-sm container-fluid">
+    <div class="main-content">
+        <h1 class="text-center">Doanh thu Shop Laptop</h1>
+        <div class="p-5" style="background-color: white">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card laptopzoom">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+
+                                    <h3 class="m-b-0">@ViewBag.DTNgay.ToString("#,##") <sup>đ</sup></h3>
+
+                                    <p class="m-b-0 text-muted">Doanh thu Ngày hiện tại (VNĐ)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card laptopzoom">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+
+                                    <h3 class="m-b-0">@ViewBag.DTThang.ToString("#,##") <sup>đ</sup></h3>
+
+                                    <p class="m-b-0 text-muted">Doanh thu Tháng hiện tại (VNĐ)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card laptopzoom">
+                        <div class="card-body">
+                            <div class="media align-items-center">
+                                <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-dollar"></i>
+                                </div>
+                                <div class="m-l-15">
+
+                                    <h3 class="m-b-0">@ViewBag.DTNam.ToString("#,##") <sup>đ</sup></h3>
+
+                                    <p class="m-b-0 text-muted">Doanh thu Năm hiện tại (VNĐ)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Core Vendors JS -->
+<script src="~/Areas/Administrator/Data/assets/js/vendors.min.js"></script>
+
+<!-- page js -->
+<script src="~/Areas/Administrator/Data/assets/vendors/chartjs/Chart.min.js"></script>
+<script src="~/Areas/Administrator/Data/assets/js/pages/dashboard-default.js"></script>
+
+<!-- Core JS -->
+<script src="~/Areas/Administrator/Data/assets/js/app.min.js"></script>
+<!-- Doanh thu -->
+<script>
+    $(document).ready(function () {
+        $.getJSON("/Administrator/DonHang/GetData", function (data) {
+            var Names = []
+            var Qts = []
+            for (var i = 0; i < data.length; i++) {
+                Names.push(data[i].name);
+                Qts.push(data[i].count);
+            }
+
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Hóa đơn'
+                },
+                subtitle: {
+                    text: 'Nguồn: Data Shop iLaptop'
+                },
+                xAxis: {
+                    categories: Names
+                },
+                yAxis: {
+                    title: {
+                        text: 'Lợi nhuận (VNĐ)'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                series: [{
+                    name: 'Đơn hàng',
+                    data: Qts
+                }]
+            });
+        });
+    });
+
+
+</script>
