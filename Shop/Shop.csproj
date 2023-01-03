@@ -331,11 +331,6 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MyData.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyData.dbml</DependentUpon>
-    </Compile>
     <Compile Include="MoMo\MoMoSecurity.cs" />
     <Compile Include="MoMo\PaymentRequest.cs" />
     <Compile Include="NganLuong\nganluonAPI\APICheckoutV3.cs" />
@@ -4348,11 +4343,6 @@
     <Content Include="Plugins\ckfinder\translations.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\MyData.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>MyData.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\js\bootstrap.js.map" />
@@ -4887,9 +4877,6 @@
     <Content Include="Areas\Administrator\Views\AspNetUserRoles\Details.cshtml" />
     <Content Include="Areas\Administrator\Views\AspNetUserRoles\Edit.cshtml" />
     <Content Include="Areas\Administrator\Views\AspNetUserRoles\Index.cshtml" />
-    <None Include="Models\MyData.dbml.layout">
-      <DependentUpon>MyData.dbml</DependentUpon>
-    </None>
     <Content Include="Plugins\ckeditor\CHANGES.md" />
     <Content Include="Plugins\ckeditor\LICENSE.md" />
     <Content Include="Plugins\ckeditor\plugins\scayt\CHANGELOG.md" />
@@ -5228,9 +5215,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="Dao\" />
     <Folder Include="Dto\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Repository\" />
-    <Folder Include="Service\" />
+    <Folder Include="Services\" />
     <Folder Include="Upload\" />
+    <Folder Include="Utils\" />
     <Folder Include="Views\Callback\" />
     <Folder Include="Views\Gateway\" />
     <Folder Include="Views\History\" />
