@@ -6,12 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Areas.Administrator;
 using Shop.Areas.Administrator.Data.message;
+using Shop.Areas.Administrator.Repositories;
 using Shop.EF;
 
 namespace Shop.Areas.Administrator.Controllers
 {
-    public class AspNetRolesController : Controller
+    public class AspNetRolesController : Controller, IAspNetRolesController
     {
         private DataModel db = new DataModel();
 
